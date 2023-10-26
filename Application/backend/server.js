@@ -4,7 +4,6 @@ const express = require('express');
 // .env
 require('dotenv').config();
 
-MONG_URI='mongodb+srv://mlepnos:gH4N7FOQYecmZVQG@mernapp.px14x4b.mongodb.net/'
 // database
 const mongoose = require('mongoose');
 
@@ -27,7 +26,7 @@ app.use('/api/meals', mealRoutes);
 
 
 //connect to db
-mongoose.connect(MONG_URI)
+mongoose.connect(process.env.MONG_URI)
     .then(() => {
          // listen for requests only if we are connected
         app.listen(process.env.PORT , () => {
