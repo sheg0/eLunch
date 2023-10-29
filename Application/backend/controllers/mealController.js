@@ -1,14 +1,13 @@
 const Meal = require('../models/mealModel');
 const mongoose = require('mongoose');
 
-
-// GET all workouts
+// GET all meals
 const getAllMeals = async(req,res) => {
     const meal = await Meal.find({}).sort({createdAt: -1});
     res.status(200).json(meal)
 }
 
-// GET single workout
+// GET single meal
 const getMeal = async (req,res) => {
     const {id} = req.params;   //'/:id' from the path of the request
     if(!mongoose.Types.ObjectId.isValid(id)){
@@ -19,16 +18,15 @@ const getMeal = async (req,res) => {
         return res.status(404).json({error: 'No Such Meal'});
     }
     res.status(200).json(meal);
-
 }
 
-
-// Create a new workout
+// Create new meal
 const createMeal = async (req,res) => {
     const {name, isVegetarian, isVegan,hasGluten,type} = req.body; 
 
-    //new code: Detecting which fields are empty
+    //Detecting which fields are empty
     let emptyFields = [];
+
     if(!name){
       emptyFields.push('name');
     }
@@ -56,8 +54,6 @@ const createMeal = async (req,res) => {
         res.status(400).json({error: error.message})     
     }
 }
-
-
 
 // delete a  meal
 const deleteMeal = async (req,res) => {
@@ -101,12 +97,4 @@ module.exports = {
 }
 
 
-/* TBC
-function isValid(param) {
-
-    if(!param){
-        emptyFields.push(param);
-      }
-
-}*/
 

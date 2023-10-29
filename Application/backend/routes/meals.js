@@ -1,7 +1,6 @@
 const express = require('express');
 
 // Importing Functions
-
 const { 
     getAllMeals,
     getMeal,
@@ -27,7 +26,6 @@ router.delete('/:id', deleteMeal);
 
 // UPDATE a new meal
 router.patch('/:id', updateMeal);
-
 
 // Exporting Functions
 module.exports = router;

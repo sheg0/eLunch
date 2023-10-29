@@ -12,15 +12,15 @@ const mealSchema = new Schema(
             required: true
         },
         isVegetarian: {
-            type: Boolean,
+            type: String,
             required: true
         },
         isVegan: {
-            type: Boolean,
+            type: String,
             required: true
         },
         hasGluten: {
-            type: Boolean,
+            type: String,
             required: true
         },
         type: {

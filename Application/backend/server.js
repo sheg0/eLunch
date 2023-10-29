@@ -24,7 +24,6 @@ app.use((req,res,next) => {
 
 app.use('/api/meals', mealRoutes);
 
-
 //connect to db
 mongoose.connect(process.env.MONG_URI)
     .then(() => {
@@ -32,7 +31,6 @@ mongoose.connect(process.env.MONG_URI)
         app.listen(process.env.PORT , () => {
         console.log('connected to db and Listening on port : ' + process.env.PORT);
 });
-
     })
     .catch((error) => {
         console.log(error);
