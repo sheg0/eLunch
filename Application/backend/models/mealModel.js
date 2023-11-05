@@ -13,7 +13,7 @@ const mealSchema = new Schema(
         },
         isVegetarian: {
             type: String,
-            required: true
+            required: true 
         },
         isVegan: {
             type: String,

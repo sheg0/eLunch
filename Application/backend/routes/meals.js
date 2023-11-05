@@ -12,6 +12,14 @@ const {
 
 const router = express.Router();
 
+
+
+// GET weakly meals
+// router.get('/week', '')
+
+// GET monthly meals
+// router.get('/month', '')
+
 // GET all meals
 router.get('/', getAllMeals)
 

@@ -1,6 +1,14 @@
 const Meal = require('../models/mealModel');
 const mongoose = require('mongoose');
 
+
+
+// GET weakly meals
+// GET monthly meals
+
+
+
+// Sorting by descending order (1 for ascending)
 // GET all meals
 const getAllMeals = async(req,res) => {
     const meal = await Meal.find({}).sort({createdAt: -1});
