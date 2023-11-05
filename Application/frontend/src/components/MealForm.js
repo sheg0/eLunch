@@ -77,8 +77,7 @@ const MealForm = () => {
                 type= "text"
                 onChange={(e) => setIsVegan(e.target.value)}
                 value={isVegan}
-                className={emptyFields.includes('isVegan') ? 'error' : ''}
-                
+                className={emptyFields.includes('isVegan') ? 'error' : ''}   
             />
 
             <label>hasGluten:</label>
@@ -101,7 +100,6 @@ const MealForm = () => {
             {error && <div className="error">{error}</div>}
             
         </form> 
-        
     )
 }
 

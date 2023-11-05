@@ -29,13 +29,7 @@ const MealDetails = ({meal}) => {
         if(response.ok){
             dispatch({type: 'EDIT_MEAL', payload: json});
         }
-    }
-
-    
-    
-    
-    
-    
+    }    
     return(
         <div className="meal-details">
             <h4>{meal.name}</h4>
@@ -50,11 +44,9 @@ const MealDetails = ({meal}) => {
                 <button className="material-symbols-outlined-delete" onClick={handleClickDelete}>delete</button>
             
                 <button className="material-symbols-outlined-edit" onClick={handleClickEdit} >edit</button>
-            </div>
-            
+            </div>      
         </div>
     )
 }
-
 
 export default MealDetails

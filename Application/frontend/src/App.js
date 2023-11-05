@@ -18,8 +18,6 @@ function App() {
     // 👇️ navigate to /
     navigate('/');
   };
-
-
 ////////////////////////////////
 
 const{meals,dispatch}= useMealsContext();
@@ -42,7 +40,6 @@ useEffect(() => {
 }, [dispatch])
 
 ////////////////////////////////
-
   return (
     <div className="App">
       
