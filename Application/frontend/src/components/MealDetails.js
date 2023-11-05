@@ -1,10 +1,10 @@
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
+import { useMealsContext } from '../hooks/useMealsContext'
 
 //date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow'
 
-const WorkoutDetails = ({meal}) => {
-    const { dispatch } = useWorkoutsContext(); //grab dispatch function
+const MealDetails = ({meal}) => {
+    const { dispatch } = useMealsContext(); //grab dispatch function
     const handleClickDelete = async () => {
 
         
@@ -57,4 +57,4 @@ const WorkoutDetails = ({meal}) => {
 }
 
 
-export default WorkoutDetails
+export default MealDetails

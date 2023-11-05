@@ -1,5 +1,5 @@
 import { Routes, Route,useNavigate} from 'react-router-dom'
-import { useWorkoutsContext } from './hooks/useWorkoutsContext'
+import { useMealsContext } from './hooks/useMealsContext'
 import { useEffect } from 'react'
 //pages & components
 import Home from './pages/Home'
@@ -22,7 +22,7 @@ function App() {
 
 ////////////////////////////////
 
-const{meals,dispatch}= useWorkoutsContext();
+const{meals,dispatch}= useMealsContext();
 
 useEffect(() => {
   const fetchWorkout = async () =>{

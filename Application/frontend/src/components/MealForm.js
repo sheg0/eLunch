@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { useWorkoutsContext } from '../hooks/useWorkoutsContext'
+import { useMealsContext } from '../hooks/useMealsContext'
 
 
-const WorkoutForm = () => {
+const MealForm = () => {
     //**** 
-    const { dispatch } = useWorkoutsContext();
+    const { dispatch } = useMealsContext();
     //**** 
     const [name, setName] = useState('');
     const [isVegetarian, setIsVegetarian] = useState('');
@@ -105,4 +105,4 @@ const WorkoutForm = () => {
     )
 }
 
-export default WorkoutForm
+export default MealForm

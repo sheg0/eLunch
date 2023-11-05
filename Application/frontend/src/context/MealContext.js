@@ -1,14 +1,10 @@
 import { createContext, useReducer } from "react";
 
-export const WorkoutContext = createContext();
+export const MealContext = createContext();
 
 export const workoutsReducer = (state, action) => {
     
-    switch(action.type){
-        case 'GET_MEAL':
-            
-           
-           
+    switch(action.type){       
         case 'SET_MEAL':
             return {
                 meals: action.payload
@@ -43,7 +39,7 @@ export const workoutsReducer = (state, action) => {
 
 }
 
-export const WorkoutContextProvider = ({children}) => { //the children property represents the app property that we wrapped in index js
+export const MealContextProvider = ({children}) => { //the children property represents the app property that we wrapped in index js
     const [state,dispatch] = useReducer(workoutsReducer, {
         meals: null
     });
@@ -51,9 +47,9 @@ export const WorkoutContextProvider = ({children}) => { //the children property 
  
 
     return(
-    <WorkoutContext.Provider value={{...state,dispatch}}>
+    <MealContext.Provider value={{...state,dispatch}}>
         {children}
-    </WorkoutContext.Provider>
+    </MealContext.Provider>
     )
 }
 

@@ -1,5 +1,5 @@
-import WorkoutDetails from "../components/WorkoutDetails";
-import WorkoutForm from "../components/WorkoutForm";
+import MealDetails from "../components/MealDetails";
+import MealForm from "../components/MealForm";
 
 
 
@@ -20,10 +20,10 @@ const Home = ({meals}) => {
         <div className="home">
             <div className="meals">
                 {meals && meals.map((meal)=> (
-                    <WorkoutDetails key={meal._id} meal= {meal}/>
+                    <MealDetails key={meal._id} meal= {meal}/>
                 ))}
             </div>
-            <WorkoutForm/>
+            <MealForm/>
         </div>
     )
 }
