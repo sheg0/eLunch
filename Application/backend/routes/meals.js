@@ -1,18 +1,15 @@
-const express = require('express');
+const express = require("express");
 
 // Importing Functions
-const { 
-    getAllMeals,
-    getMeal,
-    createMeal,
-    deleteMeal,
-    updateMeal
-} = require('../controllers/mealController');
-
+const {
+  getAllMeals,
+  getMeal,
+  createMeal,
+  deleteMeal,
+  updateMeal,
+} = require("../controllers/mealController");
 
 const router = express.Router();
-
-
 
 // GET weakly meals
 // router.get('/week', '')
@@ -21,19 +18,19 @@ const router = express.Router();
 // router.get('/month', '')
 
 // GET all meals
-router.get('/', getAllMeals)
+router.get("/", getAllMeals);
 
 // GET single meal
-router.get('/:id', getMeal);
+router.get("/:id", getMeal);
 
 // POST a new meal
-router.post('/', createMeal );
+router.post("/", createMeal);
 
 // DELETE a meal
-router.delete('/:id', deleteMeal);
+router.delete("/:id", deleteMeal);
 
 // UPDATE a new meal
-router.patch('/:id', updateMeal);
+router.patch("/:id", updateMeal);
 
 // Exporting Functions
 module.exports = router;
