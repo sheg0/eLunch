@@ -14,10 +14,10 @@
       <tbody>
         {meals &&
           meals.map((meal) => {
-            //console.log(meal)
+            console.log(meal)
             return (
               <>
-                <tr key={meal._id}>
+                <tr key={meal._id + 2}>
                   <td>{meal.name}</td>
                   <td>{meal.isVegetarian}</td>
                   <td>{meal.isVegan}</td>
