@@ -17,7 +17,7 @@ const MealForm = () => {
   const [type, setType] = useState("");
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
-  const [checked, setChecked] = useState(true);
+  const [checked, setChecked] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ const MealForm = () => {
       setIsVegan("");
       setHasGluten("");
       setType("");
-      setChecked("");
+      setChecked(false);
       setError(null);
       setEmptyFields([]);
 

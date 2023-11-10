@@ -2,8 +2,7 @@
 //components
 import { Container } from "@mui/material";
 import FetchMeal from "./components/FetchMeal";
-import Navbar from "./components/Navbar";
-import NavigationSection from "./components/NavigationSection";
+
 import ClippedDrawer from "./components/Sidebar";
 
 function App() {

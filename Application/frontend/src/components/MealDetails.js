@@ -80,7 +80,7 @@ const MealDetails = ({ meal }) => {
           </p>
           <p>
             <strong> checked: </strong>
-            {meal.checked ? "True" : "False"}
+            {String(meal.checked)}
           </p>
 
           <p>
