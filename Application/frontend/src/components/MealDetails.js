@@ -2,16 +2,18 @@ import { useMealsContext } from "../hooks/useMealsContext";
 import { useState } from "react";
 //date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
-
+import Checkbox from "@mui/material/Checkbox";
 const MealDetails = ({ meal }) => {
   //STATES
   const [isEditing, setIsEditing] = useState(false);
-  const [emptyFields, setEmptyFields] = useState([]);
+  //const [emptyFields, setEmptyFields] = useState([]);
   const [isVegetarian, setIsVegetarian] = useState(meal.isVegetarian);
   const [isVegan, setIsVegan] = useState(meal.isVegan);
   const [hasGluten, setHasGluten] = useState(meal.hasGluten);
   const [type, setType] = useState(meal.type);
   const [name, setName] = useState(meal.name);
+  const [checked, setChecked] = useState(false);
+  //const [checked, setChecked] = useState(meal.checked);
 
   //DISPATCH
   const { dispatch } = useMealsContext(); //grab dispatch function
@@ -41,6 +43,7 @@ const MealDetails = ({ meal }) => {
         hasGluten: hasGluten,
         type: type,
         name: name,
+        checked: checked,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -75,6 +78,10 @@ const MealDetails = ({ meal }) => {
             <strong> type: </strong>
             {meal.type}
           </p>
+          <p>
+            <strong> checked: </strong>
+            {meal.checked ? "True" : "False"}
+          </p>
 
           <p>
             {formatDistanceToNow(new Date(meal.createdAt), { addSuffix: true })}
@@ -108,10 +115,16 @@ const MealDetails = ({ meal }) => {
             value={hasGluten}
           />
           <label>type:</label>
+
           <input
             type="text"
             onChange={(e) => setType(e.target.value)}
             value={type}
+          />
+
+          <Checkbox
+            onChange={(e) => setChecked(e.target.checked)}
+            inputProps={{ "aria-label": "controlled" }}
           />
         </div>
       )}
