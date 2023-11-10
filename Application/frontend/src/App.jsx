@@ -2,13 +2,11 @@
 //components
 import { Container } from "@mui/material";
 import FetchMeal from "./components/FetchMeal";
-
 import ClippedDrawer from "./components/Sidebar";
 
 function App() {
   return (
     <div className="App">
-      
       <ClippedDrawer>
         <div className="pages">
           <Container>
@@ -16,7 +14,6 @@ function App() {
           </Container>
         </div>
       </ClippedDrawer>
-      
     </div>
   );
 }
