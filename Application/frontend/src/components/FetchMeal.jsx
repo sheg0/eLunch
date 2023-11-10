@@ -7,6 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import List from "../pages/List";
 import Calendar from "../pages/Calendar";
+//import Calendar from "../components/calendar/index.jsx";
 
 function FetchMeal() { 
   
@@ -35,7 +36,7 @@ function FetchMeal() {
         <Routes>
           <Route path="/" element={<Home meals={meals} />} />
           <Route path="/List" element={<List meals={meals} />} />
-          <Route path="/Calendar" element={<Calendar meals={meals} />} />
+          <Route path="/Calendar" element={<Calendar />} />
         </Routes>
 
   )
