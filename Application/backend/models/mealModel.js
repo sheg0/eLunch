@@ -27,6 +27,9 @@ const mealSchema = new Schema(
       type: String,
       required: true,
     },
+    checked: {
+      type: Boolean,
+    },
   },
 
   {

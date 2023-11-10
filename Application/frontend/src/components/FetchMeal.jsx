@@ -8,6 +8,8 @@ import Home from "../pages/Home";
 import List from "../pages/List";
 import Calendar from "../pages/Calendar";
 
+
+
 function FetchMeal() { 
   
   const { meals, dispatch } = useMealsContext();
@@ -35,18 +37,12 @@ function FetchMeal() {
         <Routes>
           <Route path="/" element={<Home meals={meals} />} />
           <Route path="/List" element={<List meals={meals} />} />
-          <Route path="/Calendar" element={<Calendar meals={meals} />} />
+          <Route path="/Calendar" element={<Calendar />} />
         </Routes>
 
   )
 
 
  }
-
-
-
-
-
-
 
   export default FetchMeal;

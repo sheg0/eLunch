@@ -26,7 +26,7 @@ const getMeal = async (req, res) => {
 
 // Create new meal
 const createMeal = async (req, res) => {
-  const { name, isVegetarian, isVegan, hasGluten, type } = req.body;
+  const { name, isVegetarian, isVegan, hasGluten, type, checked } = req.body;
 
   //Detecting which fields are empty
   let emptyFields = [];
@@ -60,6 +60,7 @@ const createMeal = async (req, res) => {
       isVegan,
       hasGluten,
       type,
+      checked,
     });
     res.status(200).json(meal);
   } catch (error) {

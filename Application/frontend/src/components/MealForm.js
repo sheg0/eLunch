@@ -3,6 +3,9 @@ import { useMealsContext } from "../hooks/useMealsContext";
 import AddButton from "./AddButton";
 import InputField from "./InputField";
 
+import * as React from "react";
+import Checkbox from "@mui/material/Checkbox";
+
 const MealForm = () => {
   //****
   const { dispatch } = useMealsContext();
@@ -14,11 +17,12 @@ const MealForm = () => {
   const [type, setType] = useState("");
   const [error, setError] = useState(null);
   const [emptyFields, setEmptyFields] = useState([]);
+  const [checked, setChecked] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const meal = { name, isVegetarian, isVegan, hasGluten, type };
+    const meal = { name, isVegetarian, isVegan, hasGluten, type, checked };
 
     const response = await fetch("/api/meals", {
       method: "POST",
@@ -40,6 +44,7 @@ const MealForm = () => {
       setIsVegan("");
       setHasGluten("");
       setType("");
+      setChecked(false);
       setError(null);
       setEmptyFields([]);
 
@@ -91,6 +96,11 @@ const MealForm = () => {
         onChange={(e) => setType(e.target.value)}
         value={type}
         className={emptyFields.includes("type") ? "error" : ""}
+      />
+
+      <Checkbox
+        onChange={(e) => setChecked(e.target.checked)}
+        inputProps={{ "aria-label": "controlled" }}
       />
 
       <AddButton variant="contained">Add Meal</AddButton>
