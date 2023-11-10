@@ -1,106 +1,102 @@
-import { useState } from "react"
-import { useMealsContext } from '../hooks/useMealsContext'
-
+import { useState } from "react";
+import { useMealsContext } from "../hooks/useMealsContext";
+import AddButton from "./AddButton";
+import InputField from "./InputField";
 
 const MealForm = () => {
-    //**** 
-    const { dispatch } = useMealsContext();
-    //**** 
-    const [name, setName] = useState('');
-    const [isVegetarian, setIsVegetarian] = useState('');
-    const [isVegan, setIsVegan] = useState('');
-    const [hasGluten, setHasGluten] = useState('');
-    const [type, setType] = useState('');
-    const [error, setError] = useState(null);
-    const [emptyFields, setEmptyFields] = useState([]);
+  //****
+  const { dispatch } = useMealsContext();
+  //****
+  const [name, setName] = useState("");
+  const [isVegetarian, setIsVegetarian] = useState("");
+  const [isVegan, setIsVegan] = useState("");
+  const [hasGluten, setHasGluten] = useState("");
+  const [type, setType] = useState("");
+  const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-        const meal = {name,isVegetarian,isVegan,hasGluten,type};
+    const meal = { name, isVegetarian, isVegan, hasGluten, type };
 
-        const response = await fetch('/api/meals',{
-            method:'POST',
-            body: JSON.stringify(meal),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const json = await response.json();
+    const response = await fetch("/api/meals", {
+      method: "POST",
+      body: JSON.stringify(meal),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
 
-        if(!response.ok){
-          
-            setError(json.error);
-            
-            setEmptyFields(json.emptyFields);
-            
-        }
-        if(response.ok){
-   
-            setName('');
-            setIsVegetarian('');
-            setIsVegan('');
-            setHasGluten('');
-            setType('');
-            setError(null);
-            setEmptyFields([]);
+    if (!response.ok) {
+      setError(json.error);
 
-            console.log('New Meal Added',json);
-            //console.log(workout);
-
-            dispatch({type: 'CREATE_MEAL', payload: json})
-        }
+      setEmptyFields(json.emptyFields);
     }
+    if (response.ok) {
+      setName("");
+      setIsVegetarian("");
+      setIsVegan("");
+      setHasGluten("");
+      setType("");
+      setError(null);
+      setEmptyFields([]);
 
-    return(
-        <form className="create" onSubmit={handleSubmit}> 
-            <h3>Add a New Meal</h3>
-            <label>Name:</label>
-            <input
-                type= "text"
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                className={emptyFields.includes('name') ? 'error' : ''}
-            />
+      console.log("New Meal Added", json);
 
-            <label>IsVegetarian:</label>
-            <input
-                type= "text"
-                onChange={(e) => setIsVegetarian(e.target.value)}
-                value={isVegetarian}
-                className={emptyFields.includes('isVegetarian') ? 'error' : ''}
+      dispatch({ type: "CREATE_MEAL", payload: json });
+    }
+  };
 
-            />
+  return (
+    <form className="create" onSubmit={handleSubmit}>
+      <h3>Add a New Meal</h3>
 
-            <label>isVegan:</label>
-            <input
-                type= "text"
-                onChange={(e) => setIsVegan(e.target.value)}
-                value={isVegan}
-                className={emptyFields.includes('isVegan') ? 'error' : ''}   
-            />
+      <InputField
+        label="Name:"
+        type="text"
+        onChange={(e) => setName(e.target.value)}
+        value={name}
+        className={emptyFields.includes("name") ? "error" : ""}
+      />
 
-            <label>hasGluten:</label>
-            <input
-                type= "text"
-                onChange={(e) => setHasGluten(e.target.value)}
-                value={hasGluten}
-                className={emptyFields.includes('hasGluten') ? 'error' : ''}  
-            />
+      <InputField
+        label="IsVegetarian:"
+        type="text"
+        onChange={(e) => setIsVegetarian(e.target.value)}
+        value={isVegetarian}
+        className={emptyFields.includes("isVegetarian") ? "error" : ""}
+      />
 
-            <label>type:</label>
-            <input
-                type= "text"
-                onChange={(e) => setType(e.target.value)}
-                value={type}
-                className={emptyFields.includes('type') ? 'error' : ''}  
-            />
+      <InputField
+        label="isVegan:"
+        type="text"
+        onChange={(e) => setIsVegan(e.target.value)}
+        value={isVegan}
+        className={emptyFields.includes("isVegan") ? "error" : ""}
+      />
 
-            <button variant="contained">Add Meal</button>
-            {error && <div className="error">{error}</div>}
-            
-        </form> 
-    )
-}
+      <InputField
+        label="hasGluten:"
+        type="text"
+        onChange={(e) => setHasGluten(e.target.value)}
+        value={hasGluten}
+        className={emptyFields.includes("hasGluten") ? "error" : ""}
+      />
 
-export default MealForm
+      <InputField
+        label="type:"
+        type="text"
+        onChange={(e) => setType(e.target.value)}
+        value={type}
+        className={emptyFields.includes("type") ? "error" : ""}
+      />
+
+      <AddButton variant="contained">Add Meal</AddButton>
+      {error && <div className="error">{error}</div>}
+    </form>
+  );
+};
+
+export default MealForm;
