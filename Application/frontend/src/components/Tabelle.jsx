@@ -1,5 +1,5 @@
  const Tabelle = ({meals}) =>{
-    console.log(meals)
+    
     return(
         <table id="result">
         <thead> 
@@ -14,10 +14,10 @@
       <tbody>
         {meals &&
           meals.map((meal) => {
-            console.log(meal)
+            
             return (
               <>
-                <tr key={meal._id + 2}>
+                <tr key={meal._id +1}>
                   <td>{meal.name}</td>
                   <td>{meal.isVegetarian}</td>
                   <td>{meal.isVegan}</td>
