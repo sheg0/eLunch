@@ -19,7 +19,7 @@ import InfoIcon from '@mui/icons-material/Info';
 
 
 
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const drawerWidth = 250;
@@ -32,11 +32,11 @@ export default function ClippedDrawer({children})  {
     console.log(path)
     switch (path) {
       case "Speiseplan":
-        return navigate("/");
+        return navigate("/Calendar");
       case "Gerichte":
         return navigate("/List");
       case "Einkaufszettel":
-        return navigate("/Calendar");
+        return navigate("/");
       case 4:
         return navigate("/");
       case 5:
@@ -62,6 +62,7 @@ export default function ClippedDrawer({children})  {
         'Statistik': <StackedLineChartIcon />,
         'Infos': <InfoIcon />
     };
+
 
     return (
     <Box sx={{ display: 'flex' }}>
@@ -90,7 +91,7 @@ export default function ClippedDrawer({children})  {
           <List sx={{ color: "white" }}>
             {listItems.map(item =>{      
               return(
-                <ListItemButton  onClick={()=>SwitchPath(item) } key={item}
+                <ListItemButton onClick={()=>SwitchPath(item) } key={item}
                   sx={{ fontFamily:'Segoe UI', fontSize: '20px' }}
                 >
                   

@@ -7,7 +7,8 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import List from "../pages/List";
 import Calendar from "../pages/Calendar";
-//import Calendar from "../components/calendar/index.jsx";
+
+
 
 function FetchMeal() { 
   
@@ -43,11 +44,5 @@ function FetchMeal() {
 
 
  }
-
-
-
-
-
-
 
   export default FetchMeal;

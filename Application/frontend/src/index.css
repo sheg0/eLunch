@@ -9,7 +9,7 @@
 body {
   background: #f1f1f1;
   margin: 0;
-  font-family: "Poppins";
+  font-family: "Segoe UI", Arial, sans-serif;
 }
 header {
   background: #fff;
@@ -85,7 +85,7 @@ form button {
   border: 0;
   color: #fff;
   padding: 10px;
-  font-family: "Poppins";
+  font-family: "Segoe UI", Arial, sans-serif;
   border-radius: 4px;
   cursor: pointer;
 }
@@ -104,7 +104,7 @@ input.error{
 
 div.box{
   width: 200px;
-  height: 100px;;
+  height: 100px;
   display: flex;
   flex-direction: row;
   
@@ -116,7 +116,7 @@ border: 1px transparent black;
 border-radius: 2em;
 margin: 10px;
 width:50% ;
-height: 50%;;
+height: 50%;
 }
 button.material-symbols-outlined-delete{
   background-color: #e7195a;
@@ -144,7 +144,7 @@ button.material-symbols-outlined-delete{
 }
 
 #result tbody {
-  font-family: 'Roboto Condensed', sans-serif;
+  font-family: "Segoe UI", Arial, sans-serif;
   font-size: 0.85rem;
   color: red;
 }
