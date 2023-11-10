@@ -1,25 +1,16 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { useMealsContext } from "./hooks/useMealsContext";
 import { useEffect } from "react";
 //pages & components
 import Home from "./pages/Home";
 import List from "./pages/List";
+
+import Calendar from "./pages/Calendar";
 import Navbar from "./components/Navbar";
 
+import NavigationSection from "./components/NavigationSection";
+
 function App() {
-  const navigate = useNavigate();
-
-  const navigateToList = () => {
-    // 👇️ navigate to /contacts
-    navigate("/List");
-  };
-
-  const navigateHome = () => {
-    // 👇️ navigate to /
-    navigate("/");
-  };
-  ////////////////////////////////
-
   const { meals, dispatch } = useMealsContext();
 
   useEffect(() => {
@@ -44,13 +35,11 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="pages">
-        <section>
-          <button onClick={navigateHome}>Home</button>
-          <button onClick={navigateToList}>List</button>
-        </section>
+        <NavigationSection></NavigationSection>
         <Routes>
           <Route path="/" element={<Home meals={meals} />} />
           <Route path="/List" element={<List meals={meals} />} />
+          <Route path="/Calendar" element={<Calendar meals={meals} />} />
         </Routes>
       </div>
     </div>

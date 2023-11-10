@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { useMealsContext } from "../hooks/useMealsContext";
+import AddButton from "./AddButton";
+import InputField from "./InputField";
 
 const MealForm = () => {
   //****
@@ -42,7 +44,6 @@ const MealForm = () => {
       setEmptyFields([]);
 
       console.log("New Meal Added", json);
-      //console.log(workout);
 
       dispatch({ type: "CREATE_MEAL", payload: json });
     }
@@ -51,47 +52,48 @@ const MealForm = () => {
   return (
     <form className="create" onSubmit={handleSubmit}>
       <h3>Add a New Meal</h3>
-      <label>Name:</label>
-      <input
+
+      <InputField
+        label="Name:"
         type="text"
         onChange={(e) => setName(e.target.value)}
         value={name}
         className={emptyFields.includes("name") ? "error" : ""}
       />
 
-      <label>IsVegetarian:</label>
-      <input
+      <InputField
+        label="IsVegetarian:"
         type="text"
         onChange={(e) => setIsVegetarian(e.target.value)}
         value={isVegetarian}
         className={emptyFields.includes("isVegetarian") ? "error" : ""}
       />
 
-      <label>isVegan:</label>
-      <input
+      <InputField
+        label="isVegan:"
         type="text"
         onChange={(e) => setIsVegan(e.target.value)}
         value={isVegan}
         className={emptyFields.includes("isVegan") ? "error" : ""}
       />
 
-      <label>hasGluten:</label>
-      <input
+      <InputField
+        label="hasGluten:"
         type="text"
         onChange={(e) => setHasGluten(e.target.value)}
         value={hasGluten}
         className={emptyFields.includes("hasGluten") ? "error" : ""}
       />
 
-      <label>type:</label>
-      <input
+      <InputField
+        label="type:"
         type="text"
         onChange={(e) => setType(e.target.value)}
         value={type}
         className={emptyFields.includes("type") ? "error" : ""}
       />
 
-      <button variant="contained">Add Meal</button>
+      <AddButton variant="contained">Add Meal</AddButton>
       {error && <div className="error">{error}</div>}
     </form>
   );
