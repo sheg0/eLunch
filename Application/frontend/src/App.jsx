@@ -1,5 +1,6 @@
 
 //components
+import { Container } from "@mui/material";
 import FetchMeal from "./components/FetchMeal";
 import Navbar from "./components/Navbar";
 import NavigationSection from "./components/NavigationSection";
@@ -11,7 +12,9 @@ function App() {
       
       <ClippedDrawer>
         <div className="pages">
-          <FetchMeal></FetchMeal>
+          <Container>
+            <FetchMeal></FetchMeal>
+          </Container>
         </div>
       </ClippedDrawer>
       
