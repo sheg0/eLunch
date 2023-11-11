@@ -43,8 +43,8 @@ export default function ClippedDrawer({children})  {
         return navigate("/");
       case 6:
         return navigate("/");
-      case 7:
-        return navigate("/");
+      case "Infos":
+        return navigate("/Info");
       default:
         return navigate("/");
     }
@@ -118,7 +118,7 @@ export default function ClippedDrawer({children})  {
               padding: '15px',
               
             }}>
-              Impressum | Druckansicht | ICAL
+              <a href={"./Info"}>Impressum</a> | Druckansicht | ICAL
           </Typography>
         </Box>
       </Drawer>
