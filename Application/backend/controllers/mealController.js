@@ -55,6 +55,7 @@ const createMeal = async (req, res) => {
 
   try {
     const meal = await Meal.create({
+      _id: new mongoose.Types.ObjectId(),
       name,
       isVegetarian,
       isVegan,
