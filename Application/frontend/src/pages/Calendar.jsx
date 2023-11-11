@@ -42,7 +42,7 @@ const Calendar = () => {
                 p="15px"
                 borderRadius="4px"
             >
-                <Typography variant="h5">Events</Typography>
+                <Typography variant="h5">Foodplan</Typography>
                 <List>
                     {currentEvents.map((event) => (
                         <ListItem
@@ -97,8 +97,8 @@ const Calendar = () => {
                     eventClick={handleEventClick}
                     eventsSet={(events) =>setCurrentEvents(events)}
                     initialEvents={[
-                        { id: "1234", title: "All-day event", date: "2023-11-10" },
-                        { id: "4321", title: "Timed event", date: "2023-11-25" },
+                        { id: "1234", title: "Nudeln mit Tomatensoße", date: "2023-11-10" },
+                        { id: "4321", title: "Burger", date: "2023-11-25" },
                     ]}
                 />
             </Box>
