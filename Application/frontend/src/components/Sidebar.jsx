@@ -9,7 +9,7 @@ import Typography from '@mui/material/Typography';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import KebabDiningIcon from '@mui/icons-material/KebabDining';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import EuroIcon from '@mui/icons-material/Euro';
@@ -54,7 +54,7 @@ export default function ClippedDrawer({children})  {
     const listItems = ['Speiseplan', 'Gerichte', 'Einkaufszettel', 'Events', 'Mitarbeiter' , 'Statistik', 'Infos'];
 
     const iconMap = {
-        'Speiseplan': <KebabDiningIcon />,
+        'Speiseplan': <MenuBookIcon />,
         'Gerichte': <LocalDiningIcon />,
         'Einkaufszettel': <ShoppingCartIcon />,
         'Events': <EuroIcon />,
