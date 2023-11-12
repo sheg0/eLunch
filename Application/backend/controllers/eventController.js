@@ -51,7 +51,6 @@ const createEvent = (req, res) => {
         },
         request: {
           type: "GET",
-          url: "http://localhost:3000/orders/" + result._id,
         },
       });
     })
