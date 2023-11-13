@@ -4,7 +4,9 @@ import FetchMeal from "./components/FetchMeal";
 import FetchEvent from "./components/FetchEvent";
 import ClippedDrawer from "./components/Sidebar";
 
+
 function App() {
+
   return (
     <div className="App">
       <ClippedDrawer>
