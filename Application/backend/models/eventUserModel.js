@@ -1,26 +1,16 @@
-// database
 const mongoose = require("mongoose");
-
-// create schema
 const Schema = mongoose.Schema;
+const ObjectId = Schema.Types.ObjectId;
 
-// define schema
-const eventUserSchema = new Schema(
-  {
-    userId: {
-      type: String,
-      required: true,
-    },
-    mealId: {
-      type: String,
-      required: true,
-    },
+let eventUserSchema = new Schema({
+  username: {
+    type: String,
   },
-
-  {
-    timestamps: true,
-  }
-);
+  event: {
+    type: ObjectId,
+    ref: "Event", // Reference to some EventSchema
+  },
+});
 
 // export schema
 module.exports = mongoose.model("EventUser", eventUserSchema);

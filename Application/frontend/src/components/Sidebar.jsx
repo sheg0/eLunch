@@ -37,8 +37,8 @@ export default function ClippedDrawer({children})  {
         return navigate("/List");
       case "Einkaufszettel":
         return navigate("/");
-      case 4:
-        return navigate("/");
+      case "Events":
+        return navigate("/Events");
       case 5:
         return navigate("/");
       case 6:
@@ -51,13 +51,13 @@ export default function ClippedDrawer({children})  {
   }
 
 
-    const listItems = ['Speiseplan', 'Gerichte', 'Einkaufszettel', 'Finanzen', 'Mitarbeiter' , 'Statistik', 'Infos'];
+    const listItems = ['Speiseplan', 'Gerichte', 'Einkaufszettel', 'Events', 'Mitarbeiter' , 'Statistik', 'Infos'];
 
     const iconMap = {
         'Speiseplan': <KebabDiningIcon />,
         'Gerichte': <LocalDiningIcon />,
         'Einkaufszettel': <ShoppingCartIcon />,
-        'Finanzen': <EuroIcon />,
+        'Events': <EuroIcon />,
         'Mitarbeiter': <PeopleIcon />,
         'Statistik': <StackedLineChartIcon />,
         'Infos': <InfoIcon />

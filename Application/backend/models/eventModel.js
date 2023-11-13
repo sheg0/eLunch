@@ -7,12 +7,14 @@ const Schema = mongoose.Schema;
 // define schema
 const eventSchema = new Schema(
   {
+    _id: mongoose.Schema.Types.ObjectId,
     date: {
-      type: Date,
+      type: String,
       required: true,
     },
     meal: {
-      type: Date,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Meal",
       required: true,
     },
   },

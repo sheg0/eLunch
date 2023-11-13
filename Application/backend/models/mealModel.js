@@ -7,6 +7,7 @@ const Schema = mongoose.Schema;
 // define schema
 const mealSchema = new Schema(
   {
+    _id: mongoose.Schema.Types.ObjectId,
     name: {
       type: String,
       required: true,
