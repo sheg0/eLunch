@@ -9,13 +9,15 @@ import Typography from "@mui/material/Typography";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
+import KebabDiningIcon from "@mui/icons-material/KebabDining";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import EuroIcon from "@mui/icons-material/Euro";
 import PeopleIcon from "@mui/icons-material/People";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import InfoIcon from "@mui/icons-material/Info";
+import { GiBalaclava } from "react-icons/gi";
+import { IconContext } from "react-icons";
 
 import { useNavigate } from "react-router-dom";
 
@@ -80,7 +82,7 @@ export default function ClippedDrawer({ children }) {
             component="div"
             sx={{ fontSize: "40px", fontFamily: "Segoe UI" }}
           >
-            Steinbeis
+            <BlueLargeIcon />
           </Typography>
         </Toolbar>
       </AppBar>

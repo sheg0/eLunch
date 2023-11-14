@@ -9,13 +9,13 @@ import { EventContextProvider } from "./context/EventContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   //<React.StrictMode>
-    <EventContextProvider>
+  <EventContextProvider>
     <MealContextProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </MealContextProvider>
-    </EventContextProvider>
+  </EventContextProvider>
   //</React.StrictMode>
 );
 
