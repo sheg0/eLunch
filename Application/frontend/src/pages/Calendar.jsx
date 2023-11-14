@@ -35,6 +35,9 @@ const Calendar = () => {
     return (
     <Box m="20px">
         <Box display="flex" justifyContent="space-between">
+
+            {/*     Events Liste auf der linken Seite
+            
             <Box 
                 flex="1 1 20%" 
                 backgroundColor="#acacac"
@@ -71,6 +74,7 @@ const Calendar = () => {
                     )}
                 </List>
             </Box>
+            */}
             <Box
                 flex="1 1 100%"
                 ml="15px"

@@ -58,7 +58,7 @@ const MealList = () => {
                       },
                       "& .MuiDataGrid-virtualScroller": {
                         backgroundColor: "#cdcdcd",
-                        borderRadius: "18.1px",
+                        borderRadius: "18px",
                       },
                       "& .MuiDataGrid-footerContainer": {
                         borderTop: "none",
