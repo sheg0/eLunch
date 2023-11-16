@@ -1,7 +1,11 @@
+import { useState } from "react";
+
  const Tabelle = ({meals}) =>{
-    
+  const [selected,setSelected] = useState("")
+
     return(
-        <table id="result">
+      <div>
+<table id="result">
         <thead> 
         <tr>
           <th >Name</th>
@@ -29,8 +33,10 @@
           })}
       </tbody>
     </table> 
+      </div>      
     )
     
 }
 
 export default Tabelle;
+

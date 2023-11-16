@@ -37,7 +37,7 @@ function FetchMeal() {
         <Routes>
           <Route path="/" element={<Home meals={meals} />} />
           <Route path="/List" element={<List meals={meals} />} />
-          <Route path="/Calendar" element={<Calendar />} />
+          <Route path="/Calendar" element={<Calendar meals={meals}/>} />
         </Routes>
 
   )

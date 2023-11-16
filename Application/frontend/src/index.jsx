@@ -4,16 +4,19 @@ import "./index.css";
 import App from "./App";
 import { MealContextProvider } from "./context/MealContext";
 import { BrowserRouter } from "react-router-dom";
+import { EventContextProvider } from "./context/EventContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  //<React.StrictMode>
+    <EventContextProvider>
     <MealContextProvider>
       <BrowserRouter>
         <App />
       </BrowserRouter>
     </MealContextProvider>
-  </React.StrictMode>
+    </EventContextProvider>
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

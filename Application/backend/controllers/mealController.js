@@ -55,6 +55,7 @@ const createMeal = async (req, res) => {
 
   try {
     const meal = await Meal.create({
+      _id: new mongoose.Types.ObjectId(),
       name,
       isVegetarian,
       isVegan,
@@ -82,6 +83,7 @@ const deleteMeal = async (req, res) => {
 };
 
 // Update a  meal
+
 const updateMeal = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
