@@ -25,9 +25,10 @@ const Calendar = ({ meals }) => {
 
   const handleDateClick = (selected) => {
     setIsActive(true);
-    const title = myvalue;
+
     const calendarApi = selected.view.calendar;
     calendarApi.unselect();
+    const title = myvalue;
 
     if (title) {
       calendarApi.addEvent({
