@@ -15,7 +15,7 @@ function FetchMeal() {
 
   useEffect(() => {
     if (initialized && keycloak.authenticated) {
-      const fetchWorkout = async () => {
+      const fetchMeals = async () => {
         try {
           const response = await fetch("/api/meals", {
             headers: { Authorization: `Bearer ${keycloak.token}` },
@@ -30,7 +30,7 @@ function FetchMeal() {
         }
       };
 
-      fetchWorkout();
+      fetchMeals();
     }
   }, [initialized, keycloak, dispatch]);
 
