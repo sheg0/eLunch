@@ -17,6 +17,35 @@ const eventSchema = new Schema(
       ref: "Meal",
       required: true,
     },
+    participants: [
+      {
+        userName: {
+          type: String,
+          required: false,
+        },
+        role: {
+          type: String,
+          required: false,
+          enum: ["creator", "cook", "buyer", "idle"],
+        },
+        isCreator: {
+          type: Boolean,
+          default: false,
+        },
+        isCook: {
+          type: Boolean,
+          default: false,
+        },
+        isBuyer: {
+          type: Boolean,
+          default: false,
+        },
+        isIdle: {
+          type: Boolean,
+          default: false,
+        },
+      },
+    ],
   },
 
   {
