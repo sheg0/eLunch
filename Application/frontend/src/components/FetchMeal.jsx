@@ -12,20 +12,16 @@ function FetchMeal() {
   const { meals, dispatch } = useMealsContext();
 
   useEffect(() => {
-    const fetchWorkout = async () => {
-      const response = await fetch("/api/meals"); //deleted 'http://localhost:4000' because we get that from proxy field in package.json , this will only solve development problems
+    const fetchMeal = async () => {
+      const response = await fetch("/api/meals");
       const json = await response.json();
 
-      //if response is ok we want to update workouts (8) using setWorkouts and store it to json (12)
       if (response.ok) {
-        //***setWorkouts(json);
-        //****
         dispatch({ type: "SET_MEAL", payload: json });
-        //****
       }
     };
 
-    fetchWorkout();
+    fetchMeal();
   }, [dispatch]);
 
   return (
