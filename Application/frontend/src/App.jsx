@@ -1,4 +1,3 @@
-
 //components
 import { Container } from "@mui/material";
 import FetchMeal from "./components/FetchMeal";

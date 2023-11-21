@@ -1,6 +1,5 @@
 import EventDetails from "../components/EventDetails";
 
-
 // components
 //codes with *** are deleted after the use of useWorkoutsContext
 //codes with **** are deleted after the use of useWorkoutsContext
@@ -15,7 +14,6 @@ const Events = ({ events }) => {
         {events &&
           events.map((event) => <EventDetails key={event._id} event={event} />)}
       </div>
-      
     </div>
   );
 };

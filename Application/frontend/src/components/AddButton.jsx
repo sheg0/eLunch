@@ -1,10 +1,3 @@
-
-
-export default function AddButton({children,...props}){
-return(
-    
-    <button {...props}>{children}</button>
-
-)
-
+export default function AddButton({ children, ...props }) {
+  return <button {...props}>{children}</button>;
 }
