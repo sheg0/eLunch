@@ -31,6 +31,23 @@ const mealSchema = new Schema(
     checked: {
       type: Boolean,
     },
+
+    isWithMeat: {
+      type: Boolean,
+      required: false,
+    },
+    isWithAlcohol: {
+      type: Boolean,
+      required: false,
+    },
+    isGlutenFree: {
+      type: Boolean,
+      required: false,
+    },
+    isLactoseFree: {
+      type: Boolean,
+      required: false,
+    },
   },
 
   {
