@@ -1,3 +1,4 @@
+const keycloak = require('../keycloak');
 const express = require("express");
 
 // Importing Functions
@@ -18,7 +19,7 @@ const router = express.Router();
 // router.get('/month', '')
 
 // GET all meals
-router.get("/", getAllMeals);
+router.get("/", keycloak.protect('realm:user'), getAllMeals);
 
 // GET single meal
 router.get("/:id", getMeal);

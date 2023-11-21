@@ -1,8 +1,13 @@
+// keycloak
+const keycloak = require('./keycloak');
+
 // frameworks
 const express = require("express");
 
 // .env
 require("dotenv").config();
+
+
 
 // database
 const mongoose = require("mongoose");
@@ -22,6 +27,8 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+
+app.use(keycloak.middleware());
 
 app.use("/api/meals", mealRoutes);
 app.use("/api/events", eventRoutes);
