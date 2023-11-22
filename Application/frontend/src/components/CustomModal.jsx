@@ -17,6 +17,8 @@ import { LuShoppingBasket } from "react-icons/lu";
 import { PiCookingPot } from "react-icons/pi";
 import { IoPersonOutline } from "react-icons/io5";
 import { useState } from "react";
+import { useEventsContext } from "../hooks/useEventsContext";
+import Dropdown from "./Dropdown";
 
 const style = {
   position: "absolute",
@@ -31,15 +33,60 @@ const style = {
   borderRadius: 6,
 };
 
-function CustomModal() {
+function CustomModal({ meals }) {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  //setting event attributes
+  const { dispatch } = useEventsContext();
+  const [isCook, setIsCook] = useState(false);
+  //const [isBuyer, setIsBuyer] = useState(false);
+
+  //config for dropdown
+  const [isChecked, setIsChecked] = useState("Please Select one");
+  const [name, setName] = useState("Please Select a Meal");
+  const [isActive, setIsActive] = useState(false);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const event = { isCook };
+
+    const response = await fetch("/api/events", {
+      method: "POST",
+      body: JSON.stringify(event),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (!response.ok) {
+      console.log("Response is not ok");
+      //setError(json.error);
+      //setEmptyFields(json.emptyFields);
+    }
+    if (response.ok) {
+      setIsCook("");
+      //setIsVegetarian("");
+      //setIsVegan("");
+      //setHasGluten("");
+      //setType("");
+      //setChecked(false);
+      //setError(null);
+      //setEmptyFields([]);
+
+      console.log("New event Added", json);
+
+      dispatch({ type: "CREATE_EVENT", payload: json });
+    }
+  };
+
   const [buttonColors, setButtonColors] = useState({
     button1: "#C5C5C5",
     button2: "#C5C5C5",
-    button3: "#C5C5C5",
+    isCook: "#C5C5C5",
     button4: "#C5C5C5",
     button5: "#C5C5C5",
   });
@@ -82,7 +129,7 @@ function CustomModal() {
           ...updatedValue2,
         }));
         break;
-      case "button3":
+      case "isCook":
         let updatedValue3 = {};
         updatedValue3 = { icon3: !isClicked.icon3 };
         setIsClicked((prevValue) => ({
@@ -110,13 +157,14 @@ function CustomModal() {
   };
 
   return (
-    <div>
+    <>
       <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        onSubmit={handleSubmit}
       >
         <Box sx={style}>
           <IconButton
@@ -185,7 +233,7 @@ function CustomModal() {
               fontWeight: "600",
             }}
           >
-            Schupfnudel mit Kraut
+            {name}
             <IconButton
               sx={{
                 position: "absolute",
@@ -200,7 +248,9 @@ function CustomModal() {
             </IconButton>
           </Typography>
           <Container>
-            <img src={Vegan} alt="Vegan" style={{ margin: "5px" }} />
+            {isChecked && (
+              <img src={Vegan} alt="Vegan" style={{ margin: "5px" }} />
+            )}
             <img src={Veggie} alt="Veggie" style={{ margin: "5px" }} />
             <img src={Dairyfree} alt="Dairyfree" style={{ margin: "5px" }} />
             <div style={{ display: "flex" }}>
@@ -275,11 +325,13 @@ function CustomModal() {
           </IconButton>
 
           <IconButton
-            onClick={() => handleItAll("button3")}
+            onClick={() => handleItAll("isCook")}
+            onChange={(e) => setIsCook(e.target.value)}
+            value={isCook}
             style={{
               width: "66px",
               height: "30px",
-              backgroundColor: buttonColors.button3,
+              backgroundColor: buttonColors.isCook,
               borderRadius: 8,
               left: "35px",
             }}
@@ -318,9 +370,16 @@ function CustomModal() {
               style={{ color: isClicked.icon5 ? "white" : "black" }}
             />
           </IconButton>
+          <Dropdown
+            setActivatedFromAbove={setIsActive}
+            selected={isChecked}
+            setSelected={setIsChecked}
+            setName={setName}
+            meals={meals}
+          ></Dropdown>
         </Box>
       </Modal>
-    </div>
+    </>
   );
 }
 

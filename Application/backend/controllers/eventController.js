@@ -33,6 +33,7 @@ const createEvent = (req, res) => {
           message: "Meal not found",
         });
       }
+      /*
       const participants = [
         {
           userName: "kaan",
@@ -43,12 +44,23 @@ const createEvent = (req, res) => {
           isCreator: true,
         },
       ];
+      */
+      const { userName, role, isCreator, isCook, isBuyer, isIdle } = req.body; //participants: participants,
 
       const event = new Event({
         _id: new mongoose.Types.ObjectId(),
         date: req.body.date,
         meal: req.body.mealId,
-        participants: participants,
+        participants: [
+          {
+            userName,
+            role,
+            isCreator,
+            isCook,
+            isBuyer,
+            isIdle,
+          },
+        ],
       });
       return event.save();
     })

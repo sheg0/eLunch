@@ -8,6 +8,7 @@ export default function Dropdown({
   meals,
   selected,
   setSelected,
+  setName,
 }) {
   const [isActive, setIsActive] = useState(false);
 
@@ -27,9 +28,10 @@ export default function Dropdown({
               {meals.map((meal) => (
                 <div
                   onClick={(e) => {
-                    setSelected(meal.name);
+                    setSelected(meal.checked);
                     setIsActive(false);
                     setActivatedFromAbove(false);
+                    setName(meal.name);
                   }}
                   className="dropdown-item"
                 >

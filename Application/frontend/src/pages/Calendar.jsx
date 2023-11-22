@@ -167,7 +167,7 @@ const Calendar = ({ meals }) => {
         </Box>
       </Box>
       <Container>
-        <CustomModal></CustomModal>
+        <CustomModal meals={meals}></CustomModal>
       </Container>
 
       {isActive && (
