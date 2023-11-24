@@ -5,12 +5,12 @@ import { Container } from "@mui/material";
 import "./Info.css";
 import Typography from "@mui/material/Typography";
 import { PiParagraph } from "react-icons/pi";
-import Alcohol from "../images/Alcohol.png";
-import Dairyfree from "../images/Dairyfree.png";
-import Glutenfree from "../images/Glutenfree.png";
-import Meat from "../images/Meat.png";
-import Vegan from "../images/Vegan.png";
-import Veggie from "../images/Veggie.png";
+import Alcohol from "../../images/Alcohol.png";
+import Dairyfree from "../../images/Dairyfree.png";
+import Glutenfree from "../../images/Glutenfree.png";
+import Meat from "../../images/Meat.png";
+import Vegan from "../../images/Vegan.png";
+import Veggie from "../../images/Veggie.png";
 
 function Info() {
   return (
