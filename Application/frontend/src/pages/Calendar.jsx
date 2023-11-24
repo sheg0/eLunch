@@ -17,7 +17,7 @@ import {
   ListItemText,
   Typography,
 } from "@mui/material";
-import Dropdown from "../components/Dropdown";
+import Dropdown from "../components/Dropdown/Dropdown";
 import CustomModal from "../components/CustomModal";
 
 const Calendar = ({ meals }) => {
