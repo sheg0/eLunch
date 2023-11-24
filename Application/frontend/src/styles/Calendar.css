@@ -1,0 +1,20 @@
+:root {
+  font-size: medium;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 400;
+}
+
+.container {
+  height: 200%;
+  background-color: #f1f1f1;
+  color: black;
+}
+
+.tile {
+  height: 10%;
+  color: black;
+}
+
+.calendar {
+  color: yellow;
+}
