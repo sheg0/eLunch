@@ -7,6 +7,11 @@ export default function AddMealToTable({ meals }) {
   const [myvalue, setSelected] = useState("Choose one Meal");
   const [isActive, setIsActive] = useState(false);
 
+  // setting Event Attributes
+  const [userName, setUserName] = useState("");
+  const [isCook, setIsCook] = useState(false);
+  const [isBuyer, setIsBuyer] = useState(false);
+
   return (
     <Container className="AddMeaL">
       {" "}
