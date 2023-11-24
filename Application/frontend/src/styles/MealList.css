@@ -1,0 +1,35 @@
+:root {
+  margin: 0;
+}
+
+.thead-content {
+  background-color: #4654bc;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+th,
+td {
+  padding: 8px;
+  border: 1px solid #dddddd77;
+}
+
+.table-content {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container {
+  background-color: #4654bcb1;
+  width: 100%;
+  border-radius: 18px;
+  line-height: 2;
+  overflow-x: auto;
+}
+
+.table-body {
+  max-height: 70vh;
+  width: 100%;
+  overflow-y: auto;
+}

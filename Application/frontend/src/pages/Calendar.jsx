@@ -1,10 +1,12 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import FullCalendar from "@fullcalendar/react";
 import { formatDate } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
+import { SlArrowDown } from "react-icons/sl";
+import "../styles/Calendar.css";
 
 import { MdKeyboardArrowDown } from "react-icons/md";
 import {
@@ -51,9 +53,20 @@ const Calendar = ({ meals }) => {
     }
   };
 
+  const calendarRef = useRef(null);
+
+  useEffect(() => {
+    const calendarApi = calendarRef.current.getApi();
+
+    calendarApi.setOption("initialView", "timeGridWeek");
+    calendarApi.setOption("slotMinTime", "00:00:00");
+    calendarApi.setOption("slotMaxTime", "00:00:00");
+    calendarApi.setOption("weekNumbers", true);
+  }, []);
+
   return (
     <div>
-      <Box m="20px">
+      <Box m="10px">
         <Box display="flex" justifyContent="space-between">
           {/*
            <Box 
@@ -94,6 +107,7 @@ const Calendar = ({ meals }) => {
                               </Box>   */}
           <Box flex="1 1 100%" ml="15px">
             <FullCalendar
+              ref={calendarRef}
               height="75vh"
               plugins={[
                 dayGridPlugin,
@@ -107,6 +121,7 @@ const Calendar = ({ meals }) => {
                 right: "dayGridMonth", //// timeGridWeek,timeGridDay,listMonth ////,
               }}
               footerToolbar={{
+                week: "w",
                 center: "timeGridWeek",
               }}
               weekends={false}

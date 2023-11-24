@@ -16,9 +16,8 @@ import EuroIcon from "@mui/icons-material/Euro";
 import PeopleIcon from "@mui/icons-material/People";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import InfoIcon from "@mui/icons-material/Info";
-import { GiBalaclava } from "react-icons/gi";
-import { IconContext } from "react-icons";
-
+import SteinbeisLogo from "../images/Logo_Steinbeis_EST_white.png";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 250;
@@ -73,9 +72,15 @@ export default function ClippedDrawer({ children }) {
       <CssBaseline />
       <AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: "#10c388" }}
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: "#043c5f" }}
       >
-        <Toolbar>
+        <Toolbar sx={{ height: "10vh" }}>
+          <img
+            src={SteinbeisLogo}
+            alt="Steinbeis"
+            style={{ width: "20%", height: "auto" }}
+          />
+          {/*
           <Typography
             variant="h6"
             noWrap
@@ -84,6 +89,7 @@ export default function ClippedDrawer({ children }) {
           >
             <BlueLargeIcon />
           </Typography>
+          */}
         </Toolbar>
       </AppBar>
       <Drawer
@@ -103,7 +109,9 @@ export default function ClippedDrawer({ children }) {
         <Box
           sx={{
             overflow: "auto",
-            background: "linear-gradient(0deg, #097C55, #10C388)",
+
+            //background: "linear-gradient(0deg, #097C55, #10C388)",
+            background: "linear-gradient(0deg, #625c80, #043c5f)",
             height: "100vh",
           }}
         >
@@ -113,15 +121,17 @@ export default function ClippedDrawer({ children }) {
                 <ListItemButton
                   onClick={() => SwitchPath(item)}
                   key={item}
-                  sx={{ fontFamily: "Segoe UI", fontSize: "20px" }}
+                  sx={{
+                    fontFamily: "Segoe UI",
+                    fontSize: "23px",
+                    lineHeight: "4",
+                    fontWeight: "400",
+                  }}
                 >
                   <ListItemIcon sx={{ color: "white", position: "absolute" }}>
                     {iconMap[item]}
                   </ListItemIcon>
-                  <ListItemText
-                  //primary={item}
-                  //sx={{ fontFamily: 'Segoe UI' , textAlign: 'center' }}
-                  />
+                  <ListItemText />
                   {item}
                 </ListItemButton>
               );
