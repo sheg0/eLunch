@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import EuroIcon from "@mui/icons-material/Euro";
@@ -77,7 +78,7 @@ export default function ClippedDrawer({ children }) {
           <img
             src={SteinbeisLogo}
             alt="Steinbeis"
-            style={{ width: "20%", height: "auto" }}
+            style={{ width: "40vh", height: "auto" }}
           />
           {/*
           <Typography

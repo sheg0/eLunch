@@ -1,0 +1,106 @@
+.calendar {
+  padding: 0;
+}
+
+.header {
+  font-family: "Segoe UI";
+  color: #043c5f;
+  font-size: 25px;
+  display: flex;
+  width: 105vh;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.days {
+  width: 105vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vh;
+  margin-bottom: 10px;
+}
+
+.day {
+  font-family: "Segoe UI";
+  font-size: 20px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.dates {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vh;
+}
+
+.field {
+  width: 100vh;
+  display: flex;
+}
+
+.date {
+  text-align: right;
+  padding: 10px;
+  border-radius: 18px;
+  width: 20vh;
+  height: 15vh;
+  font-size: 25px;
+  font-family: "Segoe UI";
+  color: #043c5f;
+  background-color: #f1f1f1;
+}
+
+.weekview {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vh;
+}
+.weekDays {
+  text-align: right;
+  padding: 10px;
+  border-radius: 18px;
+  width: 20vh;
+  height: 15vh;
+  font-size: 25px;
+  font-family: "Segoe UI";
+  color: #043c5f;
+  background-color: #5f5656;
+}
+
+.previous-month {
+  color: #898989;
+}
+
+.next-month {
+  color: #898989;
+}
+
+.week-btn {
+  color: #043c5f;
+  font-size: 2.5vh;
+  border-radius: 18px;
+  width: 5vh;
+  height: 5vh;
+  border: none;
+  background-color: #043c5f27;
+  transition: background-color 0.5s;
+}
+
+.week-btn:hover {
+  background-color: #043c5f57;
+}
+
+.calendar-btn {
+  color: #043c5f;
+  font-size: 2.5vh;
+  border-radius: 18px;
+  width: 5vh;
+  height: 5vh;
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+
+.calendar-btn:hover {
+  background-color: #043c5f27;
+}

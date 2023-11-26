@@ -1,185 +1,240 @@
-import React, { useState, useRef, useEffect } from "react";
-import FullCalendar from "@fullcalendar/react";
-import { formatDate } from "@fullcalendar/core";
-import dayGridPlugin from "@fullcalendar/daygrid";
-import timeGridPlugin from "@fullcalendar/timegrid";
-import interactionPlugin from "@fullcalendar/interaction";
-import listPlugin from "@fullcalendar/list";
-import { SlArrowDown } from "react-icons/sl";
-import "../styles/Calendar.css";
+import React, { useState } from "react";
+import "../components/Calendar/Calendar.css";
+import { Container } from "@mui/material";
 
-import { MdKeyboardArrowDown } from "react-icons/md";
-import {
-  Box,
-  Container,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@mui/material";
-import Dropdown from "../components/Dropdown/Dropdown";
-import CustomModal from "../components/CustomModal";
+const Calendar = () => {
+  const [currentDate, setCurrentDate] = useState(new Date());
 
-const Calendar = ({ meals }) => {
-  const [currentEvents, setCurrentEvents] = useState([]);
-  const [myvalue, setSelected] = useState("Choose one");
-  const [isActive, setIsActive] = useState(false);
-
-  const handleDateClick = (selected) => {
-    setIsActive(true);
-
-    const calendarApi = selected.view.calendar;
-    calendarApi.unselect();
-    const title = myvalue;
-
-    if (title) {
-      calendarApi.addEvent({
-        id: `${selected.dateStr}-${title}`,
-        title,
-        start: selected.startStr,
-        end: selected.endStr,
-        allDay: selected.allDay,
-      });
-    }
+  const goToNextMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 1)
+    );
   };
 
-  const handleEventClick = (selected) => {
-    if (
-      window.confirm(
-        `Are you sure you want to delete the event '${selected.event.title}'`
-      )
-    ) {
-      selected.event.remove();
-    }
+  const goToPreviousMonth = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getMonth() - 1, 1)
+    );
   };
 
-  const calendarRef = useRef(null);
+  const getDaysInMonth = (year, month) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
 
-  useEffect(() => {
-    const calendarApi = calendarRef.current.getApi();
+  const getWeekday = (year, month, day) => {
+    return new Date(year, month, day).getDay();
+  };
 
-    calendarApi.setOption("initialView", "timeGridWeek");
-    calendarApi.setOption("slotMinTime", "00:00:00");
-    calendarApi.setOption("slotMaxTime", "00:00:00");
-    calendarApi.setOption("weekNumbers", true);
-  }, []);
+  const year = currentDate.getFullYear();
+  const month = currentDate.getMonth();
+  const daysInMonth = getDaysInMonth(year, month);
+
+  const firstDayOfMonth = new Date(year, month, 0).getDay();
+  const lastDayOfMonth = new Date(year, month, daysInMonth + 1).getDay();
+
+  const previousMonthDays = [];
+  for (let i = firstDayOfMonth - 1; i >= 0; i--) {
+    previousMonthDays.push(getDaysInMonth(year, month - 1) - i);
+  }
+
+  const nextMonthDays = [];
+  for (let i = 1; i <= 6 - lastDayOfMonth; i++) {
+    nextMonthDays.push(i);
+  }
+
+  let calendarDays = [];
+  for (let day = 1; day <= daysInMonth; day++) {
+    const weekday = getWeekday(year, month, day);
+
+    if (weekday !== 0 && weekday !== 6) {
+      calendarDays.push(
+        <div className="calendar-day" key={day}>
+          {day}
+        </div>
+      );
+    }
+  }
+
+  /////////////////////////////////
+
+  const getDaysInWeek = (year, month) => {
+    return new Date(year, month + 1, 0).getDate();
+  };
+  const daysInWeek = getDaysInWeek(year, month);
+  const lastDayOfWeek = new Date(year, month, daysInWeek).getDay();
+
+  const goToNextWeek = () => {
+    setCurrentDate(
+      new Date(currentDate.getFullYear(), currentDate.getDay() + 1, 1)
+    );
+  };
+
+  const nextWeekDays = [];
+  for (let i = 1; i <= 6 - lastDayOfWeek; i++) {
+    nextWeekDays.push(i);
+  }
+
+  const currentDate_ = new Date();
+  const currentDay_ = currentDate_.getDay();
+  const startDate = new Date(
+    currentDate_.getFullYear(),
+    currentDate_.getMonth(),
+    currentDate_.getDate() - currentDay_
+  );
+  const weekDates = [];
+  for (let i = 0; i < 5; i++) {
+    const date = new Date(
+      startDate.getFullYear(),
+      startDate.getMonth(),
+      startDate.getDate() + i + 1
+    );
+    weekDates.push(date);
+  }
+
+  /////////////////////////////////
 
   return (
-    <div>
-      <Box m="10px">
-        <Box display="flex" justifyContent="space-between">
+    <Container>
+      <div className="calendar">
+        <div className="header">
+          <button className="calendar-btn" onClick={goToPreviousMonth}>
+            &lt;
+          </button>
+          <h2>
+            {new Date(year, month).toLocaleString("default", {
+              month: "long",
+              year: "numeric",
+            })}
+          </h2>
           {/*
-           <Box 
-               flex="1 1 20%" 
-               backgroundColor="#acacac"
-               color="#043c5f"
-               p="15px"
-               borderRadius="4px"
-           >
-               <Typography variant="h5">Events</Typography>
-               <List>
-                   {currentEvents.map((event) => (
-                       <ListItem
-                           key={event.id}
-                           sx={{ 
-                               backgroundColor: "#717d89",
-                               color: "white",
-                               margin: "10px 0",
-                               borderRadius: "2px",
-                           }}
-                       >
-                           <ListItemText
-                               primary={event.title}
-                               secondary={
-                                   <Typography>
-                                       {formatDate(event.start, {
-                                           year: "numeric",
-                                           month: "short",
-                                           day: "numeric"
-                                       })}
-                                   </Typography>
-                               }
-                           />
-                       </ListItem>
-                   )
-                   )}
-               </List>
-                              </Box>   */}
-          <Box flex="1 1 100%" ml="15px">
-            <FullCalendar
-              ref={calendarRef}
-              height="75vh"
-              plugins={[
-                dayGridPlugin,
-                timeGridPlugin,
-                interactionPlugin,
-                listPlugin,
-              ]}
-              headerToolbar={{
-                left: "prev,next today",
-                center: "title",
-                right: "dayGridMonth", //// timeGridWeek,timeGridDay,listMonth ////,
-              }}
-              footerToolbar={{
-                week: "w",
-                center: "timeGridWeek",
-              }}
-              weekends={false}
-              weekNumbers={true}
-              weekText="KW"
-              fixedWeekCount={false}
-              initialView="dayGridMonth"
-              editable={true}
-              selectable={true}
-              selectMirror={true}
-              dayMaxEvents={true}
-              select={handleDateClick}
-              eventClick={handleEventClick}
-              eventsSet={(events) => setCurrentEvents(events)}
-              initialEvents={[
-                {
-                  id: "1234",
-                  title: "Burger",
-                  date: "2023-11-08",
-                  backgroundColor: "#F1F1F1",
-                  borderColor: "#F1F1F1",
-                  textColor: "#043C5F",
-                },
-                {
-                  id: "4321",
-                  title: "Buddah Gemüse",
-                  date: "2023-11-24",
-                  backgroundColor: "#CCEBFE",
-                  borderColor: "#CCEBFE",
-                  textColor: "#043C5F",
-                },
-                {
-                  id: "5678",
-                  title: "Schupfnudeln",
-                  date: "2023-11-20",
-                  backgroundColor: "#FFCCCC",
-                  borderColor: "#FFCCCC",
-                  textColor: "#043C5F",
-                },
-              ]}
-            />
-          </Box>
-        </Box>
-      </Box>
-      <Container>
-        <CustomModal meals={meals}></CustomModal>
-      </Container>
+          <button onClick={goToNextWeek}>next week</button>
+          <button className="week-btn">
+            <div className="weekview">
+              {nextWeekDays.map((day) => (
+                <div className="date">{day}</div>
+              ))}
 
-      {isActive && (
-        <Dropdown
-          setActivatedFromAbove={setIsActive}
-          selected={myvalue}
-          setSelected={setSelected}
-          meals={meals}
-        ></Dropdown>
-      )}
-    </div>
+              
+              {" "}
+              {weekDates.map((date, index) => (
+                <div key={index} className="weekDays">
+                  {date.getDate()}
+                </div>
+              ))}{" "}
+              
+
+              
+            </div>
+            &#8744;
+          </button>
+          */}
+          <button className="calendar-btn" onClick={goToNextMonth}>
+            &gt;
+          </button>
+        </div>
+        <div className="days" style={{ fontFamily: "Segoe UI" }}>
+          <div className="day">Montag</div>
+          <div className="day">Dienstag</div>
+          <div className="day">Mittwoch</div>
+          <div className="day">Donnerstag</div>
+          <div className="day">Freitag</div>
+        </div>
+        <div className="field">
+          <div className="dates">
+            {previousMonthDays.map((day) => (
+              <div className="date previous-month">{day}</div>
+            ))}
+            {calendarDays.map((day) => (
+              <div className="date">{day}</div>
+            ))}
+            {nextMonthDays.map((day) => (
+              <div className="date next-month">{day}</div>
+            ))}
+          </div>
+        </div>
+        <div></div>
+      </div>
+    </Container>
   );
+
+  /*
+  const renderCalendar = () => {
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+    const daysInMonth = getDaysInMonth(year, month);
+
+    const firstDayOfMonth = new Date(year, month, 0).getDay();
+    const lastDayOfMonth = new Date(year, month, daysInMonth + 1).getDay();
+
+    const previousMonthDays = [];
+    for (let i = firstDayOfMonth - 1; i >= 0; i--) {
+      previousMonthDays.push(getDaysInMonth(year, month - 1) - i);
+    }
+
+    const nextMonthDays = [];
+    for (let i = 1; i <= 6 - lastDayOfMonth; i++) {
+      nextMonthDays.push(i);
+    }
+
+    let calendarDays = [];
+    for (let day = 1; day <= daysInMonth; day++) {
+      const weekday = getWeekday(year, month, day);
+
+      if (weekday !== 0 && weekday !== 6) {
+        calendarDays.push(
+          <div className="calendar-day" key={day}>
+            {day}
+          </div>
+        );
+      }
+    }
+
+    return (
+      <Container>
+        <div className="calendar">
+          <div className="header">
+            <button className="calendar-btn" onClick={goToPreviousMonth}>
+              &lt;
+            </button>
+            <h2>
+              {new Date(year, month).toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              })}
+            </h2>
+
+            <button className="calendar-btn" onClick={goToNextMonth}>
+              &gt;
+            </button>
+          </div>
+          <div className="days" style={{ fontFamily: "Segoe UI" }}>
+            <div className="day">Montag</div>
+            <div className="day">Dienstag</div>
+            <div className="day">Mittwoch</div>
+            <div className="day">Donnerstag</div>
+            <div className="day">Freitag</div>
+          </div>
+          <div className="field">
+            <div className="dates">
+              {previousMonthDays.map((day) => (
+                <div className="date previous-month">{day}</div>
+              ))}
+              {calendarDays.map((day) => (
+                <div className="date">{day}</div>
+              ))}
+              {nextMonthDays.map((day) => (
+                <div className="date next-month">{day}</div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </Container>
+    );
+  };
+
+  return <div>{renderCalendar()}</div>;
+
+  */
 };
 
 export default Calendar;
