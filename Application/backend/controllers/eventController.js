@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const Event = require("../models/eventModel.js");
 const Meal = require("../models/mealModel.js");
 
-// Sorting by descending order (1 for ascending)
 // GET all Event
 const getAllEvents = async (req, res) => {
   const event = await Event.find()
@@ -10,6 +9,43 @@ const getAllEvents = async (req, res) => {
     .populate("meal")
     .exec();
   res.status(200).json(event);
+};
+
+const getFilteredEvents = async (req, res) => {
+  try {
+    // Extract the month from the request parameters
+    //----------------------------------------------
+    let { requestedMonth, requestedYear } = req.params;
+
+    if (!requestedMonth || !requestedYear) {
+      res
+        .status(400)
+        .json({ error: "Did not provide both year and month as parameters." });
+    }
+
+    requestedMonth = parseInt(requestedMonth);
+    requestedYear = parseInt(requestedYear);
+
+    const events = await Event.aggregate([
+      {
+        $project: {
+          year: { $year: "$_id" },
+          month: { $month: "$_id" },
+        },
+      },
+      {
+        $match: {
+          year: requestedYear,
+          month: requestedMonth,
+        },
+      },
+    ]);
+
+    res.json(events);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 };
 
 // GET single Event
@@ -125,6 +161,7 @@ const updateEvent = async (req, res) => {
 
 module.exports = {
   getAllEvents,
+  getFilteredEvents,
   getEvent,
   createEvent,
   deleteEvent,
