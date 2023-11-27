@@ -5,6 +5,7 @@ const {
   getEvent,
   createEvent,
   deleteEvent,
+  updateEvent,
 } = require("../controllers/eventController");
 
 const router = express.Router();
@@ -23,5 +24,8 @@ router.delete("/:id", deleteEvent);
 
 // POST a new event
 router.post("/", createEvent);
+
+// UPDATE an Event
+router.patch("/:id", updateEvent);
 
 module.exports = router;
