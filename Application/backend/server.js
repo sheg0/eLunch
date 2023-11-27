@@ -29,8 +29,8 @@ app.use((req, res, next) => {
 app.use("/api/meals", mealRoutes);
 app.use("/api/events", eventRoutes);
 
-app.use("/api/products", productRoutes);
-app.use("/api/orders", orderRoutes);
+//app.use("/api/products", productRoutes);
+//app.use("/api/orders", orderRoutes);
 
 //connect to db
 mongoose

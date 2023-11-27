@@ -1,6 +1,7 @@
 //date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
+import { useEventsContext } from "../hooks/useEventsContext";
 const EventDetails = ({ event }) => {
   //STATES
   /*
@@ -13,22 +14,22 @@ const EventDetails = ({ event }) => {
   const [name, setName] = useState(meal.name);
   const [checked, setChecked] = useState(false);
   //const [checked, setChecked] = useState(meal.checked);
-
+*/
   //DISPATCH
-  const { dispatch } = useMealsContext(); //grab dispatch function
+  const { dispatch } = useEventsContext(); //grab dispatch function
 
   //HANDLE FUNCTIONS
   const handleClickDelete = async () => {
-    const response = await fetch("/api/meals/" + meal._id, {
+    const response = await fetch("/api/events/" + event._id, {
       method: "DELETE",
     });
     const json = await response.json();
 
     if (response.ok) {
-      dispatch({ type: "DELETE_MEAL", payload: json });
+      dispatch({ type: "DELETE_EVENT", payload: json });
     }
   };
-
+  /*
   const handleClickEdit = () => {
     setIsEditing(!isEditing);
   };
@@ -67,6 +68,12 @@ const EventDetails = ({ event }) => {
       <p>
         {formatDistanceToNow(new Date(event.createdAt), { addSuffix: true })}
       </p>
+      <button
+        className="material-symbols-outlined-delete"
+        onClick={handleClickDelete}
+      >
+        delete
+      </button>
     </div>
   );
 };

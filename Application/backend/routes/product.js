@@ -1,3 +1,5 @@
+/*
+
 const express = require("express");
 const router = express.Router();
 const mongoose = require("mongoose");
@@ -145,3 +147,4 @@ router.delete("/:productId", (req, res, next) => {
 });
 
 module.exports = router;
+*/
