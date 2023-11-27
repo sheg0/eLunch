@@ -17,7 +17,6 @@ import PeopleIcon from "@mui/icons-material/People";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import InfoIcon from "@mui/icons-material/Info";
 
-import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 250;
@@ -75,11 +74,11 @@ export default function ClippedDrawer({ children }) {
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: "#043c5f" }}
       >
         <Toolbar sx={{ height: "10vh" }}>
-          <img
+          {/* <img
             src={SteinbeisLogo}
             alt="Steinbeis"
             style={{ width: "40vh", height: "auto" }}
-          />
+          /> */}
           {/*
           <Typography
             variant="h6"

@@ -50,6 +50,10 @@
   background-color: #f1f1f1;
 }
 
+.today {
+  background-color: red;
+}
+
 .weekview {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

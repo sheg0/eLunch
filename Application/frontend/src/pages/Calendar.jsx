@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../components/Calendar/Calendar.css";
 import { Container } from "@mui/material";
+import CustomModal from "../components/CustomModal";
+import Button from "@mui/material/Button";
 
-const Calendar = () => {
+const Calendar = ({ meals }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
 
   const goToNextMonth = () => {
@@ -92,6 +94,23 @@ const Calendar = () => {
   }
 
   /////////////////////////////////
+  const [open, setOpen] = useState(false);
+  const [day, setDay] = useState("");
+
+  function handleDayClick(day) {
+    //setDate(`${weekday} - ${day}.${month}`);
+    setDay(day.key);
+    //console.log(day.key);
+    setOpen(true);
+  }
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + "/" + dd + "/" + yyyy;
+  //console.log(today);
 
   return (
     <Container>
@@ -139,13 +158,28 @@ const Calendar = () => {
           <div className="day">Donnerstag</div>
           <div className="day">Freitag</div>
         </div>
+        {
+          <CustomModal
+            month={month + 1}
+            day={day}
+            open={open}
+            setOpen={setOpen}
+            meals={meals}
+          ></CustomModal>
+        }
         <div className="field">
           <div className="dates">
             {previousMonthDays.map((day) => (
               <div className="date previous-month">{day}</div>
             ))}
+
             {calendarDays.map((day) => (
-              <div className="date">{day}</div>
+              <div
+                onClick={() => handleDayClick(day)}
+                className={"date" + (day.key === dd ? " today" : "")}
+              >
+                {day}
+              </div>
             ))}
             {nextMonthDays.map((day) => (
               <div className="date next-month">{day}</div>
