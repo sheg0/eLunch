@@ -51,7 +51,9 @@
 }
 
 .today {
-  background-color: red;
+  border: 3px solid;
+  border-color: rgb(58, 214, 160);
+  background-color: #f5f4f4;
 }
 
 .weekview {
