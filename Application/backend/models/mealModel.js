@@ -20,11 +20,6 @@ const mealSchema = new Schema(
       type: Boolean,
       required: true,
     },
-    hasGluten: {
-      type: Boolean,
-      required: true,
-    },
-
     isWithMeat: {
       type: Boolean,
       required: false,
@@ -44,6 +39,9 @@ const mealSchema = new Schema(
     type: {
       type: String,
       required: true,
+    },
+    checked: {
+      type: Boolean,
     },
   },
 

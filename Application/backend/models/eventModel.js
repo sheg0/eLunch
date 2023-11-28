@@ -9,7 +9,7 @@ const eventSchema = new Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
     date: {
-      type: String,
+      type: Date,
       required: true,
     },
     meal: {

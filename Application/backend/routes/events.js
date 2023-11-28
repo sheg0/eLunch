@@ -11,13 +11,11 @@ const {
 
 const router = express.Router();
 
+// GET all filtered events
+router.get("/:from/:to", getFilteredEvents);
+
 // GET all events
 router.get("/", getAllEvents);
-
-router.get("/:year/:month", getFilteredEvents);
-
-// GET all eventUser
-//router.get("/", getAllEventUser);
 
 // GET single event
 router.get("/:id", getEvent);

@@ -15,32 +15,26 @@ const getFilteredEvents = async (req, res) => {
   try {
     // Extract the month from the request parameters
     //----------------------------------------------
-    let { requestedMonth, requestedYear } = req.params;
+    let { from, to } = req.params;
 
-    if (!requestedMonth || !requestedYear) {
+    if (!from || !to) {
       res
         .status(400)
         .json({ error: "Did not provide both year and month as parameters." });
     }
 
-    requestedMonth = parseInt(requestedMonth);
-    requestedYear = parseInt(requestedYear);
+    from = new Date(from);
+    to = new Date(to);
 
-    const events = await Event.aggregate([
-      {
-        $project: {
-          year: { $year: "$_id" },
-          month: { $month: "$_id" },
-        },
-      },
-      {
-        $match: {
-          year: requestedYear,
-          month: requestedMonth,
-        },
-      },
-    ]);
+    console.log(from);
+    console.log(to);
 
+    const events = await Event.find({
+      date: {
+        $gte: from,
+        $lte: to,
+      },
+    });
     res.json(events);
   } catch (error) {
     console.error(error);
@@ -69,28 +63,17 @@ const createEvent = (req, res) => {
           message: "Meal not found",
         });
       }
-      /*
-      const participants = [
-        {
-          userName: "kaan",
-          isCreator: true,
-        },
-        {
-          userName: "Selim",
-          isCreator: true,
-        },
-      ];
-      */
-      const { userName, role, isCreator, isCook, isBuyer, isIdle } = req.body; //participants: participants,
+
+      const { date, mealId, userName, isCreator, isCook, isBuyer, isIdle } =
+        req.body;
 
       const event = new Event({
         _id: new mongoose.Types.ObjectId(),
-        date: req.body.date,
-        meal: req.body.mealId,
+        date: new Date(date),
+        meal: mealId,
         participants: [
           {
             userName,
-            role,
             isCreator,
             isCook,
             isBuyer,
@@ -103,8 +86,8 @@ const createEvent = (req, res) => {
     .then((result) => {
       console.log(result);
       res.status(201).json({
-        message: "Order stored",
-        createdOrder: {
+        message: "Event stored",
+        createdEvent: {
           _id: result._id,
           date: result.date,
           meal: result.meal,
