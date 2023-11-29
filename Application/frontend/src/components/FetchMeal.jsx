@@ -4,7 +4,6 @@ import { Routes, Route } from "react-router-dom";
 
 //pages
 import Home from "../pages/Home";
-import List from "../pages/List";
 import Calendar from "../pages/Calendar";
 import Info from "../components/Info/Info.jsx";
 import MealList from "../pages/MealList.jsx";

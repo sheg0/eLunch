@@ -16,6 +16,7 @@ import EuroIcon from "@mui/icons-material/Euro";
 import PeopleIcon from "@mui/icons-material/People";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import InfoIcon from "@mui/icons-material/Info";
+import SteinbeisLogo from "../images/Logo_Steinbeis_EST_white.png";
 
 import { useNavigate } from "react-router-dom";
 
@@ -74,21 +75,11 @@ export default function ClippedDrawer({ children }) {
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: "#043c5f" }}
       >
         <Toolbar sx={{ height: "10vh" }}>
-          {/* <img
+          <img
             src={SteinbeisLogo}
             alt="Steinbeis"
             style={{ width: "40vh", height: "auto" }}
-          /> */}
-          {/*
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ fontSize: "40px", fontFamily: "Segoe UI" }}
-          >
-            Steinbeis
-          </Typography>
-          */}
+          />
         </Toolbar>
       </AppBar>
       <Drawer

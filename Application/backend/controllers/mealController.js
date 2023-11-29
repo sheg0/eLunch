@@ -26,7 +26,17 @@ const getMeal = async (req, res) => {
 
 // Create new meal
 const createMeal = async (req, res) => {
-  const { name, isVegetarian, isVegan, hasGluten, type, checked } = req.body;
+  const {
+    name,
+    isVegetarian,
+    isVegan,
+    hasGluten,
+    isWithMeat,
+    isWithAlcohol,
+    isGlutenFree,
+    isLactoseFree,
+    type,
+  } = req.body;
 
   //Detecting which fields are empty
   let emptyFields = [];
@@ -42,6 +52,18 @@ const createMeal = async (req, res) => {
   }
   if (!hasGluten) {
     emptyFields.push("hasGluten");
+  }
+  if (!isWithMeat) {
+    emptyFields.push("isWithMeat");
+  }
+  if (!isWithAlcohol) {
+    emptyFields.push("isWithAlcohol");
+  }
+  if (!isGlutenFree) {
+    emptyFields.push("isGlutenFree");
+  }
+  if (!isLactoseFree) {
+    emptyFields.push("isLactoseFree");
   }
   if (!type) {
     emptyFields.push("type");
@@ -60,8 +82,11 @@ const createMeal = async (req, res) => {
       isVegetarian,
       isVegan,
       hasGluten,
+      isWithMeat,
+      isWithAlcohol,
+      isGlutenFree,
+      isLactoseFree,
       type,
-      checked,
     });
     res.status(200).json(meal);
   } catch (error) {
