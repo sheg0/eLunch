@@ -3,6 +3,7 @@ import { useTable } from "react-table";
 import { Container } from "@mui/material";
 import { useState } from "react";
 import "../styles/MealList.css";
+import Modal from "../components/AddNewMeal/AddNewMeal.jsx";
 
 function MealList({ meals }) {
   return (
@@ -37,6 +38,7 @@ function MealList({ meals }) {
           </table>
         </div>
       </div>
+      <Modal></Modal>
     </Container>
   );
 }
