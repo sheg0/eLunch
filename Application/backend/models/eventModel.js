@@ -21,12 +21,7 @@ const eventSchema = new Schema(
       {
         userName: {
           type: String,
-          required: false,
-        },
-        role: {
-          type: String,
-          required: false,
-          enum: ["creator", "cook", "buyer", "idle"],
+          required: true,
         },
         isCreator: {
           type: Boolean,

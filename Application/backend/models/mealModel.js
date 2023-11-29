@@ -14,26 +14,32 @@ const mealSchema = new Schema(
     },
     isVegetarian: {
       type: Boolean,
-      required: true,
+      default: false,
+      required: false,
     },
     isVegan: {
       type: Boolean,
-      required: true,
+      default: false,
+      required: false,
     },
     isWithMeat: {
       type: Boolean,
+      default: false,
       required: false,
     },
     isWithAlcohol: {
       type: Boolean,
+      default: false,
       required: false,
     },
     isGlutenFree: {
       type: Boolean,
+      default: false,
       required: false,
     },
     isLactoseFree: {
       type: Boolean,
+      default: false,
       required: false,
     },
     type: {

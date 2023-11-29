@@ -26,67 +26,20 @@ const getMeal = async (req, res) => {
 
 // Create new meal
 const createMeal = async (req, res) => {
-  const {
-    name,
-    isVegetarian,
-    isVegan,
-    hasGluten,
-    isWithMeat,
-    isWithAlcohol,
-    isGlutenFree,
-    isLactoseFree,
-    type,
-  } = req.body;
+  const { name, type, ...optionalProperties } = req.body;
 
-  //Detecting which fields are empty
-  let emptyFields = [];
-
-  if (!name) {
-    emptyFields.push("name");
-  }
-  if (!isVegetarian) {
-    emptyFields.push("isVegetarian");
-  }
-  if (!isVegan) {
-    emptyFields.push("isVegan");
-  }
-  if (!hasGluten) {
-    emptyFields.push("hasGluten");
-  }
-  if (!isWithMeat) {
-    emptyFields.push("isWithMeat");
-  }
-  if (!isWithAlcohol) {
-    emptyFields.push("isWithAlcohol");
-  }
-  if (!isGlutenFree) {
-    emptyFields.push("isGlutenFree");
-  }
-  if (!isLactoseFree) {
-    emptyFields.push("isLactoseFree");
-  }
-  if (!type) {
-    emptyFields.push("type");
-  }
-
-  if (emptyFields.length > 0) {
+  if (!name || !type) {
     return res
       .status(400)
-      .json({ error: "Please fill in all the fields", emptyFields });
+      .json({ error: "Meal: Name or Type is missing inside Request-body." });
   }
 
   try {
     const meal = await Meal.create({
       _id: new mongoose.Types.ObjectId(),
       name,
-      isVegetarian,
-      isVegan,
-      hasGluten,
-      isWithMeat,
-      isWithAlcohol,
-      isGlutenFree,
-      isLactoseFree,
       type,
+      ...optionalProperties,
     });
     res.status(200).json(meal);
   } catch (error) {

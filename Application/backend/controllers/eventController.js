@@ -64,8 +64,7 @@ const createEvent = (req, res) => {
         });
       }
 
-      const { date, mealId, userName, isCreator, isCook, isBuyer, isIdle } =
-        req.body;
+      const { date, mealId, ...participantInfo } = req.body;
 
       const event = new Event({
         _id: new mongoose.Types.ObjectId(),
@@ -73,11 +72,7 @@ const createEvent = (req, res) => {
         meal: mealId,
         participants: [
           {
-            userName,
-            isCreator,
-            isCook,
-            isBuyer,
-            isIdle,
+            ...participantInfo,
           },
         ],
       });
