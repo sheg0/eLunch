@@ -16,8 +16,8 @@ import EuroIcon from "@mui/icons-material/Euro";
 import PeopleIcon from "@mui/icons-material/People";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import InfoIcon from "@mui/icons-material/Info";
+import SteinbeisLogo from "../images/Logo_Steinbeis_EST_white.png";
 
-import MenuBookIcon from "@mui/icons-material/MenuBook";
 import { useNavigate } from "react-router-dom";
 
 const drawerWidth = 250;
@@ -80,16 +80,6 @@ export default function ClippedDrawer({ children }) {
             alt="Steinbeis"
             style={{ width: "40vh", height: "auto" }}
           />
-          {/*
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ fontSize: "40px", fontFamily: "Segoe UI" }}
-          >
-            Steinbeis
-          </Typography>
-          */}
         </Toolbar>
       </AppBar>
       <Drawer

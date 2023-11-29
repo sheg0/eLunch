@@ -13,23 +13,16 @@ const mealSchema = new Schema(
       required: true,
     },
     isVegetarian: {
-      type: String,
+      type: Boolean,
       required: true,
     },
     isVegan: {
-      type: String,
+      type: Boolean,
       required: true,
     },
     hasGluten: {
-      type: String,
-      required: true,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-    checked: {
       type: Boolean,
+      required: true,
     },
 
     isWithMeat: {
@@ -47,6 +40,10 @@ const mealSchema = new Schema(
     isLactoseFree: {
       type: Boolean,
       required: false,
+    },
+    type: {
+      type: String,
+      required: true,
     },
   },
 

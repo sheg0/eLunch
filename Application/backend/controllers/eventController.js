@@ -87,8 +87,46 @@ const createEvent = (req, res) => {
     });
 };
 
+// delete an Event
+const deleteEvent = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Such Event" });
+  }
+  const event = await Event.findOneAndDelete({ _id: id }); // the id proptery in mongo is _id
+  if (!event) {
+    return res.status(404).json({ error: "No Such Event" });
+  }
+  res.status(200).json(event);
+};
+
+// Update an Event
+
+const updateEvent = async (req, res) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Such Event" });
+  }
+
+  const event = await Event.findOneAndUpdate(
+    { _id: id },
+    {
+      ...req.body,
+    },
+    { new: true }
+  );
+
+  if (!event) {
+    return res.status(404).json({ error: "No Such Event" });
+  }
+
+  res.status(200).json(event);
+};
+
 module.exports = {
   getAllEvents,
   getEvent,
   createEvent,
+  deleteEvent,
+  updateEvent,
 };

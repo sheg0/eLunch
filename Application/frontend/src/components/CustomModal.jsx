@@ -18,7 +18,7 @@ import { PiCookingPot } from "react-icons/pi";
 import { IoPersonOutline } from "react-icons/io5";
 import { useState } from "react";
 import { useEventsContext } from "../hooks/useEventsContext";
-import Dropdown from "./Dropdown";
+import Dropdown from "./Dropdown/Dropdown.jsx";
 
 const style = {
   position: "absolute",
@@ -33,8 +33,9 @@ const style = {
   borderRadius: 6,
 };
 
-function CustomModal({ meals }) {
-  const [open, setOpen] = React.useState(false);
+function CustomModal({ month, day, open, setOpen, meals }) {
+  const date = `Monday - ${day}.${month}`;
+  //const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -158,7 +159,6 @@ function CustomModal({ meals }) {
 
   return (
     <>
-      <Button onClick={handleOpen}>Open modal</Button>
       <Modal
         open={open}
         onClose={handleClose}
@@ -197,7 +197,7 @@ function CustomModal({ meals }) {
               fontWeight: "400",
             }}
           >
-            Mittwoch - 22.11.
+            {<h2>{date}</h2>}
           </Typography>
           <IconButton
             sx={{

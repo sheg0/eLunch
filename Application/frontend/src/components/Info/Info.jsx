@@ -58,17 +58,17 @@ function Info() {
       </div>
 
       <div className="legend">
-        <img src={Alcohol} alt="Alcohol" />
+        <img className="infoImg" src={Alcohol} alt="Alcohol" />
         <p className="imgText">Mit Alkohol</p>
-        <img src={Dairyfree} alt="Dairyfree" />
+        <img className="infoImg" src={Dairyfree} alt="Dairyfree" />
         <p className="imgText">Laktosefrei</p>
-        <img src={Glutenfree} alt="Glutenfree" />
+        <img className="infoImg" src={Glutenfree} alt="Glutenfree" />
         <p className="imgText">Glutenfrei</p>
-        <img src={Meat} alt="Meat" />
+        <img className="infoImg" src={Meat} alt="Meat" />
         <p className="imgText">Mit Fleisch</p>
-        <img src={Vegan} alt="Vegan" />
+        <img className="infoImg" src={Vegan} alt="Vegan" />
         <p className="imgText">Vegan</p>
-        <img src={Veggie} alt="Veggie" />
+        <img className="infoImg" src={Veggie} alt="Veggie" />
         <p className="imgText">Veggie</p>
       </div>
       <div className="footer">
