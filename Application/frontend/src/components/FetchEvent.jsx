@@ -12,7 +12,9 @@ function FetchEvent() {
     if (initialized && keycloak.authenticated) {
       try {
         const fetchEvent = async () => {
-          const response = await fetch("/api/events");
+          const response = await fetch("/api/meals", {
+            headers: { Authorization: `Bearer ${keycloak.token}` },
+          });
           const json = await response.json();
 
           if (response.ok) {

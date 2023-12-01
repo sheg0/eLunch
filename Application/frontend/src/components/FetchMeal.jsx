@@ -13,11 +13,15 @@ function FetchMeal() {
   const { meals, dispatch } = useMealsContext();
   const { keycloak, initialized } = useKeycloak();
 
+  console.log(keycloak.token);
+
   useEffect(() => {
     if (initialized && keycloak.authenticated) {
       const fetchMeal = async () => {
         try {
-          const response = await fetch("/api/meals");
+          const response = await fetch("/api/meals", {
+            headers: { Authorization: `Bearer ${keycloak.token}` },
+          });
           const json = await response.json();
 
           if (response.ok) {
