@@ -1,5 +1,6 @@
 import { useMealsContext } from "../hooks/useMealsContext";
 import { useEffect } from "react";
+import { useKeycloak } from "@react-keycloak/web";
 import { Routes, Route } from "react-router-dom";
 
 //pages
@@ -10,19 +11,26 @@ import MealList from "../pages/MealList.jsx";
 
 function FetchMeal() {
   const { meals, dispatch } = useMealsContext();
+  const { keycloak, initialized } = useKeycloak();
 
   useEffect(() => {
-    const fetchMeal = async () => {
-      const response = await fetch("/api/meals");
-      const json = await response.json();
+    if (initialized && keycloak.authenticated) {
+      const fetchMeal = async () => {
+        try {
+          const response = await fetch("/api/meals");
+          const json = await response.json();
 
-      if (response.ok) {
-        dispatch({ type: "SET_MEAL", payload: json });
-      }
-    };
+          if (response.ok) {
+            dispatch({ type: "SET_MEAL", payload: json });
+          }
+        } catch (error) {
+          console.log("Error:", error);
+        }
+      };
 
-    fetchMeal();
-  }, [dispatch]);
+      fetchMeal();
+    }
+  }, [initialized, keycloak, dispatch]);
 
   return (
     <Routes>

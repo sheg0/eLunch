@@ -1,3 +1,4 @@
+const keycloak = require("../keycloak");
 const express = require("express");
 
 const {
@@ -18,15 +19,15 @@ router.get("/:from/:to", getFilteredEvents);
 router.get("/", getAllEvents);
 
 // GET single event
-router.get("/:id", getEvent);
+router.get("/:id", keycloak.protect("realm:user"), getEvent);
 
 // DELETE an event
-router.delete("/:id", deleteEvent);
+router.delete("/:id", keycloak.protect("realm:admin"), deleteEvent);
 
 // POST a new event
-router.post("/", createEvent);
+router.post("/", keycloak.protect("realm:user"), createEvent);
 
 // UPDATE an Event
-router.patch("/:id", updateEvent);
+router.patch("/:id", keycloak.protect("realm:user"), updateEvent);
 
 module.exports = router;
