@@ -2,6 +2,7 @@ const express = require("express");
 
 const {
   getAllEvents,
+  getFilteredEvents,
   getEvent,
   createEvent,
   deleteEvent,
@@ -10,11 +11,11 @@ const {
 
 const router = express.Router();
 
+// GET all filtered events
+router.get("/:from/:to", getFilteredEvents);
+
 // GET all events
 router.get("/", getAllEvents);
-
-// GET all eventUser
-//router.get("/", getAllEventUser);
 
 // GET single event
 router.get("/:id", getEvent);

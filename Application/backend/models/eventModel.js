@@ -9,7 +9,7 @@ const eventSchema = new Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
     date: {
-      type: String,
+      type: Date,
       required: true,
     },
     meal: {
@@ -21,12 +21,7 @@ const eventSchema = new Schema(
       {
         userName: {
           type: String,
-          required: false,
-        },
-        role: {
-          type: String,
-          required: false,
-          enum: ["creator", "cook", "buyer", "idle"],
+          required: true,
         },
         isCreator: {
           type: Boolean,
