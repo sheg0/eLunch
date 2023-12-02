@@ -1,10 +1,9 @@
 import Keycloak from "keycloak-js";
-require("dotenv").config();
 
 const keycloak = new Keycloak({
-  url: process.env.KC_SERVER_URL,
-  realm: process.env.KC_REALM,
-  clientId: process.env.clientId,
+  url: process.env.REACT_APP_KC_SERVER_URL,
+  realm: process.env.REACT_APP_KC_REALM,
+  clientId: process.env.REACT_APP_KC_CLIENT_ID,
 });
 
 export default keycloak;
