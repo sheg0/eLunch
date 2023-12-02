@@ -1,3 +1,4 @@
+const keycloak = require("../keycloak");
 const express = require("express");
 
 // Importing Functions
@@ -18,19 +19,19 @@ const router = express.Router();
 // router.get('/month', '')
 
 // GET all meals
-router.get("/", getAllMeals);
+router.get("/", keycloak.protect("realm:user"), getAllMeals);
 
 // GET single meal
-router.get("/:id", getMeal);
+router.get("/:id", keycloak.protect("realm:user"), getMeal);
 
 // POST a new meal
-router.post("/", createMeal);
+router.post("/", keycloak.protect("realm:admin"), createMeal);
 
 // DELETE a meal
-router.delete("/:id", deleteMeal);
+router.delete("/:id", keycloak.protect("realm:admin"), deleteMeal);
 
 // UPDATE a new meal
-router.patch("/:id", updateMeal);
+router.patch("/:id", keycloak.protect("realm:admin"), updateMeal);
 
 // Exporting Functions
 module.exports = router;

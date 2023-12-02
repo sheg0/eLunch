@@ -1,0 +1,22 @@
+version: "3"
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "4000:4000"
+    depends_on:
+      - keycloak
+
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+  keycloak:
+    image: alterwalter/elunch:v1.0
+    ports:
+      - "8080:8080"
