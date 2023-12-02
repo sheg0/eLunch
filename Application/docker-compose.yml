@@ -17,6 +17,6 @@ services:
       - backend
 
   keycloak:
-    image: alterwalter/elunch:v1.0
+    image: alterwalter/keycloak:v1.0
     ports:
       - "8080:8080"
