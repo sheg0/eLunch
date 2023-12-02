@@ -6,7 +6,7 @@ const kcConfig = {
   clientId: process.env.KC_CLIENT_ID,
   bearerOnly: true,
   serverUrl: process.env.KC_SERVER_URL,
-  realm: "eLunch",
+  realm: process.env.KC_REALM,
   realmPublicKey: process.env.KC_PUBLIC_KEY,
 };
 
