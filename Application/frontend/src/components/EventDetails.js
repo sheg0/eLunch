@@ -2,10 +2,10 @@
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import { useContext } from "react";
 import { useEventsContext } from "../hooks/useEventsContext";
-import { useMealsEventsContext } from "../hooks/useMealEventContext";
-import { MealEventContext } from "../context/ContextCollection";
+
+import { EventContext } from "../context/EventContext";
 const EventDetails = ({ event }) => {
-  const context = useContext(MealEventContext);
+  const context = useContext(EventContext);
   //STATES
   /*
   const [isEditing, setIsEditing] = useState(false);
@@ -19,8 +19,7 @@ const EventDetails = ({ event }) => {
   //const [checked, setChecked] = useState(meal.checked);
 */
   //DISPATCH
-  //const { dispatch } = useEventsContext(); //grab dispatch function
-  const { dispatch } = useMealsEventsContext(); //grab dispatch function
+  const { dispatch } = useEventsContext(); //grab dispatch function
 
   //HANDLE FUNCTIONS
   const handleClickDelete = async () => {

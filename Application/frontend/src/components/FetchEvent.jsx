@@ -2,6 +2,7 @@ import { useEventsContext } from "../hooks/useEventsContext";
 import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import Events from "../pages/Events.jsx";
+
 function FetchEvent() {
   const { events, dispatch } = useEventsContext();
 
