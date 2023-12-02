@@ -4,7 +4,7 @@ services:
     build:
       context: ./backend
     ports:
-      - "3001:3000"
+      - "4000:4000"
     depends_on:
       - keycloak
 
