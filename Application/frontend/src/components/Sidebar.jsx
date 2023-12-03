@@ -89,8 +89,9 @@ export default function ClippedDrawer({ children }) {
           },
         }}
       >
-        {/*<Toolbar />*/}
         <Profile />
+        {/*<Toolbar />*/}
+
         <Box
           sx={{
             overflow: "auto",

@@ -39,7 +39,7 @@ const Profile = (initials) => {
           <div className="name">Max Mustermann</div>
           <div className="balance">1045,65€</div>
         </div>
-        <div className="next-line">
+        <div className="nex-line">
           <div className="statistic">Statistik: 84x 153x</div>
         </div>
       </div>
