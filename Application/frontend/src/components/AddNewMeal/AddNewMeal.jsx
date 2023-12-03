@@ -7,7 +7,7 @@ import Meat from "../../images/Meat.png";
 import Vegan from "../../images/Vegan.png";
 import Veggie from "../../images/Veggie.png";
 
-const Modal = () => {
+const Modal = ({ meal }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isChecked, setChecked] = useState(false);
   const [selectedState, setSelectedState] = useState("");

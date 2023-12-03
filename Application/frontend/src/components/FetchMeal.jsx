@@ -7,7 +7,7 @@ import { Routes, Route } from "react-router-dom";
 import Home from "../pages/Home";
 import Calendar from "../pages/Calendar";
 import Info from "../components/Info/Info.jsx";
-import MealList from "../pages/MealList.jsx";
+import MealList from "./MealList/MealList.jsx";
 
 function FetchMeal() {
   const { meals, dispatch } = useMealsContext();
