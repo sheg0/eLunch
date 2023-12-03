@@ -1,7 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
-import AppBar from "@mui/material/AppBar";
+//import AppBar from "@mui/material/AppBar";
 import CssBaseline from "@mui/material/CssBaseline";
 import Toolbar from "@mui/material/Toolbar";
 import List from "@mui/material/List";
@@ -9,16 +9,18 @@ import Typography from "@mui/material/Typography";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import KebabDiningIcon from "@mui/icons-material/KebabDining";
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import EuroIcon from "@mui/icons-material/Euro";
 import PeopleIcon from "@mui/icons-material/People";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import InfoIcon from "@mui/icons-material/Info";
-import SteinbeisLogo from "../images/Logo_Steinbeis_EST_white.png";
-import { useState } from "react";
+
+//import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import Profile from "./Profile/Profile";
 
 const drawerWidth = 250;
 
@@ -70,28 +72,13 @@ export default function ClippedDrawer({ children }) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar
+      {/*<AppBar
         position="fixed"
-        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: "#043c5f" }}
-      >
-        <Toolbar sx={{ height: "10vh" }}>
-          <img
-            src={SteinbeisLogo}
-            alt="Steinbeis"
-            style={{ width: "20%", height: "auto" }}
-          />
-          {/*
-          <Typography
-            variant="h6"
-            noWrap
-            component="div"
-            sx={{ fontSize: "40px", fontFamily: "Segoe UI" }}
-          >
-            <BlueLargeIcon />
-          </Typography>
-          */}
-        </Toolbar>
-      </AppBar>
+        sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, bgcolor: "#043c55" }}
+  >
+        <Toolbar sx={{ height: "10vh" }}></Toolbar>
+      </AppBar>*/}
+
       <Drawer
         variant="permanent"
         sx={{
@@ -105,7 +92,8 @@ export default function ClippedDrawer({ children }) {
           },
         }}
       >
-        <Toolbar />
+        {/*<Toolbar />*/}
+
         <Box
           sx={{
             overflow: "auto",
@@ -115,6 +103,7 @@ export default function ClippedDrawer({ children }) {
             height: "100vh",
           }}
         >
+          <Profile />
           <List sx={{ color: "white" }}>
             {listItems.map((item) => {
               return (

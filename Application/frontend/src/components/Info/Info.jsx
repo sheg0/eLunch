@@ -4,7 +4,7 @@ import ListItem from "@mui/material/ListItem";
 import { Container } from "@mui/material";
 import "./Info.css";
 import Typography from "@mui/material/Typography";
-import { PiParagraph } from "react-icons/pi";
+//import { PiParagraph } from "react-icons/pi";
 import Alcohol from "../../images/Alcohol.png";
 import Dairyfree from "../../images/Dairyfree.png";
 import Glutenfree from "../../images/Glutenfree.png";

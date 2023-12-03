@@ -5,10 +5,10 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import listPlugin from "@fullcalendar/list";
-import { SlArrowDown } from "react-icons/sl";
+//import { SlArrowDown } from "react-icons/sl";
 import "../styles/Calendar.css";
 
-import { MdKeyboardArrowDown } from "react-icons/md";
+//import { MdKeyboardArrowDown } from "react-icons/md";
 import {
   Box,
   Container,
