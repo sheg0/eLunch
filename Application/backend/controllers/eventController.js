@@ -116,11 +116,6 @@ const deleteEvent = async (req, res) => {
 
 // Update an Event
 const updateEvent = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No Such Event" });
-  }
-
   const event = await Event.findOneAndUpdate(
     { _id: id },
     {
@@ -138,15 +133,15 @@ const updateEvent = async (req, res) => {
 
 // Subscribe Event
 const subscribeEvent = async (req, res) => {
-  const { event } = req.body;
+  const { id, event } = req.body;
 };
 
 const unsubscribeEvent = async (req, res) => {
-  const { event } = req.body;
+  const { id, event } = req.body;
 };
 
 const validateId = async (req, res, next) => {
-  const { id, user } = req.body;
+  const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No Such Event" });
   }
@@ -161,4 +156,7 @@ module.exports = {
   createEvent,
   deleteEvent,
   updateEvent,
+  subscribeEvent,
+  unsubscribeEvent,
+  validateId,
 };
