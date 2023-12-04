@@ -115,7 +115,6 @@ const deleteEvent = async (req, res) => {
 };
 
 // Update an Event
-
 const updateEvent = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -135,6 +134,24 @@ const updateEvent = async (req, res) => {
   }
 
   res.status(200).json(event);
+};
+
+// Subscribe Event
+const subscribeEvent = async (req, res) => {
+  const { event } = req.body;
+};
+
+const unsubscribeEvent = async (req, res) => {
+  const { event } = req.body;
+};
+
+const validateId = async (req, res, next) => {
+  const { id, user } = req.body;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Such Event" });
+  }
+
+  next();
 };
 
 module.exports = {
