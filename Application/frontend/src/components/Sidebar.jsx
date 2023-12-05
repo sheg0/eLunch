@@ -100,8 +100,9 @@ export default function ClippedDrawer({ children }) {
           sx={{
             overflow: "auto",
             // beide farben aber super wir können uns nicht entscheiden...
-            background: "linear-gradient(0deg, #625c80, #043c5f)",
+            //background: "linear-gradient(0deg, #625c80, #043c5f)",
             //background: "linear-gradient(0deg, #696498, #043c5f)",
+            background: "linear-gradient(0deg, #5A293D, #043c5f)",
             height: "100vh",
           }}
         >
