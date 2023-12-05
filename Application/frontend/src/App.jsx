@@ -10,8 +10,8 @@ function App() {
       <ClippedDrawer>
         <div className="pages">
           <Container>
-            <FetchEvent></FetchEvent>
             <FetchMeal></FetchMeal>
+            <FetchEvent></FetchEvent>
           </Container>
         </div>
       </ClippedDrawer>
