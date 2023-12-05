@@ -1,0 +1,23 @@
+.meal-container {
+  width: auto;
+  height: auto;
+  background-color: #ccebfe;
+  border-radius: 11px;
+  display: flex;
+}
+
+.meal-container p {
+  font-size: 14px;
+  color: #043c5f;
+  font-weight: 600;
+  margin-right: 0.5vh;
+}
+
+.meal-container p1 {
+  font-size: 14px;
+  font-weight: 400;
+  color: #3f3f3f;
+  display: flex;
+  margin-top: 1.5vh;
+  margin-left: 0.5vh;
+}

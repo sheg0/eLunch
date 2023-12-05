@@ -6,6 +6,7 @@ import "./MealList.css";
 import Modal from "../AddNewMeal/AddNewMeal.jsx";
 import { FaPen } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useMealsContext } from "../../hooks/useMealsContext.js";
 
 function MealList({ meals }) {
   return (
@@ -38,6 +39,7 @@ function MealList({ meals }) {
                     </button>
 
                     <div className="icon-gap"></div>
+
                     <button className="icon-button">
                       <FaRegTrashAlt />
                     </button>
