@@ -13,6 +13,8 @@ function FetchMeal() {
   const { meals, dispatch } = useMealsContext();
   const { keycloak, initialized } = useKeycloak();
 
+  console.log(keycloak.token);
+
   useEffect(() => {
     if (initialized && keycloak.authenticated) {
       const fetchMeal = async () => {

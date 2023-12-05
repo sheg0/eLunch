@@ -26,9 +26,6 @@ const getFilteredEvents = async (req, res) => {
     from = new Date(from);
     to = new Date(to);
 
-    console.log(from);
-    console.log(to);
-
     const events = await Event.find({
       date: {
         $gte: from,
@@ -65,6 +62,8 @@ const createEvent = (req, res) => {
       }
 
       const { date, mealId, ...participantInfo } = req.body;
+
+      console.log(participantInfo);
 
       const event = new Event({
         _id: new mongoose.Types.ObjectId(),
@@ -115,13 +114,8 @@ const deleteEvent = async (req, res) => {
 };
 
 // Update an Event
-
 const updateEvent = async (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No Such Event" });
-  }
-
   const event = await Event.findOneAndUpdate(
     { _id: id },
     {
@@ -137,6 +131,82 @@ const updateEvent = async (req, res) => {
   res.status(200).json(event);
 };
 
+// Subscribe Event
+const subscribeEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { user } = req.body;
+
+    const event = await Event.findOneAndUpdate(
+      { _id: id, "participants.userName": { $ne: user.userName } },
+      { $addToSet: { participants: user } },
+      { new: true }
+    );
+    return checkEvent(res, event);
+  } catch (error) {
+    return sendError(res, 500, error.message);
+  }
+};
+
+const unsubscribeEvent = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { user } = req.body;
+
+    const event = await Event.findOneAndUpdate(
+      { _id: id },
+      { $pull: { participants: user } },
+      { new: true }
+    );
+
+    return checkEvent(res, event);
+  } catch (error) {
+    return sendError(res, 500, error);
+  }
+};
+
+const validateId = async (req, res, next) => {
+  const { id } = req.params;
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(404).json({ error: "No Such Event" });
+  }
+
+  next();
+};
+
+const checkEvent = (res, event) => {
+  if (event) {
+    return sendResponse(res, "success", event);
+  } else {
+    return sendError(
+      res,
+      403,
+      "Username already exists in the event or event not found"
+    );
+  }
+};
+
+const sendResponse = (res, status, data, errorMessage) => {
+  if (status === "success") {
+    return res.status(200).json({
+      status,
+      data,
+    });
+  } else {
+    return res.status(400).json({
+      status: "failed",
+      error: errorMessage,
+    });
+  }
+};
+
+const sendError = (res, statusCode, errorMessage) => {
+  return res.status(statusCode).json({
+    status: "error",
+    message: errorMessage,
+  });
+};
+
 module.exports = {
   getAllEvents,
   getFilteredEvents,
@@ -144,4 +214,7 @@ module.exports = {
   createEvent,
   deleteEvent,
   updateEvent,
+  subscribeEvent,
+  unsubscribeEvent,
+  validateId,
 };
