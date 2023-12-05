@@ -3,9 +3,27 @@ import "./CalendarComponent.css";
 import { Container } from "@mui/material";
 import AddMeal from "../AddMeal/AddMeal";
 import MealView from "../MealInCalendar/MealInCalendar";
+import { SlArrowDown } from "react-icons/sl";
+import { SlArrowLeft } from "react-icons/sl";
+import { SlArrowRight } from "react-icons/sl";
 
 const Calendar = () => {
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [isVisible, setVisible] = useState(false);
+  const [weekVisible, setWeekVisible] = useState(true);
+
+  const toggleWeek = () => {
+    setWeekVisible(!weekVisible);
+  };
+
+  const toggleCalendar = () => {
+    setVisible(!isVisible);
+  };
+
+  const handleButtonClick = () => {
+    toggleWeek();
+    toggleCalendar();
+  };
 
   const goToNextMonth = () => {
     setCurrentDate(
@@ -25,6 +43,10 @@ const Calendar = () => {
 
   const getWeekday = (year, month, day) => {
     return new Date(year, month, day).getDay();
+  };
+
+  const goToCurrentDate = () => {
+    setCurrentDate(new Date());
   };
 
   const year = currentDate.getFullYear();
@@ -57,53 +79,146 @@ const Calendar = () => {
     }
   }
 
+  const goToNextWeek = () => {
+    setCurrentDate((prevDate) => {
+      const nextWeek = new Date(prevDate);
+      nextWeek.setDate(nextWeek.getDate() + 7);
+      return nextWeek;
+    });
+  };
+
+  const goToPreviousWeek = () => {
+    setCurrentDate((prevDate) => {
+      const previousWeek = new Date(prevDate);
+      previousWeek.setDate(previousWeek.getDate() - 7);
+      return previousWeek;
+    });
+  };
+
+  const getWeekDays = () => {
+    const days = [];
+    const weekStart = new Date(currentDate);
+    weekStart.setDate(weekStart.getDate() - weekStart.getDay() + 1);
+
+    for (let i = 0; i < 5; i++) {
+      const day = new Date(weekStart);
+      day.setDate(day.getDate() + i);
+      days.push(day);
+    }
+    return days;
+  };
+
   return (
     <Container>
       <div className="calendar">
-        <div className="header">
-          <button className="calendar-btn" onClick={goToPreviousMonth}>
-            &lt;
-          </button>
-          <h2>
-            {new Date(year, month).toLocaleString("default", {
-              month: "long",
-              year: "numeric",
-            })}
-          </h2>
+        {isVisible && (
+          <div>
+            <div className="header">
+              <button className="calendar-btn" onClick={goToPreviousMonth}>
+                {/*&lt;*/}
+                <SlArrowLeft />
+              </button>
+              <h2>
+                {new Date(year, month).toLocaleString("default", {
+                  month: "long",
+                  year: "numeric",
+                })}
+              </h2>
 
-          <button className="calendar-btn" onClick={goToNextMonth}>
-            &gt;
-          </button>
-        </div>
-        <div className="days" style={{ fontFamily: "Segoe UI" }}>
-          <div className="day">Montag</div>
-          <div className="day">Dienstag</div>
-          <div className="day">Mittwoch</div>
-          <div className="day">Donnerstag</div>
-          <div className="day">Freitag</div>
-        </div>
-        <div className="field">
-          <div className="dates">
-            {previousMonthDays.map((day) => (
-              <div className="date previous-month">{day}</div>
-            ))}
-            {calendarDays.map((day) => (
-              <div className="date">
-                {day}
-                <MealView></MealView>
+              <button className="calendar-btn" onClick={goToNextMonth}>
+                {/*&gt;*/}
+                <SlArrowRight />
+              </button>
+            </div>
+            <div className="btn-container">
+              <button className="todayBtn" onClick={goToCurrentDate}>
+                today
+              </button>
+            </div>
+
+            <div className="days" style={{ fontFamily: "Segoe UI" }}>
+              <div className="day">Montag</div>
+              <div className="day">Dienstag</div>
+              <div className="day">Mittwoch</div>
+              <div className="day">Donnerstag</div>
+              <div className="day">Freitag</div>
+            </div>
+            <div className="field">
+              <div className="dates">
+                {previousMonthDays.map((day) => (
+                  <div className="date previous-month">{day}</div>
+                ))}
+                {calendarDays.map((day) => (
+                  <div className="date">
+                    {day}
+                    <MealView></MealView>
+                  </div>
+                ))}
+                {nextMonthDays.map((day) => (
+                  <div className="date next-month">{day}</div>
+                ))}
               </div>
-            ))}
-            {nextMonthDays.map((day) => (
-              <div className="date next-month">{day}</div>
-            ))}
+            </div>
           </div>
+        )}
+        {weekVisible && (
+          <div>
+            <div className="header">
+              <button className="calendar-btn" onClick={goToPreviousWeek}>
+                <SlArrowLeft />
+              </button>
+              <h2>
+                {new Date(year, month).toLocaleString("default", {
+                  month: "long",
+                  year: "numeric",
+                })}
+              </h2>
+              <button className="calendar-btn" onClick={goToNextWeek}>
+                <SlArrowRight />
+              </button>
+            </div>
+            <div className="btn-container">
+              <button className="todayBtn" onClick={goToCurrentDate}>
+                today
+              </button>
+            </div>
+
+            <div className="days" style={{ fontFamily: "Segoe UI" }}>
+              <div className="day">Montag</div>
+              <div className="day">Dienstag</div>
+              <div className="day">Mittwoch</div>
+              <div className="day">Donnerstag</div>
+              <div className="day">Freitag</div>
+            </div>
+
+            <div>
+              <div className="weeks">
+                {getWeekDays().map((day) => (
+                  <div key={day.toISOString()}>
+                    <div className="dateWeek">
+                      {day.getDate()}
+                      <AddMeal></AddMeal>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+        <div className="btn-container">
+          <button className="calendar-btn week" onClick={handleButtonClick}>
+            <SlArrowDown />
+          </button>
         </div>
 
         <div></div>
       </div>
-      <AddMeal></AddMeal>
     </Container>
   );
 };
+
+/*
+
+*/
 
 export default Calendar;
