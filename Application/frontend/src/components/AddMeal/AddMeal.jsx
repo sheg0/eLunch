@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./AddMeal.css";
+import { RxCross1 } from "react-icons/rx";
 
 function AddMeal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,11 +18,15 @@ function AddMeal() {
           <div className="modal-content">
             <div>
               <h2>Neues Gericht</h2>
+              <button className="crossIcon" onClick={toggleModal}>
+                <RxCross1 />
+              </button>
               <p>
                 Datum <br />
                 Gericht <br />
                 Anmerkung <br />
                 Tags <br />
+                <br />
               </p>
             </div>
             <div className="inputText">
@@ -29,12 +34,11 @@ function AddMeal() {
               <input type="text" className="infoText" />
               <input type="text" className="infoText" />
             </div>
-            <button className="btnMeal btn-newMeal" onClick={toggleModal}>
-              Bestätigen
-            </button>
-            <button className="btnMeal btn-newMeal" onClick={toggleModal}>
-              Abbrechen
-            </button>
+            <div className="btnContainer">
+              <button className="btnMeal btn-newMeal" onClick={toggleModal}>
+                Bestätigen
+              </button>
+            </div>
           </div>
         </div>
       )}

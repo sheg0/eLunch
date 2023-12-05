@@ -2,12 +2,12 @@
   font-family: "Segoe UI";
   font-size: 16px;
   font-weight: 400;
-  border-radius: 18px;
+  border-radius: 10px;
   border: none;
   background-color: #043c5f;
   color: white;
   width: auto;
-  height: 5vh;
+  height: 3.5vh;
   cursor: pointer;
 }
 
@@ -16,7 +16,7 @@
 }
 
 .addMeal-content {
-  position: fixed;
+  position: relative;
   top: 0;
   left: 0;
   right: 0;
@@ -60,8 +60,8 @@
 
 .inputText {
   position: relative;
-  top: 5vh;
-  right: 5vh;
+  top: 8vh;
+  right: 15vh;
 }
 
 .infoText {
@@ -77,4 +77,28 @@
   position: relative;
   top: 11vh;
   right: 52vh;
+}
+
+.btnContainer {
+  position: absolute;
+  bottom: 30vh;
+  left: 75vh;
+}
+
+.crossIcon {
+  border-radius: 10px;
+  border: none;
+  background-color: #043c5f;
+  color: white;
+  width: auto;
+  height: 3.5vh;
+  width: 3.5vh;
+  cursor: pointer;
+  position: absolute;
+  top: 29vh;
+  right: 72vh;
+}
+
+.crossIcon:hover {
+  background-color: rgba(3, 40, 63, 1);
 }

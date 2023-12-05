@@ -6,6 +6,7 @@ import Glutenfree from "../../images/Glutenfree.png";
 import Meat from "../../images/Meat.png";
 import Vegan from "../../images/Vegan.png";
 import Veggie from "../../images/Veggie.png";
+import { RxCross1 } from "react-icons/rx";
 
 const Modal = ({ meal }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,6 +94,9 @@ const Modal = ({ meal }) => {
           <div className="modal-content">
             <div className="mealHeader">
               <h2>Neues Gericht hinzufügen</h2>
+              <button className="cross-icon btn-newMeal" onClick={toggleModal}>
+                <RxCross1 />
+              </button>
               <p className="newMealP">
                 Name <br />
                 Zutaten (pro Person) <br />
@@ -102,6 +106,7 @@ const Modal = ({ meal }) => {
                 Kategorie <br />
                 Schwierigkeit <br />
                 Tags <br />
+                <br />
               </p>
             </div>
 
@@ -189,9 +194,6 @@ const Modal = ({ meal }) => {
               <div className="btnPos">
                 <button className="btnMeal btn-newMeal" onClick={toggleModal}>
                   Bestätigen
-                </button>
-                <button className="btnMeal btn-newMeal" onClick={toggleModal}>
-                  Abbrechen
                 </button>
               </div>
             </div>
