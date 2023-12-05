@@ -1,7 +1,7 @@
-import Calendar from "../components/Calendar/Calendar.jsx";
+import Calendar from "../components/Calendar/CalendarComponent.jsx";
 
-const List = ({ meals }) => {
-  return <Calendar meals={meals}></Calendar>;
+const Cal = () => {
+  return <Calendar></Calendar>;
 };
 
-export default List;
+export default Cal;

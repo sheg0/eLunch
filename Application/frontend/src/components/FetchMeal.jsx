@@ -5,9 +5,12 @@ import { Routes, Route } from "react-router-dom";
 
 //pages
 import Home from "../pages/Home";
-import Calendar from "../pages/Calendar";
+//import List from "../pages/List";
+//import Calendar from "./Calendar/CalendarComponent.jsx";
+import Cal from "../pages/Calendar.jsx";
 import Info from "../components/Info/Info.jsx";
-import MealList from "../pages/MealList.jsx";
+//import MealList from "./MealList/MealList.jsx";
+import List from "../pages/List.jsx";
 
 function FetchMeal() {
   const { meals, dispatch } = useMealsContext();
@@ -39,8 +42,8 @@ function FetchMeal() {
   return (
     <Routes>
       <Route path="/" element={<Home meals={meals} />} />
-      <Route path="/List" element={<MealList meals={meals} />} />
-      <Route path="/Calendar" element={<Calendar meals={meals} />} />
+      <Route path="/List" element={<List meals={meals} />} />
+      <Route path="/Calendar" element={<Cal meals={meals} />} />
       <Route path="/Info" element={<Info />} />
     </Routes>
   );

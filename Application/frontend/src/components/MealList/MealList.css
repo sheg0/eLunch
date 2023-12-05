@@ -1,0 +1,53 @@
+.table-con {
+  font-family: "Segoe UI";
+  width: 102vh;
+  height: 75vh;
+  overflow-y: scroll;
+  border-radius: 18px;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+  font-size: 18px;
+}
+
+.table {
+  width: 100vh;
+  table-layout: fixed;
+  background-color: #f5f5f5;
+}
+
+.table th {
+  position: sticky;
+  top: 0;
+  line-height: 2;
+  background-color: #f1f1f1;
+  font-weight: bold;
+  color: #043c5f;
+}
+
+.table td,
+.table th {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.icon-button {
+  border: none;
+  border-radius: 18px;
+  width: 5vh;
+  height: 5vh;
+  cursor: pointer;
+}
+
+.icon-button:hover {
+  background-color: rgb(166, 166, 166);
+}
+
+.icon-container {
+  display: flex;
+  align-items: center;
+}
+
+.icon-gap {
+  width: 2vh;
+}

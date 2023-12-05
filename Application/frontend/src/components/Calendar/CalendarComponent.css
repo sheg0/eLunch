@@ -34,7 +34,7 @@
 }
 
 .field {
-  width: 100vh;
+  width: 10vh;
   display: flex;
 }
 
@@ -81,21 +81,6 @@
   color: #898989;
 }
 
-.week-btn {
-  color: #043c5f;
-  font-size: 2.5vh;
-  border-radius: 18px;
-  width: 5vh;
-  height: 5vh;
-  border: none;
-  background-color: #043c5f27;
-  transition: background-color 0.5s;
-}
-
-.week-btn:hover {
-  background-color: #043c5f57;
-}
-
 .calendar-btn {
   color: #043c5f;
   font-size: 2.5vh;
@@ -108,5 +93,47 @@
 }
 
 .calendar-btn:hover {
+  background-color: #043c5f27;
+}
+
+.btn-container {
+  margin-top: 2vh;
+  margin-right: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dateWeek {
+  text-align: right;
+  padding: 10px;
+  border-radius: 18px;
+  width: 20vh;
+  height: 30vh;
+  font-size: 25px;
+  font-family: "Segoe UI";
+  color: #043c5f;
+  background-color: #f1f1f1;
+}
+
+.weeks {
+  width: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vh;
+}
+
+.todayBtn {
+  color: #043c5f;
+  font-size: 2.5vh;
+  border-radius: 18px;
+  width: 10vh;
+  height: 5vh;
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+
+.todayBtn:hover {
   background-color: #043c5f27;
 }
