@@ -1,46 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Profile.css";
-//import SteinbeisLogo from "../../images/Logo_Steinbeis_EST_white.png";
+import { useKeycloak } from "@react-keycloak/web";
 
-const Profile = (initials) => {
-  const handleLogout = () => {};
+import { IoIosLogOut } from "react-icons/io";
+import { PiCookingPotBold } from "react-icons/pi";
+import { PiForkKnifeDuotone } from "react-icons/pi";
+
+const Profile = () => {
+  const { keycloak } = useKeycloak();
+
+  const username = keycloak.tokenParsed.preferred_username;
+  const firstName = keycloak.tokenParsed.given_name;
+  const lastName = keycloak.tokenParsed.family_name;
+
+  const handleLogout = () => {
+    keycloak.logout();
+  };
 
   return (
     <>
-      {/* <div className="logo">
-        <img
-          src={SteinbeisLogo}
-          alt="Steinbeis"
-          style={{ width: "450%", height: "auto" }}
-        />
-      </div>
-        <div className="box">
-        <div className="profile">{initials}</div>
-        {employee.map((employee) => (
-          <div key={employee}>
-            {employee.name.split(" ").map((namePart) => (
-              <span key={namePart[0]}>{namePart[0]}</span>
-            ))}
-            <h2>{employee}</h2>
-            <h3 className="kontostand">{balance}</h3>
-            <h3 className="statistik">Statistiken: {statistics}</h3>
-          </div>
-        ))}
-      </div>*/}
-
       <div className="container">
-        <div className="side-to-side">
-          <div className="kreis">MM</div>
-          <div className="abmelden" onClick={handleLogout}>
-            Abmelden
+        <div className="content">
+          <div className="row1">
+            <div className="banner">
+              {firstName[0]}
+              {lastName[0]}
+            </div>
+            <IoIosLogOut className="logout" onClick={handleLogout}>
+              Abmelden
+            </IoIosLogOut>
           </div>
-        </div>
-        <div className="side-by-side">
-          <div className="name">Max Mustermann</div>
-          <div className="balance">1045,65€</div>
-        </div>
-        <div className="nex-line">
-          <div className="statistic">Statistik: 84x 153x</div>
+          <div className="row2">
+            <div className="name">
+              {firstName} {lastName}
+            </div>
+            <div className="balance">1045,65€</div>
+          </div>
+          <div className="row3">
+            <div className="statistic">Statistik:</div>
+            <PiCookingPotBold className="icon-gekocht"></PiCookingPotBold>
+            <PiForkKnifeDuotone className="icon-gegessen"></PiForkKnifeDuotone>
+          </div>
         </div>
       </div>
     </>

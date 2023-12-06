@@ -16,7 +16,6 @@ import EuroIcon from "@mui/icons-material/Euro";
 import PeopleIcon from "@mui/icons-material/People";
 import StackedLineChartIcon from "@mui/icons-material/StackedLineChart";
 import InfoIcon from "@mui/icons-material/Info";
-//import SteinbeisLogo from "../images/Logo_Steinbeis_EST_white.png";
 import Profile from "./Profile/Profile";
 
 import { useNavigate } from "react-router-dom";
@@ -89,9 +88,6 @@ export default function ClippedDrawer({ children }) {
           },
         }}
       >
-        <Profile />
-        {/*<Toolbar />*/}
-
         <Box
           sx={{
             overflow: "auto",
@@ -123,6 +119,7 @@ export default function ClippedDrawer({ children }) {
               );
             })}
           </List>
+          <Profile />
           <Typography
             sx={{
               fontFamily: "Segoe UI",
