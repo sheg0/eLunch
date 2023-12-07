@@ -7,14 +7,13 @@ import Meat from "../../images/Meat.png";
 import Vegan from "../../images/Vegan.png";
 import Veggie from "../../images/Veggie.png";
 import { RxCross1 } from "react-icons/rx";
+import { useEffect } from "react";
 
-const Modal = ({ meal }) => {
-  const [isOpen, setIsOpen] = useState(false);
+const Modal = ({ meal, setIsEditing, isEditing }) => {
   const [isChecked, setChecked] = useState(false);
   const [selectedState, setSelectedState] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
-  const initialInputs = ["", "", "", "", ""];
-  const [inputs, setInputs] = useState(initialInputs);
+  const [inputs, setInputs] = useState([meal?.name, "", "", "", ""]);
   const [showInput, setShowInput] = useState(false);
 
   const placeholderTexts = [
@@ -81,15 +80,12 @@ const Modal = ({ meal }) => {
   };
 
   const toggleModal = () => {
-    setIsOpen(!isOpen);
+    setIsEditing(!isEditing);
   };
 
   return (
     <div className="modal">
-      <button className="btn-newMeal" onClick={toggleModal}>
-        &#43; Neues Gericht hinzufügen
-      </button>
-      {isOpen && (
+      {isEditing && (
         <div className="modal-overlay">
           <div className="modal-content">
             <div className="mealHeader">

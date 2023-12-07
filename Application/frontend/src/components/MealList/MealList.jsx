@@ -1,9 +1,8 @@
 import * as React from "react";
-import { useTable } from "react-table";
 import { Container } from "@mui/material";
 import { useState } from "react";
 import "./MealList.css";
-import Modal from "../AddNewMeal/AddNewMeal.jsx";
+import MealModal from "../AddNewMeal/AddNewMeal.jsx";
 import { FaPen } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useMealsContext } from "../../hooks/useMealsContext";
@@ -27,12 +26,51 @@ function MealList({ meals }) {
   const [name, setName] = useState("");
   //keycloak
   const { keycloak } = useKeycloak();
-  //const username = keycloak.tokenParsed.preferred_username;
-  //const firstName = keycloak.tokenParsed.given_name;
-  //const lastName = keycloak.tokenParsed.family_name;
-  console.log(keycloak.tokenParsed.preferred_username);
+
   //DISPATCH
   const { dispatch } = useMealsContext();
+
+  const handleClickDelete = async (meal) => {
+    const response = await fetch("/api/meals/" + meal._id, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${keycloak.token}` },
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "DELETE_MEAL", payload: json });
+    }
+  };
+
+  const handleClickEdit = () => {
+    setIsEditing(!isEditing);
+  };
+
+  const handleEditMeal = async (meal) => {
+    const response = await fetch("/api/meals/" + meal._id, {
+      method: "PATCH",
+      body: JSON.stringify({
+        ...meal,
+        isVegetarian: isVegetarian,
+        isVegan: isVegan,
+        isWithMeat: isWithMeat,
+        isWithAlcohol: isWithAlcohol,
+        isGlutenFree: isGlutenFree,
+        isLactoseFree: isLactoseFree,
+        type: type,
+        name: name,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "EDIT_MEAL", payload: json });
+      setIsEditing(false);
+    }
+  };
 
   return (
     <Container>
@@ -51,7 +89,37 @@ function MealList({ meals }) {
           </thead>
           <tbody>
             {meals?.map((meal) => (
-              <Meal meal={meal} setIsEditing={setIsEditing}></Meal>
+              <tr key={meal?._id + 1}>
+                <Meal meal={meal} setIsEditing={setIsEditing}></Meal>
+                {!isEditing && (
+                  <td>
+                    <div className="icon-container">
+                      <button
+                        onClick={handleClickEdit}
+                        className="icon-button edit"
+                      >
+                        <FaPen />
+                      </button>
+
+                      <div className="icon-gap"></div>
+
+                      <button
+                        onClick={() => handleClickDelete(meal)}
+                        className="icon-button delete"
+                      >
+                        <FaRegTrashAlt />
+                      </button>
+                    </div>
+                  </td>
+                )}
+                {isEditing && (
+                  <MealModal
+                    meal={meal}
+                    setIsEditing={setIsEditing}
+                    isEditing={isEditing}
+                  ></MealModal>
+                )}
+              </tr>
             ))}
           </tbody>
         </table>
@@ -127,7 +195,7 @@ function MealList({ meals }) {
           <AddButton variant="contained">Add Meal</AddButton>
         </div>
       )}
-      <Modal></Modal>
+      <MealModal></MealModal>
     </Container>
   );
 }
