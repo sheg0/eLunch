@@ -26,7 +26,8 @@ const getMeal = async (req, res) => {
 
 // Create new meal
 const createMeal = async (req, res) => {
-  const { name, type, ...optionalProperties } = req.body;
+  const { name, ingredients, description, categroy, ...optionalProperties } =
+    req.body;
 
   if (!name || !type) {
     return res
@@ -38,7 +39,9 @@ const createMeal = async (req, res) => {
     const meal = await Meal.create({
       _id: new mongoose.Types.ObjectId(),
       name,
-      type,
+      ingredients,
+      description,
+      category,
       ...optionalProperties,
     });
     res.status(200).json(meal);
@@ -61,7 +64,6 @@ const deleteMeal = async (req, res) => {
 };
 
 // Update a  meal
-
 const updateMeal = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {

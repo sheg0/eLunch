@@ -12,6 +12,34 @@ const mealSchema = new Schema(
       type: String,
       required: true,
     },
+    ingredients: {
+      type: String,
+      required: true,
+    },
+    description: {
+      type: String,
+      required: true,
+    },
+    category: {
+      type: String,
+      enum: [
+        "Vorspeise",
+        "Hauptgericht",
+        "Beilage",
+        "Nachtisch",
+        "Snack",
+        "Extern",
+        "Besonderheit",
+        "Rezept",
+        "Aktivität",
+      ],
+      required: true,
+    },
+    difficulty: {
+      type: String,
+      enum: ["Sehr Einfach", "Einfach", "Mittel", "Schwierig"],
+      required: true,
+    },
     isVegetarian: {
       type: Boolean,
       default: false,
@@ -41,13 +69,6 @@ const mealSchema = new Schema(
       type: Boolean,
       default: false,
       required: false,
-    },
-    type: {
-      type: String,
-      required: true,
-    },
-    checked: {
-      type: Boolean,
     },
   },
 
