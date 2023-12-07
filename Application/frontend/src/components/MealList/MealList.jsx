@@ -2,7 +2,7 @@ import * as React from "react";
 import { Container } from "@mui/material";
 import { useState } from "react";
 import "./MealList.css";
-import MealModal from "../AddNewMeal/AddNewMeal.jsx";
+import MealModal from "../MealModal/MealModal.jsx";
 import { FaPen } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
 import { useMealsContext } from "../../hooks/useMealsContext";
@@ -22,8 +22,9 @@ function MealList({ meals }) {
   const [isWithAlcohol, setisWithAlcohol] = useState("");
   const [isGlutenFree, setisGlutenFree] = useState("");
   const [isLactoseFree, setisLactoseFree] = useState("");
-  const [type, setType] = useState("");
+  const [category, setCategory] = useState("");
   const [name, setName] = useState("");
+  const [currentMeal, setCurrentMeal] = useState();
   //keycloak
   const { keycloak } = useKeycloak();
 
@@ -46,6 +47,11 @@ function MealList({ meals }) {
     setIsEditing(!isEditing);
   };
 
+  const handleClickMealEdit = (meal) => {
+    console.log(meal);
+    handleClickEdit();
+    setCurrentMeal(meal);
+  };
   const handleEditMeal = async (meal) => {
     const response = await fetch("/api/meals/" + meal._id, {
       method: "PATCH",
@@ -57,7 +63,7 @@ function MealList({ meals }) {
         isWithAlcohol: isWithAlcohol,
         isGlutenFree: isGlutenFree,
         isLactoseFree: isLactoseFree,
-        type: type,
+        category: category,
         name: name,
       }),
       headers: {
@@ -74,7 +80,6 @@ function MealList({ meals }) {
 
   return (
     <Container>
-      <button onClick={keycloak.logout}></button>
       <div className="table-con">
         <table className="table">
           <thead>
@@ -91,36 +96,34 @@ function MealList({ meals }) {
             {meals?.map((meal) => (
               <tr key={meal?._id + 1}>
                 <Meal meal={meal} setIsEditing={setIsEditing}></Meal>
-                {!isEditing && (
-                  <td>
-                    <div className="icon-container">
-                      <button
-                        onClick={handleClickEdit}
-                        className="icon-button edit"
-                      >
-                        <FaPen />
-                      </button>
 
-                      <div className="icon-gap"></div>
+                <td>
+                  <div className="icon-container">
+                    <button
+                      onClick={() => handleClickMealEdit(meal)}
+                      className="icon-button edit"
+                    >
+                      <FaPen />
+                    </button>
 
-                      <button
-                        onClick={() => handleClickDelete(meal)}
-                        className="icon-button delete"
-                      >
-                        <FaRegTrashAlt />
-                      </button>
-                    </div>
-                  </td>
-                )}
-                {isEditing && (
-                  <MealModal
-                    meal={meal}
-                    setIsEditing={setIsEditing}
-                    isEditing={isEditing}
-                  ></MealModal>
-                )}
+                    <div className="icon-gap"></div>
+
+                    <button
+                      onClick={() => handleClickDelete(meal)}
+                      className="icon-button delete"
+                    >
+                      <FaRegTrashAlt />
+                    </button>
+                  </div>
+                </td>
               </tr>
             ))}
+            <MealModal
+              meal={currentMeal}
+              setIsEditing={setIsEditing}
+              isEditing={isEditing}
+              submitEditing={handleEditMeal}
+            ></MealModal>
           </tbody>
         </table>
       </div>
@@ -188,8 +191,8 @@ function MealList({ meals }) {
           <InputField
             label="type:"
             type="text"
-            onChange={(e) => setType(e.target.value)}
-            value={type}
+            onChange={(e) => setCategory(e.target.value)}
+            value={category}
           />
 
           <AddButton variant="contained">Add Meal</AddButton>

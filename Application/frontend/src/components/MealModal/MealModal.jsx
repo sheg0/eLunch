@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AddNewMeal.css";
+import "./MealModal.css";
 import Alcohol from "../../images/Alcohol.png";
 import Dairyfree from "../../images/Dairyfree.png";
 import Glutenfree from "../../images/Glutenfree.png";
@@ -9,12 +9,37 @@ import Veggie from "../../images/Veggie.png";
 import { RxCross1 } from "react-icons/rx";
 import { useEffect } from "react";
 
-const Modal = ({ meal, setIsEditing, isEditing }) => {
+const MealModal = ({ meal, setIsEditing, isEditing, submitEditing }) => {
   const [isChecked, setChecked] = useState(false);
   const [selectedState, setSelectedState] = useState("");
   const [selectedLevel, setSelectedLevel] = useState("");
-  const [inputs, setInputs] = useState([meal?.name, "", "", "", ""]);
+  const [inputs, setInputs] = useState([
+    meal?.name,
+    meal?.ingredients,
+    meal?.description,
+    meal?.timeNeeded,
+    meal?.difficulty,
+  ]);
   const [showInput, setShowInput] = useState(false);
+
+  useEffect(() => {
+    setInputs([
+      meal?.name,
+      meal?.ingredients,
+      meal?.description,
+      meal?.timeNeeded,
+      meal?.difficulty,
+    ]);
+
+    setClickedImages({
+      Alcohol: meal?.isWithAlcohol,
+      Dairyfree: meal?.isLactoseFree,
+      Glutenfree: meal?.isGlutenFree,
+      Meat: meal?.isWithMeat,
+      Vegan: meal?.isVegan,
+      Veggie: meal?.isVegetarian,
+    });
+  }, [meal]);
 
   const placeholderTexts = [
     "Eintragen...",
@@ -25,15 +50,16 @@ const Modal = ({ meal, setIsEditing, isEditing }) => {
   ];
 
   const [clickedImages, setClickedImages] = useState({
-    Alcohol: false,
-    Dairyfree: false,
-    Glutenfree: false,
-    Meat: false,
-    Vegan: false,
-    Veggie: false,
+    Alcohol: meal?.isWithAlcohol,
+    Dairyfree: meal?.isLactoseFree,
+    Glutenfree: meal?.isGlutenFree,
+    Meat: meal?.isWithMeat,
+    Vegan: meal?.isVegan,
+    Veggie: meal?.isVegetarian,
   });
 
   const handleClick = (imageKey) => {
+    console.log(meal);
     setClickedImages((prevClickedImages) => ({
       ...prevClickedImages,
       [imageKey]: !prevClickedImages[imageKey],
@@ -200,4 +226,4 @@ const Modal = ({ meal, setIsEditing, isEditing }) => {
   );
 };
 
-export default Modal;
+export default MealModal;
