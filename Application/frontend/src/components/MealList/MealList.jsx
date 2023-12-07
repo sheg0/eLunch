@@ -12,10 +12,19 @@ import InputField from "../InputField.jsx";
 import Checkbox from "@mui/material/Checkbox";
 
 import { useKeycloak } from "@react-keycloak/web";
+import Meal from "../Meal.jsx";
+
 function MealList({ meals }) {
   // States
   const [isEditing, setIsEditing] = useState(false);
-
+  const [isVegetarian, setIsVegetarian] = useState("");
+  const [isVegan, setIsVegan] = useState("");
+  const [isWithMeat, setIsWithMeat] = useState("");
+  const [isWithAlcohol, setisWithAlcohol] = useState("");
+  const [isGlutenFree, setisGlutenFree] = useState("");
+  const [isLactoseFree, setisLactoseFree] = useState("");
+  const [type, setType] = useState("");
+  const [name, setName] = useState("");
   //keycloak
   const { keycloak } = useKeycloak();
   //const username = keycloak.tokenParsed.preferred_username;
@@ -24,47 +33,7 @@ function MealList({ meals }) {
   console.log(keycloak.tokenParsed.preferred_username);
   //DISPATCH
   const { dispatch } = useMealsContext();
-  // Handle Functions
-  const handleClickDelete = async (meal) => {
-    const response = await fetch("/api/meals/" + meal._id, {
-      method: "DELETE",
-      headers: { Authorization: `Bearer ${keycloak.token}` },
-    });
-    const json = await response.json();
 
-    if (response.ok) {
-      dispatch({ type: "DELETE_MEAL", payload: json });
-    }
-  };
-  const handleClickEdit = () => {
-    setIsEditing(!isEditing);
-  };
-
-  const handleEditMeal = async (meal) => {
-    const response = await fetch("/api/meals/" + meal._id, {
-      method: "PATCH",
-      body: JSON.stringify({
-        ...meal,
-        isVegetarian: isVegetarian,
-        isVegan: isVegan,
-        isWithMeat: isWithMeat,
-        isWithAlcohol: isWithAlcohol,
-        isGlutenFree: isGlutenFree,
-        isLactoseFree: isLactoseFree,
-        type: type,
-        name: name,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const json = await response.json();
-
-    if (response.ok) {
-      dispatch({ type: "EDIT_MEAL", payload: json });
-      setIsEditing(false);
-    }
-  };
   return (
     <Container>
       <button onClick={keycloak.logout}></button>
@@ -82,52 +51,7 @@ function MealList({ meals }) {
           </thead>
           <tbody>
             {meals?.map((meal) => (
-              <tr key={meal?._id + 1}>
-                <td>{meal?.name}</td>
-                <td>{meal?.isVegetarian}</td>
-                <td>{meal?.isVegan}</td>
-                <td>{meal?.hasGluten}</td>
-                <td>{meal?.type}</td>
-                {!isEditing && (
-                  <td>
-                    {" "}
-                    <div className="icon-container">
-                      <button
-                        onClick={handleClickEdit}
-                        className="icon-button edit"
-                      >
-                        <FaPen />{" "}
-                      </button>
-
-                      <div className="icon-gap"></div>
-
-                      <button
-                        onClick={() => handleClickDelete(meal)}
-                        className="icon-button delete"
-                      >
-                        <FaRegTrashAlt />
-                      </button>
-                    </div>
-                  </td>
-                )}
-                {isEditing && (
-                  <td>
-                    {" "}
-                    <button
-                      onClick={() => handleEditMeal(meal)}
-                      className="icon-button save"
-                    >
-                      <FaPen />
-                    </button>
-                    <button
-                      onClick={handleClickEdit}
-                      className="icon-button cancel"
-                    >
-                      <FaPen />
-                    </button>
-                  </td>
-                )}
-              </tr>
+              <Meal meal={meal} setIsEditing={setIsEditing}></Meal>
             ))}
           </tbody>
         </table>
