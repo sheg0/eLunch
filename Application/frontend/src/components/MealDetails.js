@@ -3,25 +3,31 @@ import { useState } from "react";
 //date fns
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
 import Checkbox from "@mui/material/Checkbox";
+import { useKeycloak } from "@react-keycloak/web";
 const MealDetails = ({ meal }) => {
   //STATES
   const [isEditing, setIsEditing] = useState(false);
   //const [emptyFields, setEmptyFields] = useState([]);
   const [isVegetarian, setIsVegetarian] = useState(meal.isVegetarian);
   const [isVegan, setIsVegan] = useState(meal.isVegan);
-  const [hasGluten, setHasGluten] = useState(meal.hasGluten);
+  const [isWithMeat, setIsWithMeat] = useState(meal.isWithMeat);
+  const [isWithAlcohol, setisWithAlcohol] = useState(meal.isWithAlcohol);
+  const [isGlutenFree, setisGlutenFree] = useState(meal.isGlutenFree);
+  const [isLactoseFree, setisLactoseFree] = useState(meal.isLactoseFree);
   const [type, setType] = useState(meal.type);
   const [name, setName] = useState(meal.name);
   const [checked, setChecked] = useState(false);
   //const [checked, setChecked] = useState(meal.checked);
-
+  const { keycloak } = useKeycloak();
   //DISPATCH
   const { dispatch } = useMealsContext(); //grab dispatch function
 
   //HANDLE FUNCTIONS
   const handleClickDelete = async () => {
+    console.log(meal._id);
     const response = await fetch("/api/meals/" + meal._id, {
       method: "DELETE",
+      headers: { Authorization: `Bearer ${keycloak.token}` },
     });
     const json = await response.json();
 
@@ -40,7 +46,10 @@ const MealDetails = ({ meal }) => {
         ...meal,
         isVegetarian: isVegetarian,
         isVegan: isVegan,
-        hasGluten: hasGluten,
+        isWithMeat: isWithMeat,
+        isWithAlcohol: isWithAlcohol,
+        isGlutenFree: isGlutenFree,
+        isLactoseFree: isLactoseFree,
         type: type,
         name: name,
         checked: checked,
@@ -72,7 +81,7 @@ const MealDetails = ({ meal }) => {
           </p>
           <p>
             <strong> hasGluten: </strong>
-            {meal.hasGluten}
+            {meal.isGlutenFree}
           </p>
           <p>
             <strong> type: </strong>
@@ -111,8 +120,8 @@ const MealDetails = ({ meal }) => {
           <label>hasGluten:</label>
           <input
             type="text"
-            onChange={(e) => setHasGluten(e.target.value)}
-            value={hasGluten}
+            onChange={(e) => setisGlutenFree(e.target.value)}
+            value={isGlutenFree}
           />
           <label>type:</label>
 
@@ -120,6 +129,14 @@ const MealDetails = ({ meal }) => {
             type="text"
             onChange={(e) => setType(e.target.value)}
             value={type}
+          />
+          <Checkbox
+            onChange={(e) => setChecked(e.target.isVegan)}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+          <Checkbox
+            onChange={(e) => setChecked(e.target.hasGluten)}
+            inputProps={{ "aria-label": "controlled" }}
           />
 
           <Checkbox

@@ -19,19 +19,19 @@ const router = express.Router();
 // router.get('/month', '')
 
 // GET all meals
-router.get("/", keycloak.protect("realm:user"), getAllMeals);
+router.get("/", getAllMeals);
 
 // GET single meal
-router.get("/:id", keycloak.protect("realm:user"), getMeal);
+router.get("/:id", getMeal);
 
 // POST a new meal
-router.post("/", keycloak.protect("realm:admin"), createMeal);
+router.post("/", createMeal);
 
 // DELETE a meal
-router.delete("/:id", keycloak.protect("realm:admin"), deleteMeal);
+router.delete("/:id", deleteMeal);
 
 // UPDATE a new meal
-router.patch("/:id", keycloak.protect("realm:admin"), updateMeal);
+router.patch("/:id", updateMeal);
 
 // Exporting Functions
 module.exports = router;
