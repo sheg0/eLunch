@@ -14,6 +14,11 @@ import { useKeycloak } from "@react-keycloak/web";
 import Meal from "../Meal.jsx";
 
 import { useKeycloak } from "@react-keycloak/web";
+import Meal from "../Meal.jsx";
+
+import { useKeycloak } from "@react-keycloak/web";
+import Meal from "../Meal.jsx";
+
 function MealList({ meals }) {
   // States
   const [isEditing, setIsEditing] = useState(false);
