@@ -9,9 +9,7 @@ import Veggie from "../../images/Veggie.png";
 import { RxCross1 } from "react-icons/rx";
 import { useEffect } from "react";
 
-const MealModal = ({ mealProp, setIsEditing, isEditing, submitEditing }) => {
-  const [meal, setMeal] = useState(mealProp);
-
+const MealModal = ({ setIsEditing, isEditing, submitEditing }) => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedDifficulty, setSelectedDifficulty] = useState("");
   const [inputs, setInputs] = useState([
@@ -133,7 +131,7 @@ const MealModal = ({ mealProp, setIsEditing, isEditing, submitEditing }) => {
             </div>
 
             <div className="inputField">
-              {meal.map((input, index) => (
+              {inputs.map((input, index) => (
                 <div key={index}>
                   <input
                     className="mealText"

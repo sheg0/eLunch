@@ -13,21 +13,9 @@ import Checkbox from "@mui/material/Checkbox";
 import { useKeycloak } from "@react-keycloak/web";
 import Meal from "../Meal.jsx";
 
-import { useKeycloak } from "@react-keycloak/web";
-import Meal from "../Meal.jsx";
-
-import { useKeycloak } from "@react-keycloak/web";
-import Meal from "../Meal.jsx";
-
 function MealList({ meals }) {
   // States
   const [isEditing, setIsEditing] = useState(false);
-  const [isVegetarian, setIsVegetarian] = useState("");
-  const [isVegan, setIsVegan] = useState("");
-  const [isWithMeat, setIsWithMeat] = useState("");
-  const [isWithAlcohol, setisWithAlcohol] = useState("");
-  const [isGlutenFree, setisGlutenFree] = useState("");
-  const [isLactoseFree, setisLactoseFree] = useState("");
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [currentMeal, setCurrentMeal] = useState();
@@ -63,14 +51,6 @@ function MealList({ meals }) {
       method: "PATCH",
       body: JSON.stringify({
         ...meal,
-        isVegetarian: isVegetarian,
-        isVegan: isVegan,
-        isWithMeat: isWithMeat,
-        isWithAlcohol: isWithAlcohol,
-        isGlutenFree: isGlutenFree,
-        isLactoseFree: isLactoseFree,
-        category: category,
-        name: name,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -134,8 +114,6 @@ function MealList({ meals }) {
           </tbody>
         </table>
       </div>
-
-      <Modal></Modal>
     </Container>
   );
 }
