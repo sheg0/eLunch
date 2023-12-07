@@ -26,8 +26,15 @@ const getMeal = async (req, res) => {
 
 // Create new meal
 const createMeal = async (req, res) => {
-  const { name, ingredients, description, categroy, ...optionalProperties } =
-    req.body;
+  const {
+    name,
+    ingredients,
+    description,
+    timeNeeded,
+    cost,
+    category,
+    ...optionalProperties
+  } = req.body;
 
   if (!name || !type) {
     return res
@@ -41,6 +48,8 @@ const createMeal = async (req, res) => {
       name,
       ingredients,
       description,
+      timeNeeded,
+      cost,
       category,
       ...optionalProperties,
     });

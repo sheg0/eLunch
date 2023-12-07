@@ -20,6 +20,18 @@ const mealSchema = new Schema(
       type: String,
       required: true,
     },
+    timeNeeded: {
+      type: Number,
+      min: 0,
+      max: 200,
+      required: true,
+    },
+    cost: {
+      type: Number,
+      min: 0.0,
+      max: 50.0,
+      required: true,
+    },
     category: {
       type: String,
       enum: [
