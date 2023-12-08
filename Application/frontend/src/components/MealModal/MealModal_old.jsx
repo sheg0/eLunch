@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./AddNewMeal.css";
+import "./MealModal.css";
 import Alcohol from "../../images/Alcohol.png";
 import Dairyfree from "../../images/Dairyfree.png";
 import Glutenfree from "../../images/Glutenfree.png";
@@ -7,15 +7,42 @@ import Meat from "../../images/Meat.png";
 import Vegan from "../../images/Vegan.png";
 import Veggie from "../../images/Veggie.png";
 import { RxCross1 } from "react-icons/rx";
+import { useEffect } from "react";
 
-const Modal = ({ meal }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isChecked, setChecked] = useState(false);
-  const [selectedState, setSelectedState] = useState("");
-  const [selectedLevel, setSelectedLevel] = useState("");
-  const initialInputs = ["", "", "", "", ""];
-  const [inputs, setInputs] = useState(initialInputs);
-  const [showInput, setShowInput] = useState(false);
+const MealModal = ({ mealProp, setIsEditing, isEditing, submitEditing }) => {
+  const [meal, setMeal] = useState(mealProp);
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedDifficulty, setSelectedDifficulty] = useState("");
+  const [inputs, setInputs] = useState([
+    meal?.name,
+    meal?.ingredients,
+    meal?.description,
+    meal?.timeNeeded,
+    meal?.difficulty,
+  ]);
+
+  useEffect(() => {
+    setInputs([
+      meal?.name,
+      meal?.ingredients,
+      meal?.description,
+      meal?.timeNeeded,
+      meal?.difficulty,
+    ]);
+
+    setClickedImages({
+      Alcohol: meal?.isWithAlcohol,
+      Dairyfree: meal?.isLactoseFree,
+      Glutenfree: meal?.isGlutenFree,
+      Meat: meal?.isWithMeat,
+      Vegan: meal?.isVegan,
+      Veggie: meal?.isVegetarian,
+    });
+
+    setSelectedCategory(meal.category);
+    setSelectedDifficulty(meal.difficulty);
+  }, [meal]);
 
   const placeholderTexts = [
     "Eintragen...",
@@ -26,15 +53,16 @@ const Modal = ({ meal }) => {
   ];
 
   const [clickedImages, setClickedImages] = useState({
-    Alcohol: false,
-    Dairyfree: false,
-    Glutenfree: false,
-    Meat: false,
-    Vegan: false,
-    Veggie: false,
+    Alcohol: meal?.isWithAlcohol,
+    Dairyfree: meal?.isLactoseFree,
+    Glutenfree: meal?.isGlutenFree,
+    Meat: meal?.isWithMeat,
+    Vegan: meal?.isVegan,
+    Veggie: meal?.isVegetarian,
   });
 
   const handleClick = (imageKey) => {
+    console.log(meal);
     setClickedImages((prevClickedImages) => ({
       ...prevClickedImages,
       [imageKey]: !prevClickedImages[imageKey],
@@ -42,54 +70,48 @@ const Modal = ({ meal }) => {
   };
 
   const stateOptions = [
-    { value: "", label: "wählen..." },
-    { value: "unbestimmt", label: "unbestimmt" },
-    { value: "Vorspeise", label: "Vorspeise" },
-    { value: "Hauptgericht", label: "Hauptgericht" },
-    { value: "Beilage", label: "Beilage" },
-    { value: "Nachtisch", label: "Nachtisch" },
-    { value: "Snack", label: "Snack" },
-    { value: "Extern", label: "Extern" },
-    { value: "Besonderheit", label: "Besonderheit" },
-    { value: "Rezept", label: "Rezept" },
-    { value: "Aktivität", label: "Aktivität" },
+    { value: "" },
+    { value: "Vorspeise" },
+    { value: "Hauptgericht" },
+    { value: "Beilage" },
+    { value: "Nachtisch" },
+    { value: "Snack" },
+    { value: "Extern" },
+    { value: "Besonderheit" },
+    { value: "Rezept" },
+    { value: "Aktivität" },
   ];
 
   const stateLevels = [
-    { value: "", label: "wählen..." },
-    { value: "unbestimmt", label: "unbestimmt" },
-    { value: "sehr einfach", label: "sehr einfach" },
-    { value: "einfach", label: "einfach" },
-    { value: "geht so", label: "geht so" },
-    { value: "schwierig", label: "schwierig" },
-    { value: "Chefkoch", label: "Chefkoch" },
+    { value: "" },
+    { value: "Sehr Einfach" },
+    { value: "Einfach" },
+    { value: "Mittel" },
+    { value: "Schwierig" },
+    { value: "Chefkoch" },
   ];
 
   const handleLevelChange = (event) => {
-    setSelectedLevel(event.target.value);
+    setSelectedDifficulty(event.target.value);
   };
 
   const handleStateChange = (event) => {
-    setSelectedState(event.target.value);
+    setSelectedCategory(event.target.value);
   };
 
   const handleInputChange = (event, index) => {
     const newInputs = [...inputs];
     newInputs[index] = event.target.value;
     setInputs(newInputs);
-    setShowInput(true);
   };
 
   const toggleModal = () => {
-    setIsOpen(!isOpen);
+    setIsEditing(!isEditing);
   };
 
   return (
     <div className="modal">
-      <button className="btn-newMeal" onClick={toggleModal}>
-        &#43; Neues Gericht hinzufügen
-      </button>
-      {isOpen && (
+      {isEditing && (
         <div className="modal-overlay">
           <div className="modal-content">
             <div className="mealHeader">
@@ -111,7 +133,7 @@ const Modal = ({ meal }) => {
             </div>
 
             <div className="inputField">
-              {inputs.map((input, index) => (
+              {meal.map((input, index) => (
                 <div key={index}>
                   <input
                     className="mealText"
@@ -126,23 +148,23 @@ const Modal = ({ meal }) => {
 
               <select
                 className="mealText"
-                value={selectedState}
+                value={selectedCategory}
                 onChange={handleStateChange}
               >
                 {stateOptions.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {option.label}
+                    {option.value}
                   </option>
                 ))}
               </select>
               <select
                 className="mealText"
-                value={selectedLevel}
+                value={selectedDifficulty}
                 onChange={handleLevelChange}
               >
                 {stateLevels.map((option) => (
                   <option key={option.value} value={option.value}>
-                    {option.label}
+                    {option.value}
                   </option>
                 ))}
               </select>
@@ -189,10 +211,13 @@ const Modal = ({ meal }) => {
                   id="imgClicked"
                   className={clickedImages.Veggie ? "" : "clicked"}
                   onClick={() => handleClick("Veggie")}
-                />{" "}
+                />
               </div>
               <div className="btnPos">
-                <button className="btnMeal btn-newMeal" onClick={toggleModal}>
+                <button
+                  className="btnMeal btn-newMeal"
+                  onClick={() => submitEditing({})}
+                >
                   Bestätigen
                 </button>
               </div>
@@ -204,4 +229,4 @@ const Modal = ({ meal }) => {
   );
 };
 
-export default Modal;
+export default MealModal;
