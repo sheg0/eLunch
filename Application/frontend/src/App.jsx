@@ -2,19 +2,19 @@
 import { Container } from "@mui/material";
 import FetchMeal from "./components/FetchMeal";
 import FetchEvent from "./components/FetchEvent";
-import ClippedDrawer from "./components/Sidebar";
+import Sidebar from "./components/Sidebar/Sidebar_2";
 
 function App() {
   return (
     <div className="App">
-      <ClippedDrawer>
+      <Sidebar>
         <div className="pages">
           <Container>
             <FetchEvent></FetchEvent>
             <FetchMeal></FetchMeal>
           </Container>
         </div>
-      </ClippedDrawer>
+      </Sidebar>
     </div>
   );
 }
