@@ -1,10 +1,10 @@
-const MealImageCheckbox = ({ meal, mealAttribute, setMeal, src, alt }) => {
+const MealImageCheckbox = ({ meal, mealPropertyName, setMeal, src, alt }) => {
   const handleKeyDown = (e) => {
     // Older browsers may return "Spacebar"
     // instead of " " for the Space Bar key
     //-------------------------------------
     if (e.key === " " || e.key === "Spacebar") {
-      setMeal({ ...meal, isWithAlcohol: !meal.isWithAlcohol });
+      setMeal({ ...meal, [mealPropertyName]: !meal[mealPropertyName] });
     }
   };
   return (
@@ -12,8 +12,10 @@ const MealImageCheckbox = ({ meal, mealAttribute, setMeal, src, alt }) => {
       src={src}
       alt={alt}
       id="imgCheckbox"
-      className={meal.isWithAlcohol ? "" : "clicked"}
-      onClick={() => setMeal({ ...meal, isWithAlcohol: !meal.isWithAlcohol })}
+      className={meal[mealPropertyName] ? "" : "clicked"}
+      onClick={() =>
+        setMeal({ ...meal, [mealPropertyName]: !meal[mealPropertyName] })
+      }
       onKeyDown={(e) => handleKeyDown(e)}
     />
   );

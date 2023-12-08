@@ -1,9 +1,12 @@
 import { RxCross1 } from "react-icons/rx";
-const MealFormHeader = () => {
+const MealFormHeader = ({ isEditing, setIsEditing }) => {
   return (
     <div className="mealHeader">
       <h2>Neues Gericht hinzufügen</h2>
-      <button className="cross-icon btn-newMeal">
+      <button
+        className="cross-icon btn-newMeal"
+        onClick={() => setIsEditing(!isEditing)}
+      >
         <RxCross1 />
       </button>
       <p className="newMealP">

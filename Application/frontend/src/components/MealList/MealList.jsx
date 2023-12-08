@@ -118,8 +118,9 @@ function MealList({ meals }) {
             ))}
             <MealModal
               meal={meal}
-              isEditing={isEditing}
               setMeal={setMeal}
+              isEditing={isEditing}
+              setIsEditing={setIsEditing}
               submitEditing={handleEditMeal}
             ></MealModal>
           </tbody>
