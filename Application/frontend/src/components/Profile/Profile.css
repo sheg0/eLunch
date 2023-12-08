@@ -15,13 +15,13 @@
   padding: 10px;
   border-radius: 18px;
 
-  background-color: lightgrey;
-  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  background-color: white;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.5);
 }
 .content {
   max-width: 30vh;
   max-height: 20vh;
-  background-color: lightgrey;
+  background-color: white;
   flex-direction: column;
 }
 
@@ -39,22 +39,21 @@
   width: 50px;
   height: 50px;
 
-  margin: 5px;
-  padding: 5px;
+  margin: 10px;
+  padding: 0px;
   border-radius: 50px;
 
   background-color: #043c5f;
   color: white;
-  font-size: 20px;
-  align-content: center;
-  justify-content: center;
+  font-size: 30px;
+  text-align: center;
 }
 .logout {
-  margin: 5px;
-  padding: 5px;
-  align-items: right;
-  top: 0;
-  right: 0;
+  /*margin: 5px;
+  padding: 5px;*/
+  top: 0px;
+  right: 0px;
+  justify-content: space-between;
 
   color: black;
   font-size: 40px;
