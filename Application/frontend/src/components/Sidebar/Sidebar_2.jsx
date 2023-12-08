@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "./Sidebar_2.css";
 import { useNavigate } from "react-router-dom";
+import Profile from "../Profile/Profile";
 
 import { VscBook } from "react-icons/vsc";
 import { GiMeal } from "react-icons/gi";
@@ -10,8 +11,7 @@ import { VscOrganization } from "react-icons/vsc";
 import { SlChart } from "react-icons/sl";
 import { SlInfo } from "react-icons/sl";
 
-
-function Sidebar({children}) {
+function Sidebar({ children }) {
   const navigate = useNavigate();
 
   function SwitchPath(path) {
@@ -47,41 +47,39 @@ function Sidebar({children}) {
   ];
 
   const iconMap = {
-    Speiseplan: <VscBook size={24} style={{ fill: 'white' }} />,
-    Gerichte: <GiMeal size={24} style={{ fill: 'white' }} />,
-    Einkaufszettel: <SlNotebook size={24} style={{ fill: 'white' }} />,
-    Events: <CiDollar size={24} style={{ fill: 'white' }} />,
-    Mitarbeiter: <VscOrganization size={24} style={{ fill: 'white' }} />,
-    Statistik: <SlChart size={24} style={{ fill: 'white' }} />,
-    Infos: <SlInfo size={24} style={{ fill: 'white' }} />,
+    Speiseplan: <VscBook size={24} style={{ fill: "white" }} />,
+    Gerichte: <GiMeal size={24} style={{ fill: "white" }} />,
+    Einkaufszettel: <SlNotebook size={24} style={{ fill: "white" }} />,
+    Events: <CiDollar size={24} style={{ fill: "white" }} />,
+    Mitarbeiter: <VscOrganization size={24} style={{ fill: "white" }} />,
+    Statistik: <SlChart size={24} style={{ fill: "white" }} />,
+    Infos: <SlInfo size={24} style={{ fill: "white" }} />,
   };
 
   return (
-      <div className="sidebar">
-        <div className="sidebar-content">
-          <div className="sidebar-list">
-            {listItems.map((item) => {
-              return (
-                <div className="button"
-                  onClick={() => SwitchPath(item)}
-                  key={item}>
-                    <div className="icon">
-                      {iconMap[item]}
-                    </div>
-                    <div className="text">
-                      {item}
-                    </div>
-                </div>
-              );
-            })}
-          </div>
+    <div className="sidebar">
+      <div className="sidebar-content">
+        <Profile />
+        <div className="sidebar-list">
+          {listItems.map((item) => {
+            return (
+              <div
+                className="button"
+                onClick={() => SwitchPath(item)}
+                key={item}
+              >
+                <div className="icon">{iconMap[item]}</div>
+                <div className="text">{item}</div>
+              </div>
+            );
+          })}
+        </div>
 
-
-          <div className="sidebar-footer">
-            <a href={"./Info"}>Impressum</a> | Druckansicht | ICAL
-          </div>
+        <div className="sidebar-footer">
+          <a href={"./Info"}>Impressum</a> | Druckansicht | ICAL
         </div>
       </div>
+    </div>
   );
 }
 
