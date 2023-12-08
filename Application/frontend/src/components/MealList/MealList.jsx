@@ -2,6 +2,7 @@ import * as React from "react";
 import { Container } from "@mui/material";
 import { useState } from "react";
 import "./MealList.css";
+import "../MealModal/MealModal.css";
 import MealModal from "../MealModal/MealModal.jsx";
 import { FaPen } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
@@ -16,9 +17,20 @@ import Meal from "../Meal.jsx";
 function MealList({ meals }) {
   // States
   const [isEditing, setIsEditing] = useState(false);
-  const [category, setCategory] = useState("");
-  const [name, setName] = useState("");
-  const [currentMeal, setCurrentMeal] = useState();
+  const [meal, setMeal] = useState({
+    name: "",
+    ingredients: "",
+    description: "",
+    timeNeeded: 0,
+    difficulty: "Mittel",
+    isWithAlcohol: false,
+    isLactoseFree: false,
+    isGlutenFree: false,
+    isWithMeat: false,
+    isVegan: false,
+    isVegetarian: false,
+  });
+
   //keycloak
   const { keycloak } = useKeycloak();
 
@@ -42,9 +54,8 @@ function MealList({ meals }) {
   };
 
   const handleClickMealEdit = (meal) => {
-    console.log(meal);
     handleClickEdit();
-    setCurrentMeal(meal);
+    setMeal(meal);
   };
   const handleEditMeal = async (meal) => {
     const response = await fetch("/api/meals/" + meal._id, {
@@ -106,9 +117,9 @@ function MealList({ meals }) {
               </tr>
             ))}
             <MealModal
-              meal={currentMeal}
-              setIsEditing={setIsEditing}
+              meal={meal}
               isEditing={isEditing}
+              setMeal={setMeal}
               submitEditing={handleEditMeal}
             ></MealModal>
           </tbody>

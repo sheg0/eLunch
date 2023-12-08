@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import "./MealModal.css";
-
+import Alcohol from "../../images/Alcohol.png";
+import Dairyfree from "../../images/Dairyfree.png";
+import Glutenfree from "../../images/Glutenfree.png";
+import Meat from "../../images/Meat.png";
+import Vegan from "../../images/Vegan.png";
+import Veggie from "../../images/Veggie.png";
 import { RxCross1 } from "react-icons/rx";
 import { useEffect } from "react";
 
@@ -108,7 +113,116 @@ const MealModal = ({ mealProp, setIsEditing, isEditing, submitEditing }) => {
     <div className="modal">
       {isEditing && (
         <div className="modal-overlay">
-          <div className="modal-content"></div>
+          <div className="modal-content">
+            <div className="mealHeader">
+              <h2>Neues Gericht hinzufügen</h2>
+              <button className="cross-icon btn-newMeal" onClick={toggleModal}>
+                <RxCross1 />
+              </button>
+              <p className="newMealP">
+                Name <br />
+                Zutaten (pro Person) <br />
+                Beschreibung <br />
+                Zeitaufwand <br />
+                Kosten (pro Person) <br />
+                Kategorie <br />
+                Schwierigkeit <br />
+                Tags <br />
+                <br />
+              </p>
+            </div>
+
+            <div className="inputField">
+              {meal.map((input, index) => (
+                <div key={index}>
+                  <input
+                    className="mealText"
+                    type="text"
+                    placeholder={placeholderTexts[index]}
+                    id={`input${index + 1}`}
+                    value={input}
+                    onChange={(e) => handleInputChange(e, index)}
+                  />
+                </div>
+              ))}
+
+              <select
+                className="mealText"
+                value={selectedCategory}
+                onChange={handleStateChange}
+              >
+                {stateOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.value}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="mealText"
+                value={selectedDifficulty}
+                onChange={handleLevelChange}
+              >
+                {stateLevels.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.value}
+                  </option>
+                ))}
+              </select>
+
+              <div className="imageTags">
+                <img
+                  src={Alcohol}
+                  alt="alcohol"
+                  id="imgClicked"
+                  className={clickedImages.Alcohol ? "" : "clicked"}
+                  onClick={() => handleClick("Alcohol")}
+                />
+                <img
+                  src={Dairyfree}
+                  alt="dairyfree"
+                  id="imgClicked"
+                  className={clickedImages.Dairyfree ? "" : "clicked"}
+                  onClick={() => handleClick("Dairyfree")}
+                />
+                <img
+                  src={Glutenfree}
+                  alt="Glutenfree"
+                  id="imgClicked"
+                  className={clickedImages.Glutenfree ? "" : "clicked"}
+                  onClick={() => handleClick("Glutenfree")}
+                />
+                <img
+                  src={Meat}
+                  alt="Meat"
+                  id="imgClicked"
+                  className={clickedImages.Meat ? "" : "clicked"}
+                  onClick={() => handleClick("Meat")}
+                />
+                <img
+                  src={Vegan}
+                  alt="Vegan"
+                  id="imgClicked"
+                  className={clickedImages.Vegan ? "" : "clicked"}
+                  onClick={() => handleClick("Vegan")}
+                />
+                <img
+                  src={Veggie}
+                  alt="Veggie"
+                  id="imgClicked"
+                  className={clickedImages.Veggie ? "" : "clicked"}
+                  onClick={() => handleClick("Veggie")}
+                />
+              </div>
+              <div className="btnPos">
+                <button
+                  className="btnMeal btn-newMeal"
+                  onClick={() => submitEditing({})}
+                >
+                  Bestätigen
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       )}
     </div>
