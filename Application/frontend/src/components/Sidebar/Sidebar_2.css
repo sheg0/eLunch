@@ -9,8 +9,20 @@
   flex-direction: column;
   align-items: flex-start;
 
-  background: var(--Primary-Gradient, linear-gradient(180deg, #043C5F 50%, #10C388 125%));
+  background: var(
+    --Primary-Gradient,
+    linear-gradient(180deg, #043c5f 50%, #10c388 125%)
+  );
   /*background: var(--Primary-Gradient, linear-gradient(180deg, #10C388 0%, #097C55 100%));*/
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+  }
+  .profile {
+    width: 100%;
+  }
 }
 
 .sidebar-content {
@@ -39,16 +51,32 @@
   display: flex;
   gap: 4vh;
   margin-top: 15%;
+  cursor: default;
 }
 
 .button {
   display: flex;
   top: 0;
   gap: 3vh;
+  cursor: pointer;
+}
+
+.button.active {
+  height: 10%;
+  width: 120%;
+
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  padding-left: 10px;
+
+  align-items: center;
+  color: #043c5f;
+  background-color: rgba(255, 255, 255, 0.32);
 }
 
 .icon {
   float: left;
+  font-size: calc(16px + 0.390625vw);
 }
 
 .text {
@@ -64,4 +92,13 @@
   font-family: "Segoe UI";
   font-size: calc(7px + 0.390625vw);
   margin-bottom: 1%;
+  cursor: default;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+a:hover {
+  color: blue;
 }

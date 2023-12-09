@@ -3,69 +3,81 @@
   width: 100%;
   background-color: white;
   border-radius: 2vh;
-  /*box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);*/
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   flex-shrink: 0;
 }
 
 .profile-content {
   height: 90%;
   width: 90%;
+
   margin-top: auto;
   margin-bottom: auto;
   margin-left: auto;
   margin-right: auto;
+
+  align-content: center;
+  justify-content: center;
+
+  align-items: center;
+
   flex-shrink: 0;
   flex-direction: column;
   display: flex;
 }
 
 .box1 {
-  height: 50%;
+  height: 40%;
   width: 100%;
   flex-direction: row;
   display: flex;
-  gap: 3vh;
+  gap: 13vh;
 }
 
 .box2 {
-  height: 30%;
+  height: 40%;
   width: 100%;
   flex-direction: row;
   display: flex;
 }
 
 .box3 {
-  height: 20%;
+  height: 10%;
   width: 100%;
   flex-direction: row;
   display: flex;
 }
 
 .profile-circle {
-  width: 8vh;
-  height: 8vh;
+  width: 6vh;
+  height: 6vh;
 
   margin: 5px;
   padding: 5px;
   border-radius: 50px;
 
-  background-color: #043c5f;
-  color: white;
-  font-size: calc(15px + 0.390625vw);
   align-content: center;
   justify-content: center;
   float: left;
+
+  background-color: #043c5ffd;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+  color: white;
+  font-size: calc(15px + 0.390625vw);
+  cursor: default;
 }
 
 .profile-logout {
+  height: 10%;
   margin: 5px;
   padding: 5px;
   top: 0;
   right: 0;
   float: right;
   color: black;
+  font-size: calc(15px + 0.390625vw);
 }
-.logout:hover {
+.profile-logout:hover {
   color: red;
   cursor: pointer;
 }
@@ -76,14 +88,17 @@
   font-size: calc(9px + 0.390625vw);
   font-weight: bold;
   color: #043c5f;
+  cursor: default;
 }
 
 .balance {
+  width: 30%;
   margin: 10px;
 
   font-size: calc(9px + 0.390625vw);
   font-weight: bold;
   color: #333333;
+  cursor: default;
 }
 
 .statistic {
@@ -92,18 +107,19 @@
   font-weight: bold;
   font-size: calc(7px + 0.390625vw);
   color: #333333;
+  cursor: default;
 }
 
 .icon-gekocht {
   margin: 10px;
 
-  font-size: 12px;
+  font-size: calc(10px + 0.390625vw);
   color: #333333;
 }
 
 .icon-gegessen {
   margin: 10px;
 
-  font-size: 12px;
+  font-size: calc(10px + 0.390625vw);
   color: #333333;
 }

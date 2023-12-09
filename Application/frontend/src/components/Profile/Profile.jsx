@@ -21,13 +21,13 @@ const Profile = () => {
     <div className="profile-container">
       <div className="profile-content">
         <div className="box1">
-          <div className="profile-circle">mm</div>
+          <div className="profile-circle">MM</div>
           <div className="profile-logout" onClick={handleLogout}>
             <IoIosLogOut></IoIosLogOut>
           </div>
         </div>
         <div className="box2">
-          <div className="name">max mustermann</div>
+          <div className="name">Imran-Nur-Reyhan Sevinc</div>
           <div className="balance">1045,65€</div>
         </div>
         <div className="box3">
