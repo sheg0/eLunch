@@ -2,7 +2,9 @@ const MealInputElement = ({
   type,
   placeholderTexts,
   value,
-  handleInputChange,
+  meal,
+  mealPropertyName,
+  setMeal,
 }) => {
   return (
     <div>
@@ -11,7 +13,9 @@ const MealInputElement = ({
         type={type}
         placeholder={placeholderTexts}
         value={value}
-        onChange={(e) => handleInputChange(e)}
+        onChange={(e) =>
+          setMeal({ ...meal, [mealPropertyName]: e.target.value })
+        }
       />
     </div>
   );

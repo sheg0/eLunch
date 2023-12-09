@@ -7,10 +7,10 @@ const Meal = ({ meal }) => {
   return (
     <>
       <td>{meal?.name}</td>
-      <td>{meal?.isVegetarian}</td>
-      <td>{meal?.isVegan}</td>
-      <td>{meal?.hasGluten}</td>
-      <td>{meal?.type}</td>
+      <td>{meal?.category}</td>
+      <td>{meal?.difficulty}</td>
+      <td>{meal?.timeNeeded}</td>
+      <td>{meal?.cost}</td>
     </>
   );
 };

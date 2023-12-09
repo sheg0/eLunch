@@ -1,9 +1,15 @@
-const MealInputDropdown = ({ stateOptions, value, handleStateChange }) => {
+const MealInputDropdown = ({
+  stateOptions,
+  value,
+  meal,
+  mealPropertyName,
+  setMeal,
+}) => {
   return (
     <select
       className="mealText"
       value={value}
-      onChange={(e) => handleStateChange(e)}
+      onChange={(e) => setMeal({ ...meal, [mealPropertyName]: e.target.value })}
     >
       {stateOptions.map((option) => (
         <option key={option} value={option}>

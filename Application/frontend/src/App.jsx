@@ -23,7 +23,6 @@ function App() {
             <FetchEvent></FetchEvent>
           </Container>
         </div>
-        <button onClick={keycloak.logout}>Logout</button>
       </ClippedDrawer>
     </div>
   );

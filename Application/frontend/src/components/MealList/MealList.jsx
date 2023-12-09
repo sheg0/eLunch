@@ -4,20 +4,13 @@ import { useState } from "react";
 import "./MealList.css";
 import "../MealModal/MealModal.css";
 import MealModal from "../MealModal/MealModal.jsx";
-import { FaPen } from "react-icons/fa";
-import { FaRegTrashAlt } from "react-icons/fa";
 import { useMealsContext } from "../../hooks/useMealsContext";
-import AddButton from "../AddButton.jsx";
-import InputField from "../InputField.jsx";
-import Checkbox from "@mui/material/Checkbox";
-
+import TableHeader from "../TableHeader.jsx";
 import { useKeycloak } from "@react-keycloak/web";
-import Meal from "../Meal.jsx";
+import MealListTableBody from "./MealListTableBody.jsx";
 
 function MealList({ meals }) {
-  // States
-  const [isEditing, setIsEditing] = useState(false);
-  const [meal, setMeal] = useState({
+  const emptyMeal = {
     name: "",
     ingredients: "",
     description: "",
@@ -29,7 +22,11 @@ function MealList({ meals }) {
     isWithMeat: false,
     isVegan: false,
     isVegetarian: false,
-  });
+  };
+  // States
+  const [isEditing, setIsEditing] = useState(false);
+  const [isAdding, setIsAdding] = useState(false);
+  const [meal, setMeal] = useState(emptyMeal);
 
   //keycloak
   const { keycloak } = useKeycloak();
@@ -57,7 +54,15 @@ function MealList({ meals }) {
     handleClickEdit();
     setMeal(meal);
   };
+
+  const openAddMealModal = () => {
+    setMeal(emptyMeal);
+    setIsAdding(true);
+    setIsEditing(true);
+  };
+
   const handleEditMeal = async (meal) => {
+    console.log("inside Edit");
     const response = await fetch("/api/meals/" + meal._id, {
       method: "PATCH",
       body: JSON.stringify({
@@ -70,62 +75,62 @@ function MealList({ meals }) {
     const json = await response.json();
 
     if (response.ok) {
+      dispatch({ type: "CREATE_MEAL", payload: json });
+      setIsEditing(false);
+    }
+  };
+
+  const handleAddMeal = async (meal) => {
+    console.log("inside Add");
+    const response = await fetch("/api/meals/", {
+      method: "POST",
+      body: JSON.stringify({
+        ...meal,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const json = await response.json();
+
+    console.log(json);
+    if (response.ok) {
       dispatch({ type: "EDIT_MEAL", payload: json });
       setIsEditing(false);
+      setIsAdding(false);
     }
   };
 
   return (
     <Container>
-      <button onClick={keycloak.logout}></button>
       <div className="table-con">
         <table className="table">
-          <thead>
-            <tr>
-              <th>Gericht</th>
-              <th>Kategorie</th>
-              <th>Schwierigkeit</th>
-              <th>Zeitaufwand</th>
-              <th>Kosten pro Person</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            {meals?.map((meal) => (
-              <tr key={meal?._id + 1}>
-                <Meal meal={meal} setIsEditing={setIsEditing}></Meal>
-
-                <td>
-                  <div className="icon-container">
-                    <button
-                      onClick={() => handleClickMealEdit(meal)}
-                      className="icon-button edit"
-                    >
-                      <FaPen />
-                    </button>
-
-                    <div className="icon-gap"></div>
-
-                    <button
-                      onClick={() => handleClickDelete(meal)}
-                      className="icon-button delete"
-                    >
-                      <FaRegTrashAlt />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-            <MealModal
-              meal={meal}
-              setMeal={setMeal}
-              isEditing={isEditing}
-              setIsEditing={setIsEditing}
-              submitEditing={handleEditMeal}
-            ></MealModal>
-          </tbody>
+          <TableHeader
+            headers={[
+              "Gericht",
+              "Kategorie",
+              "Schwierigkeit",
+              "Zeitaufwand",
+              "Kosten pro Person",
+              "",
+            ]}
+          />
+          <MealListTableBody
+            meals={meals}
+            setIsEditing={setIsEditing}
+            handleClickMealEdit={handleClickMealEdit}
+            handleClickDelete={handleClickDelete}
+          />
         </table>
       </div>
+      <button onClick={openAddMealModal}>Add Meal</button>
+      <MealModal
+        meal={meal}
+        setMeal={setMeal}
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
+        submitMeal={isAdding ? handleAddMeal : handleEditMeal}
+      ></MealModal>
     </Container>
   );
 }

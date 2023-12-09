@@ -16,24 +16,22 @@ const MealInputDropdowns = ({ meal, setMeal }) => {
           "Aktivität",
         ]}
         value={meal.category}
-        handleStateChange={(e) => setMeal({ ...meal, cost: e.target.value })}
+        meal={meal}
+        mealPropertyName={"category"}
+        setMeal={setMeal}
       />
       <MealInputDropdown
         stateOptions={[
           "Sehr Einfach",
           "Einfach",
-          "Beilage",
-          "Nachtisch",
-          "Snack",
-          "Extern",
-          "Besonderheit",
-          "Rezept",
-          "Aktivität",
+          "Mittel",
+          "Schwierig",
+          "Chefkoch",
         ]}
         value={meal.difficulty}
-        handleStateChange={(e) =>
-          setMeal({ meal: { ...meal, difficulty: e.target.value } })
-        }
+        meal={meal}
+        mealPropertyName={"difficulty"}
+        setMeal={setMeal}
       />
     </>
   );

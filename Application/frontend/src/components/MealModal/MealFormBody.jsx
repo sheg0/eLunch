@@ -2,7 +2,7 @@ import MealInputElements from "./MealInputElements";
 import MealInputDropdowns from "./MealInputDropdowns";
 import MealImageCheckboxes from "./MealImageCheckboxes";
 
-const MealFormBody = ({ meal, setMeal }) => {
+const MealFormBody = ({ meal, setMeal, submitMeal }) => {
   console.log(meal);
   return (
     <div className="inputField">
@@ -12,7 +12,7 @@ const MealFormBody = ({ meal, setMeal }) => {
       <div className="btnPos">
         <button
           className="btnMeal btn-newMeal"
-          /*onClick={() => submitEditing({})}*/
+          onClick={() => submitMeal(meal)}
         >
           Bestätigen
         </button>
