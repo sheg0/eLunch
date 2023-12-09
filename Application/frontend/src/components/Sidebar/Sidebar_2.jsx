@@ -4,12 +4,12 @@ import { useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 
 import { VscBook } from "react-icons/vsc";
-import { GiMeal } from "react-icons/gi";
-import { SlNotebook } from "react-icons/sl";
-import { CiDollar } from "react-icons/ci";
+import { MdRestaurantMenu } from "react-icons/md";      
+import { SlBasket } from "react-icons/sl";
+import { MdEuroSymbol } from "react-icons/md";
 import { VscOrganization } from "react-icons/vsc";
-import { SlChart } from "react-icons/sl";
-import { SlInfo } from "react-icons/sl";
+import { TfiBarChart } from "react-icons/tfi";
+import { TfiInfoAlt } from "react-icons/tfi";
 
 function Sidebar({ children }) {
   const navigate = useNavigate();
@@ -47,24 +47,23 @@ function Sidebar({ children }) {
   ];
 
   const iconMap = {
-    Speiseplan: <VscBook size={24} style={{ fill: "white" }} />,
-    Gerichte: <GiMeal size={24} style={{ fill: "white" }} />,
-    Einkaufszettel: <SlNotebook size={24} style={{ fill: "white" }} />,
-    Events: <CiDollar size={24} style={{ fill: "white" }} />,
-    Mitarbeiter: <VscOrganization size={24} style={{ fill: "white" }} />,
-    Statistik: <SlChart size={24} style={{ fill: "white" }} />,
-    Infos: <SlInfo size={24} style={{ fill: "white" }} />,
+    Speiseplan: <VscBook size={18 + 0.390625} style={{ fill: "white" }} />,
+    Gerichte: <MdRestaurantMenu size={18 + 0.390625} style={{ fill: "white" }} />,
+    Einkaufszettel: <SlBasket size={18 + 0.390625} style={{ fill: "white" }} />,
+    Events: <MdEuroSymbol size={18 + 0.390625} style={{ fill: "white" }} />,
+    Mitarbeiter: <VscOrganization size={18 + 0.390625} style={{ fill: "white" }} />,
+    Statistik: <TfiBarChart size={18 + 0.390625} style={{ fill: "white" }} />,
+    Infos: <TfiInfoAlt size={18 + 0.390625} style={{ fill: "white" }} />,
   };
 
   return (
     <div className="sidebar">
       <div className="sidebar-content">
-        <Profile />
+        <div className="profile"><Profile/></div>
         <div className="sidebar-list">
           {listItems.map((item) => {
             return (
-              <div
-                className="button"
+              <div className="button"
                 onClick={() => SwitchPath(item)}
                 key={item}
               >
@@ -101,8 +100,6 @@ import { MdRestaurantMenu } from "react-icons/md";      <MdRestaurantMenu />
 Einkaufszettel:
 import { SlNotebook } from "react-icons/sl";          <SlNotebook />
 import { SlBasket } from "react-icons/sl";            <SlBasket />
-import { CiCircleList } from "react-icons/ci";        <CiCircleList />
-import { CiViewList } from "react-icons/ci";          <CiViewList />
 import { TfiPencilAlt } from "react-icons/tfi";       <TfiPencilAlt />
 
 
@@ -112,7 +109,6 @@ import { TfiMoney } from "react-icons/tfi";                 <TfiMoney />
 import { MdAttachMoney } from "react-icons/md";             <MdAttachMoney />
 import { RiMoneyEuroCircleLine } from "react-icons/ri";     <RiMoneyEuroCircleLine />
 import { MdEuroSymbol } from "react-icons/md";              <MdEuroSymbol />
-import { TbCurrencyEuro } from "react-icons/tb";            <TbCurrencyEuro />
 
 
 Mitarbeiter:
@@ -130,6 +126,5 @@ import { TfiBarChart } from "react-icons/tfi";        <TfiBarChart />
 
 Infos:
 import { SlInfo } from "react-icons/sl";              <SlInfo />
-import { CiCircleInfo } from "react-icons/ci";        <CiCircleInfo />
 import { TfiInfoAlt } from "react-icons/tfi";         <TfiInfoAlt />
 */
