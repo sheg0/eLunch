@@ -1,10 +1,8 @@
-const MealInputDropdown = ({
-  stateOptions,
-  value,
-  meal,
-  mealPropertyName,
-  setMeal,
-}) => {
+import { useContext } from "react";
+import { MealListContext } from "../../context/MealModalContext";
+
+const MealInputDropdown = ({ stateOptions, value, mealPropertyName }) => {
+  const { meal, setMeal } = useContext(MealListContext);
   return (
     <select
       className="mealText"

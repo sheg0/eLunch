@@ -1,9 +1,6 @@
 import React from "react";
-import { useState } from "react";
-import { useKeycloak } from "@react-keycloak/web";
-import { useMealsContext } from "../hooks/useMealsContext";
 
-const Meal = ({ meal }) => {
+const MealTableData = ({ meal }) => {
   return (
     <>
       <td>{meal?.name}</td>
@@ -15,4 +12,4 @@ const Meal = ({ meal }) => {
   );
 };
 
-export default Meal;
+export default MealTableData;

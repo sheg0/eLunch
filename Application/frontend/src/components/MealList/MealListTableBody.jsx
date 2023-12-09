@@ -1,18 +1,17 @@
+import { useContext } from "react";
+import { MealListContext } from "../../context/MealModalContext.jsx";
+import MealTableData from "./Meal.jsx";
 import { FaPen } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
-import Meal from "../Meal.jsx";
 
-const MealListTableBody = ({
-  meals,
-  setIsEditing,
-  handleClickMealEdit,
-  handleClickDelete,
-}) => {
+const MealListTableBody = ({ meals, handleClickDelete }) => {
+  const { deleteMeal, handleClickMealEdit } = useContext(MealListContext);
+
   return (
     <tbody>
       {meals?.map((meal) => (
         <tr key={meal?._id}>
-          <Meal meal={meal} setIsEditing={setIsEditing}></Meal>
+          <MealTableData meal={meal}></MealTableData>
 
           <td>
             <div className="icon-container">
@@ -26,7 +25,7 @@ const MealListTableBody = ({
               <div className="icon-gap"></div>
 
               <button
-                onClick={() => handleClickDelete(meal)}
+                onClick={() => deleteMeal(meal)}
                 className="icon-button delete"
               >
                 <FaRegTrashAlt />

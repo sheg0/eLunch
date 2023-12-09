@@ -14,6 +14,7 @@ function App() {
       keycloak.updateToken(80); // You can adjust the time (in seconds) based on your requirements
     }
   }, [keycloak, initialized]);
+
   return (
     <div className="App">
       <ClippedDrawer>

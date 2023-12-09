@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import MealInputDropdown from "./MealInputDropdown";
+import { MealListContext } from "../../context/MealModalContext";
 
-const MealInputDropdowns = ({ meal, setMeal }) => {
+const MealInputDropdowns = () => {
+  const { meal } = useContext(MealListContext);
   return (
     <>
       <MealInputDropdown
@@ -16,9 +19,7 @@ const MealInputDropdowns = ({ meal, setMeal }) => {
           "Aktivität",
         ]}
         value={meal.category}
-        meal={meal}
         mealPropertyName={"category"}
-        setMeal={setMeal}
       />
       <MealInputDropdown
         stateOptions={[
@@ -29,9 +30,7 @@ const MealInputDropdowns = ({ meal, setMeal }) => {
           "Chefkoch",
         ]}
         value={meal.difficulty}
-        meal={meal}
         mealPropertyName={"difficulty"}
-        setMeal={setMeal}
       />
     </>
   );
