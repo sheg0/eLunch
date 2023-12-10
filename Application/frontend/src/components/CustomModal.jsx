@@ -19,6 +19,8 @@ import { IoPersonOutline } from "react-icons/io5";
 import { useState } from "react";
 import { useEventsContext } from "../hooks/useEventsContext";
 import Dropdown from "./Dropdown/Dropdown.jsx";
+import MealInfo from "./MealInfo/MealInfo.jsx";
+import { IoIosInformationCircle } from "react-icons/io";
 
 const style = {
   position: "absolute",
@@ -48,6 +50,15 @@ function CustomModal({ month, day, open, setOpen, meals }) {
   const [isChecked, setIsChecked] = useState("Please Select one");
   const [name, setName] = useState("Please Select a Meal");
   const [isActive, setIsActive] = useState(false);
+
+  //second modal
+  const [isModalVisible, setModalVisible] = useState(false);
+  const openModal = () => {
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -234,12 +245,22 @@ function CustomModal({ month, day, open, setOpen, meals }) {
             }}
           >
             {name}
+            {/*
+            <div style={{ position: "aboslute" }}>
+              <button onClick={openModal}>
+                <IoIosInformationCircle />
+              </button>
+              {isModalVisible && <MealInfo onClose={closeModal} />}
+            </div>
+           */}
             <IconButton
               sx={{
                 position: "absolute",
                 color: "black",
               }}
+              onClick={openModal}
             >
+              {/*{isModalVisible && <MealInfo onClose={closeModal} />}*/}
               <InfoIcon
                 sx={{
                   fontSize: "medium",

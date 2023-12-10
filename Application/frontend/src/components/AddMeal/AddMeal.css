@@ -81,7 +81,7 @@
 
 .btnContainer {
   position: absolute;
-  bottom: 30vh;
+  bottom: 32vh;
   left: 75vh;
 }
 
@@ -95,7 +95,7 @@
   width: 3.5vh;
   cursor: pointer;
   position: absolute;
-  top: 29vh;
+  top: 32vh;
   right: 72vh;
 }
 

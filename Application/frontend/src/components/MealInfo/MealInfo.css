@@ -1,0 +1,17 @@
+.testHeader {
+  width: 50vh;
+  position: absolute;
+  top: 10vh;
+  left: 50vh;
+  border-radius: 18px;
+  background-color: white;
+}
+
+.secondModalContent {
+  width: 200px;
+}
+
+.closeBtn {
+  width: 50px;
+  background-color: red;
+}

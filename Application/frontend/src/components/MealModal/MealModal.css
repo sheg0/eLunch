@@ -86,7 +86,7 @@
 .btnPos {
   position: absolute;
   display: flex;
-  bottom: 5vh;
+  bottom: 4vh;
   right: 37vh;
 }
 
@@ -104,6 +104,6 @@
   width: 3.5vh;
   cursor: pointer;
   position: absolute;
-  top: 20vh;
+  top: 22vh;
   right: 67vh;
 }

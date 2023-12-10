@@ -2,12 +2,10 @@ import React, { useState } from "react";
 import "./CalendarComponent.css";
 import { Container } from "@mui/material";
 import AddMeal from "../AddMeal/AddMeal";
-import MealView from "../MealInCalendar/MealInCalendar";
-import { SlArrowDown } from "react-icons/sl";
-import { SlArrowLeft } from "react-icons/sl";
-import { SlArrowRight } from "react-icons/sl";
+import { SlArrowDown, SlArrowLeft, SlArrowRight } from "react-icons/sl";
+import CustomModal from "../CustomModal";
 
-const Calendar = () => {
+const Calendar = ({ meals }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isVisible, setVisible] = useState(false);
   const [weekVisible, setWeekVisible] = useState(true);
@@ -108,6 +106,24 @@ const Calendar = () => {
     return days;
   };
 
+  /////////////////////////////////
+  const [open, setOpen] = useState(false);
+  const [day, setDay] = useState("");
+
+  function handleDayClick(day) {
+    //setDate(`${weekday} - ${day}.${month}`);
+    setDay(day.key);
+    //console.log(day.key);
+    setOpen(true);
+  }
+
+  var today = new Date();
+  var dd = String(today.getDate()).padStart(2, "0");
+  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  var yyyy = today.getFullYear();
+
+  today = mm + "/" + dd + "/" + yyyy;
+
   return (
     <Container>
       <div className="calendar">
@@ -143,15 +159,24 @@ const Calendar = () => {
               <div className="day">Donnerstag</div>
               <div className="day">Freitag</div>
             </div>
+
+            {
+              <CustomModal
+                month={month + 1}
+                day={day}
+                open={open}
+                setOpen={setOpen}
+                meals={meals}
+              ></CustomModal>
+            }
             <div className="field">
               <div className="dates">
                 {previousMonthDays.map((day) => (
                   <div className="date previous-month">{day}</div>
                 ))}
                 {calendarDays.map((day) => (
-                  <div className="date">
+                  <div className="date" onClick={() => handleDayClick(day)}>
                     {day}
-                    <MealView></MealView>
                   </div>
                 ))}
                 {nextMonthDays.map((day) => (
@@ -216,9 +241,5 @@ const Calendar = () => {
     </Container>
   );
 };
-
-/*
-
-*/
 
 export default Calendar;
