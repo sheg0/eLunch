@@ -8,15 +8,10 @@ const {
   createMeal,
   deleteMeal,
   updateMeal,
+  createTestMeal,
 } = require("../controllers/mealController");
 
 const router = express.Router();
-
-// GET weakly meals
-// router.get('/week', '')
-
-// GET monthly meals
-// router.get('/month', '')
 
 // GET all meals
 router.get("/", getAllMeals);
@@ -26,6 +21,9 @@ router.get("/:id", getMeal);
 
 // POST a new meal
 router.post("/", createMeal);
+
+// POST a new meal
+router.post("/test", createTestMeal);
 
 // DELETE a meal
 router.delete("/:id", deleteMeal);
