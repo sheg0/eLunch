@@ -1,5 +1,5 @@
 /* google font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap");
 
 /* layout */
 :root {
@@ -26,7 +26,7 @@ header a {
   color: #333;
   text-decoration: none;
 }
-.pages{
+.pages {
   max-width: 1400px;
   padding: 20px;
   margin: 0 auto;
@@ -44,7 +44,7 @@ header a {
   margin: 20px auto;
   padding: 20px;
   position: relative;
-  box-shadow: 2px 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 .meal-details h4 {
   margin: 0 0 10px 0;
@@ -68,7 +68,8 @@ header a {
 }
 
 /* new workout form */
-label, input {
+label,
+input {
   display: block;
 }
 input {
@@ -98,37 +99,34 @@ div.error {
   margin: 20px 0;
 }
 
-input.error{
-  border: 1px solid var(--error)
+input.error {
+  border: 1px solid var(--error);
 }
 
-div.box{
+div.box {
   width: 200px;
   height: 100px;
   display: flex;
   flex-direction: row;
-  
 }
 
-button.material-symbols-outlined-edit{
-background-color: #7566b3;
-border: 1px transparent black;
-border-radius: 2em;
-margin: 10px;
-width:50% ;
-height: 50%;
+button.material-symbols-outlined-edit {
+  background-color: #7566b3;
+  border: 1px transparent black;
+  border-radius: 2em;
+  margin: 10px;
+  width: 50%;
+  height: 50%;
 }
-button.material-symbols-outlined-delete{
+button.material-symbols-outlined-delete {
   background-color: #e7195a;
   border: 1px transparent black;
   border-radius: 2em;
   margin: 10px;
-  width:50% ;
+  width: 50%;
   height: 50%;
-  }
+}
 
-
-  
 #result {
   max-width: 50rem;
   margin: 2rem auto;
@@ -148,4 +146,11 @@ button.material-symbols-outlined-delete{
   font-size: 0.85rem;
   color: red;
 }
+.main {
+  width: 80%;
+  height: 100%;
 
+  top: 0;
+  right: 0;
+  position: fixed;
+}
