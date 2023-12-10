@@ -53,17 +53,24 @@
   height: 6vh;
 
   margin: 5px;
+  margin-left: auto;
+  margin-right: auto;
   padding: 5px;
-  border-radius: 50px;
+  border-radius: 50%;
 
-  align-content: center;
-  justify-content: center;
-  float: left;
+  text-align: center;
+  display: center;
 
   background-color: #043c5ffd;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.circle-name {
+  display: grid;
+  text-align: center;
+  padding: 15% 5% 5% 5%;
   color: white;
-  font-size: calc(15px + 0.390625vw);
+  font-size: calc(25px + 0.390625vw);
   cursor: default;
 }
 

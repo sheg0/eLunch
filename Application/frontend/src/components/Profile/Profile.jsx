@@ -7,11 +7,17 @@ import { PiCookingPotBold } from "react-icons/pi";
 import { PiForkKnifeDuotone } from "react-icons/pi";
 
 const Profile = () => {
-  const { keycloak } = useKeycloak();
+  const { keycloak, initialized } = useKeycloak();
 
-  //const username = keycloak.tokenParsed.preferred_username;
-  //const firstName = keycloak.tokenParsed.given_name;
-  //const lastName = keycloak.tokenParsed.family_name;
+  var username = "MM";
+  var firstName = "Max";
+  var lastName = "Mustermann";
+
+  if (initialized && keycloak.authenticated) {
+    username = keycloak.tokenParsed.preferred_username;
+    firstName = keycloak.tokenParsed.given_name;
+    lastName = keycloak.tokenParsed.family_name;
+  }
 
   const handleLogout = () => {
     keycloak.logout();
@@ -21,13 +27,19 @@ const Profile = () => {
     <div className="profile-container">
       <div className="profile-content">
         <div className="box1">
-          <div className="profile-circle">MM</div>
+          <div className="profile-circle">
+            <div className="circle-name">
+              {firstName[0]} {lastName[0]}{" "}
+            </div>
+          </div>
           <div className="profile-logout" onClick={handleLogout}>
             <IoIosLogOut></IoIosLogOut>
           </div>
         </div>
         <div className="box2">
-          <div className="name">Max Mustermann</div>
+          <div className="name">
+            {firstName} {lastName}
+          </div>
           <div className="balance">1045,65€</div>
         </div>
         <div className="box3">

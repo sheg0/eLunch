@@ -13,7 +13,6 @@
     --Primary-Gradient,
     linear-gradient(180deg, #043c5f 50%, #10c388 125%)
   );
-  /*background: var(--Primary-Gradient, linear-gradient(180deg, #10C388 0%, #097C55 100%));*/
 }
 
 @media screen and (max-width: 768px) {
