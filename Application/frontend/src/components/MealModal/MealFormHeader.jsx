@@ -1,11 +1,15 @@
+import { useContext } from "react";
+import { MealListContext } from "../../context/MealModalContext";
 import { RxCross1 } from "react-icons/rx";
-const MealFormHeader = ({ isEditing, setIsEditing }) => {
+
+const MealFormHeader = () => {
+  const { isModalOpen, setIsModalOpen } = useContext(MealListContext);
   return (
     <div className="mealHeader">
       <h2>Neues Gericht hinzufügen</h2>
       <button
         className="cross-icon btn-newMeal"
-        onClick={() => setIsEditing(!isEditing)}
+        onClick={() => setIsModalOpen(!isModalOpen)}
       >
         <RxCross1 />
       </button>

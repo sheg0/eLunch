@@ -1,4 +1,8 @@
-const MealImageCheckbox = ({ meal, mealPropertyName, setMeal, src, alt }) => {
+import { useContext } from "react";
+import { MealListContext } from "../../context/MealModalContext";
+
+const MealImageCheckbox = ({ mealPropertyName, src, alt }) => {
+  const { meal, setMeal } = useContext(MealListContext);
   const handleKeyDown = (e) => {
     // Older browsers may return "Spacebar"
     // instead of " " for the Space Bar key

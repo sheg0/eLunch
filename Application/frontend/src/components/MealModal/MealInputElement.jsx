@@ -1,9 +1,13 @@
+import { useContext } from "react";
+import { MealListContext } from "../../context/MealModalContext";
+
 const MealInputElement = ({
   type,
   placeholderTexts,
   value,
-  handleInputChange,
+  mealPropertyName,
 }) => {
+  const { meal, setMeal } = useContext(MealListContext);
   return (
     <div>
       <input
@@ -11,7 +15,9 @@ const MealInputElement = ({
         type={type}
         placeholder={placeholderTexts}
         value={value}
-        onChange={(e) => handleInputChange(e)}
+        onChange={(e) =>
+          setMeal({ ...meal, [mealPropertyName]: e.target.value })
+        }
       />
     </div>
   );

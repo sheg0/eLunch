@@ -1,18 +1,23 @@
+import { useContext } from "react";
+import { MealListContext } from "../../context/MealModalContext";
 import MealInputElements from "./MealInputElements";
 import MealInputDropdowns from "./MealInputDropdowns";
 import MealImageCheckboxes from "./MealImageCheckboxes";
+import { useKeycloak } from "@react-keycloak/web";
+import { MealContext } from "../../context/MealContext";
 
-const MealFormBody = ({ meal, setMeal }) => {
-  console.log(meal);
+const MealFormBody = () => {
+  const { meal, submitMeal } = useContext(MealListContext);
+
   return (
     <div className="inputField">
-      <MealInputElements meal={meal} setMeal={setMeal} />
-      <MealInputDropdowns meal={meal} setMeal={setMeal} />
-      <MealImageCheckboxes meal={meal} setMeal={setMeal} />
+      <MealInputElements />
+      <MealInputDropdowns />
+      <MealImageCheckboxes />
       <div className="btnPos">
         <button
           className="btnMeal btn-newMeal"
-          /*onClick={() => submitEditing({})}*/
+          onClick={() => submitMeal(meal)}
         >
           Bestätigen
         </button>

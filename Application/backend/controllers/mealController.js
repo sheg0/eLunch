@@ -36,10 +36,11 @@ const createMeal = async (req, res) => {
     ...optionalProperties
   } = req.body;
 
-  if (!name || !type) {
-    return res
-      .status(400)
-      .json({ error: "Meal: Name or Type is missing inside Request-body." });
+  if (!name || !ingredients || !description || !category) {
+    return res.status(400).json({
+      error:
+        "Meal: Name, Ingredients, Description, Category or timeNeeded is missing inside Request-body.",
+    });
   }
 
   try {

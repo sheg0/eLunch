@@ -63,8 +63,6 @@ const createEvent = (req, res) => {
 
       const { date, mealId, ...participantInfo } = req.body;
 
-      console.log(participantInfo);
-
       const event = new Event({
         _id: new mongoose.Types.ObjectId(),
         date: new Date(date),

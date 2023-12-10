@@ -1,16 +1,16 @@
+import { useContext } from "react";
+import { MealListContext } from "../../context/MealModalContext";
 import MealForm from "./MealForm";
-const MealModal = ({ meal, setMeal, isEditing, setIsEditing }) => {
+
+const MealModal = () => {
+  const { isModalOpen } = useContext(MealListContext);
+
   return (
     <div className="modal">
-      {isEditing && (
+      {isModalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
-            <MealForm
-              meal={meal}
-              setMeal={setMeal}
-              isEditing={isEditing}
-              setIsEditing={setIsEditing}
-            />
+            <MealForm />
           </div>
         </div>
       )}
