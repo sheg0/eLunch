@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Sidebar_2.css";
 import { useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
+import { Container } from "@mui/material";
 
 import { VscBook } from "react-icons/vsc";
 import { MdRestaurantMenu } from "react-icons/md";
@@ -62,80 +63,40 @@ function Sidebar({ children }) {
   };
 
   return (
-    <div className="sidebar">
-      <div className="sidebar-content">
-        <div className="profile">
-          <Profile />
-        </div>
-        <div className="sidebar-list">
-          {listItems.map((item) => {
-            return (
-              <div
-                className={`button ${selectedTab === item ? "active" : ""}`}
-                onClick={() => {
-                  SwitchPath(item);
-                  setSelectedTab(item);
-                }}
-                key={item}
-              >
-                <div className="icon">{iconMap[item]}</div>
-                <div className="text">{item}</div>
-              </div>
-            );
-          })}
-        </div>
+    <>
+      <div className="sidebar">
+        <div className="sidebar-content">
+          <div className="profile">
+            <Profile />
+          </div>
+          <div className="sidebar-list">
+            {listItems.map((item) => {
+              return (
+                <div
+                  className={`button ${selectedTab === item ? "active" : ""}`}
+                  onClick={() => {
+                    SwitchPath(item);
+                    setSelectedTab(item);
+                  }}
+                  key={item}
+                >
+                  <div className="icon">{iconMap[item]}</div>
+                  <div className="text">{item}</div>
+                </div>
+              );
+            })}
+          </div>
 
-        <div className="sidebar-footer">
-          <a href={"./Info"}>Impressum</a> | Druckansicht | ICAL
+          <div className="sidebar-footer">
+            <a href={"./Info"}>Impressum</a> | Druckansicht | ICAL
+          </div>
         </div>
       </div>
-    </div>
+      <Container>
+        <div>{children}</div>
+      </Container>
+    </>
   );
 }
 
 export default Sidebar;
-
-/*
-Speiseplan:
-import { VscBook } from "react-icons/vsc";            <VscBook />
-import { VscCalendar } from "react-icons/vsc";        <VscCalendar />
-import { CiCalendar } from "react-icons/ci";          <CiCalendar />
-import { MdMenuBook } from "react-icons/md";          <MdMenuBook />
-
-
-Gerichte:
-import { GiMeal } from "react-icons/gi";                <GiMeal />
-import { MdRestaurantMenu } from "react-icons/md";      <MdRestaurantMenu />
-
-
-Einkaufszettel:
-import { SlNotebook } from "react-icons/sl";          <SlNotebook />
-import { SlBasket } from "react-icons/sl";            <SlBasket />
-import { TfiPencilAlt } from "react-icons/tfi";       <TfiPencilAlt />
-
-
-Finanzen:
-import { CiDollar } from "react-icons/ci";                  <CiDollar />
-import { TfiMoney } from "react-icons/tfi";                 <TfiMoney />
-import { MdAttachMoney } from "react-icons/md";             <MdAttachMoney />
-import { RiMoneyEuroCircleLine } from "react-icons/ri";     <RiMoneyEuroCircleLine />
-import { MdEuroSymbol } from "react-icons/md";              <MdEuroSymbol />
-
-
-Mitarbeiter:
-import { VscOrganization } from "react-icons/vsc";      <VscOrganization />
-import { SlUser } from "react-icons/sl";                <SlUser />
-import { CiUser } from "react-icons/ci";                <CiUser />
-
-
-Statistiken:
-import { SlChart } from "react-icons/sl";             <SlChart /> 
-import { SlGraph } from "react-icons/sl";             <SlGraph />
-import { VscPieChart } from "react-icons/vsc";        <VscPieChart />
-import { TfiBarChart } from "react-icons/tfi";        <TfiBarChart />
-
-
-Infos:
-import { SlInfo } from "react-icons/sl";              <SlInfo />
-import { TfiInfoAlt } from "react-icons/tfi";         <TfiInfoAlt />
-*/
