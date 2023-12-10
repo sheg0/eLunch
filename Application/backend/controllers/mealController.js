@@ -1,4 +1,5 @@
 const Meal = require("../models/mealModel");
+const TestMeal = require("../models/testMealModel");
 const mongoose = require("mongoose");
 
 // GET weakly meals
@@ -23,6 +24,40 @@ const getMeal = async (req, res) => {
   }
   res.status(200).json(meal);
 };
+// Create new Testmeal
+const createTestMeal = async (req, res) => {
+  const {
+    name,
+    ingredients,
+    description,
+    timeNeeded,
+    cost,
+    category,
+    ...optionalProperties
+  } = req.body;
+
+  if (!name) {
+    return res
+      .status(400)
+      .json({ error: "Meal: Name or Type is missing inside Request-body." });
+  }
+
+  try {
+    const meal = await TestMeal.create({
+      _id: new mongoose.Types.ObjectId(),
+      name,
+      ingredients,
+      description,
+      timeNeeded,
+      cost,
+      category,
+      ...optionalProperties,
+    });
+    res.status(200).json(meal);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+};
 
 // Create new meal
 const createMeal = async (req, res) => {
@@ -36,7 +71,7 @@ const createMeal = async (req, res) => {
     ...optionalProperties
   } = req.body;
 
-  if (!name || !type) {
+  if (!name) {
     return res
       .status(400)
       .json({ error: "Meal: Name or Type is missing inside Request-body." });
@@ -95,6 +130,7 @@ const updateMeal = async (req, res) => {
 };
 
 module.exports = {
+  createTestMeal,
   getAllMeals,
   getMeal,
   createMeal,

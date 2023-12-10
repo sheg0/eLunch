@@ -1,0 +1,18 @@
+config:
+  target: "http://localhost:4000"
+  phases:
+    - duration: 10
+      arrivalRate: 5
+
+scenarios:
+  - flow:
+      - post:
+          url: "/api/meals/test"
+          json:
+            name: "Stress Test Meal"
+            ingredients: "Test Ingredients"
+            description: "Test Description"
+            timeNeeded: 30
+            cost: 10.99
+            category: "Aktivität"
+            difficulty: "Sehr Einfach"

@@ -11,6 +11,7 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 // routes
+
 const mealRoutes = require("./routes/meals");
 const eventRoutes = require("./routes/events");
 
@@ -27,7 +28,6 @@ app.use((req, res, next) => {
 });
 
 //app.use(keycloak.middleware());
-
 app.use("/api/meals", mealRoutes);
 app.use("/api/events", eventRoutes);
 
