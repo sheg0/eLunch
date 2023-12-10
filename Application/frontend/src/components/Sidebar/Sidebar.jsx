@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Sidebar_2.css";
+import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { Container } from "@mui/material";
