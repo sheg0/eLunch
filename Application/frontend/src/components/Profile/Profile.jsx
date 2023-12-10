@@ -27,7 +27,7 @@ const Profile = () => {
           </div>
         </div>
         <div className="box2">
-          <div className="name">Imran-Nur-Reyhan Sevinc</div>
+          <div className="name">Max Mustermann</div>
           <div className="balance">1045,65€</div>
         </div>
         <div className="box3">
