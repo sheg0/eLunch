@@ -51,3 +51,21 @@
 .icon-gap {
   width: 2vh;
 }
+
+.addMealButton {
+  font-family: "Segoe UI";
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 10px;
+  border: none;
+  background-color: #043c5f;
+  color: white;
+  width: auto;
+  height: 5vh;
+  width: 10vh;
+  cursor: pointer;
+}
+
+.addMealButton:hover {
+  background-color: rgba(3, 40, 63, 1);
+}

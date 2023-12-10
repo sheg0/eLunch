@@ -8,6 +8,7 @@
   color: white;
   width: auto;
   height: 5vh;
+  width: 10vh;
   cursor: pointer;
 }
 
@@ -54,7 +55,7 @@
 
 .inputField {
   position: relative;
-  top: 5vh;
+  top: 2vh;
   right: 10vh;
 }
 
@@ -86,8 +87,8 @@
 .btnPos {
   position: absolute;
   display: flex;
-  bottom: 4vh;
-  right: 37vh;
+  bottom: 2vh;
+  right: 39vh;
 }
 
 .btnMeal {
