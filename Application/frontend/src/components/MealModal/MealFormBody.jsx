@@ -3,8 +3,6 @@ import { MealListContext } from "../../context/MealModalContext";
 import MealInputElements from "./MealInputElements";
 import MealInputDropdowns from "./MealInputDropdowns";
 import MealImageCheckboxes from "./MealImageCheckboxes";
-import { useKeycloak } from "@react-keycloak/web";
-import { MealContext } from "../../context/MealContext";
 
 const MealFormBody = () => {
   const { meal, submitMeal } = useContext(MealListContext);

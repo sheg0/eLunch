@@ -1,7 +1,7 @@
 //components
 import { Container } from "@mui/material";
-import FetchMeal from "./components/FetchMeal";
-import FetchEvent from "./components/FetchEvent";
+import FetchMeal from "./components/Fetch/FetchMeal";
+import FetchEvent from "./components/Fetch/FetchEvent";
 import Sidebar from "./components/Sidebar/Sidebar_2";
 import { useKeycloak } from "@react-keycloak/web";
 import { useEffect } from "react";
@@ -16,16 +16,18 @@ function App() {
   }, [keycloak, initialized]);
 
   return (
-    <div className="App">
-      <Sidebar>
-        <div className="pages">
-          <Container>
-            <FetchMeal></FetchMeal>
-            <FetchEvent></FetchEvent>
-          </Container>
-        </div>
-      </Sidebar>
-    </div>
+    initialized && (
+      <div className="App">
+        <Sidebar>
+          <div className="pages">
+            <Container>
+              <FetchMeal></FetchMeal>
+              <FetchEvent></FetchEvent>
+            </Container>
+          </div>
+        </Sidebar>
+      </div>
+    )
   );
 }
 

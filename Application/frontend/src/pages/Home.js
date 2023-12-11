@@ -1,5 +1,5 @@
-import MealDetails from "../components/MealDetails";
-import MealForm from "../components/MealForm";
+import MealDetails from "../zDeprecated/MealDetails";
+import MealForm from "../zDeprecated/MealForm";
 
 // components
 //codes with *** are deleted after the use of useWorkoutsContext

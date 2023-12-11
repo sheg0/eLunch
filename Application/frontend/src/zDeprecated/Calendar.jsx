@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Calendar.css";
 import { Container } from "@mui/material";
-import CustomModal from "../CustomModal";
+import CustomModal from "./CustomModal";
 import Button from "@mui/material/Button";
 
 export default function Calendar({ meals }) {

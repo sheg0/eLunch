@@ -1,7 +1,7 @@
 import React from "react";
-import "./MealInCalendar.css";
+import "./EventElement.css";
 
-function MealView() {
+function EventElement() {
   return (
     <div className="meal-container">
       <p1>13:00</p1>
@@ -10,4 +10,4 @@ function MealView() {
   );
 }
 
-export default MealView;
+export default EventElement;

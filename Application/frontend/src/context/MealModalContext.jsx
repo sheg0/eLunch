@@ -20,10 +20,7 @@ export const MealListProvider = ({ children }) => {
     isVegetarian: false,
   };
 
-  //keycloak
   const { keycloak } = useKeycloak();
-
-  //DISPATCH
   const { dispatch } = useMealsContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -31,7 +28,6 @@ export const MealListProvider = ({ children }) => {
   const [meal, setMeal] = useState(emptyMeal);
 
   const addMeal = async (meal) => {
-    console.log("inside Add");
     const response = await fetch("/api/meals/", {
       method: "POST",
       body: JSON.stringify({
@@ -44,7 +40,6 @@ export const MealListProvider = ({ children }) => {
     });
     const json = await response.json();
 
-    console.log(json);
     if (response.ok) {
       dispatch({ type: "CREATE_MEAL", payload: json });
       setIsModalOpen(false);
@@ -102,8 +97,9 @@ export const MealListProvider = ({ children }) => {
   const submitMeal = (meal) => {
     if (isAdding) {
       addMeal(meal);
+    } else {
+      updateMeal(meal);
     }
-    updateMeal(meal);
   };
 
   const contextValue = {
