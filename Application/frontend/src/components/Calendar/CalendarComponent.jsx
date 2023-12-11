@@ -1,11 +1,10 @@
-import { useContext } from "react";
 import "./CalendarComponent.css";
 import { Container } from "@mui/material";
 import AddMeal from "../AddMeal/AddMeal";
 import EventElement from "./EventElement";
 import { SlArrowDown } from "react-icons/sl";
-import { CalendarContext } from "../../context/CalendarContext";
 import CalendarHeader from "./CalendarHeader";
+import { useCalendarContext } from "../../hooks/useCalendarContext";
 
 const Calendar = () => {
   const {
@@ -19,7 +18,7 @@ const Calendar = () => {
     previousMonthDays,
     isMonthVisible,
     handleButtonClick,
-  } = useContext(CalendarContext);
+  } = useCalendarContext();
 
   return (
     <Container>
