@@ -52,7 +52,6 @@ const Calendar = () => {
               onClickArrowLeft={goToPreviousWeek}
               onClickArrowRight={goToNextWeek}
             />
-
             <div>
               <div className="weeks">
                 {getWeekDays().map((day) => (
@@ -72,15 +71,9 @@ const Calendar = () => {
             <SlArrowDown />
           </button>
         </div>
-
-        <div></div>
       </div>
     </Container>
   );
 };
-
-/*
-
-*/
 
 export default Calendar;
