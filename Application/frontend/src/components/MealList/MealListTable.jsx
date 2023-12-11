@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import { MealListContext } from "../../context/MealModalContext";
 import MealListTableHeader from "./MealListTableHeader";
 import MealListTableBody from "./MealListTableBody";
 

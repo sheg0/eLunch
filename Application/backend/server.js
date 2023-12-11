@@ -26,7 +26,7 @@ app.use((req, res, next) => {
   next();
 });
 
-//app.use(keycloak.middleware());
+app.use(keycloak.middleware());
 
 app.use("/api/meals", mealRoutes);
 app.use("/api/events", eventRoutes);

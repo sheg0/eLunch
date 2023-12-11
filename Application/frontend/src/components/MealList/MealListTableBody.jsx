@@ -1,11 +1,10 @@
-import { useContext } from "react";
-import { MealListContext } from "../../context/MealModalContext.jsx";
-import MealTableData from "./Meal.jsx";
+import MealTableData from "./MealTableData.jsx";
 import { FaPen } from "react-icons/fa";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useMealListContext } from "../../hooks/useMealListContext.js";
 
 const MealListTableBody = ({ meals, handleClickDelete }) => {
-  const { deleteMeal, handleClickMealEdit } = useContext(MealListContext);
+  const { deleteMeal, handleClickMealEdit } = useMealListContext();
 
   return (
     <tbody>

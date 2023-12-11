@@ -1,5 +1,4 @@
-import { useContext } from "react";
-import { MealListContext } from "../../context/MealModalContext";
+import { useMealListContext } from "../../hooks/useMealListContext";
 
 const MealInputElement = ({
   type,
@@ -7,7 +6,7 @@ const MealInputElement = ({
   value,
   mealPropertyName,
 }) => {
-  const { meal, setMeal } = useContext(MealListContext);
+  const { meal, setMeal } = useMealListContext();
   return (
     <div>
       <input

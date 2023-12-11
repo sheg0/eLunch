@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import MealInputDropdown from "./MealInputDropdown";
-import { MealListContext } from "../../context/MealModalContext";
+import { useMealListContext } from "../../hooks/useMealListContext";
 
 const MealInputDropdowns = () => {
-  const { meal } = useContext(MealListContext);
+  const { meal } = useMealListContext();
   return (
     <>
       <MealInputDropdown

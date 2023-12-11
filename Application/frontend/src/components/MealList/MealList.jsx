@@ -3,11 +3,10 @@ import "./MealList.css";
 import "../MealModal/MealModal.css";
 import MealModal from "../MealModal/MealModal.jsx";
 import MealListTable from "./MealListTable.jsx";
-import { useContext } from "react";
-import { MealListContext } from "../../context/MealModalContext.jsx";
+import { useMealListContext } from "../../hooks/useMealListContext.js";
 
 function MealList({ meals }) {
-  const { openAddMealModal } = useContext(MealListContext);
+  const { openAddMealModal } = useMealListContext();
   return (
     <Container>
       <MealListTable meals={meals} />

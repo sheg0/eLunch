@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { MealListContext } from "../../context/MealModalContext";
 import MealForm from "./MealForm";
+import { useMealListContext } from "../../hooks/useMealListContext";
 
 const MealModal = () => {
-  const { isModalOpen } = useContext(MealListContext);
+  const { isModalOpen } = useMealListContext();
 
   return (
     <div className="modal">
