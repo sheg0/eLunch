@@ -13,6 +13,7 @@
 }
 
 .days {
+  font-family: "Segoe UI";
   width: 105vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);

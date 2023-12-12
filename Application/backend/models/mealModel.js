@@ -14,11 +14,11 @@ const mealSchema = new Schema(
     },
     ingredients: {
       type: String,
-      required: true,
+      required: false,
     },
     description: {
       type: String,
-      required: true,
+      required: false,
     },
     timeNeeded: {
       type: Number,
@@ -49,7 +49,7 @@ const mealSchema = new Schema(
     },
     difficulty: {
       type: String,
-      enum: ["Sehr Einfach", "Einfach", "Mittel", "Schwierig"],
+      enum: ["Unbestimmt", "Sehr Einfach", "Einfach", "Mittel", "Schwierig"],
       required: true,
     },
     isVegetarian: {

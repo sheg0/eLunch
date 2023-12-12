@@ -111,16 +111,14 @@ const Calendar = ({ meals }) => {
   const [day, setDay] = useState("");
 
   function handleDayClick(day) {
-    //setDate(`${weekday} - ${day}.${month}`);
     setDay(day.key);
-    //console.log(day.key);
     setOpen(true);
   }
 
-  var today = new Date();
-  var dd = String(today.getDate()).padStart(2, "0");
-  var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-  var yyyy = today.getFullYear();
+  let today = new Date();
+  let dd = String(today.getDate()).padStart(2, "0");
+  let mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  let yyyy = today.getFullYear();
 
   today = mm + "/" + dd + "/" + yyyy;
 
@@ -131,7 +129,6 @@ const Calendar = ({ meals }) => {
           <div>
             <div className="header">
               <button className="calendar-btn" onClick={goToPreviousMonth}>
-                {/*&lt;*/}
                 <SlArrowLeft />
               </button>
               <h2>
@@ -142,7 +139,6 @@ const Calendar = ({ meals }) => {
               </h2>
 
               <button className="calendar-btn" onClick={goToNextMonth}>
-                {/*&gt;*/}
                 <SlArrowRight />
               </button>
             </div>
@@ -152,7 +148,7 @@ const Calendar = ({ meals }) => {
               </button>
             </div>
 
-            <div className="days" style={{ fontFamily: "Segoe UI" }}>
+            <div className="days">
               <div className="day">Montag</div>
               <div className="day">Dienstag</div>
               <div className="day">Mittwoch</div>
@@ -172,15 +168,23 @@ const Calendar = ({ meals }) => {
             <div className="field">
               <div className="dates">
                 {previousMonthDays.map((day) => (
-                  <div className="date previous-month">{day}</div>
+                  <div key={day.key} className="date previous-month">
+                    {day}
+                  </div>
                 ))}
                 {calendarDays.map((day) => (
-                  <div className="date" onClick={() => handleDayClick(day)}>
+                  <div
+                    key={day.key}
+                    className="date"
+                    onClick={() => handleDayClick(day)}
+                  >
                     {day}
                   </div>
                 ))}
                 {nextMonthDays.map((day) => (
-                  <div className="date next-month">{day}</div>
+                  <div key={day.key} className="date next-month">
+                    {day}
+                  </div>
                 ))}
               </div>
             </div>
