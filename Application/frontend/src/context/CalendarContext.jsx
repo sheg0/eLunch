@@ -56,11 +56,7 @@ export const CalendarProvider = ({ children }) => {
     const weekday = getWeekday(year, month, day);
 
     if (weekday !== 0 && weekday !== 6) {
-      calendarDays.push(
-        <div className="calendar-day" key={day}>
-          {day}
-        </div>
-      );
+      calendarDays.push(day);
     }
   }
 
@@ -93,6 +89,24 @@ export const CalendarProvider = ({ children }) => {
     return days;
   };
 
+  const getEvents = (day, month, year, events) => {
+    const eventList = [];
+
+    events.forEach((element) => {
+      const date = new Date(element.date);
+
+      const eventDay = date.getDate();
+      const eventMonth = date.getMonth();
+      const eventYear = date.getFullYear();
+
+      if (day === eventDay && month === eventMonth && year === eventYear) {
+        eventList.push(element);
+      }
+    });
+
+    return eventList;
+  };
+
   const contextValue = {
     month,
     year,
@@ -107,6 +121,7 @@ export const CalendarProvider = ({ children }) => {
     previousMonthDays,
     isMonthVisible,
     handleButtonClick,
+    getEvents,
   };
 
   return (

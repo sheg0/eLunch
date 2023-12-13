@@ -1,8 +1,7 @@
 import React from "react";
 import "./EventElement.css";
 
-function EventElement({}) {
-  const event = new Date();
+function EventElement({ event }) {
   const options = {
     hour: "2-digit",
     minute: "2-digit",
@@ -10,15 +9,14 @@ function EventElement({}) {
   };
 
   const formattedTime = new Intl.DateTimeFormat("de-DE", options).format(
-    event.date
+    new Date(event.date)
   );
 
-  console.log("Formatted Time:", formattedTime);
-
+  console.log(event);
   return (
     <div className="meal-container">
       <p1>{formattedTime}</p1>
-      <p>Schupfnudeln mit Kraut</p>
+      <p>{event.meal.name}</p>
     </div>
   );
 }

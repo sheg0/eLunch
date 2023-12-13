@@ -1,13 +1,16 @@
 import "./CalendarComponent.css";
 import { Container } from "@mui/material";
-import AddMeal from "../AddMeal/AddMeal";
+import AddEvent from "../AddMeal/AddEvent";
 import EventElement from "./EventElement";
 import { SlArrowDown } from "react-icons/sl";
 import CalendarHeader from "./CalendarHeader";
 import { useCalendarContext } from "../../hooks/useCalendarContext";
+import { useEventsContext } from "../../hooks/useEventsContext";
 
 const Calendar = () => {
   const {
+    month,
+    year,
     calendarDays,
     getWeekDays,
     goToPreviousWeek,
@@ -18,7 +21,13 @@ const Calendar = () => {
     previousMonthDays,
     isMonthVisible,
     handleButtonClick,
+    getEvents,
   } = useCalendarContext();
+
+  const { events } = useEventsContext();
+
+  console.log(events);
+  console.log(`Month: ${month} Year: ${year}`);
 
   return (
     <Container>
@@ -34,10 +43,20 @@ const Calendar = () => {
                 {previousMonthDays.map((day) => (
                   <div className="date previous-month">{day}</div>
                 ))}
-                {calendarDays.map((day) => (
-                  <div className="date">
-                    {day}
-                    <EventElement></EventElement>
+                {calendarDays.map((day, index) => (
+                  <div key={index} className="date">
+                    <div className="calendar-day" key={day}>
+                      {day}
+                    </div>
+                    {getEvents(day, month, year, events).length !== 0 &&
+                      getEvents(day, month, year, events).map(
+                        (element, index) => (
+                          <EventElement
+                            key={index}
+                            event={element}
+                          ></EventElement>
+                        )
+                      )}
                   </div>
                 ))}
                 {nextMonthDays.map((day) => (
@@ -58,7 +77,7 @@ const Calendar = () => {
                   <div key={day.toISOString()}>
                     <div className="dateWeek">
                       {day.getDate()}
-                      <AddMeal></AddMeal>
+                      <AddEvent></AddEvent>
                     </div>
                   </div>
                 ))}

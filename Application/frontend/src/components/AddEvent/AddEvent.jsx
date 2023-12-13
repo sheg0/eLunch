@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import "./AddMeal.css";
+import "./AddEvent.css";
 import { RxCross1 } from "react-icons/rx";
 import MealsDropdown from "../Dropdown/MealsDropdown";
 import { useKeycloak } from "@react-keycloak/web";
 import { useEventsContext } from "../../hooks/useEventsContext";
 
-function AddMeal() {
+function AddEvent() {
   const [isOpen, setIsOpen] = useState(false);
   const [date, setDate] = useState("");
   const [mealId, setMealId] = useState();
@@ -43,13 +43,13 @@ function AddMeal() {
   return (
     <div>
       <button className="addMeal-button" onClick={() => setIsOpen(!isOpen)}>
-        &#43; Neues Gericht
+        &#43; Neues Event
       </button>
       {isOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
             <div>
-              <h2>Neues Gericht</h2>
+              <h2>Neues Event</h2>
               <button className="crossIcon" onClick={() => setIsOpen(!isOpen)}>
                 <RxCross1 />
               </button>
@@ -82,4 +82,4 @@ function AddMeal() {
   );
 }
 
-export default AddMeal;
+export default AddEvent;
