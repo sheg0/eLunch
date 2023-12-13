@@ -17,8 +17,8 @@ import { LuShoppingBasket } from "react-icons/lu";
 import { PiCookingPot } from "react-icons/pi";
 import { IoPersonOutline } from "react-icons/io5";
 import { useState } from "react";
-import { useEventsContext } from "../hooks/useEventsContext";
-import Dropdown from "./Dropdown/Dropdown.jsx";
+import { useEventsContext } from "../hooks/useEventsContext.js";
+import Dropdown from "../components/Dropdown/Dropdown.jsx";
 
 const style = {
   position: "absolute",

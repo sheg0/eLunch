@@ -14,7 +14,7 @@ export const mealsReducer = (state, action) => {
       };
     case "DELETE_MEAL":
       return {
-        meals: state.meals.filter((w) => w._id !== action.payload._id),
+        meals: state.meals.filter((meal) => meal._id !== action.payload._id),
       };
     case "EDIT_MEAL":
       return {

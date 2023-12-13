@@ -70,6 +70,7 @@ const createEvent = (req, res) => {
         participants: [
           {
             ...participantInfo,
+            isCreator: true,
           },
         ],
       });

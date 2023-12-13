@@ -1,13 +1,10 @@
-import { useContext } from "react";
-import { MealListContext } from "../../context/MealModalContext";
 import MealInputElements from "./MealInputElements";
 import MealInputDropdowns from "./MealInputDropdowns";
 import MealImageCheckboxes from "./MealImageCheckboxes";
-import { useKeycloak } from "@react-keycloak/web";
-import { MealContext } from "../../context/MealContext";
+import { useMealListContext } from "../../hooks/useMealListContext";
 
 const MealFormBody = () => {
-  const { meal, submitMeal } = useContext(MealListContext);
+  const { meal, submitMeal } = useMealListContext();
 
   return (
     <div className="inputField">

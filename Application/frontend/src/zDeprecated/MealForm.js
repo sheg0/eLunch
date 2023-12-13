@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useMealsContext } from "../hooks/useMealsContext";
 import AddButton from "./AddButton";
-import InputField from "./InputField";
+import InputField from "../components/InputField";
 
 import * as React from "react";
 import Checkbox from "@mui/material/Checkbox";

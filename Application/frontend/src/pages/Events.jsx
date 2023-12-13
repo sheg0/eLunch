@@ -1,4 +1,4 @@
-import EventDetails from "../components/EventDetails";
+import EventDetails from "../zDeprecated/EventDetails";
 
 // components
 //codes with *** are deleted after the use of useWorkoutsContext

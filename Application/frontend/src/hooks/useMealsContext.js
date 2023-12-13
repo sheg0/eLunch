@@ -5,9 +5,7 @@ export const useMealsContext = () => {
   const context = useContext(MealContext); //context has now dispatch and state properties
 
   if (!context) {
-    throw Error(
-      "useWorkoutsContext must be used inside an WorkoutContextProvider"
-    );
+    throw Error("useMealsContext must be used inside an MealsContextProvider");
   }
 
   return context;

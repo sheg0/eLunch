@@ -1,16 +1,15 @@
-import { useMealsContext } from "../hooks/useMealsContext";
+import { useMealsContext } from "../../hooks/useMealsContext.js";
 import { useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import { Routes, Route } from "react-router-dom";
 
 //pages
-import Home from "../pages/Home";
 //import List from "../pages/List";
 //import Calendar from "./Calendar/CalendarComponent.jsx";
-import Cal from "../pages/Calendar.jsx";
-import Info from "../components/Info/Info.jsx";
+import Cal from "../../pages/Calendar.jsx";
+import Info from "../Info/Info.jsx";
 //import MealList from "./MealList/MealList.jsx";
-import List from "../pages/List.jsx";
+import List from "../../pages/List.jsx";
 
 function FetchMeal() {
   const { meals, dispatch } = useMealsContext();
@@ -41,7 +40,7 @@ function FetchMeal() {
 
   return (
     <Routes>
-      <Route path="/" element={<Home meals={meals} />} />
+      <Route path="/" element={<Cal meals={meals} />} />
       <Route path="/List" element={<List meals={meals} />} />
       <Route path="/Calendar" element={<Cal meals={meals} />} />
       <Route path="/Info" element={<Info />} />

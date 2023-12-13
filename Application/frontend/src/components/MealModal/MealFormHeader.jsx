@@ -1,9 +1,8 @@
-import { useContext } from "react";
-import { MealListContext } from "../../context/MealModalContext";
 import { RxCross1 } from "react-icons/rx";
+import { useMealListContext } from "../../hooks/useMealListContext";
 
 const MealFormHeader = () => {
-  const { isModalOpen, setIsModalOpen } = useContext(MealListContext);
+  const { isModalOpen, setIsModalOpen } = useMealListContext();
   return (
     <div className="mealHeader">
       <h2>Neues Gericht hinzufügen</h2>
