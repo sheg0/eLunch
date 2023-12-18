@@ -1,11 +1,11 @@
 const Weekdays = () => {
   return (
-    <div className="days" style={{ fontFamily: "Segoe UI" }}>
-      <div className="day">Montag</div>
-      <div className="day">Dienstag</div>
-      <div className="day">Mittwoch</div>
-      <div className="day">Donnerstag</div>
-      <div className="day">Freitag</div>
+    <div className="calendar-days">
+      <div className="calendar-day">Montag</div>
+      <div className="calendar-day">Dienstag</div>
+      <div className="calendar-day">Mittwoch</div>
+      <div className="calendar-day">Donnerstag</div>
+      <div className="calendar-day">Freitag</div>
     </div>
   );
 };

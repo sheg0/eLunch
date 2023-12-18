@@ -2,56 +2,62 @@
   padding: 0;
 }
 
-.header {
+.calendar-app-container {
+  flex-grow: 1;
+  padding-left: 15vh;
+  padding-top: 2vh;
+}
+
+.calendar-header {
   font-family: "Segoe UI";
   color: #043c5f;
-  font-size: 25px;
+  font-size: 2.5vh;
   display: flex;
-  width: 105vh;
+  width: 100vh;
   align-items: center;
   justify-content: space-between;
 }
 
-.days {
-  width: 105vh;
+.calendar-days {
+  width: 100vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1vh;
-  margin-bottom: 10px;
+  margin-bottom: 1vh;
 }
 
-.day {
+.calendar-day {
   font-family: "Segoe UI";
-  font-size: 20px;
+  font-size: 2vh;
   text-align: center;
   font-weight: 500;
 }
 
-.dates {
+.calendar-dates {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1vh;
 }
 
-.field {
+.calendar-field {
   width: 10vh;
   display: flex;
 }
 
-.date {
+.calendar-date {
   text-align: right;
-  padding: 10px;
-  border-radius: 18px;
-  width: 20vh;
-  height: 15vh;
-  font-size: 25px;
+  padding: 1vh;
+  border-radius: 2vh;
+  width: 17vh;
+  height: 12vh;
+  font-size: 2.5vh;
   font-family: "Segoe UI";
   color: #043c5f;
-  background-color: #f1f1f1;
+  background-color: #e4e4e4;
 }
 
 .today {
-  border: 3px solid;
+  border: 1vh solid;
   border-color: rgb(58, 214, 160);
   background-color: #f5f4f4;
 }
@@ -63,11 +69,11 @@
 }
 .weekDays {
   text-align: right;
-  padding: 10px;
-  border-radius: 18px;
+  padding: 1vh;
+  border-radius: 2vh;
   width: 20vh;
   height: 15vh;
-  font-size: 25px;
+  font-size: 2.5vh;
   font-family: "Segoe UI";
   color: #043c5f;
   background-color: #5f5656;
@@ -84,7 +90,7 @@
 .calendar-btn {
   color: #043c5f;
   font-size: 2.5vh;
-  border-radius: 18px;
+  border-radius: 2vh;
   width: 5vh;
   height: 5vh;
   border: none;
@@ -96,44 +102,46 @@
   background-color: #043c5f27;
 }
 
-.btn-container {
+.calendar-btn-container {
   margin-top: 2vh;
   margin-right: 10vh;
+  width: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.dateWeek {
+.calendar-dateWeek {
   text-align: right;
-  padding: 10px;
-  border-radius: 18px;
-  width: 20vh;
-  height: 30vh;
-  font-size: 25px;
+  padding: 1vh;
+  border-radius: 2vh;
+  width: 17vh;
+  height: 22vh;
+  font-size: 2.5vh;
   font-family: "Segoe UI";
   color: #043c5f;
-  background-color: #f1f1f1;
+  background-color: #e4e4e4;
 }
 
-.weeks {
+.calendar-weeks {
   width: 100vh;
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   gap: 1vh;
 }
 
-.todayBtn {
+.calendar-today-btn {
   color: #043c5f;
   font-size: 2.5vh;
-  border-radius: 18px;
+  border-radius: 2vh;
   width: 10vh;
   height: 5vh;
   border: none;
+  margin-bottom: 2vh;
   background-color: transparent;
   transition: background-color 0.5s;
 }
 
-.todayBtn:hover {
+.calendar-today-btn:hover {
   background-color: #043c5f27;
 }

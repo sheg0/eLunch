@@ -1,6 +1,6 @@
 import "./CalendarComponent.css";
 import { Container } from "@mui/material";
-import AddEvent from "../AddMeal/AddEvent";
+import AddEvent from "../AddEvent/AddEvent";
 import EventElement from "./EventElement";
 import { SlArrowDown } from "react-icons/sl";
 import CalendarHeader from "./CalendarHeader";
@@ -30,7 +30,7 @@ const Calendar = () => {
   console.log(`Month: ${month} Year: ${year}`);
 
   return (
-    <Container>
+    <div className="calendar-app-container">
       <div className="calendar">
         {isMonthVisible ? (
           <div>
@@ -38,16 +38,14 @@ const Calendar = () => {
               onClickArrowLeft={goToPreviousMonth}
               onClickArrowRight={goToNextMonth}
             />
-            <div className="field">
-              <div className="dates">
+            <div className="calendar-field">
+              <div className="calendar-dates">
                 {previousMonthDays.map((day) => (
-                  <div className="date previous-month">{day}</div>
+                  <div className="calendar-date previous-month">{day}</div>
                 ))}
                 {calendarDays.map((day, index) => (
-                  <div key={index} className="date">
-                    <div className="calendar-day" key={day}>
-                      {day}
-                    </div>
+                  <div key={index} className="calendar-date ">
+                    <div key={day}>{day}</div>
                     {getEvents(day, month, year, events).length !== 0 &&
                       getEvents(day, month, year, events).map(
                         (element, index) => (
@@ -60,7 +58,7 @@ const Calendar = () => {
                   </div>
                 ))}
                 {nextMonthDays.map((day) => (
-                  <div className="date next-month">{day}</div>
+                  <div className="calendar-date next-month">{day}</div>
                 ))}
               </div>
             </div>
@@ -72,10 +70,10 @@ const Calendar = () => {
               onClickArrowRight={goToNextWeek}
             />
             <div>
-              <div className="weeks">
+              <div className="calendar-weeks">
                 {getWeekDays().map((day) => (
                   <div key={day.toISOString()}>
-                    <div className="dateWeek">
+                    <div className="calendar-dateWeek">
                       {day.getDate()}
                       <AddEvent></AddEvent>
                     </div>
@@ -85,13 +83,13 @@ const Calendar = () => {
             </div>
           </div>
         )}
-        <div className="btn-container">
+        <div className="calendar-btn-container">
           <button className="calendar-btn week" onClick={handleButtonClick}>
             <SlArrowDown />
           </button>
         </div>
       </div>
-    </Container>
+    </div>
   );
 };
 
