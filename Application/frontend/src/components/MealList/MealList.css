@@ -1,3 +1,9 @@
+.mealList-app-container {
+  flex-grow: 1;
+  padding-left: 15vh;
+  padding-top: 2vh;
+}
+
 .table-con {
   font-family: "Segoe UI";
   width: 102vh;
