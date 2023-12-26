@@ -29,7 +29,7 @@ const Profile = () => {
         <div className="box1">
           <div className="profile-circle">
             <div className="circle-name">
-              {firstName[0]} {lastName[0]}{" "}
+              {firstName[0]} {lastName[0]}
             </div>
           </div>
           <div className="profile-logout" onClick={handleLogout}>

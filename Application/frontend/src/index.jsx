@@ -7,6 +7,8 @@ import { MealContextProvider } from "./context/MealContext";
 import { BrowserRouter } from "react-router-dom";
 import { EventContextProvider } from "./context/EventContext";
 import { ReactKeycloakProvider } from "@react-keycloak/web";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -14,12 +16,14 @@ root.render(
     authClient={keycloak}
     initOptions={{ onLoad: "login-required", pkceMethod: "S256" }}
   >
-    <EventContextProvider>
-      <MealContextProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </MealContextProvider>
-    </EventContextProvider>
+    <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <EventContextProvider>
+        <MealContextProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </MealContextProvider>
+      </EventContextProvider>
+    </LocalizationProvider>
   </ReactKeycloakProvider>
 );
