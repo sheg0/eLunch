@@ -105,3 +105,20 @@
 .MealDelete-Button:hover {
   background-color: rgba(3, 40, 63, 1);
 }
+
+.addMealModal-button {
+  font-family: "Segoe UI";
+  font-size: 1.7vh;
+  font-weight: 400;
+  border-radius: 1vh;
+  border: none;
+  background-color: #043c5f;
+  color: white;
+  width: auto;
+  height: 3.5vh;
+  cursor: pointer;
+}
+
+.addMealModal-button:hover {
+  background-color: rgba(3, 40, 63, 1);
+}

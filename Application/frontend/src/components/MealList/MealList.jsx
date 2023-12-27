@@ -9,7 +9,9 @@ function MealList({ meals }) {
   return (
     <div className="mealList-app-container">
       <MealListTable meals={meals} />
-      <button onClick={openAddMealModal}>Add Meal</button>
+      <button className="addMealModal-button" onClick={openAddMealModal}>
+        &#43; Gericht hinzufügen
+      </button>
       <MealModal />
     </div>
   );

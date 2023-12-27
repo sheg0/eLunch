@@ -52,9 +52,10 @@
   display: flex;
 }
 
-.inputField {
+.inputText {
   position: relative;
-  top: 5vh;
+  top: 7vh;
+  line-height: 1.8;
   right: 10vh;
 }
 

@@ -64,9 +64,9 @@
   height: 10%;
   width: 120%;
 
-  border-bottom-left-radius: 10px;
-  border-top-left-radius: 10px;
-  padding-left: 10px;
+  border-bottom-left-radius: 1vh;
+  border-top-left-radius: 1vh;
+  padding-left: 1vh;
 
   align-items: center;
   color: #043c5f;

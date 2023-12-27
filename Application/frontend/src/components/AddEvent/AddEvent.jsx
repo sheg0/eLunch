@@ -71,7 +71,7 @@ function AddEvent() {
               <input type="text" className="infoText" />
             </div>
             <div className="btnContainer">
-              <button className="btnMeal btn-newMeal" onClick={addEvent}>
+              <button className="addMeal-button" onClick={addEvent}>
                 Bestätigen
               </button>
             </div>

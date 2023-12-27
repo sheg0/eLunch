@@ -1,6 +1,6 @@
 import { useMealListContext } from "../../hooks/useMealListContext";
 
-const MealImageCheckbox = ({ mealPropertyName, src, alt }) => {
+const MealImageCheckbox = ({ mealPropertyName, src, alt, title }) => {
   const { meal, setMeal } = useMealListContext();
   const handleKeyDown = (e) => {
     // Older browsers may return "Spacebar"
@@ -20,6 +20,7 @@ const MealImageCheckbox = ({ mealPropertyName, src, alt }) => {
         setMeal({ ...meal, [mealPropertyName]: !meal[mealPropertyName] })
       }
       onKeyDown={(e) => handleKeyDown(e)}
+      title={title}
     />
   );
 };
