@@ -26,6 +26,8 @@ const Calendar = () => {
     isMonthVisible,
     handleButtonClick,
     getEvents,
+    subscribeEvent,
+    unsubscribeEvent,
   } = useCalendarContext();
 
   const { events } = useEventsContext();
@@ -55,6 +57,8 @@ const Calendar = () => {
                           <EventElement
                             key={index}
                             event={element}
+                            handleSubscribeClick={subscribeEvent}
+                            handleUnsubscribeClick={unsubscribeEvent}
                           ></EventElement>
                         )
                       )}

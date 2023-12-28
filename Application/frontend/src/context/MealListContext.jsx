@@ -48,7 +48,6 @@ export const MealListProvider = ({ children }) => {
   };
 
   const updateMeal = async (meal) => {
-    console.log("inside Edit");
     const response = await fetch("/api/meals/" + meal._id, {
       method: "PATCH",
       body: JSON.stringify({

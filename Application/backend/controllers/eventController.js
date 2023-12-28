@@ -142,6 +142,7 @@ const subscribeEvent = async (req, res) => {
       { $addToSet: { participants: user } },
       { new: true }
     );
+
     return checkEvent(res, event);
   } catch (error) {
     return sendError(res, 500, error.message);
