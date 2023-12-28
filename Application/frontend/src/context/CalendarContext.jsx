@@ -1,10 +1,14 @@
 import { createContext, useState } from "react";
+import { useKeycloak } from "@react-keycloak/web";
+import { useEventsContext } from "../hooks/useEventsContext";
 
 export const CalendarContext = createContext();
 
 export const CalendarProvider = ({ children }) => {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMonthVisible, setMonthVisible] = useState(false);
+  const { keycloak } = useKeycloak();
+  const { dispatch } = useEventsContext();
 
   const handleButtonClick = () => {
     setMonthVisible(!isMonthVisible);
@@ -107,6 +111,52 @@ export const CalendarProvider = ({ children }) => {
     return eventList;
   };
 
+  const subscribeEvent = async (eventItem) => {
+    const userData = {
+      user: {
+        userName: keycloak.tokenParsed.preferred_username,
+      },
+    };
+    console.log(userData);
+
+    const response = await fetch("/api/events/subscribe/" + eventItem._id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${keycloak.token}`,
+      },
+      body: JSON.stringify(userData),
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "EDIT_EVENT", payload: json });
+    }
+  };
+
+  const unsubscribeEvent = async (eventItem) => {
+    const userData = {
+      user: {
+        userName: keycloak.tokenParsed.preferred_username,
+      },
+    };
+    console.log(userData);
+
+    const response = await fetch("/api/events/unsubscribe/" + eventItem._id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${keycloak.token}`,
+      },
+      body: JSON.stringify(userData),
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "EDIT_EVENT", payload: json });
+    }
+  };
+
   const contextValue = {
     month,
     year,
@@ -122,6 +172,8 @@ export const CalendarProvider = ({ children }) => {
     isMonthVisible,
     handleButtonClick,
     getEvents,
+    subscribeEvent,
+    unsubscribeEvent,
   };
 
   return (

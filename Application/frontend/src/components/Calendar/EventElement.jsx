@@ -19,10 +19,10 @@ function EventElement({ event, handleSubscribeClick, handleUnsubscribeClick }) {
     <div className="meal-container">
       <p1>{formattedTime}</p1>
       <p>{event.meal.name}</p>
-      <IconButton>
+      <IconButton onClick={() => handleSubscribeClick(event)}>
         <CheckIcon />
       </IconButton>
-      <IconButton>
+      <IconButton onClick={() => handleUnsubscribeClick(event)}>
         <CancelIcon />
       </IconButton>
     </div>
