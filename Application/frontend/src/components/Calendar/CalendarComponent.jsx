@@ -1,6 +1,6 @@
 import "./CalendarComponent.css";
 import { Container } from "@mui/material";
-import AddEvent from "../AddMeal/AddEvent";
+import AddEvent from "../AddEvent/AddEvent";
 import EventElement from "./EventElement";
 import { SlArrowDown } from "react-icons/sl";
 import CalendarHeader from "./CalendarHeader";
