@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 
-export const EventContext = createContext(); //MealContext
+export const EventContext = createContext();
 
 export const eventsReducer = (state, action) => {
   //mealsReducer
