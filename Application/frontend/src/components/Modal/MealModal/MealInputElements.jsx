@@ -1,5 +1,5 @@
 import MealInputElement from "./MealInputElement";
-import { useMealListContext } from "../../hooks/useMealListContext";
+import { useMealListContext } from "../../../hooks/useMealListContext";
 
 const MealInputElements = () => {
   const { meal } = useMealListContext();
@@ -7,31 +7,31 @@ const MealInputElements = () => {
     <>
       <MealInputElement
         type={"text"}
-        placeholderTexts={"Gerichtenamen eintragen..."}
+        placeholderText={"Gerichtenamen eintragen..."}
         value={meal.name}
         mealPropertyName={"name"}
       />
       <MealInputElement
         type={"text"}
-        placeholderTexts={"Zutaten eintragen..."}
+        placeholderText={"Zutaten eintragen..."}
         value={meal.ingredients}
         mealPropertyName={"ingredients"}
       />
       <MealInputElement
         type={"text"}
-        placeholderTexts={"Beschreibung eintragen..."}
+        placeholderText={"Beschreibung eintragen..."}
         value={meal.description}
         mealPropertyName={"description"}
       />
       <MealInputElement
         type={"number"}
-        placeholderTexts={"Zeitaufwand eintragen..."}
+        placeholderText={"Zeitaufwand eintragen..."}
         value={meal.timeNeeded}
         mealPropertyName={"timeNeeded"}
       />
       <MealInputElement
         type={"number"}
-        placeholderTexts={"Kosten eintragen..."}
+        placeholderText={"Kosten eintragen..."}
         value={meal.cost}
         mealPropertyName={"cost"}
       />
