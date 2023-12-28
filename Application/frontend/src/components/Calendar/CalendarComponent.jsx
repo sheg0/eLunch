@@ -1,13 +1,17 @@
 import "./CalendarComponent.css";
 import { Container } from "@mui/material";
-import AddEvent from "../AddEvent/AddEvent";
+import Button from "@mui/material/Button";
 import EventElement from "./EventElement";
 import { SlArrowDown } from "react-icons/sl";
 import CalendarHeader from "./CalendarHeader";
 import { useCalendarContext } from "../../hooks/useCalendarContext";
 import { useEventsContext } from "../../hooks/useEventsContext";
+import { EventModal } from "../Modal/EventModal/EventModal";
+import { useState } from "react";
 
 const Calendar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const {
     month,
     year,
@@ -25,9 +29,6 @@ const Calendar = () => {
   } = useCalendarContext();
 
   const { events } = useEventsContext();
-
-  console.log(events);
-  console.log(`Month: ${month} Year: ${year}`);
 
   return (
     <Container>
@@ -77,7 +78,12 @@ const Calendar = () => {
                   <div key={day.toISOString()}>
                     <div className="dateWeek">
                       {day.getDate()}
-                      <AddEvent></AddEvent>
+                      <Button
+                        variant="contained"
+                        onClick={() => setIsModalOpen(!isModalOpen)}
+                      >
+                        + Neues Event
+                      </Button>
                     </div>
                   </div>
                 ))}
@@ -91,6 +97,7 @@ const Calendar = () => {
           </button>
         </div>
       </div>
+      <EventModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}></EventModal>
     </Container>
   );
 };

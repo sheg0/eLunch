@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const Event = require("../models/eventModel.js");
 const Meal = require("../models/mealModel.js");
+const eventModel = require("../models/eventModel.js");
 
 // GET all Event
 const getAllEvents = async (req, res) => {

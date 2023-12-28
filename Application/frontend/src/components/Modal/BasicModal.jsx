@@ -1,6 +1,4 @@
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 
 const style = {
@@ -13,15 +11,16 @@ const style = {
   border: "2px solid #000",
   boxShadow: 24,
   p: 4,
+  display: "table",
 };
 
-export const BasicModal = ({ children }) => {
-  const [isOpen, setOpen] = React.useState(false);
-  const toggleModal = setOpen(!isOpen);
+export const BasicModal = ({ isOpen, setIsOpen, children }) => {
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div>
-      <Button onClick={toggleModal}>Open modal</Button>
       <Modal
         open={isOpen}
         onClose={toggleModal}
