@@ -1,7 +1,10 @@
 import React from "react";
 import "./EventElement.css";
+import CheckIcon from "@mui/icons-material/Check";
+import CancelIcon from "@mui/icons-material/Cancel";
+import { IconButton } from "@mui/material";
 
-function EventElement({ event }) {
+function EventElement({ event, handleSubscribeClick, handleUnsubscribeClick }) {
   const options = {
     hour: "2-digit",
     minute: "2-digit",
@@ -12,11 +15,16 @@ function EventElement({ event }) {
     new Date(event.date)
   );
 
-  console.log(event);
   return (
     <div className="meal-container">
       <p1>{formattedTime}</p1>
       <p>{event.meal.name}</p>
+      <IconButton>
+        <CheckIcon />
+      </IconButton>
+      <IconButton>
+        <CancelIcon />
+      </IconButton>
     </div>
   );
 }
