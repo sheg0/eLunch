@@ -7,6 +7,7 @@ const MealInputDropdowns = () => {
     <>
       <MealInputDropdown
         stateOptions={[
+          "unbestimmt",
           "Vorspeise",
           "Hauptgericht",
           "Beilage",
@@ -22,6 +23,7 @@ const MealInputDropdowns = () => {
       />
       <MealInputDropdown
         stateOptions={[
+          "unbestimmt",
           "Sehr Einfach",
           "Einfach",
           "Mittel",

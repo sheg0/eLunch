@@ -1,17 +1,51 @@
-.btn-newMeal {
+.MealModal-CrossIcon {
+  cursor: pointer;
+  border-radius: 1vh;
+  width: 3vh;
+  height: 3vh;
+  border: none;
+}
+
+.MealModal-CrossIcon:hover {
+  background-color: #cccccc;
+}
+
+.MealModal-Header h2 {
+  margin-top: 0;
+  padding-top: 1vh;
+  color: #043c5f;
+}
+
+.MealModal-Header p {
   font-family: "Segoe UI";
-  font-size: 16px;
+  font-size: 2vh;
+  font-weight: 500;
+  line-height: 3;
+  display: flex;
+}
+
+.MealModal-Inputfields {
+  margin-top: 10vh;
+}
+
+.MealModal-Button-Overlay {
+  cursor: pointer;
+}
+
+.MealModal-Button {
+  font-family: "Segoe UI";
+  font-size: 1.7vh;
   font-weight: 400;
-  border-radius: 10px;
+  border-radius: 1vh;
   border: none;
   background-color: #043c5f;
   color: white;
   width: auto;
-  height: 5vh;
+  height: 3.5vh;
   cursor: pointer;
 }
 
-.btn-newMeal:hover {
+.MealModal-Button:hover {
   background-color: rgba(3, 40, 63, 1);
 }
 
@@ -32,23 +66,6 @@
   background-color: #f1f1f1;
   padding: 20px;
   border-radius: 18px;
-  display: flex;
-}
-
-.mealHeader {
-  display: fixed;
-}
-
-.modal-content h2 {
-  margin-top: 0;
-  color: #043c5f;
-}
-
-.newMealP {
-  font-family: "Segoe UI";
-  font-size: 16px;
-  font-weight: 500;
-  line-height: 3.6;
   display: flex;
 }
 
@@ -82,17 +99,6 @@
 
 .clicked {
   filter: grayscale(100%);
-}
-
-.btnPos {
-  position: absolute;
-  display: flex;
-  bottom: 5vh;
-  right: 37vh;
-}
-
-.btnMeal {
-  margin-right: 2vh;
 }
 
 .cross-icon {

@@ -4,20 +4,12 @@ import MealImageCheckboxes from "./MealImageCheckboxes";
 import { useMealListContext } from "../../hooks/useMealListContext";
 
 const MealFormBody = () => {
-  const { meal, submitMeal } = useMealListContext();
-
   return (
-    <div className="inputField">
-      <MealInputElements />
-      <MealInputDropdowns />
-      <MealImageCheckboxes />
-      <div className="btnPos">
-        <button
-          className="btnMeal btn-newMeal"
-          onClick={() => submitMeal(meal)}
-        >
-          Bestätigen
-        </button>
+    <div>
+      <div className="MealModal-Inputfields">
+        <MealInputElements />
+        <MealInputDropdowns />
+        <MealImageCheckboxes />
       </div>
     </div>
   );
