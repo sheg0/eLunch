@@ -3,14 +3,13 @@ import Modal from "@mui/material/Modal";
 
 const style = {
   position: "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
+  top: "50vh",
+  left: "100vh",
+  transform: "translate(-20vh, -20vh)",
+  width: "50vh",
   bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
+  borderRadius: "2vh",
+  p: "3vh",
   display: "table",
 };
 

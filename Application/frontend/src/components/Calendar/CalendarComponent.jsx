@@ -47,7 +47,7 @@ const Calendar = () => {
     setIsDetailModalOpen(!isDetailModalOpen);
   };
   return (
-    <Container>
+    <div className="calendar-app-container">
       <div className="calendar">
         {isMonthVisible ? (
           <div>
@@ -55,16 +55,14 @@ const Calendar = () => {
               onClickArrowLeft={goToPreviousMonth}
               onClickArrowRight={goToNextMonth}
             />
-            <div className="field">
-              <div className="dates">
+            <div className="calendar-field">
+              <div className="calendar-dates">
                 {previousMonthDays.map((day) => (
-                  <div className="date previous-month">{day}</div>
+                  <div className="calendar-date previous-month">{day}</div>
                 ))}
                 {calendarDays.map((day, index) => (
-                  <div key={index} className="date">
-                    <div className="calendar-day" key={day}>
-                      {day}
-                    </div>
+                  <div key={index} className="calendar-date">
+                    <div key={day}>{day}</div>
                     {getEvents(day, month, year, events).length !== 0 &&
                       getEvents(day, month, year, events).map(
                         (event, index) => (
@@ -80,7 +78,7 @@ const Calendar = () => {
                   </div>
                 ))}
                 {nextMonthDays.map((day) => (
-                  <div className="date next-month">{day}</div>
+                  <div className="calendar-date next-month">{day}</div>
                 ))}
               </div>
             </div>
@@ -92,10 +90,10 @@ const Calendar = () => {
               onClickArrowRight={goToNextWeek}
             />
             <div>
-              <div className="weeks">
+              <div className="calendar-weeks">
                 {getWeekDays().map((day) => (
                   <div key={day.toISOString()}>
-                    <div className="dateWeek">
+                    <div className="calendar-dateWeek">
                       {day.getDate()}
                       <Button
                         variant="contained"
@@ -110,7 +108,7 @@ const Calendar = () => {
             </div>
           </div>
         )}
-        <div className="btn-container">
+        <div className="calendar-btn-container">
           <button className="calendar-btn week" onClick={handleButtonClick}>
             <SlArrowDown />
           </button>
@@ -125,7 +123,7 @@ const Calendar = () => {
         setIsOpen={setIsDetailModalOpen}
         element={currentEvent}
       ></EventDetailModal>
-    </Container>
+    </div>
   );
 };
 

@@ -9,7 +9,7 @@ const CalendarHeader = ({ onClickArrowLeft, onClickArrowRight }) => {
   const { year, month } = useContext(CalendarContext);
   return (
     <>
-      <div className="header">
+      <div className="calendar-header">
         <button className="calendar-btn" onClick={onClickArrowLeft}>
           <SlArrowLeft />
         </button>

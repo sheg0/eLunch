@@ -8,6 +8,8 @@ import dayjs from "dayjs";
 import StyledButton from "../../Styled_MUI_Components/StyledButton";
 import StyledTimeField from "../../Styled_MUI_Components/StyledTimeField";
 import StyledDateField from "../../Styled_MUI_Components/StyledDateField";
+import { Typography } from "@mui/material";
+import "./EventModalStyle.css";
 
 export const EventModal = ({ isOpen, setIsOpen }) => {
   const [date, setDate] = useState(dayjs());
@@ -53,20 +55,30 @@ export const EventModal = ({ isOpen, setIsOpen }) => {
 
   return (
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <StyledDateField
-        label="Event Datum festlegen"
-        value={date}
-        onChange={(newDate) => setDate(newDate)}
-      ></StyledDateField>
-      <StyledTimeField
-        label="Uhrzeit"
-        value={date}
-        onChange={(newTime) => setTime(newTime)}
-      ></StyledTimeField>
-      <MealDropdown setMealId={setMealId}></MealDropdown>
-      <StyledButton variant="contained" onClick={addEvent}>
-        Event hinzufugen
-      </StyledButton>
+      <h1 className="EventModal-Header">Neues Gericht</h1>
+      <div className="EventModal-Content">
+        <div className="EventModal-Container">
+          <h1 className="EventModal-Headlines">Datum</h1>
+
+          <StyledDateField
+            value={date}
+            onChange={(newDate) => setDate(newDate)}
+          ></StyledDateField>
+
+          <StyledTimeField
+            value={date}
+            onChange={(newTime) => setTime(newTime)}
+          ></StyledTimeField>
+        </div>
+        <div className="EventModal-Container">
+          <h1 className="EventModal-Headlines">Gericht</h1>
+          <MealDropdown setMealId={setMealId}></MealDropdown>
+        </div>
+
+        <StyledButton onClick={addEvent} className="EventModal-Button">
+          Gericht hinzufügen
+        </StyledButton>
+      </div>
     </BasicModal>
   );
 };

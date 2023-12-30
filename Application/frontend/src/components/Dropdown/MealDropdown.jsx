@@ -20,12 +20,11 @@ export default function MealDropdown({ setMealId }) {
 
   return (
     <Box sx={{ minWidth: 120 }}>
-      <FormControl sx={"margin: 16px"} fullWidth>
-        <InputLabel id="meal-select-label">Gericht auswählen</InputLabel>
+      <FormControl sx={"margin: 2vh"} fullWidth>
+        <InputLabel id="meal-select-label"></InputLabel>
         <Select
           labelId="meal-select-label"
           id="meal-select"
-          label="Meals"
           value={meal}
           onChange={handleChange}
         >
