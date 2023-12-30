@@ -28,6 +28,7 @@ export const EventModal = ({ isOpen, setIsOpen }) => {
         date,
         mealId,
         userName: keycloak.tokenParsed.preferred_username,
+        isCreator: true,
       }),
       headers: {
         "Content-Type": "application/json",

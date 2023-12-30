@@ -8,10 +8,19 @@ import { useCalendarContext } from "../../hooks/useCalendarContext";
 import { useEventsContext } from "../../hooks/useEventsContext";
 import { EventModal } from "../Modal/EventModal/EventModal";
 import { useState } from "react";
+import { EventDetailModal } from "../Modal/EventDetailModal/EventDetailModal";
+
+import dayjs from "dayjs";
+let currentEvent = {
+  date: dayjs(),
+  meal: {},
+  participants: {},
+};
 
 const Calendar = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
+  const [isEventModalOpen, setIsEventModal] = useState(false);
+  const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  console.log("currentEvent: ", currentEvent);
   const {
     month,
     year,
@@ -32,6 +41,11 @@ const Calendar = () => {
 
   const { events } = useEventsContext();
 
+  const handleEventClick = (event) => {
+    currentEvent = event;
+    console.log("NEW EVENT:", currentEvent);
+    setIsDetailModalOpen(!isDetailModalOpen);
+  };
   return (
     <Container>
       <div className="calendar">
@@ -53,10 +67,11 @@ const Calendar = () => {
                     </div>
                     {getEvents(day, month, year, events).length !== 0 &&
                       getEvents(day, month, year, events).map(
-                        (element, index) => (
+                        (event, index) => (
                           <EventElement
+                            handleEventClick={handleEventClick}
                             key={index}
-                            event={element}
+                            event={event}
                             handleSubscribeClick={subscribeEvent}
                             handleUnsubscribeClick={unsubscribeEvent}
                           ></EventElement>
@@ -84,7 +99,7 @@ const Calendar = () => {
                       {day.getDate()}
                       <Button
                         variant="contained"
-                        onClick={() => setIsModalOpen(!isModalOpen)}
+                        onClick={() => setIsEventModal(!isEventModalOpen)}
                       >
                         + Neues Event
                       </Button>
@@ -101,7 +116,15 @@ const Calendar = () => {
           </button>
         </div>
       </div>
-      <EventModal isOpen={isModalOpen} setIsOpen={setIsModalOpen}></EventModal>
+      <EventModal
+        isOpen={isEventModalOpen}
+        setIsOpen={setIsEventModal}
+      ></EventModal>
+      <EventDetailModal
+        isOpen={isDetailModalOpen}
+        setIsOpen={setIsDetailModalOpen}
+        element={currentEvent}
+      ></EventDetailModal>
     </Container>
   );
 };

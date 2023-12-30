@@ -3,8 +3,14 @@ import "./EventElement.css";
 import CheckIcon from "@mui/icons-material/Check";
 import CancelIcon from "@mui/icons-material/Cancel";
 import { IconButton } from "@mui/material";
+import { Button } from "@mui/material";
 
-function EventElement({ event, handleSubscribeClick, handleUnsubscribeClick }) {
+function EventElement({
+  handleEventClick,
+  event,
+  handleSubscribeClick,
+  handleUnsubscribeClick,
+}) {
   const options = {
     hour: "2-digit",
     minute: "2-digit",
@@ -16,7 +22,11 @@ function EventElement({ event, handleSubscribeClick, handleUnsubscribeClick }) {
   );
 
   return (
-    <div className="meal-container">
+    <div
+      onClick={() => handleEventClick(event)}
+      variant="outlined"
+      className="meal-container"
+    >
       <p1>{formattedTime}</p1>
       <p>{event.meal.name}</p>
       <IconButton onClick={() => handleSubscribeClick(event)}>
