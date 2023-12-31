@@ -1,0 +1,39 @@
+.finanzen-container {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  background-color: grey;
+}
+
+.finanzen-content {
+  height: 90%;
+  width: 90%;
+
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+  flex-direction: column;
+  display: flex;
+}
+
+.row1 {
+  height: 45%;
+  width: 90%;
+
+  background-color: brown;
+}
+
+.row2 {
+  height: 45%;
+  width: 90%;
+
+  background-color: blue;
+}

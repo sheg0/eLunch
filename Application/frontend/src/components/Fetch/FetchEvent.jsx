@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import { Routes, Route } from "react-router-dom";
 import Events from "../../pages/Events.jsx";
+import Fin from "../../pages/Finance.jsx";
 
 function FetchEvent() {
   const { events, dispatch } = useEventsContext();
@@ -36,6 +37,7 @@ function FetchEvent() {
   return (
     <Routes>
       <Route path="/Events" element={<Events events={events} />} />
+      <Route path="/Finance" element={<Fin />} />
     </Routes>
   );
 }
