@@ -1,3 +1,80 @@
+.Modal-Header {
+  font-family: "Segoe UI";
+  color: #043c5f;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+  font-size: 3vh;
+}
+
+.EventModal-Content {
+  margin: 1vh;
+}
+
+.EventModal-Container {
+  display: flex;
+}
+
+.EventModal-Headlines {
+  font-family: "Segoe UI";
+  font-size: 2vh;
+  font-weight: 500;
+  padding-top: 2vh;
+  padding-right: 2vh;
+  margin-left: 1vh;
+}
+
+.EventModal-Button {
+  font-family: "Segoe UI";
+  font-size: 1.5vh;
+  font-weight: 400;
+  border-radius: 1vh;
+  border: none;
+  background-color: #043c5f;
+  color: white;
+  width: auto;
+  height: 3.5vh;
+  cursor: pointer;
+}
+
+.EventModal-Button:hover {
+  background-color: rgba(3, 40, 63, 1);
+}
+
+/***************/
+
+.MealModal-Container {
+  display: block;
+}
+
+.Modal-Time {
+  font-family: "Segoe UI";
+  font-size: 2vh;
+  font-weight: 500;
+  margin-right: 10vh;
+}
+
+.Modal-Meal {
+  color: #043c5f;
+  font-family: "Segoe UI";
+  font-size: 2vh;
+  font-weight: 600;
+}
+
+.EventDetail-Text {
+  font-family: "Segoe UI";
+  font-size: 2vh;
+  font-weight: 500;
+  margin-right: 5vh;
+}
+
+.EventDetail-Fields {
+  font-family: "Segoe UI";
+  font-size: 2vh;
+  font-weight: 400;
+  background-color: grey;
+  position: ;
+}
+
 .btn-newMeal {
   font-family: "Segoe UI";
   font-size: 16px;

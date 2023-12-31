@@ -10,13 +10,18 @@ const MealForm = () => {
 
   return (
     <>
-      <Typography variant="h5">Gericht hinzufügen/bearbeiten</Typography>
-      <MealInputElements />
-      <MealInputDropdowns />
-      <MealImageCheckboxes />
-      <StyledButton onClick={() => submitMeal(meal)} variant="contained">
-        Bestätigen
-      </StyledButton>
+      <h1 className="Modal-Header">Gericht hinzufügen/bearbeiten</h1>
+      <div className="EventModal-Content">
+        <div className="MealModal-Container">
+          <MealInputElements />
+          <MealInputDropdowns />
+          <MealImageCheckboxes />
+        </div>
+
+        <button className="EventModal-Button" onClick={() => submitMeal(meal)}>
+          BESTÄTIGEN
+        </button>
+      </div>
     </>
   );
 };

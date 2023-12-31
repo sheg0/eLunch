@@ -1,10 +1,20 @@
 import MealTableData from "./MealTableData.jsx";
-import { FaPen } from "react-icons/fa";
-import { FaRegTrashAlt } from "react-icons/fa";
+import { FaPen, FaRegTrashAlt } from "react-icons/fa";
 import { useMealListContext } from "../../hooks/useMealListContext.js";
+import React, { useState } from "react";
+import { RxCross1 } from "react-icons/rx";
 
 const MealListTableBody = ({ meals, handleClickDelete }) => {
   const { deleteMeal, handleClickMealEdit } = useMealListContext();
+  const [selectedMeal, setSelectedMeal] = useState(null);
+
+  const openDeleteModal = (meal) => {
+    setSelectedMeal(meal);
+  };
+
+  const closeDeleteModal = () => {
+    setSelectedMeal(null);
+  };
 
   return (
     <tbody>
@@ -13,22 +23,48 @@ const MealListTableBody = ({ meals, handleClickDelete }) => {
           <MealTableData meal={meal}></MealTableData>
 
           <td>
-            <div className="icon-container">
+            <div className="MeaList-icon-container">
               <button
                 onClick={() => handleClickMealEdit(meal)}
-                className="icon-button edit"
+                className="MealList-icon-button"
               >
                 <FaPen />
               </button>
 
-              <div className="icon-gap"></div>
+              <div className="MealList-icon-gap"></div>
 
               <button
-                onClick={() => deleteMeal(meal)}
-                className="icon-button delete"
+                onClick={() => openDeleteModal(meal)}
+                className="MealList-icon-button"
               >
                 <FaRegTrashAlt />
               </button>
+
+              {selectedMeal && selectedMeal.id === meal.id && (
+                <div className="MealList-Delete-Modal">
+                  <div className="mealDelete-content">
+                    <button
+                      className="mealDelete-close"
+                      onClick={closeDeleteModal}
+                    >
+                      <RxCross1 />
+                    </button>
+                    <p>
+                      Möchten Sie wirklich <strong>{selectedMeal.name}</strong>{" "}
+                      löschen?
+                    </p>
+                    <button
+                      className="MealDelete-Button"
+                      onClick={() => {
+                        deleteMeal(selectedMeal);
+                        closeDeleteModal();
+                      }}
+                    >
+                      Löschen
+                    </button>
+                  </div>
+                </div>
+              )}
             </div>
           </td>
         </tr>

@@ -96,17 +96,19 @@ export const CalendarProvider = ({ children }) => {
   const getEvents = (day, month, year, events) => {
     const eventList = [];
 
-    events.forEach((element) => {
-      const date = new Date(element.date);
+    if (events !== null) {
+      events.forEach((element) => {
+        const date = new Date(element.date);
 
-      const eventDay = date.getDate();
-      const eventMonth = date.getMonth();
-      const eventYear = date.getFullYear();
+        const eventDay = date.getDate();
+        const eventMonth = date.getMonth();
+        const eventYear = date.getFullYear();
 
-      if (day === eventDay && month === eventMonth && year === eventYear) {
-        eventList.push(element);
-      }
-    });
+        if (day === eventDay && month === eventMonth && year === eventYear) {
+          eventList.push(element);
+        }
+      });
+    }
 
     return eventList;
   };
