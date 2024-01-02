@@ -23,6 +23,14 @@ const eventSchema = new Schema(
           type: String,
           required: true,
         },
+        firstName: {
+          type: String,
+          required: true,
+        },
+        lastName: {
+          type: String,
+          required: true,
+        },
         isCreator: {
           type: Boolean,
           default: false,
@@ -32,6 +40,10 @@ const eventSchema = new Schema(
           default: false,
         },
         isBuyer: {
+          type: Boolean,
+          default: false,
+        },
+        isOrganisator: {
           type: Boolean,
           default: false,
         },

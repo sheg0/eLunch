@@ -1,9 +1,11 @@
 .Modal-Header {
   font-family: "Segoe UI";
-  color: #043c5f;
+  color: #898989;
   margin-top: 1vh;
   margin-bottom: 1vh;
   font-size: 3vh;
+  margin-left: 3vh;
+  margin-right: 7vh;
 }
 
 .EventModal-Content {
@@ -58,6 +60,7 @@
   font-family: "Segoe UI";
   font-size: 2vh;
   font-weight: 600;
+  margin-left: 3vh;
 }
 
 .EventDetail-Text {
@@ -65,14 +68,33 @@
   font-size: 2vh;
   font-weight: 500;
   margin-right: 5vh;
+  margin-bottom: 2vh;
 }
 
 .EventDetail-Fields {
   font-family: "Segoe UI";
   font-size: 2vh;
   font-weight: 400;
-  background-color: grey;
-  position: ;
+}
+
+.DetailModal-Header {
+  display: flex;
+}
+
+.DetailModal-Button {
+  font-size: 2vh;
+  background-color: white;
+  border: none;
+  cursor: pointer;
+  width: 3vh;
+  height: 3vh;
+  border-radius: 1vh;
+  margin-top: 1.5vh;
+  margin-right: 1vh;
+}
+
+.DetailModal-Button:hover {
+  background-color: #cccccc;
 }
 
 .btn-newMeal {

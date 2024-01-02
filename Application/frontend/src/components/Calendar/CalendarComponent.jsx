@@ -37,6 +37,7 @@ const Calendar = () => {
     getEvents,
     subscribeEvent,
     unsubscribeEvent,
+    setEvent,
   } = useCalendarContext();
 
   const { events } = useEventsContext();
@@ -122,6 +123,9 @@ const Calendar = () => {
         isOpen={isDetailModalOpen}
         setIsOpen={setIsDetailModalOpen}
         element={currentEvent}
+        handleSubscribeClick={subscribeEvent}
+        handleUnsubscribeClick={unsubscribeEvent}
+        setEvent={setEvent}
       ></EventDetailModal>
     </div>
   );

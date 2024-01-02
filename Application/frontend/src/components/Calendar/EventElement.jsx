@@ -28,13 +28,16 @@ function EventElement({
       className="meal-container"
     >
       <p1>{formattedTime}</p1>
+      <p></p>
       <p>{event.meal.name}</p>
+      {/*
       <IconButton onClick={() => handleSubscribeClick(event)}>
         <CheckIcon />
       </IconButton>
       <IconButton onClick={() => handleUnsubscribeClick(event)}>
         <CancelIcon />
       </IconButton>
+  */}
     </div>
   );
 }

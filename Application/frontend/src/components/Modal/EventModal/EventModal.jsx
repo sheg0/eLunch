@@ -29,6 +29,8 @@ export const EventModal = ({ isOpen, setIsOpen }) => {
         date,
         mealId,
         userName: keycloak.tokenParsed.preferred_username,
+        firstName: keycloak.tokenParsed.given_name,
+        lastName: keycloak.tokenParsed.family_name,
         isCreator: true,
       }),
       headers: {

@@ -10,6 +10,13 @@ export const CalendarProvider = ({ children }) => {
   const { keycloak } = useKeycloak();
   const { dispatch } = useEventsContext();
 
+  const emptyEvent = {
+    isCook: false,
+    isBuyer: false,
+    isOrganisator: false,
+  };
+  const [event, setEvent] = useState(emptyEvent);
+
   const handleButtonClick = () => {
     setMonthVisible(!isMonthVisible);
   };
@@ -117,6 +124,8 @@ export const CalendarProvider = ({ children }) => {
     const userData = {
       user: {
         userName: keycloak.tokenParsed.preferred_username,
+        firstName: keycloak.tokenParsed.given_name,
+        lastName: keycloak.tokenParsed.family_name,
       },
     };
     console.log(userData);
@@ -159,6 +168,26 @@ export const CalendarProvider = ({ children }) => {
     }
   };
 
+  const beCook = async (eventItem) => {
+
+    const response = await fetch("/api/events/" + eventItem._id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${keycloak.token}`,
+      },
+      body: JSON.stringify({
+        ...eventItem,
+        isCook: eventItem.,
+      }),
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "EDIT_EVENT", payload: json });
+    }
+  };
+
   const contextValue = {
     month,
     year,
@@ -176,6 +205,9 @@ export const CalendarProvider = ({ children }) => {
     getEvents,
     subscribeEvent,
     unsubscribeEvent,
+    beCook,
+    event,
+    setEvent,
   };
 
   return (
