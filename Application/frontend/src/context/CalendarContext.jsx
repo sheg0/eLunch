@@ -180,6 +180,7 @@ export const CalendarProvider = ({ children }) => {
   };
 
   const updateEvent = async (eventItem) => {
+    console.log(eventItem);
     const response = await fetch("/api/events/" + eventItem._id, {
       method: "PATCH",
       headers: {

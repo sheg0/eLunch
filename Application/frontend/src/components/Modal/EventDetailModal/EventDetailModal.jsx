@@ -119,6 +119,7 @@ export const EventDetailModal = ({
     };
 
     setEvent(updatedEvent);
+    updateEvent(updatedEvent);
   };
 
   const dateOptions = {
@@ -246,7 +247,6 @@ export const EventDetailModal = ({
           onClick={() => {
             handleItAll("button3");
             setEventProperty("isCook");
-            updateEvent(event);
           }}
           style={{
             width: "7vh",
