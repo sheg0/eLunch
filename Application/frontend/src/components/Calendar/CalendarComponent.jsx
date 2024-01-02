@@ -11,16 +11,10 @@ import { useState } from "react";
 import { EventDetailModal } from "../Modal/EventDetailModal/EventDetailModal";
 
 import dayjs from "dayjs";
-let currentEvent = {
-  date: dayjs(),
-  meal: {},
-  participants: {},
-};
 
 const Calendar = () => {
   const [isEventModalOpen, setIsEventModal] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
-  console.log("currentEvent: ", currentEvent);
   const {
     month,
     year,
@@ -37,16 +31,17 @@ const Calendar = () => {
     getEvents,
     subscribeEvent,
     unsubscribeEvent,
+    event,
     setEvent,
   } = useCalendarContext();
 
   const { events } = useEventsContext();
 
   const handleEventClick = (event) => {
-    currentEvent = event;
-    console.log("NEW EVENT:", currentEvent);
+    setEvent(event);
     setIsDetailModalOpen(!isDetailModalOpen);
   };
+
   return (
     <div className="calendar-app-container">
       <div className="calendar">
@@ -122,7 +117,7 @@ const Calendar = () => {
       <EventDetailModal
         isOpen={isDetailModalOpen}
         setIsOpen={setIsDetailModalOpen}
-        element={currentEvent}
+        event={event}
         handleSubscribeClick={subscribeEvent}
         handleUnsubscribeClick={unsubscribeEvent}
         setEvent={setEvent}

@@ -1,10 +1,10 @@
 import Calendar from "../components/Calendar/CalendarComponent.jsx";
 import { CalendarProvider } from "../context/CalendarContext.jsx";
 
-const Cal = () => {
+const Cal = (events) => {
   return (
     <CalendarProvider>
-      <Calendar></Calendar>
+      <Calendar events={events}></Calendar>
     </CalendarProvider>
   );
 };

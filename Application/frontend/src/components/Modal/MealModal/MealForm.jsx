@@ -8,6 +8,7 @@ import { Typography } from "@mui/material";
 const MealForm = () => {
   const { meal, submitMeal } = useMealListContext();
 
+  console.log("meal", meal);
   return (
     <>
       <h1 className="Modal-Header">Gericht hinzufügen/bearbeiten</h1>

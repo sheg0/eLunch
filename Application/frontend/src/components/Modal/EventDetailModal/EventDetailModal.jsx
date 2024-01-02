@@ -9,22 +9,28 @@ import { IoPersonOutline } from "react-icons/io5";
 import { useState } from "react";
 import { IconButton } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
+import { useKeycloak } from "@react-keycloak/web";
+import { useCalendarContext } from "../../../hooks/useCalendarContext";
 export const EventDetailModal = ({
-  element,
+  event,
   isOpen,
   setIsOpen,
   handleSubscribeClick,
   handleUnsubscribeClick,
   setEvent,
 }) => {
+  console.log("Event:", event);
+  const { keycloak } = useKeycloak();
+  const { updateEvent } = useCalendarContext();
   let participants = [];
-  console.log(element.participants);
 
   const toArray = () => {
-    Object.keys(element.participants).forEach(function (key, index) {
-      participants.push(element.participants[key]);
-    });
-    console.log(participants);
+    if (event != null) {
+      Object.keys(event?.participants).forEach(function (key, index) {
+        participants.push(event.participants[key]);
+      });
+      console.log(participants);
+    }
   };
 
   const [buttonColors, setButtonColors] = useState({
@@ -100,6 +106,21 @@ export const EventDetailModal = ({
     }
   };
 
+  const setEventProperty = (propertyName) => {
+    const currentUserName = keycloak.tokenParsed.preferred_username;
+
+    const updatedEvent = {
+      ...event,
+      participants: event.participants.map((participant) =>
+        participant.userName === currentUserName
+          ? { ...participant, [propertyName]: !participant[propertyName] }
+          : participant
+      ),
+    };
+
+    setEvent(updatedEvent);
+  };
+
   const dateOptions = {
     weekday: "long",
     day: "2-digit",
@@ -112,15 +133,17 @@ export const EventDetailModal = ({
     minute: "2-digit",
   };
 
-  const formattedDate = element.date
-    ? new Date(element.date)
-        .toLocaleDateString("de-DE", dateOptions)
-        .replace(",", " - ")
-    : "default";
+  const formattedDate =
+    event?.date != null
+      ? new Date(event.date)
+          .toLocaleDateString("de-DE", dateOptions)
+          .replace(",", " - ")
+      : "default";
 
-  const formattedTime = element.date
-    ? new Date(element.date).toLocaleTimeString("de-DE", timeOptions)
-    : "default";
+  const formattedTime =
+    event?.date != null
+      ? new Date(event.date).toLocaleTimeString("de-DE", timeOptions)
+      : "default";
 
   return (
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
@@ -136,7 +159,7 @@ export const EventDetailModal = ({
 
       <div className="EventModal-Container">
         <p className="Modal-Time">{formattedTime}</p>
-        <p className="Modal-Meal">{element.meal.name || "default"}</p>
+        <p className="Modal-Meal">{event?.meal?.name || "default"}</p>
       </div>
 
       {toArray()}
@@ -188,7 +211,7 @@ export const EventDetailModal = ({
         <IconButton
           onClick={() => {
             handleItAll("button1");
-            handleSubscribeClick(element);
+            handleSubscribeClick(event);
           }}
           style={{
             width: "7vh",
@@ -205,7 +228,7 @@ export const EventDetailModal = ({
         <IconButton
           onClick={() => {
             handleItAll("button2");
-            handleUnsubscribeClick(element);
+            handleUnsubscribeClick(event);
           }}
           style={{
             width: "7vh",
@@ -222,7 +245,8 @@ export const EventDetailModal = ({
         <IconButton
           onClick={() => {
             handleItAll("button3");
-            setEvent(...element, "isCook": )
+            setEventProperty("isCook");
+            updateEvent(event);
           }}
           style={{
             width: "7vh",

@@ -5,16 +5,27 @@ import { useEventsContext } from "../hooks/useEventsContext";
 export const CalendarContext = createContext();
 
 export const CalendarProvider = ({ children }) => {
+  const emptyEvent = {
+    date: null,
+    meal: null,
+    participants: [
+      {
+        userName: "",
+        firstName: "",
+        lastName: "",
+        isCreator: false,
+        isCook: false,
+        isBuyer: false,
+        isOrganisator: false,
+        isIdle: false,
+      },
+    ],
+  };
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMonthVisible, setMonthVisible] = useState(false);
   const { keycloak } = useKeycloak();
   const { dispatch } = useEventsContext();
-
-  const emptyEvent = {
-    isCook: false,
-    isBuyer: false,
-    isOrganisator: false,
-  };
   const [event, setEvent] = useState(emptyEvent);
 
   const handleButtonClick = () => {
@@ -168,8 +179,7 @@ export const CalendarProvider = ({ children }) => {
     }
   };
 
-  const beCook = async (eventItem) => {
-
+  const updateEvent = async (eventItem) => {
     const response = await fetch("/api/events/" + eventItem._id, {
       method: "PATCH",
       headers: {
@@ -178,7 +188,6 @@ export const CalendarProvider = ({ children }) => {
       },
       body: JSON.stringify({
         ...eventItem,
-        isCook: eventItem.,
       }),
     });
     const json = await response.json();
@@ -205,7 +214,7 @@ export const CalendarProvider = ({ children }) => {
     getEvents,
     subscribeEvent,
     unsubscribeEvent,
-    beCook,
+    updateEvent,
     event,
     setEvent,
   };

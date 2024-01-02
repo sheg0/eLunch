@@ -10,9 +10,11 @@ import Cal from "../../pages/Calendar.jsx";
 import Info from "../Info/Info.jsx";
 //import MealList from "./MealList/MealList.jsx";
 import List from "../../pages/List.jsx";
+import { useEventsContext } from "../../hooks/useEventsContext.js";
 
 function FetchMeal() {
   const { meals, dispatch } = useMealsContext();
+  const { events } = useEventsContext();
   const { keycloak, initialized } = useKeycloak();
 
   //console.log(keycloak.token);
@@ -40,9 +42,9 @@ function FetchMeal() {
 
   return (
     <Routes>
-      <Route path="/" element={<Cal meals={meals} />} />
+      <Route path="/" element={<Cal events={events} />} />
       <Route path="/List" element={<List meals={meals} />} />
-      <Route path="/Calendar" element={<Cal meals={meals} />} />
+      <Route path="/Calendar" element={<Cal events={events} />} />
       <Route path="/Info" element={<Info />} />
     </Routes>
   );
