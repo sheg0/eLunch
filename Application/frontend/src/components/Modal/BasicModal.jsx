@@ -11,7 +11,6 @@ const style = {
   bgcolor: "background.paper",
   borderRadius: "2vh",
   p: "3vh",
-  display: "table",
 };
 
 export const BasicModal = ({ isOpen, setIsOpen, children }) => {

@@ -113,6 +113,7 @@ const Calendar = () => {
       <EventModal
         isOpen={isEventModalOpen}
         setIsOpen={setIsEventModal}
+        event={event}
       ></EventModal>
       <EventDetailModal
         isOpen={isDetailModalOpen}

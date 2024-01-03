@@ -3,14 +3,14 @@ import { BasicModal } from "../BasicModal";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import { useKeycloak } from "@react-keycloak/web";
 import { useEventsContext } from "../../../hooks/useEventsContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import StyledButton from "../../Styled_MUI_Components/StyledButton";
 import StyledTimeField from "../../Styled_MUI_Components/StyledTimeField";
 import StyledDateField from "../../Styled_MUI_Components/StyledDateField";
 import "../ModalStyle.css";
 
-export const EventModal = ({ isOpen, setIsOpen }) => {
+export const EventModal = ({ isOpen, setIsOpen, event }) => {
   const [date, setDate] = useState(dayjs());
   const [mealId, setMealId] = useState("");
   const { keycloak } = useKeycloak();

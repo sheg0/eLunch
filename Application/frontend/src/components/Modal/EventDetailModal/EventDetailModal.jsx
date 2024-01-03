@@ -7,10 +7,14 @@ import { LuShoppingBasket } from "react-icons/lu";
 import { PiCookingPot } from "react-icons/pi";
 import { IoPersonOutline } from "react-icons/io5";
 import { useState } from "react";
-import { IconButton } from "@mui/material";
+import { IconButton, Modal } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import { useKeycloak } from "@react-keycloak/web";
 import { useCalendarContext } from "../../../hooks/useCalendarContext";
+import { FaInfoCircle } from "react-icons/fa";
+import InfoDetailModal from "../InfoDetailModal/InfoDetailModal";
+import MealImageCheckbox from "../MealModal/MealImageCheckbox";
+
 export const EventDetailModal = ({
   event,
   isOpen,
@@ -23,7 +27,17 @@ export const EventDetailModal = ({
   const { keycloak } = useKeycloak();
   const { updateEvent } = useCalendarContext();
   let participants = [];
+  const [isInfoModalOpen, setInfoModalOpen] = useState(false);
 
+  const openInfoModal = () => {
+    setInfoModalOpen(true);
+  };
+  const closeInfoModal = () => {
+    setInfoModalOpen(false);
+  };
+
+  const mealName = event?.meal?.name || "default";
+  const meal = event?.meal;
   const toArray = () => {
     if (event != null) {
       Object.keys(event?.participants).forEach(function (key, index) {
@@ -161,6 +175,20 @@ export const EventDetailModal = ({
       <div className="EventModal-Container">
         <p className="Modal-Time">{formattedTime}</p>
         <p className="Modal-Meal">{event?.meal?.name || "default"}</p>
+        <button className="DetailModal-InfoButton" onClick={openInfoModal}>
+          <FaInfoCircle />
+        </button>
+        <Modal
+          open={isInfoModalOpen}
+          onClose={closeInfoModal}
+          BackdropComponent={null}
+        >
+          <InfoDetailModal
+            mealName={mealName}
+            meal={meal}
+            onClose={closeInfoModal}
+          />
+        </Modal>
       </div>
 
       {toArray()}
@@ -264,7 +292,10 @@ export const EventDetailModal = ({
 
       <Tooltip title="Einkaufen" arrow>
         <IconButton
-          onClick={() => handleItAll("button4")}
+          onClick={() => {
+            handleItAll("button4");
+            setEventProperty("isBuyer");
+          }}
           style={{
             width: "7vh",
             height: "3vh",
@@ -281,7 +312,10 @@ export const EventDetailModal = ({
 
       <Tooltip title="Organisieren" arrow>
         <IconButton
-          onClick={() => handleItAll("button5")}
+          onClick={() => {
+            handleItAll("button5");
+            setEventProperty("isOrganisator");
+          }}
           style={{
             width: "7vh",
             height: "3vh",
