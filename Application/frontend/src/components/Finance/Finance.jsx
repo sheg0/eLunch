@@ -1,20 +1,44 @@
 import React, { useState } from "react";
 import "./Finance.css";
+import { useKeycloak } from "@react-keycloak/web";
 
-const Finance = ({ balance }) => {
-  console.log(balance);
+const Finance = () => {
+  const [accounts, setAccounts] = useState([
+    { name: "Vivian", balance: 511.86 },
+    { name: "Imran", balance: 465.99 },
+    { name: "Esra", balance: 3.59 },
+    { name: "Kaan", balance: 1598.78 },
+    { name: "Selim", balance: 50.69 },
+  ]);
 
-  const [selectedEmployee, setSelectedEmployee] = useState("");
+  const [selectedAccount, setSelectedAccount] = useState(accounts[0]);
+  const [amount, setAmount] = useState("");
 
-  const employees = ["Esra", "Kaan", "Vivian", "Selim"];
-
-  const handleEmployeeChange = (e) => {
-    setSelectedEmployee(e.target.value);
+  const handleAccountChange = (e) => {
+    const selectedAccountIndex = e.target.value;
+    setSelectedAccount(accounts[selectedAccountIndex]);
   };
 
-  const handleConfirm = () => {
-    setSelectedEmployee();
+  const handleAmountChange = (e) => {
+    setAmount(e.target.value);
   };
+
+  const handleSendMoney = () => {
+    const updatedAccounts = accounts.map((account) => {
+      if (account === selectedAccount) {
+        return {
+          ...account,
+          balance: account.balance - parseInt(amount),
+        };
+      }
+      return account;
+    });
+
+    setAccounts(updatedAccounts);
+    setAmount("");
+  };
+
+  console.log(accounts);
 
   return (
     <>
@@ -22,23 +46,21 @@ const Finance = ({ balance }) => {
         <div className="finanzen-content">
           <div className="row1">
             <div className="neueAusgabe">
-              <label htmlFor="employee">Von</label>
               <label htmlFor="employee">Für</label>
               <select
-                id="employee"
-                value={selectedEmployee}
-                onChange={handleEmployeeChange}
+                value={accounts.indexOf(selectedAccount)}
+                onChange={handleAccountChange}
               >
-                <option value="">Select</option>
-                {employees.map((employee) => (
-                  <option key={employee} value={employee}>
-                    {employee}
+                {accounts.map((account, index) => (
+                  <option key={index} value={index}>
+                    {account.name}
                   </option>
                 ))}
               </select>
+
               <label htmlFor="money-input">Betrag (€)</label>
-              <input type="number" id="money-input" />
-              <button onClick={handleConfirm}>Bestätigen</button>
+              <input type="text" value={amount} onChange={handleAmountChange} />
+              <button onClick={handleSendMoney}>Send</button>
             </div>
           </div>
           <div className="row2">
@@ -51,3 +73,4 @@ const Finance = ({ balance }) => {
 };
 
 export default Finance;
+export { handleSendMoney, accounts };

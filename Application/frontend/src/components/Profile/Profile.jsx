@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useKeycloak } from "@react-keycloak/web";
+import { handleSendMoney } from "../Finance/Finance.jsx";
 
 import { IoIosLogOut } from "react-icons/io";
 import { PiCookingPotBold } from "react-icons/pi";
@@ -15,7 +16,6 @@ const Profile = () => {
   var lastName = "Mustermann";
   var balance = 0;
   if (initialized && keycloak.authenticated) {
-    username = keycloak.tokenParsed.preferred_username;
     firstName = keycloak.tokenParsed.given_name;
     lastName = keycloak.tokenParsed.family_name;
   }
@@ -37,7 +37,9 @@ const Profile = () => {
   const handleLogout = () => {
     keycloak.logout();
   };
-
+  const balance = () => {
+    handleSendMoney();
+  };
   return (
     <div className="profile-container">
       <div className="profile-content">
