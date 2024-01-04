@@ -3,13 +3,14 @@ import { BasicModal } from "../BasicModal";
 import { DateField } from "@mui/x-date-pickers/DateField";
 import { useKeycloak } from "@react-keycloak/web";
 import { useEventsContext } from "../../../hooks/useEventsContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import StyledButton from "../../Styled_MUI_Components/StyledButton";
 import StyledTimeField from "../../Styled_MUI_Components/StyledTimeField";
 import StyledDateField from "../../Styled_MUI_Components/StyledDateField";
+import "../ModalStyle.css";
 
-export const EventModal = ({ isOpen, setIsOpen }) => {
+export const EventModal = ({ isOpen, setIsOpen, event }) => {
   const [date, setDate] = useState(dayjs());
   const [mealId, setMealId] = useState("");
   const { keycloak } = useKeycloak();
@@ -28,6 +29,9 @@ export const EventModal = ({ isOpen, setIsOpen }) => {
         date,
         mealId,
         userName: keycloak.tokenParsed.preferred_username,
+        firstName: keycloak.tokenParsed.given_name,
+        lastName: keycloak.tokenParsed.family_name,
+        isCreator: true,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -52,20 +56,40 @@ export const EventModal = ({ isOpen, setIsOpen }) => {
 
   return (
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <StyledDateField
-        label="Event Datum festlegen"
-        value={date}
-        onChange={(newDate) => setDate(newDate)}
-      ></StyledDateField>
-      <StyledTimeField
-        label="Uhrzeit"
-        value={date}
-        onChange={(newTime) => setTime(newTime)}
-      ></StyledTimeField>
-      <MealDropdown setMealId={setMealId}></MealDropdown>
-      <StyledButton variant="contained" onClick={addEvent}>
-        Event hinzufugen
-      </StyledButton>
+      <h1 className="Modal-Header">Neues Gericht</h1>
+      <div className="EventModal-Content">
+        <div className="EventModal-Container">
+          <h1 className="EventModal-Headlines">Datum</h1>
+
+          <StyledDateField
+            value={date}
+            onChange={(newDate) => setDate(newDate)}
+          ></StyledDateField>
+
+          <StyledTimeField
+            value={date}
+            onChange={(newTime) => setTime(newTime)}
+          ></StyledTimeField>
+        </div>
+        <div className="EventModal-Container">
+          <h1 className="EventModal-Headlines">Gericht</h1>
+          <MealDropdown setMealId={setMealId}></MealDropdown>
+        </div>
+
+        <StyledButton
+          onClick={addEvent}
+          className="EventModal-Button"
+          sx={{
+            bgcolor: "#043c5f",
+            color: "white",
+            "&:hover": {
+              backgroundColor: "rgba(3, 40, 63, 1)",
+            },
+          }}
+        >
+          Gericht hinzufügen
+        </StyledButton>
+      </div>
     </BasicModal>
   );
 };

@@ -2,19 +2,20 @@
   width: auto;
   height: auto;
   background-color: #ccebfe;
-  border-radius: 11px;
+  border-radius: 1.25vh;
   display: flex;
+  margin-bottom: 0.5vh;
 }
 
 .meal-container p {
-  font-size: 14px;
+  font-size: 1.4vh;
   color: #043c5f;
   font-weight: 600;
   margin-right: 0.5vh;
 }
 
 .meal-container p1 {
-  font-size: 14px;
+  font-size: 1.4vh;
   font-weight: 400;
   color: #3f3f3f;
   display: flex;

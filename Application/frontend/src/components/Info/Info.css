@@ -1,54 +1,75 @@
-:root {
-  margin: 0;
+.Info-Page-Container {
+  flex-grow: 1;
+  padding-left: 15vh;
+  padding-top: 2vh;
+  width: 100vh;
 }
 
-.content {
+.Info-Page-Content {
   display: absolute;
-  height: 10%;
-  width: 100%;
-  background-color: #f1f1f1;
-  border-radius: 18px;
+  height: 50vh;
+  background-color: #e4e4e4;
+  border-radius: 2vh;
   flex: 1;
-  padding-bottom: 10px;
-  padding-left: 5px;
+  padding-bottom: 1vh;
+  padding-left: 1vh;
 }
 
-.textcontent {
+.Info-Page-Headline {
+  font-family: "Segoe UI";
+  color: #043c5f;
   font-weight: 500;
-  font-size: large;
-  text-align: left;
-  line-height: 2;
-  margin: 3vh;
+  font-size: 5vh;
+  margin-bottom: 1vh;
+  padding-top: 1vh;
+  padding-left: 1vh;
 }
 
-.legend {
-  background-color: #f1f1f1;
-  width: 100%;
-  border-radius: 18px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-top: 10px;
+.Info-Page-Liste {
+  font-family: "Segoe UI";
+  font-size: 2vh;
+  padding-left: 2vh;
+  line-height: 3.5vh;
+}
+
+.Info-Page-Legend {
+  background-color: #e4e4e4;
+  border-radius: 2vh;
+  padding-bottom: 1vh;
+  padding-left: 1vh;
+  padding-top: 1vh;
   display: flex;
 }
 
-.infoImg {
-  margin: 10px;
+.Info-Page-Image {
+  margin: 1vh;
   display: block;
+  height: 5vh;
 }
 
-.imgText {
-  font-size: larger;
-  padding: 10px;
+.Info-Page-ImageText {
+  font-size: 1.6vh;
+  padding: 1vh;
 }
 
-.footer {
+.InfoPage-Footer {
   background-color: #043c5f;
+
   color: white;
   padding: 2vh;
-  border-radius: 18px;
+  border-radius: 2vh;
   bottom: 0;
   display: flex;
-  font-size: 16px;
+  font-size: 2vh;
   gap: 20vh;
-  width: 100%;
+}
+
+.InfoPage-Footer-Headline {
+  font-family: "Segoe UI";
+  color: #759acb;
+  font-weight: 650;
+}
+
+.InfoPage-Text {
+  font-family: "Segoe UI";
 }

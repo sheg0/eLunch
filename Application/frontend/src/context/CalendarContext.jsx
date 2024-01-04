@@ -5,10 +5,28 @@ import { useEventsContext } from "../hooks/useEventsContext";
 export const CalendarContext = createContext();
 
 export const CalendarProvider = ({ children }) => {
+  const emptyEvent = {
+    date: null,
+    meal: null,
+    participants: [
+      {
+        userName: "",
+        firstName: "",
+        lastName: "",
+        isCreator: false,
+        isCook: false,
+        isBuyer: false,
+        isOrganisator: false,
+        isIdle: false,
+      },
+    ],
+  };
+
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMonthVisible, setMonthVisible] = useState(false);
   const { keycloak } = useKeycloak();
   const { dispatch } = useEventsContext();
+  const [event, setEvent] = useState(emptyEvent);
 
   const handleButtonClick = () => {
     setMonthVisible(!isMonthVisible);
@@ -96,17 +114,19 @@ export const CalendarProvider = ({ children }) => {
   const getEvents = (day, month, year, events) => {
     const eventList = [];
 
-    events.forEach((element) => {
-      const date = new Date(element.date);
+    if (events !== null) {
+      events.forEach((element) => {
+        const date = new Date(element.date);
 
-      const eventDay = date.getDate();
-      const eventMonth = date.getMonth();
-      const eventYear = date.getFullYear();
+        const eventDay = date.getDate();
+        const eventMonth = date.getMonth();
+        const eventYear = date.getFullYear();
 
-      if (day === eventDay && month === eventMonth && year === eventYear) {
-        eventList.push(element);
-      }
-    });
+        if (day === eventDay && month === eventMonth && year === eventYear) {
+          eventList.push(element);
+        }
+      });
+    }
 
     return eventList;
   };
@@ -115,6 +135,8 @@ export const CalendarProvider = ({ children }) => {
     const userData = {
       user: {
         userName: keycloak.tokenParsed.preferred_username,
+        firstName: keycloak.tokenParsed.given_name,
+        lastName: keycloak.tokenParsed.family_name,
       },
     };
     console.log(userData);
@@ -157,6 +179,25 @@ export const CalendarProvider = ({ children }) => {
     }
   };
 
+  const updateEvent = async (eventItem) => {
+    console.log(eventItem);
+    const response = await fetch("/api/events/" + eventItem._id, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${keycloak.token}`,
+      },
+      body: JSON.stringify({
+        ...eventItem,
+      }),
+    });
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "EDIT_EVENT", payload: json });
+    }
+  };
+
   const contextValue = {
     month,
     year,
@@ -174,6 +215,9 @@ export const CalendarProvider = ({ children }) => {
     getEvents,
     subscribeEvent,
     unsubscribeEvent,
+    updateEvent,
+    event,
+    setEvent,
   };
 
   return (
