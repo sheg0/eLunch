@@ -9,8 +9,23 @@ import { useEventsContext } from "../../hooks/useEventsContext";
 import { EventModal } from "../Modal/EventModal/EventModal";
 import { useState } from "react";
 import { EventDetailModal } from "../Modal/EventDetailModal/EventDetailModal";
-
+import styled from "@emotion/styled";
 import dayjs from "dayjs";
+
+const StyledEventButton = styled(Button)({
+  fontFamily: "Segoe UI",
+  fontWeight: 400,
+  color: "white",
+  backgroundColor: "#043c5f",
+  width: "15vh",
+  borderRadius: "1vh",
+  marginLeft: "1vh",
+  marginBottom: "1vh",
+  transition: "background-color 0.3s ease",
+  "&:hover": {
+    backgroundColor: "rgba(3, 40, 63, 1)",
+  },
+});
 
 const Calendar = () => {
   const [isEventModalOpen, setIsEventModal] = useState(false);
@@ -56,7 +71,46 @@ const Calendar = () => {
                 {previousMonthDays.map((day) => (
                   <div className="calendar-date previous-month">{day}</div>
                 ))}
+
+                {calendarDays.map((day, index) => {
+                  const dayEvents = getEvents(day, month, year, events);
+
+                  return (
+                    <div key={index} className="calendar-date">
+                      <div key={day}>{day}</div>
+                      {dayEvents.length > 1 ? (
+                        <div>
+                          <EventElement
+                            key={0} // key für das erste Event
+                            event={dayEvents[0]}
+                            handleEventClick={handleEventClick}
+                            handleSubscribeClick={subscribeEvent}
+                            handleUnsubscribeClick={unsubscribeEvent}
+                          />
+                          <span
+                            onClick={handleButtonClick}
+                            className="Calendar-MoreEvents"
+                          >
+                            +{dayEvents.length - 1} weitere Events
+                          </span>
+                        </div>
+                      ) : (
+                        dayEvents.map((event, index) => (
+                          <EventElement
+                            key={index}
+                            event={event}
+                            handleEventClick={handleEventClick}
+                            handleSubscribeClick={subscribeEvent}
+                            handleUnsubscribeClick={unsubscribeEvent}
+                          />
+                        ))
+                      )}
+                    </div>
+                  );
+                })}
+                {/*
                 {calendarDays.map((day, index) => (
+                  
                   <div key={index} className="calendar-date">
                     <div key={day}>{day}</div>
                     {getEvents(day, month, year, events).length !== 0 &&
@@ -73,6 +127,8 @@ const Calendar = () => {
                       )}
                   </div>
                 ))}
+
+                        */}
                 {nextMonthDays.map((day) => (
                   <div className="calendar-date next-month">{day}</div>
                 ))}
@@ -91,12 +147,22 @@ const Calendar = () => {
                   <div key={day.toISOString()}>
                     <div className="calendar-dateWeek">
                       {day.getDate()}
-                      <Button
-                        variant="contained"
+                      <StyledEventButton
                         onClick={() => setIsEventModal(!isEventModalOpen)}
                       >
-                        + Neues Event
-                      </Button>
+                        + Gericht
+                      </StyledEventButton>
+                      {getEvents(day.getDate(), month, year, events).map(
+                        (event, index) => (
+                          <EventElement
+                            key={index}
+                            event={event}
+                            handleEventClick={handleEventClick}
+                            handleSubscribeClick={subscribeEvent}
+                            handleUnsubscribeClick={unsubscribeEvent}
+                          />
+                        )
+                      )}
                     </div>
                   </div>
                 ))}
