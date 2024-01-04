@@ -22,11 +22,3 @@
   margin-top: 1.5vh;
   margin-left: 0.5vh;
 }
-
-.Calendar-MoreEvents {
-  font-family: "Segoe UI";
-  color: #043c5f;
-  font-size: 1.8vh;
-  cursor: pointer;
-  margin: 1vh;
-}

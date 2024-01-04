@@ -1,8 +1,10 @@
 import MealInputElement from "./MealInputElement";
 import { useMealListContext } from "../../../hooks/useMealListContext";
 import "../ModalStyle.css";
+
 const MealInputElements = () => {
   const { meal } = useMealListContext();
+
   return (
     <>
       <MealInputElement

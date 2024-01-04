@@ -6,13 +6,12 @@
 
 .MeaList-icon-container {
   display: flex;
-  align-items: center;
 }
 
 .MealList-icon-button {
   border: none;
-  border-radius: 18px;
-  width: 5vh;
+  border-radius: 2vh;
+  width: 10vh;
   height: 5vh;
   cursor: pointer;
 }
@@ -73,15 +72,70 @@
   background-color: rgba(3, 40, 63, 1);
 }
 
+.MealList-Info-Container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.MealList-Info-Content {
+  font-family: "Segoe UI";
+  background-color: #f1f1f1;
+  padding: 2vh;
+  border-radius: 2vh;
+}
+
+.MealList-Info-Modal {
+  max-height: 60vh;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.MealList-Info-Header {
+  font-family: "Segoe UI";
+  color: #043c5f;
+  font-weight: 700;
+  font-size: 2.5vh;
+  margin: 1vh;
+}
+
+.MealList-Info-TextContent {
+  display: flex;
+}
+
+.MealList-Info-DescriptionBox {
+  margin-right: 1vh;
+  border-right: thin solid #9b9b9b;
+}
+
+.MealList-Info-TextContentSecond {
+  display: flex;
+  margin-top: 2vh;
+}
+
+.MealList-Info-TextBox {
+  margin-right: 5vh;
+}
+
+.MealList-MirFälltKeinNameEin {
+  margin-right: 2vh;
+}
+
 .table-con {
   font-family: "Segoe UI";
   width: 102vh;
   height: 75vh;
   overflow-y: scroll;
-  border-radius: 18px;
+  border-radius: 2vh;
   margin-bottom: 2vh;
   margin-top: 2vh;
-  font-size: 18px;
+  font-size: 2vh;
 }
 
 .table {
@@ -101,7 +155,7 @@
 
 .table td,
 .table th {
-  padding: 8px;
+  padding: 1vh;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: thin solid #ddd;
 }

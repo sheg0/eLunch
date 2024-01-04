@@ -175,6 +175,7 @@ export const EventDetailModal = ({
       <div className="EventModal-Container">
         <p className="Modal-Time">{formattedTime}</p>
         <p className="Modal-Meal">{event?.meal?.name || "default"}</p>
+
         <button className="DetailModal-InfoButton" onClick={openInfoModal}>
           <FaInfoCircle />
         </button>
@@ -190,7 +191,7 @@ export const EventDetailModal = ({
           />
         </Modal>
       </div>
-
+      <p>Hier kommen noch die Tags hin</p>
       {toArray()}
 
       {participants

@@ -122,3 +122,18 @@
 .calendar-today-btn:hover {
   background-color: #043c5f27;
 }
+
+.Calendar-EventsContainer {
+  height: 14vh;
+  overflow: auto;
+  scrollbar-width: thin;
+}
+
+.Calendar-MoreEvents {
+  font-family: "Segoe UI";
+  color: #043c5f;
+  font-size: 1.8vh;
+  cursor: pointer;
+  margin: 1vh;
+  font-weight: 450;
+}

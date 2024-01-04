@@ -81,7 +81,7 @@ const Calendar = () => {
                       {dayEvents.length > 1 ? (
                         <div>
                           <EventElement
-                            key={0} // key für das erste Event
+                            key={0}
                             event={dayEvents[0]}
                             handleEventClick={handleEventClick}
                             handleSubscribeClick={subscribeEvent}
@@ -108,27 +108,7 @@ const Calendar = () => {
                     </div>
                   );
                 })}
-                {/*
-                {calendarDays.map((day, index) => (
-                  
-                  <div key={index} className="calendar-date">
-                    <div key={day}>{day}</div>
-                    {getEvents(day, month, year, events).length !== 0 &&
-                      getEvents(day, month, year, events).map(
-                        (event, index) => (
-                          <EventElement
-                            handleEventClick={handleEventClick}
-                            key={index}
-                            event={event}
-                            handleSubscribeClick={subscribeEvent}
-                            handleUnsubscribeClick={unsubscribeEvent}
-                          ></EventElement>
-                        )
-                      )}
-                  </div>
-                ))}
 
-                        */}
                 {nextMonthDays.map((day) => (
                   <div className="calendar-date next-month">{day}</div>
                 ))}
@@ -152,17 +132,19 @@ const Calendar = () => {
                       >
                         + Gericht
                       </StyledEventButton>
-                      {getEvents(day.getDate(), month, year, events).map(
-                        (event, index) => (
-                          <EventElement
-                            key={index}
-                            event={event}
-                            handleEventClick={handleEventClick}
-                            handleSubscribeClick={subscribeEvent}
-                            handleUnsubscribeClick={unsubscribeEvent}
-                          />
-                        )
-                      )}
+                      <div className="Calendar-EventsContainer">
+                        {getEvents(day.getDate(), month, year, events).map(
+                          (event, index) => (
+                            <EventElement
+                              key={index}
+                              event={event}
+                              handleEventClick={handleEventClick}
+                              handleSubscribeClick={subscribeEvent}
+                              handleUnsubscribeClick={unsubscribeEvent}
+                            />
+                          )
+                        )}
+                      </div>
                     </div>
                   </div>
                 ))}
