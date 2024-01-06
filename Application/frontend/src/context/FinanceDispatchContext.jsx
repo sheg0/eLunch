@@ -7,6 +7,7 @@ export const financesReducer = (state, action) => {
   switch (action.type) {
     case "SET_FINANCE":
       return {
+        ...state,
         finances: action.payload,
       };
     case "CREATE_FINANCE":

@@ -11,7 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "dayjs/locale/de";
 import { FinanceDispatchContextProvider } from "./context/FinanceDispatchContext";
-
+import { FinanceProvider } from "./context/FinanceContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ReactKeycloakProvider
@@ -19,15 +19,17 @@ root.render(
     initOptions={{ onLoad: "login-required", pkceMethod: "S256" }}
   >
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
-      <EventContextProvider>
-        <MealContextProvider>
-          <FinanceDispatchContextProvider>
-            <BrowserRouter>
-              <App />
-            </BrowserRouter>
-          </FinanceDispatchContextProvider>
-        </MealContextProvider>
-      </EventContextProvider>
+      <FinanceDispatchContextProvider>
+        <FinanceProvider>
+          <EventContextProvider>
+            <MealContextProvider>
+              <BrowserRouter>
+                <App />
+              </BrowserRouter>
+            </MealContextProvider>
+          </EventContextProvider>
+        </FinanceProvider>
+      </FinanceDispatchContextProvider>
     </LocalizationProvider>
   </ReactKeycloakProvider>
 );

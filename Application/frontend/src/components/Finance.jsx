@@ -6,7 +6,7 @@ import { useEffect } from "react";
 export default function Finance({ finances }) {
   console.log("finance Component: ", finances);
   const { keycloak, initialized } = useKeycloak();
-  const { addFinance } = useFinanceContext();
+  const { finance, addFinance } = useFinanceContext();
 
   useEffect(() => {
     if (initialized && keycloak.authenticated) {
@@ -14,8 +14,8 @@ export default function Finance({ finances }) {
       const firstName = keycloak.tokenParsed.given_name;
       const lastName = keycloak.tokenParsed.family_name;
 
-      const userExists = finances.some(
-        (finance) => finance.userInfo.userName === username
+      const userExists = finance.some(
+        (fin) => fin.userInfo.userName === username
       );
 
       if (!userExists) {

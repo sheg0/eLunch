@@ -6,11 +6,7 @@ import { FinanceProvider } from "../context/FinanceContext.jsx";
 
 const Fin = ({ finances }) => {
   console.log("finance Page: ", finances);
-  return (
-    <FinanceProvider>
-      <Finance finances={finances}></Finance>
-    </FinanceProvider>
-  );
+  return <Finance finances={finances}></Finance>;
 };
 
 export default Fin;

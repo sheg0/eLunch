@@ -5,7 +5,7 @@ import { useFinanceDispatchContext } from "../hooks/useFinanceDispatchContext";
 export const FinanceContext = createContext();
 
 export const FinanceProvider = ({ children }) => {
-  const { dispatch } = useFinanceDispatchContext();
+  const { finances, dispatch } = useFinanceDispatchContext();
 
   const addFinance = async (userName, first_name, last_name) => {
     const response = await fetch("/api/finance/", {
@@ -34,8 +34,9 @@ export const FinanceProvider = ({ children }) => {
 
   const contextValue = {
     addFinance,
+    finance: finances,
   };
-
+  console.log(finances);
   return (
     <FinanceContext.Provider value={contextValue}>
       {children}
