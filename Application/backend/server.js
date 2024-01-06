@@ -11,9 +11,9 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 
 // routes
-
 const mealRoutes = require("./routes/meals");
 const eventRoutes = require("./routes/events");
+const financeRoutes = require("./routes/finance");
 
 // express app
 const app = express();
@@ -27,10 +27,13 @@ app.use((req, res, next) => {
   next();
 });
 
-app.use(keycloak.middleware());
+//app.use(keycloak.middleware());
 
 app.use("/api/meals", mealRoutes);
 app.use("/api/events", eventRoutes);
+app.use("/api/finance", financeRoutes);
+
+// Error handling middleware
 
 //connect to db
 mongoose

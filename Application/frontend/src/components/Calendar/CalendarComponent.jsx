@@ -11,6 +11,7 @@ import { useState } from "react";
 import { EventDetailModal } from "../Modal/EventDetailModal/EventDetailModal";
 import styled from "@emotion/styled";
 import dayjs from "dayjs";
+import ErrorHandler from "../ErrorHandler";
 
 const StyledEventButton = styled(Button)({
   fontFamily: "Segoe UI",

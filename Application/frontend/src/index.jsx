@@ -10,6 +10,7 @@ import { ReactKeycloakProvider } from "@react-keycloak/web";
 import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "dayjs/locale/de";
+import { FinanceContextProvider } from "./context/FinanceContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -20,9 +21,11 @@ root.render(
     <LocalizationProvider dateAdapter={AdapterDayjs} adapterLocale="de">
       <EventContextProvider>
         <MealContextProvider>
-          <BrowserRouter>
-            <App />
-          </BrowserRouter>
+          <FinanceContextProvider>
+            <BrowserRouter>
+              <App />
+            </BrowserRouter>
+          </FinanceContextProvider>
         </MealContextProvider>
       </EventContextProvider>
     </LocalizationProvider>

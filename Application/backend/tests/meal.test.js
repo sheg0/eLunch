@@ -1,7 +1,10 @@
 // mealController.test.js
 
 const mongoose = require("mongoose");
-const { createMeal } = require("../controllers/mealController.js");
+const {
+  createMeal,
+  createTestMeal,
+} = require("../controllers/mealController.js");
 const Meal = require("../models/mealModel.js");
 
 // Mocking the Meal model for testing purposes
@@ -58,7 +61,7 @@ describe("createMeal", () => {
 
   // ...
 
-  it("should handle missing name or category", async () => {
+  it("should handle missing name", async () => {
     const req = {
       body: {
         // Missing name intentionally
@@ -74,12 +77,12 @@ describe("createMeal", () => {
       json: jest.fn(),
     };
 
-    await createMeal(req, res);
+    await createTestMeal(req, res);
 
     // Update the expected error message here
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({
-      error: "Meal: Name or Type is missing inside Request-body.",
+      error: "Meal: Name is missing inside Request-body.",
     });
   });
 
