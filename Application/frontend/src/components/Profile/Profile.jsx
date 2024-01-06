@@ -10,6 +10,10 @@ import { useContext } from "react";
 import { useFinanceContext } from "../../hooks/useFinanceContext";
 const Profile = () => {
   const { keycloak, initialized } = useKeycloak();
+  const [showTooltip, setShowTooltip] = useState(false);
+  const [cooked, setCooked] = useState(0);
+  const [ateOut, setAteOut] = useState(0);
+
   const { finance } = useFinanceContext();
   var username = "MM";
   var firstName = "Max";
@@ -37,9 +41,65 @@ const Profile = () => {
   const handleLogout = () => {
     keycloak.logout();
   };
-  const balance = () => {
-    handleSendMoney();
+
+  /*const logCookingActivity = () => {
+    setActivities([...activities, "cooked"]);
+    setCooked(cooked + 1);
   };
+
+  const logEatingOutActivity = () => {
+    setActivities([...activities, "ateOut"]);
+    setAteOut(ateOut + 1);
+  };
+
+  const calculateProbability = () => {
+    const last30Days = activities.slice(-30);
+    const cookedCount = last30Days.filter(
+      (activity) => activity === "cooked"
+    ).length;
+    const ateOutCount = last30Days.filter(
+      (activity) => activity === "ateOut"
+    ).length;
+
+    const totalActivities = cookedCount + ateOutCount;
+    const cookedProbability = (cookedCount / totalActivities) * 100;
+    const ateOutProbability = (ateOutCount / totalActivities) * 100;
+
+    return { cookedProbability, ateOutProbability };
+  };
+
+  const { cookedProbability, ateOutProbability } = calculateProbability();*/
+
+  const handleMouseEnter = () => {
+    setShowTooltip(true);
+  };
+
+  const handleMouseLeave = () => {
+    setShowTooltip(false);
+  };
+
+  /*const balance = () => {
+    handleSendMoney();
+  };*/
+
+  /*const [kontostand, setKontostand] = useState();
+
+  useEffect(() => {
+    const fetchKontostand = async () => {
+      try {
+        const response = await keycloak.loadUserInfo();
+        setKontostand(response.kontostand);
+      } catch (error) {
+        console.error("Error fetching account balance", error);
+      }
+    };
+    fetchKontostand();
+  }, [keycloak]);
+
+  const handleButtonBalance = () => {
+    setKontostand(kontostand - 10);
+  };*/
+
   return (
     <div className="profile-container">
       <div className="profile-content">
@@ -61,8 +121,16 @@ const Profile = () => {
         </div>
         <div className="box3">
           <div className="statistic">Statistik:</div>
-          <PiCookingPotBold className="icon-gekocht"></PiCookingPotBold>
-          <PiForkKnifeDuotone className="icon-gegessen"></PiForkKnifeDuotone>
+          <PiCookingPotBold
+            className="icon-gekocht"
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+          >
+            {/*{ateOutProbability.toFixed(2)}*/}
+          </PiCookingPotBold>
+          <PiForkKnifeDuotone className="icon-gegessen">
+            {/*{cookedProbability.toFixed(2)}*/}
+          </PiForkKnifeDuotone>
         </div>
       </div>
     </div>

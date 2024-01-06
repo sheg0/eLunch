@@ -3,7 +3,7 @@
   width: 100%;
 
   display: flex;
-  background-color: grey;
+  background-color: rgba(128, 128, 128, 0.082);
 }
 
 .finanzen-content {
@@ -24,20 +24,118 @@
   display: flex;
 }
 
-.row1 {
-  height: 45%;
-  width: 90%;
-
-  background-color: brown;
-}
-
-.row2 {
-  height: 45%;
-  width: 90%;
-
-  background-color: blue;
-}
-
 h1 {
-  color: black;
+  font-size: 24px;
+  color: #043c5f;
+}
+
+.finanzen-box1 {
+  background-color: #f1f1f1;
+  height: 80%;
+  width: 80%;
+
+  border-radius: 5px;
+}
+
+.finanzen-row1 {
+  display: flex;
+  flex: 1;
+}
+.finanzen-mitarbeiter {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finanzen-dropdownMenu {
+  width: 70%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.dropdown {
+  border-radius: 5px;
+  height: 50%;
+  width: 50%;
+}
+
+.finanzen-row2 {
+  display: flex;
+  flex: 1;
+}
+.finanzen-betrag {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finanzen-textfeld {
+  text-align: center;
+  margin: auto auto auto auto;
+  width: 70%;
+}
+.x {
+  display: flex;
+  flex: 1;
+}
+.eingabe {
+  height: 50%;
+  width: 50%;
+  border-radius: 5px;
+}
+
+.finanzen-row3 {
+  display: flex;
+  flex: 1;
+}
+.finanzen-anmerkung {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finanzen-texteingabe {
+  text-align: center;
+  margin: auto auto auto auto;
+  width: 70%;
+}
+.feld {
+  height: 50%;
+  width: 50%;
+  border-radius: 5px;
+}
+
+.finanzen-row4 {
+  display: flex;
+  flex: 1;
+}
+.finanzen-button {
+  width: 30%;
+  margin: 20px;
+
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+
+  height: 3.5vh;
+  width: auto;
+
+  background-color: #043c5f;
+  color: white;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+.finanzen-button:hover {
+  background-color: #044770;
+}
+
+.finanzen-box2 {
+  height: 80%;
+  width: 80%;
+
+  background-color: #f1f1f1;
+  border-radius: 5px;
 }
