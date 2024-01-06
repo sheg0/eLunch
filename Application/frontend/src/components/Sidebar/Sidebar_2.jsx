@@ -3,18 +3,21 @@ import "./Sidebar_2.css";
 import { useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { Container } from "@mui/material";
-
-import { VscBook } from "react-icons/vsc";
-import { MdRestaurantMenu } from "react-icons/md";
+import { VscBook, VscOrganization } from "react-icons/vsc";
+import { MdRestaurantMenu, MdEuroSymbol } from "react-icons/md";
 import { SlBasket } from "react-icons/sl";
-import { MdEuroSymbol } from "react-icons/md";
-import { VscOrganization } from "react-icons/vsc";
-import { TfiBarChart } from "react-icons/tfi";
-import { TfiInfoAlt } from "react-icons/tfi";
+import { TfiBarChart, TfiInfoAlt } from "react-icons/tfi";
+import { RxHamburgerMenu } from "react-icons/rx";
+import SteinbeisLogo from "../../images/Logo_Steinbeis_EST_white.png";
 
 function Sidebar({ children }) {
   const navigate = useNavigate();
   const [selectedTab, setSelectedTab] = useState();
+  const [sidebarVisible, setSidebarVisible] = useState(false);
+
+  const toggleSidebar = () => {
+    setSidebarVisible(!sidebarVisible);
+  };
 
   function SwitchPath(path) {
     console.log(path);
@@ -29,7 +32,7 @@ function Sidebar({ children }) {
         return navigate("/Finance");
       case 5:
         return navigate("/");
-      case 6:
+      case "Statistik":
         return navigate("/");
       case "Infos":
         return navigate("/Info");
@@ -49,49 +52,56 @@ function Sidebar({ children }) {
   ];
 
   const iconMap = {
-    Speiseplan: <VscBook size={18 + 0.390625} style={{ fill: "white" }} />,
-    Gerichte: (
-      <MdRestaurantMenu size={18 + 0.390625} style={{ fill: "white" }} />
-    ),
-    Einkaufszettel: <SlBasket size={18 + 0.390625} style={{ fill: "white" }} />,
-    Finance: <MdEuroSymbol size={18 + 0.390625} style={{ fill: "white" }} />,
-    Mitarbeiter: (
-      <VscOrganization size={18 + 0.390625} style={{ fill: "white" }} />
-    ),
-    Statistik: <TfiBarChart size={18 + 0.390625} style={{ fill: "white" }} />,
-    Infos: <TfiInfoAlt size={18 + 0.390625} style={{ fill: "white" }} />,
+    Speiseplan: <VscBook className="sidebar-icon" />,
+    Gerichte: <MdRestaurantMenu className="sidebar-icon" />,
+    Einkaufszettel: <SlBasket className="sidebar-icon" />,
+    Finance: <MdEuroSymbol className="sidebar-icon" />,
+    Mitarbeiter: <VscOrganization className="sidebar-icon" />,
+    Statistik: <TfiBarChart className="sidebar-icon" />,
+    Infos: <TfiInfoAlt className="sidebar-icon" />,
   };
 
   return (
     <>
-      <div className="sidebar">
+      <div className={`sidebar ${sidebarVisible ? "active" : ""}`}>
         <div className="sidebar-content">
-          <div className="profile">
+          <div className="sidebar-profile">
             <Profile />
           </div>
           <div className="sidebar-list">
             {listItems.map((item) => {
               return (
                 <div
-                  className={`button ${selectedTab === item ? "active" : ""}`}
+                  className={`sidebar-button ${
+                    selectedTab === item ? "active" : ""
+                  }`}
                   onClick={() => {
                     SwitchPath(item);
                     setSelectedTab(item);
                   }}
                   key={item}
                 >
-                  <div className="icon">{iconMap[item]}</div>
-                  <div className="text">{item}</div>
+                  <div>{iconMap[item]}</div>
+                  <div className="sidebar-text">{item}</div>
                 </div>
               );
             })}
           </div>
 
+          <img src={SteinbeisLogo} alt="Steinbeis" className="sidebar-logo" />
+
           <div className="sidebar-footer">
-            <a href={"./Info"}>Impressum</a> | Druckansicht | ICAL
+            <a className="sidebar-impressum" href={"./Info"}>
+              Impressum
+            </a>
           </div>
         </div>
       </div>
+
+      <button className="sidebar-hamburger-icon" onClick={toggleSidebar}>
+        <RxHamburgerMenu />
+      </button>
+
       <Container>
         <div>{children}</div>
       </Container>
