@@ -5,6 +5,7 @@ import { useKeycloak } from "@react-keycloak/web";
 import { IoIosLogOut } from "react-icons/io";
 import { PiCookingPotBold } from "react-icons/pi";
 import { PiForkKnifeDuotone } from "react-icons/pi";
+import { useContext } from "react";
 
 const Profile = () => {
   const { keycloak, initialized } = useKeycloak();

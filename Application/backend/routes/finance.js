@@ -3,6 +3,7 @@ const express = require("express");
 const {
   createFinance,
   getAllFinance,
+  deleteAllFinances,
 } = require("../controllers/financeController");
 
 const router = express.Router();
@@ -11,4 +12,6 @@ const router = express.Router();
 router.post("/", createFinance);
 
 router.get("/", getAllFinance);
+
+router.delete("/", deleteAllFinances);
 module.exports = router;

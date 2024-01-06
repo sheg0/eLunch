@@ -1,11 +1,16 @@
 import { useState, useEffect } from "react";
 import Finance from "../components/Finance";
-import { FinanceContextProvider } from "../context/FinanceContext";
-//import { FinanceProvider } from "../context/FinanceContext.jsx";
+import { FinanceDispatchContextProvider } from "../context/FinanceDispatchContext";
+
+import { FinanceProvider } from "../context/FinanceContext.jsx";
 
 const Fin = ({ finances }) => {
   console.log("finance Page: ", finances);
-  return <Finance finances={finances}></Finance>;
+  return (
+    <FinanceProvider>
+      <Finance finances={finances}></Finance>
+    </FinanceProvider>
+  );
 };
 
 export default Fin;

@@ -1,4 +1,4 @@
-import { useFinanceContext } from "../../hooks/useFinanceContext.js";
+import { useFinanceDispatchContext } from "../../hooks/useFinanceDispatchContext.js";
 import { useEffect } from "react";
 
 import { Routes, Route } from "react-router-dom";
@@ -6,7 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Fin from "../../pages/Finance.jsx";
 
 function FetchFinance() {
-  const { finances, dispatch } = useFinanceContext();
+  const { finances, dispatch } = useFinanceDispatchContext();
 
   useEffect(() => {
     try {
