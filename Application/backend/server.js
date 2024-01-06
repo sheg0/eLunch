@@ -28,10 +28,10 @@ app.use((req, res, next) => {
 });
 
 //app.use(keycloak.middleware());
-
+app.use("/api/finance", financeRoutes);
+app.use(keycloak.middleware());
 app.use("/api/meals", mealRoutes);
 app.use("/api/events", eventRoutes);
-app.use("/api/finance", financeRoutes);
 
 // Error handling middleware
 

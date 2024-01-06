@@ -1,4 +1,3 @@
-const keycloak = require("../keycloak");
 const express = require("express");
 
 // Importing Functions
