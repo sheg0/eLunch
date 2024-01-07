@@ -12,16 +12,19 @@ export const financesReducer = (state, action) => {
       };
     case "CREATE_FINANCE":
       return {
+        ...state,
         finances: [action.payload, ...state.finances],
       };
     case "DELETE_FINANCE":
       return {
+        ...state,
         finances: state.finances.filter(
           (finance) => finance._id !== action.payload._id
         ),
       };
-    case "EDIT_FINANCE":
+    case "UPDATE_FINANCE":
       return {
+        ...state,
         finances: state.finances.map((finance) =>
           finance._id === action.payload._id ? action.payload : finance
         ),

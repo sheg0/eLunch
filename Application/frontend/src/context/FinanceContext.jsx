@@ -5,6 +5,7 @@ import { useFinanceDispatchContext } from "../hooks/useFinanceDispatchContext";
 export const FinanceContext = createContext();
 
 export const FinanceProvider = ({ children }) => {
+  const [balance, setBalance] = useState(0);
   const { finances, dispatch } = useFinanceDispatchContext();
 
   const addFinance = async (userName, first_name, last_name) => {
@@ -32,11 +33,33 @@ export const FinanceProvider = ({ children }) => {
     }
   };
 
+  const updateBalance = async (userName, newBalance) => {
+    const response = await fetch(`/api/finance/${userName}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        newBalance: newBalance,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+
+    if (response.ok) {
+      dispatch({ type: "UPDATE_BALANCE", payload: json });
+      console.log(json);
+    }
+  };
+
   const contextValue = {
+    balance,
+    setBalance,
+    updateBalance,
     addFinance,
     finance: finances,
   };
-  console.log(finances);
+  //console.log(finances);
   return (
     <FinanceContext.Provider value={contextValue}>
       {children}

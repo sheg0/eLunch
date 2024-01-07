@@ -6,7 +6,13 @@ import { useEffect } from "react";
 export default function Finance({ finances }) {
   console.log("finance Component: ", finances);
   const { keycloak, initialized } = useKeycloak();
-  const { finance, addFinance } = useFinanceContext();
+  const { finance, addFinance, updateBalance } = useFinanceContext();
+
+  function handleButtonClick(newBalance) {
+    const username2 = keycloak.tokenParsed.preferred_username;
+    console.log("username: ", username2);
+    updateBalance(username2, newBalance);
+  }
 
   useEffect(() => {
     if (initialized && keycloak.authenticated) {
@@ -25,5 +31,9 @@ export default function Finance({ finances }) {
     }
   }, [initialized, keycloak.authenticated, finances, addFinance]);
 
-  return <div></div>;
+  return (
+    <div>
+      <button onClick={() => handleButtonClick(100)}></button>
+    </div>
+  );
 }
