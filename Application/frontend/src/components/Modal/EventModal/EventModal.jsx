@@ -10,11 +10,19 @@ import StyledTimeField from "../../Styled_MUI_Components/StyledTimeField";
 import StyledDateField from "../../Styled_MUI_Components/StyledDateField";
 import "../ModalStyle.css";
 
-export const EventModal = ({ isOpen, setIsOpen, event }) => {
-  const [date, setDate] = useState(dayjs());
+export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
   const [mealId, setMealId] = useState("");
   const { keycloak } = useKeycloak();
   const { dispatch } = useEventsContext();
+  const [date, setDate] = useState(dayjs());
+  //let date = dayjs(dates);
+  console.log("dates: ", dates);
+  console.log("date: ", date);
+
+  useEffect(() => {
+    // Update the date when 'dates' prop changes
+    setDate(dayjs(dates));
+  }, [dates]);
 
   const addEvent = async () => {
     console.log({
@@ -26,7 +34,7 @@ export const EventModal = ({ isOpen, setIsOpen, event }) => {
     const response = await fetch("/api/events/", {
       method: "POST",
       body: JSON.stringify({
-        date,
+        date: date,
         mealId,
         userName: keycloak.tokenParsed.preferred_username,
         firstName: keycloak.tokenParsed.given_name,
@@ -48,12 +56,13 @@ export const EventModal = ({ isOpen, setIsOpen, event }) => {
   };
 
   const setTime = (newTime) => {
-    date
-      .set("hour", dayjs(newTime).hour())
-      .set("minute", dayjs(newTime).minute())
-      .set("second", dayjs(newTime).second());
+    setDate((prevDate) =>
+      prevDate
+        .set("hour", dayjs(newTime).hour())
+        .set("minute", dayjs(newTime).minute())
+        .set("second", dayjs(newTime).second())
+    );
   };
-
   return (
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
       <h1 className="Modal-Header">Neues Gericht</h1>
@@ -61,14 +70,11 @@ export const EventModal = ({ isOpen, setIsOpen, event }) => {
         <div className="EventModal-Container">
           <h1 className="EventModal-Headlines">Datum</h1>
 
-          <StyledDateField
-            value={date}
-            onChange={(newDate) => setDate(newDate)}
-          ></StyledDateField>
-
           <StyledTimeField
             value={date}
-            onChange={(newTime) => setTime(newTime)}
+            onChange={(newTime) => {
+              setTime(newTime);
+            }}
           ></StyledTimeField>
         </div>
         <div className="EventModal-Container">

@@ -29,9 +29,9 @@ app.use((req, res, next) => {
 
 //app.use(keycloak.middleware());
 app.use("/api/finance", financeRoutes);
+app.use("/api/events", eventRoutes);
 app.use(keycloak.middleware());
 app.use("/api/meals", mealRoutes);
-app.use("/api/events", eventRoutes);
 
 // Error handling middleware
 

@@ -31,6 +31,8 @@ const StyledEventButton = styled(Button)({
 const Calendar = () => {
   const [isEventModalOpen, setIsEventModal] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
+  const [selectedDate, setSelectedDate] = useState(null);
+
   const {
     month,
     year,
@@ -57,7 +59,10 @@ const Calendar = () => {
     setEvent(event);
     setIsDetailModalOpen(!isDetailModalOpen);
   };
-
+  const handleEventButtonClick = (clickedDate) => {
+    setIsEventModal(true);
+    setSelectedDate(clickedDate);
+  };
   return (
     <div className="calendar-app-container">
       <div className="calendar">
@@ -129,7 +134,7 @@ const Calendar = () => {
                     <div className="calendar-dateWeek">
                       {day.getDate()}
                       <StyledEventButton
-                        onClick={() => setIsEventModal(!isEventModalOpen)}
+                        onClick={() => handleEventButtonClick(day)}
                       >
                         + Gericht
                       </StyledEventButton>
@@ -160,6 +165,7 @@ const Calendar = () => {
         </div>
       </div>
       <EventModal
+        dates={selectedDate}
         isOpen={isEventModalOpen}
         setIsOpen={setIsEventModal}
         event={event}
