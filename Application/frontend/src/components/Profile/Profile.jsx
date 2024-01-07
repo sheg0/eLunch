@@ -9,30 +9,48 @@ import { useContext } from "react";
 import { useFinanceContext } from "../../hooks/useFinanceContext";
 const Profile = () => {
   const { keycloak, initialized } = useKeycloak();
-  const { finance } = useFinanceContext();
+  const { finance, balance, setBalance } = useFinanceContext();
   var username = "MM";
   var firstName = "Max";
   var lastName = "Mustermann";
-  var balance = 0;
+
   if (initialized && keycloak.authenticated) {
     username = keycloak.tokenParsed.preferred_username;
     firstName = keycloak.tokenParsed.given_name;
     lastName = keycloak.tokenParsed.family_name;
-  }
-  if (finance) {
-    const userExists = finance.some(
-      (fin) => fin.userInfo.userName === username
-    );
-    if (userExists) {
-      //balance = finance.map((fin) => fin.userInfo.userName === username)
-      const targetUserName = username;
-      const targetUser = finance.find(
-        (user) => user.userInfo.userName === targetUserName
+    if (finance) {
+      const userExists = finance.some(
+        (fin) => fin.userInfo.userName === username
       );
-      console.log(targetUser.userInfo.balance.$numberDecimal);
-      balance = targetUser.userInfo.balance.$numberDecimal;
+      if (userExists) {
+        //balance = finance.map((fin) => fin.userInfo.userName === username)
+        const targetUserName = username;
+        const targetUser = finance.find(
+          (user) => user.userInfo.userName === targetUserName
+        );
+        console.log(targetUser.userInfo.balance.$numberDecimal);
+        setBalance(targetUser.userInfo.balance.$numberDecimal);
+      }
     }
   }
+
+  useEffect(() => {
+    if (initialized && keycloak.authenticated && finance) {
+      username = keycloak.tokenParsed.preferred_username;
+      firstName = keycloak.tokenParsed.given_name;
+      lastName = keycloak.tokenParsed.family_name;
+      const targetUser = finance.find(
+        (user) => user.userInfo.userName === username
+      );
+
+      if (targetUser) {
+        const balanceValue = parseFloat(
+          targetUser.userInfo.balance.$numberDecimal
+        );
+        setBalance(balanceValue);
+      }
+    }
+  }, [initialized, keycloak.authenticated, finance]);
 
   const handleLogout = () => {
     keycloak.logout();

@@ -4,6 +4,7 @@ const {
   createFinance,
   getAllFinance,
   deleteAllFinances,
+  updateBalance,
 } = require("../controllers/financeController");
 
 const router = express.Router();
@@ -14,4 +15,6 @@ router.post("/", createFinance);
 router.get("/", getAllFinance);
 
 router.delete("/", deleteAllFinances);
+
+router.patch("/:userName", updateBalance);
 module.exports = router;
