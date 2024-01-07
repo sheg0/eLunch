@@ -29,7 +29,7 @@ function FetchFinance() {
   console.log("finance fetch Page: ", finances);
   return (
     <Routes>
-      <Route path="/Finance" element={<Fin finances={finances} />} />
+      <Route path="/Finance" element={<Fin />} />
     </Routes>
   );
 }

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import "./Profile.css";
 import { useKeycloak } from "@react-keycloak/web";
-import { handleSendMoney } from "../Finance/Finance.jsx";
+import { useFinanceContext } from "../../hooks/useFinanceContext";
+import { useContext } from "react";
 
 import { IoIosLogOut } from "react-icons/io";
 import { PiCookingPotBold } from "react-icons/pi";
 import { PiForkKnifeDuotone } from "react-icons/pi";
-import { useContext } from "react";
-import { useFinanceContext } from "../../hooks/useFinanceContext";
+
 const Profile = () => {
   const { keycloak, initialized } = useKeycloak();
   const [showTooltip, setShowTooltip] = useState(false);
@@ -46,6 +46,7 @@ const Profile = () => {
     setActivities([...activities, "cooked"]);
     setCooked(cooked + 1);
   };
+
 
   const logEatingOutActivity = () => {
     setActivities([...activities, "ateOut"]);
@@ -117,7 +118,7 @@ const Profile = () => {
           <div className="name">
             {firstName} {lastName}
           </div>
-          <div className="balance">{balance || "1453"}</div>
+          <div className="balance">{balance || "1453 €"}</div>
         </div>
         <div className="box3">
           <div className="statistic">Statistik:</div>

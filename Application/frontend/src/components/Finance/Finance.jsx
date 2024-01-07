@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Finance.css";
+import { useContext } from "react";
+import { useFinanceContext } from "../../hooks/useFinanceContext";
 import { useKeycloak } from "@react-keycloak/web";
 
-import { IoMdInformationCircle } from "react-icons/io";
+//import { IoMdInformationCircle } from "react-icons/io";
 
-const Finance = ({ isAdmin }) => {
+const Finance = ({ isAdmin, finances }) => {
   const [accounts, setAccounts] = useState([
     { name: "Vivian", balance: 100 },
     { name: "Imran", balance: 100 },
@@ -14,11 +16,12 @@ const Finance = ({ isAdmin }) => {
   ]);
 
   const { keycloak, initialized } = useKeycloak();
+  const { finance, addFinance } = useFinanceContext();
   const [selectedAccount, setSelectedAccount] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
   const [showDetails, setShowDetails] = useState(false);
-  const [showPopup, setShowPopup] = useState(false);
+  //const [showPopup, setShowPopup] = useState(false);
 
   const handleAccountChange = (e) => {
     const selectedAccountIndex = e.target.value;
@@ -45,9 +48,9 @@ const Finance = ({ isAdmin }) => {
     setShowDetails(true);
   };
 
-  const togglePopup = () => {
+  /*const togglePopup = () => {
     setShowPopup(!showPopup);
-  };
+  };*/
 
   if (initialized && keycloak.authenticated) {
     var isAdmin = keycloak.tokenParsed.realm_access.roles.includes("admin");
@@ -58,8 +61,26 @@ const Finance = ({ isAdmin }) => {
   }
   console.log(accounts, note);
 
+  console.log("finance Component: ", finances);
+
+  useEffect(() => {
+    if (initialized && keycloak.authenticated) {
+      const username = keycloak.tokenParsed.preferred_username;
+      const firstName = keycloak.tokenParsed.given_name;
+      const lastName = keycloak.tokenParsed.family_name;
+
+      const userExists = finance.some(
+        (fin) => fin.userInfo.userName === username
+      );
+
+      if (!userExists) {
+        addFinance(username, firstName, lastName);
+        console.log("user Created with the name: ", username);
+      }
+    }
+  }, [initialized, keycloak.authenticated, finances, addFinance]);
+
   // noch hinzuzufügen ist das error handling!!!!!
-  // onSubmit bei anmerkung und betrag noch machen!!!!
 
   return (
     <>
@@ -109,14 +130,14 @@ const Finance = ({ isAdmin }) => {
                     />
                   </div>
                 )}
-                <div className="finance-balance-info" onClick={togglePopup}>
+                {/*<div className="finance-balance-info" onClick={togglePopup}>
                   <IoMdInformationCircle></IoMdInformationCircle>
                 </div>
                 {showPopup && (
                   <div className="balance-popup">
                     Um an Mitarebiter Geld zu senden
                   </div>
-                )}
+                )}*/}
               </div>
             </div>
             <div className="finance-row3">
@@ -141,7 +162,7 @@ const Finance = ({ isAdmin }) => {
           <div className="finance-box2">
             <div className="finance-lastActivities">
               {showDetails && (
-                <div>
+                <div className="lastActivities">
                   {amount}
                   {note}
                 </div>

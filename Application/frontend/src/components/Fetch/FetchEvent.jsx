@@ -37,7 +37,6 @@ function FetchEvent() {
   return (
     <Routes>
       <Route path="/Events" element={<Events events={events} />} />
-      <Route path="/Finance" element={<Fin />} />
     </Routes>
   );
 }
