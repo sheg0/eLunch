@@ -39,7 +39,7 @@ const createTestMeal = async (req, res) => {
   if (!name) {
     return res
       .status(400)
-      .json({ error: "Meal: Name or Type is missing inside Request-body." });
+      .json({ error: "Meal: Name is missing inside Request-body." });
   }
 
   try {
@@ -129,6 +129,8 @@ const updateMeal = async (req, res) => {
 
   res.status(200).json(meal);
 };
+
+// Initialize Keycloak Admin Client
 
 module.exports = {
   createTestMeal,

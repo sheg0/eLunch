@@ -208,6 +208,17 @@ const sendError = (res, statusCode, errorMessage) => {
   });
 };
 
+const deleteAllEvents = async (req, res) => {
+  try {
+    const result = await Event.deleteMany();
+    res.json({ message: "All Event documents deleted successfully", result });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error.message });
+  }
+};
+
 module.exports = {
   getAllEvents,
   getFilteredEvents,
@@ -218,4 +229,5 @@ module.exports = {
   subscribeEvent,
   unsubscribeEvent,
   validateId,
+  deleteAllEvents,
 };

@@ -25,8 +25,8 @@ function Sidebar({ children }) {
         return navigate("/List");
       case "Einkaufszettel":
         return navigate("/");
-      case "Finanzen":
-        return navigate("/Finanzen");
+      case "Finance":
+        return navigate("/Finance");
       case 5:
         return navigate("/");
       case 6:
@@ -42,7 +42,7 @@ function Sidebar({ children }) {
     "Speiseplan",
     "Gerichte",
     "Einkaufszettel",
-    "Finanzen",
+    "Finance",
     "Mitarbeiter",
     "Statistik",
     "Infos",
@@ -54,7 +54,7 @@ function Sidebar({ children }) {
       <MdRestaurantMenu size={18 + 0.390625} style={{ fill: "white" }} />
     ),
     Einkaufszettel: <SlBasket size={18 + 0.390625} style={{ fill: "white" }} />,
-    Finanzen: <MdEuroSymbol size={18 + 0.390625} style={{ fill: "white" }} />,
+    Finance: <MdEuroSymbol size={18 + 0.390625} style={{ fill: "white" }} />,
     Mitarbeiter: (
       <VscOrganization size={18 + 0.390625} style={{ fill: "white" }} />
     ),

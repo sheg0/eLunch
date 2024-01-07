@@ -19,6 +19,10 @@ function FetchEvent() {
 
           if (response.ok) {
             dispatch({ type: "SET_EVENT", payload: json });
+          } else if (!response.ok) {
+            throw new Error(
+              `Failed to fetch events. Status: ${response.status}`
+            );
           }
         };
 

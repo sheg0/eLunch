@@ -5,7 +5,7 @@ import FetchEvent from "./components/Fetch/FetchEvent";
 import Sidebar from "./components/Sidebar/Sidebar_2";
 import { useKeycloak } from "@react-keycloak/web";
 import { useEffect } from "react";
-
+import FetchFinance from "./components/Fetch/FetchFinance";
 function App() {
   const { keycloak, initialized } = useKeycloak();
 
@@ -23,6 +23,7 @@ function App() {
             <Container>
               <FetchMeal></FetchMeal>
               <FetchEvent></FetchEvent>
+              <FetchFinance></FetchFinance>
             </Container>
           </div>
         </Sidebar>

@@ -11,6 +11,7 @@ const {
   subscribeEvent,
   unsubscribeEvent,
   validateId,
+  deleteAllEvents,
 } = require("../controllers/eventController");
 
 const router = express.Router();
@@ -27,8 +28,11 @@ router.get("/:id", keycloak.protect("realm:user"), getEvent);
 // DELETE an event
 router.delete("/:id", keycloak.protect("realm:admin"), deleteEvent);
 
+// DELETE all event
+router.delete("/", deleteAllEvents);
+
 // POST a new event
-router.post("/", keycloak.protect("realm:user"), createEvent);
+router.post("/", createEvent);
 
 // UPDATE an Event
 router.patch("/:id", keycloak.protect("realm:user"), validateId, updateEvent);

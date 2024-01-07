@@ -1,4 +1,3 @@
-const keycloak = require("../keycloak");
 const express = require("express");
 
 // Importing Functions
@@ -9,6 +8,8 @@ const {
   deleteMeal,
   updateMeal,
   createTestMeal,
+  UpdateBalance,
+  //getAllUsers,
 } = require("../controllers/mealController");
 
 const router = express.Router();
@@ -30,6 +31,10 @@ router.delete("/:id", deleteMeal);
 
 // UPDATE a new meal
 router.patch("/:id", updateMeal);
+
+//router.patch("/users", getAllUsers);
+
+//router.post("/update-balance", keycloak.protect("realm:user"), UpdateBalance);
 
 // Exporting Functions
 module.exports = router;

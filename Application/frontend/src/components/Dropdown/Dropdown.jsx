@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Dropdown.css";
 import { GiBalaclava } from "react-icons/gi";
 //import { AiFillCaretDown } from "react-icons/ai";
-
+import ErrorHandler from "../ErrorHandler";
 export default function Dropdown({
   setActivatedFromAbove,
   meals,
@@ -11,6 +11,10 @@ export default function Dropdown({
   setName,
 }) {
   const [isActive, setIsActive] = useState(false);
+
+  if (!ErrorHandler.checkArray("meals", meals)) {
+    return null;
+  }
 
   return (
     <div className="dropdown">
