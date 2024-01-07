@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "./Finance.css";
 import { useKeycloak } from "@react-keycloak/web";
 
+import { IoMdInformationCircle } from "react-icons/io";
+
 const Finance = ({ isAdmin }) => {
   const [accounts, setAccounts] = useState([
     { name: "Vivian", balance: 100 },
@@ -15,6 +17,8 @@ const Finance = ({ isAdmin }) => {
   const [selectedAccount, setSelectedAccount] = useState("");
   const [amount, setAmount] = useState("");
   const [note, setNote] = useState("");
+  const [showDetails, setShowDetails] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
 
   const handleAccountChange = (e) => {
     const selectedAccountIndex = e.target.value;
@@ -38,6 +42,11 @@ const Finance = ({ isAdmin }) => {
 
     setAccounts(updatedAccounts);
     setAmount("");
+    setShowDetails(true);
+  };
+
+  const togglePopup = () => {
+    setShowPopup(!showPopup);
   };
 
   if (initialized && keycloak.authenticated) {
@@ -48,17 +57,21 @@ const Finance = ({ isAdmin }) => {
     console.log(keycloak.tokenParsed);
   }
   console.log(accounts, note);
+
+  // noch hinzuzufügen ist das error handling!!!!!
+  // onSubmit bei anmerkung und betrag noch machen!!!!
+
   return (
     <>
-      <div className="finanzen-container">
-        <div className="finanzen-content">
+      <div className="finance-container">
+        <div className="finance-content">
           <h1>Neue Ausgabe</h1>
-          <div className="finanzen-box1">
-            <div className="finanzen-row1">
-              <div className="finanzen-mitarbeiter">An</div>
-              <div className="finanzen-dropdownMenu">
+          <div className="finance-box1">
+            <div className="finance-row1">
+              <div className="finance-employee">An</div>
+              <div className="finance-employee-dropdownMenu">
                 <select
-                  className="dropdown"
+                  className="employee-dropdown"
                   value={accounts.indexOf(selectedAccount)}
                   onChange={handleAccountChange}
                 >
@@ -70,14 +83,14 @@ const Finance = ({ isAdmin }) => {
                 </select>
               </div>
             </div>
-            <div className="finanzen-row2">
-              <div className="finanzen-betrag">Betrag in €</div>
-              <div className="finanzen-textfeld">
+            <div className="finance-row2">
+              <div className="finance-balance">Betrag in €</div>
+              <div className="finance-balance-numberfield">
                 {isAdmin ? (
-                  <div className="x">
+                  <div className="finance-numberfield">
                     <br />
                     <input
-                      className="eingabe"
+                      className="balance-input"
                       type="number"
                       value={amount}
                       onChange={handleAmountChange}
@@ -87,23 +100,30 @@ const Finance = ({ isAdmin }) => {
                 ) : (
                   <div>
                     <input
-                      className="eingabe"
+                      className="balance-input"
                       type="text"
                       id="amount"
                       value={amount}
                       onChange={handleAmountChange}
-                      placeholder="Eintragen..."
+                      placeholder="Betrag eingeben..."
                     />
+                  </div>
+                )}
+                <div className="finance-balance-info" onClick={togglePopup}>
+                  <IoMdInformationCircle></IoMdInformationCircle>
+                </div>
+                {showPopup && (
+                  <div className="balance-popup">
+                    Um an Mitarebiter Geld zu senden
                   </div>
                 )}
               </div>
             </div>
-            <div className="finanzen-row3">
-              <div className="finanzen-anmerkung">Anmerkung</div>
-              <div className="finanzen-texteingabe">
-                {/*onSubmit hinzufügen zu form */}
+            <div className="finance-row3">
+              <div className="finance-remark">Anmerkung</div>
+              <div className="finance-remark-textfield">
                 <input
-                  className="feld"
+                  className="remark-textfield"
                   type="text"
                   value={note}
                   onChange={(e) => setNote(e.target.value)}
@@ -111,17 +131,21 @@ const Finance = ({ isAdmin }) => {
                 ></input>
               </div>
             </div>
-            <div className="finanzen-row4">
-              <button className="finanzen-button" onClick={handleSendMoney}>
+            <div className="finance-row4">
+              <button className="finance-confirm" onClick={handleSendMoney}>
                 Bestätigen
               </button>
             </div>
           </div>
           <h1>Letzte Aktivitäten</h1>
-          <div className="finanzen-box2">
-            <div className="y">
-              {amount}
-              {note}
+          <div className="finance-box2">
+            <div className="finance-lastActivities">
+              {showDetails && (
+                <div>
+                  {amount}
+                  {note}
+                </div>
+              )}
             </div>
           </div>
         </div>
