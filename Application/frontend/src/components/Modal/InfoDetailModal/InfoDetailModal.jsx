@@ -26,19 +26,20 @@ const InfoDetailModal = ({ onClose, mealName, meal }) => {
             <IoMdClose />
           </button>
         </div>
+        <div className="InfoDetailModal-Scroller">
+          <p>
+            Es handel sich bei <b>{mealName}</b> um ein(e){" "}
+            <b>{meal.category}</b> das <b>{meal.difficulty}</b> innerhalb von
+            etwa <b>{meal.timeNeeded} Minuten </b> zu zubereiten ist und kostet{" "}
+            <b>{meal.cost} Euro</b> pro Portion.
+          </p>
 
-        <p>
-          Es handel sich bei <b>{mealName}</b> um ein(e) <b>{meal.category}</b>{" "}
-          das <b>{meal.difficulty}</b> innerhalb von etwa{" "}
-          <b>{meal.timeNeeded} Minuten </b> zu zubereiten ist und kostet{" "}
-          <b>{meal.cost} Euro</b> pro Portion.
-        </p>
+          <b>Zutaten:</b>
+          <p>{meal.ingredients}</p>
 
-        <b>Zutaten:</b>
-        <p>{meal.ingredients}</p>
-
-        <b>Zubereitung:</b>
-        <p>{meal.description}</p>
+          <b>Zubereitung:</b>
+          <p>{meal.description}</p>
+        </div>
       </Box>
     </div>
   );

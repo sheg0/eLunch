@@ -148,6 +148,17 @@
   margin-bottom: 2vh;
 }
 
+.InfoDetailModal-Scroller {
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.EventDetailModal-Icon {
+  width: 7vh;
+  height: 5vh;
+  background-color: #043c5f;
+}
+
 .btn-newMeal {
   font-family: "Segoe UI";
   font-size: 16px;
