@@ -2,31 +2,38 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 20%;
-  height: 100%;
+  width: 35vh;
+  height: 100vh;
   flex-shrink: 0;
-  display: flex;
   flex-direction: column;
   align-items: flex-start;
-
+  display: flex;
   background: var(
     --Primary-Gradient,
     linear-gradient(180deg, #043c5f 50%, #10c388 125%)
   );
 }
 
-@media screen and (max-width: 768px) {
+.sidebar-hamburger-icon {
+  display: block;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
   .sidebar {
-    width: 100%;
+    display: none;
+  }
+  .sidebar-hamburger-icon {
+    display: block;
   }
   .profile {
-    width: 100%;
+    width: 100vh;
   }
 }
 
 .sidebar-content {
-  height: 100%;
-  width: 70%;
+  height: 100vh;
+  width: 25vh;
   margin-left: auto;
   margin-right: auto;
   margin-top: auto;
@@ -37,10 +44,8 @@
   display: flex;
 }
 
-.profile {
-  height: 23%;
-  width: 100%;
-  margin-top: 15%;
+.sidebar-profile {
+  margin-top: 3vh;
 }
 
 .sidebar-list {
@@ -53,14 +58,14 @@
   cursor: default;
 }
 
-.button {
+.sidebar-button {
   display: flex;
   top: 0;
   gap: 3vh;
   cursor: pointer;
 }
 
-.button.active {
+.sidebar-button.active {
   height: 10%;
   width: 120%;
 
@@ -73,31 +78,37 @@
   background-color: rgba(255, 255, 255, 0.32);
 }
 
-.icon {
+.sidebar-icon {
   float: left;
-  font-size: calc(16px + 0.390625vw);
+  color: white;
+  font-size: 2.5vh;
 }
 
-.text {
+.sidebar-text {
   float: right;
   color: white;
   font-family: "Segoe UI";
-  font-size: calc(14px + 0.390625vw);
+  font-size: 2.5vh;
 }
 
 .sidebar-footer {
-  height: 5%;
+  height: 5vh;
   color: white;
   font-family: "Segoe UI";
-  font-size: calc(7px + 0.390625vw);
-  margin-bottom: 1%;
+  font-size: 1.5vh;
+  margin-bottom: 1vh;
+  text-align: center;
   cursor: default;
 }
 
-a {
+.sidebar-impressum {
   color: white;
   text-decoration: none;
 }
-a:hover {
+.sidebar-impressum:hover {
   color: blue;
+}
+
+.sidebar-logo {
+  margin-bottom: 3vh;
 }

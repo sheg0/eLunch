@@ -14,6 +14,36 @@ import { useCalendarContext } from "../../../hooks/useCalendarContext";
 import { FaInfoCircle } from "react-icons/fa";
 import InfoDetailModal from "../InfoDetailModal/InfoDetailModal";
 import MealImageCheckbox from "../MealModal/MealImageCheckbox";
+import styled from "@emotion/styled";
+import { Button } from "@mui/material";
+
+const StyledIconButton = styled(Button)({
+  backgroundColor: "#043c5f",
+  height: "3vh",
+  width: "8vh",
+  fontSize: "2.5vh",
+  borderRadius: "1vh",
+  marginRight: "1vh",
+  color: "white",
+  transition: "background-color 0.3s ease",
+  "&:hover": {
+    backgroundColor: "rgba(3, 40, 63, 1)",
+  },
+});
+
+const StyledIconButton2 = styled(Button)({
+  backgroundColor: "#043c5f",
+  height: "3vh",
+  width: "8vh",
+  fontSize: "2.5vh",
+  borderRadius: "1vh",
+  marginRight: "6vh",
+  color: "white",
+  transition: "background-color 0.3s ease",
+  "&:hover": {
+    backgroundColor: "rgba(3, 40, 63, 1)",
+  },
+});
 
 export const EventDetailModal = ({
   event,
@@ -44,79 +74,6 @@ export const EventDetailModal = ({
         participants.push(event.participants[key]);
       });
       console.log(participants);
-    }
-  };
-
-  const [buttonColors, setButtonColors] = useState({
-    button1: "#C5C5C5",
-    button2: "#C5C5C5",
-    button3: "#C5C5C5",
-    button4: "#C5C5C5",
-    button5: "#C5C5C5",
-  });
-
-  const [isClicked, setIsClicked] = useState({
-    icon1: false,
-    icon2: false,
-    icon3: false,
-    icon4: false,
-    icon5: false,
-  });
-
-  const handleItAll = (buttonId) => {
-    handleClick(buttonId);
-    handleIconClick(buttonId);
-  };
-
-  const handleClick = (buttonId) => {
-    const updatedButtonColors = { ...buttonColors };
-    updatedButtonColors[buttonId] =
-      updatedButtonColors[buttonId] === "#C5C5C5" ? "#043C5F" : "#C5C5C5";
-    setButtonColors(updatedButtonColors);
-  };
-
-  const handleIconClick = (iconId) => {
-    switch (iconId) {
-      case "button1":
-        let updatedValue = {};
-        updatedValue = { icon1: !isClicked.icon1 };
-        setIsClicked((prevValue) => ({
-          ...prevValue,
-          ...updatedValue,
-        }));
-        break;
-      case "button2":
-        let updatedValue2 = {};
-        updatedValue2 = { icon2: !isClicked.icon2 };
-        setIsClicked((prevValue) => ({
-          ...prevValue,
-          ...updatedValue2,
-        }));
-        break;
-      case "button3":
-        let updatedValue3 = {};
-        updatedValue3 = { icon3: !isClicked.icon3 };
-        setIsClicked((prevValue) => ({
-          ...prevValue,
-          ...updatedValue3,
-        }));
-        break;
-      case "button4":
-        let updatedValue4 = {};
-        updatedValue4 = { icon4: !isClicked.icon4 };
-        setIsClicked((prevValue) => ({
-          ...prevValue,
-          ...updatedValue4,
-        }));
-        break;
-      case "button5":
-        let updatedValue5 = {};
-        updatedValue5 = { icon5: !isClicked.icon5 };
-        setIsClicked((prevValue) => ({
-          ...prevValue,
-          ...updatedValue5,
-        }));
-        break;
     }
   };
 
@@ -238,97 +195,51 @@ export const EventDetailModal = ({
 
       <hr />
       <Tooltip title="Mitessen" arrow>
-        <IconButton
+        <StyledIconButton
           onClick={() => {
-            handleItAll("button1");
             handleSubscribeClick(event);
           }}
-          style={{
-            width: "7vh",
-            height: "3vh",
-            backgroundColor: buttonColors.button1,
-            borderRadius: 8,
-            margin: "1vh",
-          }}
         >
-          <MdDone style={{ color: isClicked.icon1 ? "white" : "black" }} />
-        </IconButton>
+          <MdDone />
+        </StyledIconButton>
       </Tooltip>
       <Tooltip title="Nicht Mitessen" arrow>
-        <IconButton
+        <StyledIconButton2
           onClick={() => {
-            handleItAll("button2");
             handleUnsubscribeClick(event);
           }}
-          style={{
-            width: "7vh",
-            height: "3vh",
-            backgroundColor: buttonColors.button2,
-            borderRadius: 8,
-            marginRight: "10vh",
-          }}
         >
-          <MdClear style={{ color: isClicked.icon2 ? "white" : "black" }} />
-        </IconButton>
+          <MdClear />
+        </StyledIconButton2>
       </Tooltip>
       <Tooltip title="Mitkochen" arrow>
-        <IconButton
+        <StyledIconButton
           onClick={() => {
-            handleItAll("button3");
             setEventProperty("isCook");
           }}
-          style={{
-            width: "7vh",
-            height: "3vh",
-            backgroundColor: buttonColors.button3,
-            borderRadius: 8,
-            marginRight: "1vh",
-          }}
         >
-          <PiCookingPot
-            style={{ color: isClicked.icon3 ? "white" : "black" }}
-          />
-        </IconButton>
+          <PiCookingPot />
+        </StyledIconButton>
       </Tooltip>
 
       <Tooltip title="Einkaufen" arrow>
-        <IconButton
+        <StyledIconButton
           onClick={() => {
-            handleItAll("button4");
             setEventProperty("isBuyer");
           }}
-          style={{
-            width: "7vh",
-            height: "3vh",
-            backgroundColor: buttonColors.button4,
-            borderRadius: 8,
-            marginRight: "1vh",
-          }}
         >
-          <LuShoppingBasket
-            style={{ color: isClicked.icon4 ? "white" : "black" }}
-          />
-        </IconButton>
+          <LuShoppingBasket />
+        </StyledIconButton>
       </Tooltip>
 
       <Tooltip title="Organisieren" arrow>
-        <IconButton
+        <StyledIconButton
           onClick={() => {
-            handleItAll("button5");
             setEventProperty("isOrganisator");
           }}
-          style={{
-            width: "7vh",
-            height: "3vh",
-            backgroundColor: buttonColors.button5,
-            borderRadius: 8,
-            marginRight: "1vh",
-          }}
         >
-          <IoPersonOutline
-            style={{ color: isClicked.icon5 ? "white" : "black" }}
-          />
-        </IconButton>
+          <IoPersonOutline />
+        </StyledIconButton>
       </Tooltip>
     </BasicModal>
   );
