@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "./Sidebar_2.css";
+import "./Sidebar.css";
 import { useNavigate } from "react-router-dom";
 import Profile from "../Profile/Profile";
 import { Container } from "@mui/material";
@@ -27,10 +27,10 @@ function Sidebar({ children }) {
       case "Gerichte":
         return navigate("/List");
       case "Einkaufszettel":
-        return navigate("/");
+        return navigate("/Shoppinglist");
       case "Finance":
         return navigate("/Finance");
-      case 5:
+      case "Mitarbeiter":
         return navigate("/");
       case "Statistik":
         return navigate("/");

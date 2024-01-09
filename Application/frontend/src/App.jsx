@@ -2,7 +2,7 @@
 import { Container } from "@mui/material";
 import FetchMeal from "./components/Fetch/FetchMeal";
 import FetchEvent from "./components/Fetch/FetchEvent";
-import Sidebar from "./components/Sidebar/Sidebar_2";
+import Sidebar from "./components/Sidebar/Sidebar";
 import { useKeycloak } from "@react-keycloak/web";
 import { useEffect } from "react";
 import FetchFinance from "./components/Fetch/FetchFinance";
