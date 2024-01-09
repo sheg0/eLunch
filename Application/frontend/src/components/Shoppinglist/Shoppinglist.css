@@ -7,7 +7,7 @@ h1 {
     font-family: "Segoe UI";
     text-align: left;
     color: #043c5f;
-    font-size: 24px;
+    font-size: 3vh;
     margin: 0;
     top: 0;
 }
@@ -58,8 +58,17 @@ h1 {
     padding-bottom: 3vh;
 }
 .list-content {
-    overflow-y: scroll;
+    height: 50vh;
+    bottom: 0;
+    overflow: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    border-radius: 1vh;
 }
+.list-content::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+  }
 .list-row {
     flex-direction: row;
     display: flex;
@@ -70,23 +79,26 @@ h1 {
 }
 .input-article {
     background-color: rgb(231, 249, 253);
-    border-radius: 7px;
+    border-radius: 1.2vh;
     width: 35vh;
     height: 3vh;
-    font-size: 16px;
+    font-size: 1.8vh;
 }
 .input-quantity {
     background-color: rgb(231, 249, 253);
-    border-radius: 7px;
+    border-radius: 1.2vh;
     width: 9vh;
     height: 3vh;
-    font-size: 16px;
+    font-size: 1.8vh;
 }
 .input-buttons {
+    color: #043c5f;
+    margin-bottom: 1vh;
+    top: 0;
     cursor: pointer;
 }
 .input-buttons:hover {
-    color: #043c5f;
+    color: rgb(255, 255, 255);
 }
 
 
@@ -105,24 +117,27 @@ h1 {
 .new-input-article {
     background-color: rgb(229, 229, 229);
     border: gray solid 2px;
-    border-radius: 7px;
+    border-radius: 1.2vh;
     width: 35vh;
     height: 4vh;
-    font-size: 16px;
+    font-size: 1.8vh;
 }
 .new-input-quantity {
     background-color: rgb(229, 229, 229);
     border: gray solid 2px;
-    border-radius: 7px;
-    width: 9vh;
+    border-radius: 1.2vh;
+    width: 10vh;
     height: 4vh;
-    font-size: 16px;
+    font-size: 1.8vh;
 }
 .new-button {
     background-color: #043c5f;
     color: white;
-    border-radius: 12px;
-    font-size: 16px;
+    border-radius: 1.2vh;
+    font-size: 1.8vh;
     margin-left: 2vh;
     padding: 1vh;
+    height: 4vh;
+    width: auto;
+    cursor: pointer;
 }

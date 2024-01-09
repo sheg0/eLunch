@@ -81,7 +81,7 @@ function Sidebar({ children }) {
                   }}
                   key={item}
                 >
-                  <div>{iconMap[item]}</div>
+                  <div className="sidebar-icon">{iconMap[item]}</div>
                   <div className="sidebar-text">{item}</div>
                 </div>
               );
@@ -102,9 +102,11 @@ function Sidebar({ children }) {
         <RxHamburgerMenu />
       </button>
 
-      <Container>
-        <div>{children}</div>
-      </Container>
+      <div className="page-container">
+        <Container>
+          <div>{children}</div>
+        </Container>
+      </div>
     </>
   );
 }
