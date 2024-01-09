@@ -18,30 +18,32 @@ import styled from "@emotion/styled";
 import { Button } from "@mui/material";
 
 const StyledIconButton = styled(Button)({
-  backgroundColor: "#043c5f",
+  backgroundColor: "#a3a3a3",
   height: "3vh",
   width: "8vh",
   fontSize: "2.5vh",
   borderRadius: "1vh",
   marginRight: "1vh",
-  color: "white",
+  color: "black",
   transition: "background-color 0.3s ease",
   "&:hover": {
-    backgroundColor: "rgba(3, 40, 63, 1)",
+    backgroundColor: "#2e933c",
+    color: "white",
   },
 });
 
 const StyledIconButton2 = styled(Button)({
-  backgroundColor: "#043c5f",
+  backgroundColor: "#a3a3a3",
   height: "3vh",
   width: "8vh",
   fontSize: "2.5vh",
   borderRadius: "1vh",
   marginRight: "6vh",
-  color: "white",
+  color: "black",
   transition: "background-color 0.3s ease",
   "&:hover": {
-    backgroundColor: "rgba(3, 40, 63, 1)",
+    backgroundColor: "#f94144",
+    color: "white",
   },
 });
 
@@ -120,13 +122,13 @@ export const EventDetailModal = ({
   return (
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="DetailModal-Header">
+        <h1 className="Modal-Header Meal">{formattedDate}</h1>
         <button className="DetailModal-Button">
           <FiEdit2 />
         </button>
         <button className="DetailModal-Button">
           <FiTrash2 />
         </button>
-        <h1 className="Modal-Header">{formattedDate}</h1>
       </div>
 
       <div className="EventModal-Container">
@@ -136,6 +138,7 @@ export const EventDetailModal = ({
         <button className="DetailModal-InfoButton" onClick={openInfoModal}>
           <FaInfoCircle />
         </button>
+
         <Modal
           open={isInfoModalOpen}
           onClose={closeInfoModal}
