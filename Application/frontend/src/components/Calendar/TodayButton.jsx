@@ -4,8 +4,8 @@ import { CalendarContext } from "../../context/CalendarContext";
 const TodayButton = () => {
   const { goToCurrentDate } = useContext(CalendarContext);
   return (
-    <div className="calendar-btn-container">
-      <button className="calendar-today-btn" onClick={goToCurrentDate}>
+    <div className="Calendar-Button-Container">
+      <button className="Calendar-Today-Button" onClick={goToCurrentDate}>
         today
       </button>
     </div>
