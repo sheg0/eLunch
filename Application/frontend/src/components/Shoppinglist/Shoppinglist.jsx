@@ -55,7 +55,7 @@ function Shoppinglist({events}) {
   return (
     <div className="shoppinglist-content">
       <div className='new-article'>
-        <h1>Neuen Artikel hinzufügen:</h1>
+        <h1 className='list-font'>Neuen Artikel hinzufügen:</h1>
         <div className='new-input'>
         <input
           className="new-input-article"
@@ -83,7 +83,7 @@ function Shoppinglist({events}) {
         <div className="list-1">
           <ul>
             <div className='list-headline'>
-              <h1>Einkaufszettel</h1>
+              <h1 className='list-font'>Einkaufszettel</h1>
             </div>
             <div className='list-content'>
             {shoppinglist.map((item, index) => (
@@ -91,7 +91,7 @@ function Shoppinglist({events}) {
                 <div
                   className="input-buttons"
                   onClick={() => handleCheckbox(index)}>
-                    <TbCheckbox size={23}/>
+                    <TbCheckbox size={22}/>
                 </div>
                 <input
                   className="input-article"
@@ -108,7 +108,7 @@ function Shoppinglist({events}) {
                 <div
                   className="input-buttons"
                   onClick={() => handleDelete(index, "shoppinglist")}>
-                    <FaRegTrashAlt size={18}/>
+                    <FaRegTrashAlt size={17}/>
                 </div>
               </li>
             ))}
@@ -119,7 +119,7 @@ function Shoppinglist({events}) {
         <div className="list-2">
           <ul>
           <div className='list-headline'>
-              <h1>Verlauf</h1>
+              <h1 className='list-font'>Verlauf</h1>
             </div>
             <div className='list-content'>
             {historylist.map((item, index) => (
@@ -127,7 +127,7 @@ function Shoppinglist({events}) {
                 <div
                   className="input-buttons"
                   onClick={() => handleMoveBack(index)}>
-                    <LuArrowLeftSquare size={21}/>
+                    <LuArrowLeftSquare size={20}/>
                 </div>
                 <input
                   className="input-article"
@@ -144,7 +144,7 @@ function Shoppinglist({events}) {
                 <div
                   className="input-buttons"
                   onClick={() => handleDelete(index, "historylist")}>
-                    <FaRegTrashAlt size={18}/>
+                    <FaRegTrashAlt size={17}/>
                 </div>
               </li>
             ))}
