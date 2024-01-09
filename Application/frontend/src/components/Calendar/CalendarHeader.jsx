@@ -9,8 +9,8 @@ const CalendarHeader = ({ onClickArrowLeft, onClickArrowRight }) => {
   const { year, month } = useContext(CalendarContext);
   return (
     <>
-      <div className="calendar-header">
-        <button className="calendar-btn" onClick={onClickArrowLeft}>
+      <div className="Calendar-Header">
+        <button className="Calendar-Button" onClick={onClickArrowLeft}>
           <SlArrowLeft />
         </button>
         <h2>
@@ -19,7 +19,7 @@ const CalendarHeader = ({ onClickArrowLeft, onClickArrowRight }) => {
             year: "numeric",
           })}
         </h2>
-        <button className="calendar-btn" onClick={onClickArrowRight}>
+        <button className="Calendar-Button" onClick={onClickArrowRight}>
           <SlArrowRight />
         </button>
       </div>

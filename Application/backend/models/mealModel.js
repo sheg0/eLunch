@@ -35,6 +35,7 @@ const mealSchema = new Schema(
     category: {
       type: String,
       enum: [
+        "Unbestimmt",
         "Vorspeise",
         "Hauptgericht",
         "Beilage",
@@ -49,7 +50,7 @@ const mealSchema = new Schema(
     },
     difficulty: {
       type: String,
-      enum: ["Sehr Einfach", "Einfach", "Mittel", "Schwierig"],
+      enum: ["Unbestimmt", "Sehr Einfach", "Einfach", "Mittel", "Schwierig"],
       required: true,
     },
     isVegetarian: {

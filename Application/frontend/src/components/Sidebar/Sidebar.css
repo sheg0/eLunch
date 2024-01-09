@@ -63,6 +63,7 @@
   top: 0;
   gap: 3vh;
   cursor: pointer;
+  align-items: end;
 }
 
 .sidebar-button.active {
@@ -81,7 +82,7 @@
 .sidebar-icon {
   float: left;
   color: white;
-  font-size: 2.5vh;
+  line-height: 2.8vh;
 }
 
 .sidebar-text {
@@ -89,6 +90,7 @@
   color: white;
   font-family: "Segoe UI";
   font-size: 2.5vh;
+  line-height: 2.8vh;
 }
 
 .sidebar-footer {
@@ -111,4 +113,14 @@
 
 .sidebar-logo {
   margin-bottom: 3vh;
+}
+
+
+.page-container {
+  position: fixed;
+  top: 0;
+  margin-left: 35vh;
+  width: 100vh;
+  height: 100vh;
+  flex-shrink: 0;
 }

@@ -10,14 +10,18 @@
 
 .MealList-icon-button {
   border: none;
-  border-radius: 2vh;
-  width: 10vh;
-  height: 5vh;
+  border-radius: 1.5vh;
+  width: 8vh;
+  height: 4vh;
   cursor: pointer;
 }
 
 .MealList-icon-button:hover {
-  background-color: rgb(166, 166, 166);
+  background-color: #9dd7fb;
+}
+
+.MealList-icon-button.delete:hover {
+  background-color: #fb888a;
 }
 
 .MealList-icon-gap {
@@ -30,7 +34,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,14 +48,8 @@
 
 .mealDelete-close {
   cursor: pointer;
-  border-radius: 1vh;
-  width: 3vh;
-  height: 3vh;
   border: none;
-}
-
-.mealDelete-close:hover {
-  background-color: #cccccc;
+  font-size: 1.5vh;
 }
 
 .MealDelete-Button {
@@ -61,7 +58,7 @@
   font-weight: 400;
   border-radius: 1vh;
   border: none;
-  background-color: #043c5f;
+  background-color: #f94144;
   color: white;
   width: auto;
   height: 3.5vh;
@@ -69,7 +66,7 @@
 }
 
 .MealDelete-Button:hover {
-  background-color: rgba(3, 40, 63, 1);
+  background-color: #a0181a;
 }
 
 .MealList-Info-Container {
@@ -78,7 +75,6 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(0, 0, 0, 0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -94,7 +90,6 @@
 .MealList-Info-Modal {
   max-height: 60vh;
   overflow: auto;
-  scrollbar-width: thin;
 }
 
 .MealList-Info-Header {
@@ -102,7 +97,7 @@
   color: #043c5f;
   font-weight: 700;
   font-size: 2.5vh;
-  margin: 1vh;
+  margin-bottom: 1vh;
 }
 
 .MealList-Info-TextContent {
@@ -123,11 +118,13 @@
   margin-right: 5vh;
 }
 
-.MealList-MirFälltKeinNameEin {
+.MealList-Details {
   margin-right: 2vh;
+  max-width: 40vh;
+  min-width: 20vh;
 }
 
-.table-con {
+.MealList-Table-Container {
   font-family: "Segoe UI";
   width: 102vh;
   height: 75vh;
@@ -138,24 +135,41 @@
   font-size: 2vh;
 }
 
-.table {
+.MealList-Table {
   width: 100vh;
   table-layout: fixed;
-  background-color: #f5f5f5;
+  background-color: #eeeeee;
 }
 
-.table th {
+.MealList-Table th {
   position: sticky;
   top: 0;
   line-height: 2;
-  background-color: #f1f1f1;
+  background-color: #e4e4e4;
   font-weight: bold;
   color: #043c5f;
 }
 
-.table td,
-.table th {
+.MealList-Table td,
+.MealList-Table th {
   padding: 1vh;
   text-align: left;
   border-bottom: thin solid #ddd;
+}
+
+.MealList-AddMeal-Button {
+  font-family: "Segoe UI";
+  font-size: 1.7vh;
+  font-weight: 400;
+  border-radius: 1vh;
+  border: none;
+  background-color: #043c5f;
+  color: white;
+  width: auto;
+  height: 3.5vh;
+  cursor: pointer;
+}
+
+.MealList-AddMeal-Button:hover {
+  background-color: #0f52ba;
 }

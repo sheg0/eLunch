@@ -32,6 +32,7 @@ const Calendar = () => {
   const [isEventModalOpen, setIsEventModal] = useState(false);
   const [isDetailModalOpen, setIsDetailModalOpen] = useState(false);
   const [selectedDate, setSelectedDate] = useState(null);
+  const [isRotated, setIsRotated] = useState(false);
 
   const {
     month,
@@ -63,6 +64,10 @@ const Calendar = () => {
     setIsEventModal(true);
     setSelectedDate(clickedDate);
   };
+  const handleRotation = () => {
+    setIsRotated((prev) => !prev);
+  };
+
   return (
     <div className="calendar-app-container">
       <div className="calendar">
@@ -93,12 +98,12 @@ const Calendar = () => {
                             handleSubscribeClick={subscribeEvent}
                             handleUnsubscribeClick={unsubscribeEvent}
                           />
-                          <span
+                          <div
                             onClick={handleButtonClick}
                             className="Calendar-MoreEvents"
                           >
                             +{dayEvents.length - 1} weitere Events
-                          </span>
+                          </div>
                         </div>
                       ) : (
                         dayEvents.map((event, index) => (
@@ -133,11 +138,12 @@ const Calendar = () => {
                   <div key={day.toISOString()}>
                     <div className="calendar-dateWeek">
                       {day.getDate()}
-                      <StyledEventButton
+                      <button
+                        className="Calendar-NewMeal-Button"
                         onClick={() => handleEventButtonClick(day)}
                       >
                         + Gericht
-                      </StyledEventButton>
+                      </button>
                       <div className="Calendar-EventsContainer">
                         {getEvents(day.getDate(), month, year, events).map(
                           (event, index) => (
@@ -158,11 +164,18 @@ const Calendar = () => {
             </div>
           </div>
         )}
-        <div className="calendar-btn-container">
-          <button className="calendar-btn week" onClick={handleButtonClick}>
+        <div className="Calendar-Button-Container">
+          <button
+            className={`Calendar-Button week ${isRotated ? "rotate" : ""}`}
+            onClick={() => {
+              handleButtonClick();
+              handleRotation();
+            }}
+          >
             <SlArrowDown />
           </button>
         </div>
+
       </div>
       <EventModal
         dates={selectedDate}

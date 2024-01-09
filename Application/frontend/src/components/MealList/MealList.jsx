@@ -6,27 +6,17 @@ import StyledButton from "../Styled_MUI_Components/StyledButton.jsx";
 import { Button } from "@mui/material";
 import styled from "@emotion/styled";
 
-const StyledEventButton = styled(Button)({
-  fontFamily: "Segoe UI",
-  fontWeight: 400,
-  color: "white",
-  backgroundColor: "#043c5f",
-  width: "auto",
-  borderRadius: "1vh",
-  transition: "background-color 0.3s ease",
-  "&:hover": {
-    backgroundColor: "rgba(3, 40, 63, 1)",
-  },
-});
 
 function MealList({ meals }) {
   const { openAddMealModal } = useMealListContext();
   return (
     <div className="MealList-App-Container">
       <MealListTable meals={meals} />
-      <StyledEventButton onClick={openAddMealModal}>
-        Gericht hinzufügen
-      </StyledEventButton>
+      <button
+        onClick={openAddMealModal}
+        className="MealList-AddMeal-Button">
+          Gericht hinzufügen
+      </button>
       <MealModal />
     </div>
   );
