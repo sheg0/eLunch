@@ -3,8 +3,8 @@ import MealListTableBody from "./MealListTableBody";
 
 const MealListTable = ({ meals }) => {
   return (
-    <div className="table-con">
-      <table className="table">
+    <div className="MealList-Table-Container">
+      <table className="MealList-Table">
         <MealListTableHeader />
         <MealListTableBody meals={meals} />
       </table>
