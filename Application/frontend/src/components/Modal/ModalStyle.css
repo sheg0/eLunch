@@ -1,15 +1,20 @@
 .Modal-Header {
   font-family: "Segoe UI";
   color: #043c5f;
-  margin-top: 1vh;
+  font-weight: 700;
+  font-size: 2.5vh;
   margin-bottom: 1vh;
-  font-size: 3vh;
-  margin-left: 3vh;
-  margin-right: 7vh;
+}
+
+.Modal-Header.Meal {
+  margin-right: 5vh;
+  margin-left: 13vh;
 }
 
 .EventModal-Content {
   margin: 1vh;
+  max-height: 60vh;
+  overflow: auto;
 }
 
 .EventModal-Container {
@@ -27,7 +32,7 @@
 
 .EventModal-Button {
   font-family: "Segoe UI";
-  font-size: 1.5vh;
+  font-size: 1.7vh;
   font-weight: 400;
   border-radius: 1vh;
   border: none;
@@ -39,7 +44,18 @@
 }
 
 .EventModal-Button:hover {
-  background-color: rgba(3, 40, 63, 1);
+  background-color: #0f52ba;
+}
+
+.MealInput-Text {
+  font-family: "Segoe UI";
+  font-size: 1.7vh;
+  font-weight: 600;
+  margin-right: 2vh;
+}
+
+.MealInput-TextField {
+  text-align: right;
 }
 
 /***************/
@@ -52,7 +68,7 @@
   font-family: "Segoe UI";
   font-size: 2vh;
   font-weight: 500;
-  margin-right: 10vh;
+  margin-right: 4vh;
 }
 
 .Modal-Meal {
@@ -60,7 +76,7 @@
   font-family: "Segoe UI";
   font-size: 2vh;
   font-weight: 600;
-  margin-left: 3vh;
+  margin-left: 1vh;
 }
 
 .EventDetail-Text {
@@ -83,7 +99,7 @@
 
 .DetailModal-Button {
   font-size: 2vh;
-  background-color: white;
+
   border: none;
   cursor: pointer;
   width: 3vh;
@@ -91,10 +107,6 @@
   border-radius: 1vh;
   margin-top: 1.5vh;
   margin-right: 1vh;
-}
-
-.DetailModal-Button:hover {
-  background-color: #cccccc;
 }
 
 .DetailModal-InfoButton {
@@ -157,6 +169,12 @@
   width: 7vh;
   height: 5vh;
   background-color: #043c5f;
+}
+
+.CloseModalButton {
+  cursor: pointer;
+  border: none;
+  font-size: 1.5vh;
 }
 
 .btn-newMeal {

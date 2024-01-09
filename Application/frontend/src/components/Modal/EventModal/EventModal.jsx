@@ -9,6 +9,7 @@ import StyledButton from "../../Styled_MUI_Components/StyledButton";
 import StyledTimeField from "../../Styled_MUI_Components/StyledTimeField";
 import StyledDateField from "../../Styled_MUI_Components/StyledDateField";
 import "../ModalStyle.css";
+import { TextField } from "@mui/material";
 
 export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
   const [mealId, setMealId] = useState("");
@@ -16,8 +17,16 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
   const { dispatch } = useEventsContext();
   const [date, setDate] = useState(dayjs());
   //let date = dayjs(dates);
-  console.log("dates: ", dates);
-  console.log("date: ", date);
+  //console.log("dates: ", dates);
+  //console.log("date: ", date);
+
+  const dateObject = new Date(dates);
+  const formattedDate = dateObject.toLocaleDateString("de-DE", {
+    weekday: "short",
+    day: "2-digit",
+    month: "2-digit",
+    year: "numeric",
+  });
 
   useEffect(() => {
     // Update the date when 'dates' prop changes
@@ -65,10 +74,10 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
   };
   return (
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
-      <h1 className="Modal-Header">Neues Gericht</h1>
+      <h1 className="Modal-Header">Neues Gericht - {formattedDate}</h1>
       <div className="EventModal-Content">
         <div className="EventModal-Container">
-          <h1 className="EventModal-Headlines">Datum</h1>
+          <h1 className="EventModal-Headlines">Uhrzeit</h1>
 
           <StyledTimeField
             value={date}
@@ -82,19 +91,14 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
           <MealDropdown setMealId={setMealId}></MealDropdown>
         </div>
 
-        <StyledButton
-          onClick={addEvent}
-          className="EventModal-Button"
-          sx={{
-            bgcolor: "#043c5f",
-            color: "white",
-            "&:hover": {
-              backgroundColor: "rgba(3, 40, 63, 1)",
-            },
-          }}
-        >
+        <div className="EventModal-Container">
+          <h1 className="EventModal-Headlines">Anmerkung</h1>
+          <TextField></TextField>
+        </div>
+
+        <button onClick={addEvent} className="EventModal-Button">
           Gericht hinzufügen
-        </StyledButton>
+        </button>
       </div>
     </BasicModal>
   );
