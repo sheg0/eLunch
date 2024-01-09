@@ -17,7 +17,7 @@ function EventElement({ event, handleEventClick }) {
     <div
       onClick={() => handleEventClick(event)}
       variant="outlined"
-      className="meal-container"
+      className="EventElement-Meal-Container"
     >
       <p1>{formattedTime}</p1>
       <p></p>

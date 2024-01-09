@@ -1,6 +1,6 @@
 .shoppinglist-content {
     flex-grow: 1;
-    /*padding-left: 15vh;*/
+    padding-left: 15vh;
     padding-top: 2vh;
 }
 h1 {
