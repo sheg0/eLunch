@@ -20,7 +20,7 @@ const MealForm = () => {
         </div>
 
         <button className="EventModal-Button" onClick={() => submitMeal(meal)}>
-          BESTÄTIGEN
+          Bestätigen
         </button>
       </div>
     </>
