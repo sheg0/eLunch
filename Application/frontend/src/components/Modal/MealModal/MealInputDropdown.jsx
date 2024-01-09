@@ -2,13 +2,19 @@ import { useMealListContext } from "../../../hooks/useMealListContext";
 import { Box } from "@mui/system";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
+const style = {
+  marginLeft: "5vh",
+  marginBottom: "1vh",
+  minWidth: "60vh",
+};
+
 const MealInputDropdown = ({ stateOptions, value, mealPropertyName }) => {
   const { meal, setMeal } = useMealListContext();
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl sx={"margin: 16px"} fullWidth>
-        <InputLabel id="meal-select-label">Gericht auswählen</InputLabel>
+    <Box sx={{ minWidth: "30vh", maxWidth: "40vh" }}>
+      <FormControl fullWidth>
         <Select
+          style={style}
           labelId="options-select"
           id="options-select"
           label="Options"
