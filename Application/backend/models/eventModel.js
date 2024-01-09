@@ -17,6 +17,11 @@ const eventSchema = new Schema(
       ref: "Meal",
       required: true,
     },
+    shoppinglist: {
+      type: String,
+      required: false,
+      default: "Smooth like butter",
+    },
     participants: [
       {
         userName: {

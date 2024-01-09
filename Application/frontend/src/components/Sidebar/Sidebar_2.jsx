@@ -24,12 +24,12 @@ function Sidebar({ children }) {
       case "Gerichte":
         return navigate("/List");
       case "Einkaufszettel":
-        return navigate("/");
+        return navigate("/Shoppinglist");
       case "Finanzen":
         return navigate("/Finanzen");
-      case 5:
+      case "Mitarbeiter":
         return navigate("/");
-      case 6:
+      case "Statistik":
         return navigate("/");
       case "Infos":
         return navigate("/Info");
