@@ -8,10 +8,10 @@ import { useMealsContext } from "../../hooks/useMealsContext";
 import { useState, useEffect } from "react";
 import ErrorHandler from "../ErrorHandler";
 
-export default function MealDropdown({ setMealId }) {
+export default function MealDropdown({ setMealId, setMealBack }) {
   const { meals } = useMealsContext();
   const [meal, setMeal] = useState(meals[0]);
-
+  setMealBack(meal);
   const handleChange = (event) => {
     setMeal(event.target.value);
   };

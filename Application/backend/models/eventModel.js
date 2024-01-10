@@ -17,6 +17,43 @@ const eventSchema = new Schema(
       ref: "Meal",
       required: true,
     },
+    note: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    mealInfo: {
+      isVegetarian: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isVegan: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isWithMeat: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isWithAlcohol: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isGlutenFree: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isLactoseFree: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+    },
     shoppinglist: {
       type: String,
       required: false,

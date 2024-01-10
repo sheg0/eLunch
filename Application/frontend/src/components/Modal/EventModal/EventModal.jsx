@@ -16,10 +16,8 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
   const { keycloak } = useKeycloak();
   const { dispatch } = useEventsContext();
   const [date, setDate] = useState(dayjs());
-  //let date = dayjs(dates);
-  //console.log("dates: ", dates);
-  //console.log("date: ", date);
-
+  const [note, setNote] = useState("");
+  const [meal, setMealBack] = useState();
   const dateObject = new Date(dates);
   const formattedDate = dateObject.toLocaleDateString("de-DE", {
     weekday: "short",
@@ -37,6 +35,7 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
     console.log({
       date,
       mealId,
+      note,
       userName: keycloak.tokenParsed.preferred_username,
     });
 
@@ -45,6 +44,7 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
       body: JSON.stringify({
         date: date,
         mealId,
+        note,
         userName: keycloak.tokenParsed.preferred_username,
         firstName: keycloak.tokenParsed.given_name,
         lastName: keycloak.tokenParsed.family_name,
@@ -72,9 +72,12 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
         .set("second", dayjs(newTime).second())
     );
   };
+
+  console.log("mealback ", meal);
   return (
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
       <h1 className="Modal-Header">Neues Gericht - {formattedDate}</h1>
+
       <div className="EventModal-Content">
         <div className="EventModal-Container">
           <h1 className="EventModal-Headlines">Uhrzeit</h1>
@@ -88,12 +91,20 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
         </div>
         <div className="EventModal-Container">
           <h1 className="EventModal-Headlines">Gericht</h1>
-          <MealDropdown setMealId={setMealId}></MealDropdown>
+          <MealDropdown
+            setMealBack={setMealBack}
+            setMealId={setMealId}
+          ></MealDropdown>
         </div>
 
         <div className="EventModal-Container">
           <h1 className="EventModal-Headlines">Anmerkung</h1>
-          <TextField></TextField>
+          <TextField
+            value={note}
+            onChange={(e) => {
+              setNote(e.target.value);
+            }}
+          ></TextField>
         </div>
 
         <button onClick={addEvent} className="EventModal-Button">

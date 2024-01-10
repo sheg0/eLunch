@@ -151,6 +151,7 @@ export const EventDetailModal = ({
           />
         </Modal>
       </div>
+      <p>Anmerkung: {event.note}</p>
       <p>Hier kommen noch die Tags hin</p>
       {toArray()}
 
