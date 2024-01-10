@@ -21,6 +21,7 @@ function Shoppinglist({ shoppinglists }) {
     setQuantity(event.target.value);
   };
 
+  // HI
   const handleNewArticle = () => {
     if (article !== "" && quantity !== "") {
       const newArticle = {
