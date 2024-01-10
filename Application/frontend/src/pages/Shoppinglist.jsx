@@ -1,8 +1,11 @@
 import Shoppinglist from "../components/Shoppinglist/Shoppinglist.jsx";
+import { ShoppinglistContextProvider } from "../context/ShoppinglistContext.jsx";
 
-const Sho = () => {
+const Sho = ({ shoppinglists }) => {
   return (
-    <Shoppinglist></Shoppinglist>
+    <ShoppinglistContextProvider>
+      <Shoppinglist shoppinglists={shoppinglists}></Shoppinglist>
+    </ShoppinglistContextProvider>
   );
 };
 
