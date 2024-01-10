@@ -151,7 +151,6 @@ export const EventDetailModal = ({
           />
         </Modal>
       </div>
-      <p>Anmerkung: {event.note}</p>
       <p>Hier kommen noch die Tags hin</p>
       {toArray()}
 
@@ -196,6 +195,15 @@ export const EventDetailModal = ({
             </div>
           </div>
         ))}
+
+      {event.note && (
+        <div className="DetailModal-Header">
+          <div className="EventDetail-Text">
+            Anmerkung:
+            <div className="EventDetail-Fields">{event.note}</div>
+          </div>
+        </div>
+      )}
 
       <hr />
       <Tooltip title="Mitessen" arrow>
