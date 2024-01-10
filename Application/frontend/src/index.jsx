@@ -12,6 +12,7 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import "dayjs/locale/de";
 import { FinanceDispatchContextProvider } from "./context/FinanceDispatchContext";
 import { FinanceProvider } from "./context/FinanceContext";
+import { ShoppinglistContextProvider } from "./context/ShoppinglistContext";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <ReactKeycloakProvider
@@ -23,9 +24,11 @@ root.render(
         <FinanceProvider>
           <EventContextProvider>
             <MealContextProvider>
-              <BrowserRouter>
-                <App />
-              </BrowserRouter>
+              <ShoppinglistContextProvider>
+                <BrowserRouter>
+                  <App />
+                </BrowserRouter>
+              </ShoppinglistContextProvider>
             </MealContextProvider>
           </EventContextProvider>
         </FinanceProvider>
