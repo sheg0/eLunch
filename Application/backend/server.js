@@ -14,6 +14,7 @@ const mongoose = require("mongoose");
 const mealRoutes = require("./routes/meals");
 const eventRoutes = require("./routes/events");
 const financeRoutes = require("./routes/finance");
+const shoppinglistRoutes = require("./routes/shoppinglist");
 
 // express app
 const app = express();
@@ -30,6 +31,7 @@ app.use((req, res, next) => {
 //app.use(keycloak.middleware());
 app.use("/api/finance", financeRoutes);
 app.use("/api/events", eventRoutes);
+app.use("/api/shoppinglist", shoppinglistRoutes);
 app.use(keycloak.middleware());
 app.use("/api/meals", mealRoutes);
 
