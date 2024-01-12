@@ -12,7 +12,8 @@ import { EventDetailModal } from "../Modal/EventDetailModal/EventDetailModal";
 import styled from "@emotion/styled";
 import dayjs from "dayjs";
 import ErrorHandler from "../ErrorHandler";
-
+import { useKeycloak } from "@react-keycloak/web";
+import { useFinanceContext } from "../../hooks/useFinanceContext";
 const StyledEventButton = styled(Button)({
   fontFamily: "Segoe UI",
   fontWeight: 400,
@@ -53,8 +54,41 @@ const Calendar = () => {
     event,
     setEvent,
   } = useCalendarContext();
-
+  const { keycloak, initialized } = useKeycloak();
   const { events } = useEventsContext();
+  const { updateBalance, finance } = useFinanceContext();
+
+  const handleSubscribe = (event) => {
+    let keyUser = "";
+    if (initialized && keycloak.authenticated) {
+      keyUser = keycloak.tokenParsed.preferred_username;
+    }
+    subscribeEvent(event);
+    console.log("keyUser", keyUser);
+
+    finance.map((fin) => {
+      if (fin.userInfo.userName === keyUser) {
+        console.log("finance", fin);
+        console.log("finance.userInfo.userName", fin.userInfo.userName);
+        console.log(
+          "finance.userInfo.balance",
+          parseFloat(fin.userInfo.balance.$numberDecimal)
+        );
+        console.log("event.meal.cost", event.meal.cost);
+        console.log(
+          "finance.userInfo.balance - event.meal.cost",
+          fin.userInfo.balance.$numberDecimal - event.meal.cost
+        );
+        console.log(typeof fin.userInfo.balance.$numberDecimal);
+        let newBalance = fin.userInfo.balance.$numberDecimal - event.meal.cost;
+
+        console.log(typeof newBalance);
+        console.log(typeof String(newBalance));
+
+        updateBalance(keyUser, newBalance);
+      }
+    });
+  };
 
   const handleEventClick = (event) => {
     setEvent(event);
@@ -175,7 +209,6 @@ const Calendar = () => {
             <SlArrowDown />
           </button>
         </div>
-
       </div>
       <EventModal
         dates={selectedDate}
@@ -187,7 +220,7 @@ const Calendar = () => {
         isOpen={isDetailModalOpen}
         setIsOpen={setIsDetailModalOpen}
         event={event}
-        handleSubscribeClick={subscribeEvent}
+        handleSubscribeClick={handleSubscribe}
         handleUnsubscribeClick={unsubscribeEvent}
         setEvent={setEvent}
       ></EventDetailModal>

@@ -45,7 +45,7 @@ const updateBalance = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    finance.userInfo.balance = newBalance;
+    finance.userInfo.balance = String(newBalance);
     await finance.save();
 
     res.status(200).json(finance);
