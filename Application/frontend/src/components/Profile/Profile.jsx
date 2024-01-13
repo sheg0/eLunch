@@ -84,7 +84,6 @@ const Profile = ({ participants }) => {
     setIsCookCount(isCook);
   };
 
-  // Rufe die Berechnungen auf, wenn sich die Teilnehmer ändern (z.B., wenn die Daten aktualisiert werden)
   useEffect(() => {
     calculateStatistics();
   }, [participants]);
