@@ -26,28 +26,13 @@
   display: flex;
 }
 
-.box1 {
+.profile-box1 {
   height: 40%;
   width: 100%;
   flex-direction: row;
   display: flex;
   gap: 13vh;
 }
-
-.box2 {
-  height: 40%;
-  width: 100%;
-  flex-direction: row;
-  display: flex;
-}
-
-.box3 {
-  height: 10%;
-  width: 100%;
-  flex-direction: row;
-  display: flex;
-}
-
 .profile-circle {
   width: 6vh;
   height: 6vh;
@@ -64,8 +49,7 @@
   background-color: #043c5ffd;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
 }
-
-.circle-name {
+.profile-circle-name {
   display: grid;
   text-align: center;
   padding: 15% 5% 5% 5%;
@@ -73,7 +57,6 @@
   font-size: calc(25px + 0.390625vw);
   cursor: default;
 }
-
 .profile-logout {
   height: 10%;
   margin: 5px;
@@ -89,7 +72,13 @@
   cursor: pointer;
 }
 
-.name {
+.profile-box2 {
+  height: 40%;
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+}
+.profile-name {
   margin: 10px;
 
   font-size: calc(9px + 0.390625vw);
@@ -97,8 +86,7 @@
   color: #043c5f;
   cursor: default;
 }
-
-.balance {
+.profile-balance {
   width: 30%;
   margin: 10px;
 
@@ -108,7 +96,13 @@
   cursor: default;
 }
 
-.statistic {
+.profile-box3 {
+  height: 10%;
+  width: 100%;
+  flex-direction: row;
+  display: flex;
+}
+.profile-statistic {
   margin: 10px;
 
   font-weight: bold;
@@ -116,15 +110,8 @@
   color: #333333;
   cursor: default;
 }
-
-.icon-gekocht {
-  margin: 10px;
-
-  font-size: calc(10px + 0.390625vw);
-  color: #333333;
-}
-
-.icon-gegessen {
+.profile-statistic-iconGekocht,
+.profile-statistic-iconGegessen {
   margin: 10px;
 
   font-size: calc(10px + 0.390625vw);
