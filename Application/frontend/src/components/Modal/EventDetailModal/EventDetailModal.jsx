@@ -16,6 +16,12 @@ import InfoDetailModal from "../InfoDetailModal/InfoDetailModal";
 import MealImageCheckbox from "../MealModal/MealImageCheckbox";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
+import Alcohol from "../../../images/Alcohol.png";
+import Dairyfree from "../../../images/Dairyfree.png";
+import Glutenfree from "../../../images/Glutenfree.png";
+import Meat from "../../../images/Meat.png";
+import Vegan from "../../../images/Vegan.png";
+import Veggie from "../../../images/Veggie.png";
 
 const StyledIconButton = styled(Button)({
   backgroundColor: "#a3a3a3",
@@ -57,9 +63,11 @@ export const EventDetailModal = ({
 }) => {
   console.log("Event:", event);
   const { keycloak } = useKeycloak();
-  const { updateEvent } = useCalendarContext();
+  const { updateEvent, deleteEvent } = useCalendarContext();
   let participants = [];
   const [isInfoModalOpen, setInfoModalOpen] = useState(false);
+
+  console.log("mealinfoo: ", event.mealInfo);
 
   const openInfoModal = () => {
     setInfoModalOpen(true);
@@ -95,6 +103,14 @@ export const EventDetailModal = ({
     updateEvent(updatedEvent);
   };
 
+  const handleDeleteClick = (eventID) => {
+    if (event && eventID) {
+      deleteEvent(eventID);
+    } else {
+      console.log("Event ID not available");
+    }
+  };
+
   const dateOptions = {
     weekday: "long",
     day: "2-digit",
@@ -126,7 +142,10 @@ export const EventDetailModal = ({
         <button className="DetailModal-Button">
           <FiEdit2 />
         </button>
-        <button className="DetailModal-Button">
+        <button
+          className="DetailModal-Button"
+          onClick={handleDeleteClick(event._id)}
+        >
           <FiTrash2 />
         </button>
       </div>
@@ -151,7 +170,57 @@ export const EventDetailModal = ({
           />
         </Modal>
       </div>
-      <p>Hier kommen noch die Tags hin</p>
+      <div className="DetailModal-Header">
+        {event && event.mealInfo && event.mealInfo.isVegan && (
+          <img
+            className="EventDetail-Tags"
+            src={Vegan}
+            alt="Vegan"
+            title="Vegan"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isVegetarian && (
+          <img
+            className="EventDetail-Tags"
+            src={Veggie}
+            alt="Veggie"
+            title="Vegetarisch"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isWithMeat && (
+          <img
+            className="EventDetail-Tags"
+            src={Meat}
+            alt="Meat"
+            title="Mit Fleisch"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isWithAlcohol && (
+          <img
+            className="EventDetail-Tags"
+            src={Alcohol}
+            alt="Alcohol"
+            title="Mit Alkohol"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isGlutenFree && (
+          <img
+            className="EventDetail-Tags"
+            src={Glutenfree}
+            alt="Glutenfree"
+            title="Glutenfrei"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isLactoseFree && (
+          <img
+            className="EventDetail-Tags"
+            src={Dairyfree}
+            alt="Dairyfree"
+            title="Laktosefrei"
+          />
+        )}
+      </div>
+
       {toArray()}
 
       {participants
