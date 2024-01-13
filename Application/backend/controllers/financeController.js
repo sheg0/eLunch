@@ -58,33 +58,68 @@ const updateBalance = async (req, res) => {
 
 // neues objekt hinzufügen, nicht aktualiseiren wie in updateBalance
 const addActivities = async (req, res) => {
-  const userName = req.params.userName;
-  const addActivity = req.body.addActivity;
-
   try {
+    const userName = req.params.userName;
+    const { amount, description, sendTo, receivedFrom, date } = req.body;
+
+    // Find the finance document by userName
     const finance = await Finance.findOne({ "userInfo.userName": userName });
 
     if (!finance) {
-      return res.status(404).json({ error: "User not found" });
+      return res.status(404).json({ error: "Finance record not found" });
     }
 
-    finance.userInfo.activities.push(addActivity);
-    await finance.save();
+    // Add a new activity to the activities array
+    finance.userInfo.activities.push({
+      amount: amount,
+      description: description,
+      sendTo: sendTo,
+      receivedFrom: receivedFrom,
+      date: date,
+    });
 
-    res.status(201).json({ success: true, activity: addActivity });
+    // Save the updated finance document
+    const updatedFinance = await finance.save();
+
+    // Respond with the updated finance document
+    res.json(updatedFinance);
   } catch (error) {
-    res
-      .status(500)
-      .json({ error: "Internal server error", details: error.message });
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
 
+const deleteActivities = async (req, res) => {
+  try {
+    const userName = req.params.userName;
+
+    // Find the finance document by userName
+    const finance = await Finance.findOne({ "userInfo.userName": userName });
+
+    if (!finance) {
+      return res.status(404).json({ error: "Finance record not found" });
+    }
+
+    // Set the activities array to an empty array
+    finance.userInfo.activities = [];
+
+    // Save the updated finance document
+    const updatedFinance = await finance.save();
+
+    // Respond with the updated finance document
+    res.json(updatedFinance);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 module.exports = {
   getAllFinance,
   deleteAllFinances,
   createFinance,
   updateBalance,
   addActivities,
+  deleteActivities,
   //deleteMeal,
   //updateMeal,
   //UpdateBalance,

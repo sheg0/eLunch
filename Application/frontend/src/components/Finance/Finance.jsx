@@ -17,6 +17,10 @@ const Finance = ({ isAdmin, finances }) => {
   const [selectedAccount2, setSelectedAccount2] = useState(
     finance[0].userInfo.userName
   );
+  let username = "";
+  if (initialized && keycloak.authenticated) {
+    username = keycloak.tokenParsed.preferred_username;
+  }
   const [amount, setAmount] = useState("");
   const [amount2, setAmount2] = useState("");
   const [remark, setRemark] = useState("");
@@ -40,17 +44,25 @@ const Finance = ({ isAdmin, finances }) => {
   };
 
   // NEUE AUSGABE
-  const handleTransfer = async (username, selectedAccount, amount) => {
+  const handleTransfer = (amount) => {
     finance.map((fin) => {
       if (fin.userInfo.userName === username) {
         let newBalance =
           parseInt(fin.userInfo.balance.$numberDecimal) - parseInt(amount);
         updateBalance(username, newBalance);
+        addActivities(username, remark, amount, selectedAccount, "me");
       }
+      //`${username} hat ${selectedAccount} : ${amount}$ geschickt`
       if (fin.userInfo.userName === selectedAccount) {
         let newBalance =
           parseInt(fin.userInfo.balance.$numberDecimal) + parseInt(amount);
         updateBalance(selectedAccount, newBalance);
+        addActivities(selectedAccount, remark, amount, "me", username);
+        /*
+        addActivities(
+          selectedAccount,
+          `${selectedAccount} hat  von ${username} : ${amount}$ erhalten`
+        );*/
       }
     });
 
@@ -66,6 +78,11 @@ const Finance = ({ isAdmin, finances }) => {
         let newBalance =
           parseInt(fin.userInfo.balance.$numberDecimal) + parseInt(amount2);
         updateBalance(selectedAccount2, newBalance);
+        /*addActivities(username, remark, amount, selectedAccount);
+        addActivities(
+          selectedAccount2,
+          `${selectedAccount2} hat  : +${amount2}$ erhalten `
+        );*/
       }
     });
 
@@ -73,7 +90,7 @@ const Finance = ({ isAdmin, finances }) => {
     setRemark2("");
     setShowDetails(true);
   };
-
+  /*
   const addActivites = async () => {
     console.log({
       account: selectedAccount,
@@ -81,7 +98,7 @@ const Finance = ({ isAdmin, finances }) => {
       remark: remark2,
       timestamp: new Date().toLocaleString(),
     });
-  };
+  };*/
 
   var firstName = "Max";
   var lastName = "Musterrmann";
@@ -132,7 +149,7 @@ const Finance = ({ isAdmin, finances }) => {
                       label="Mitarbeiter auswählen"
                     >
                       {finance.map((fin, index) => (
-                        <MenuItem key={index + 1} value={index}>
+                        <MenuItem key={index} value={index}>
                           {fin.userInfo.firstName}
                         </MenuItem>
                       ))}
@@ -285,10 +302,22 @@ const Finance = ({ isAdmin, finances }) => {
           <h1>Letzte Aktivitäten</h1>
           <div className="finance-box3">
             <div className="finance-lastActivities">
-              <div className="name">{selectedAccount}</div>
-              <div className="finance-activity-remark">{remark}</div>
-              <div className="finance-activity-amount">{amount} €</div>
-              <hr />
+              {console.log(username)}
+              {finance &&
+                finance.map((fin) => {
+                  if (fin.userInfo.userName === username) {
+                    {
+                      return fin.userInfo.activities.map((act) => (
+                        <>
+                          <div className="name">
+                            {act.sendTo} {act.description} {act.date}{" "}
+                            {act.amount} €
+                          </div>
+                        </>
+                      ));
+                    }
+                  }
+                })}
             </div>
           </div>
         </div>

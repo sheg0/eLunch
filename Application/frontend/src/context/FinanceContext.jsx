@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import { useFinanceDispatchContext } from "../hooks/useFinanceDispatchContext";
-
+import dayjs from "dayjs";
 export const FinanceContext = createContext();
 
 export const FinanceProvider = ({ children }) => {
@@ -52,12 +52,22 @@ export const FinanceProvider = ({ children }) => {
   };
 
   //addActivites funktion einbauen und ein PATCH_REQUEST an backend schicken
-  const addActivities = async (userName, addActivity) => {
-    const response = await fetch(`/api/finance/activities${userName}`, {
+  const addActivities = async (
+    userName,
+    description,
+    amount,
+    sendTo,
+    receivedFrom
+  ) => {
+    const response = await fetch(`/api/finance/activities/${userName}`, {
       method: "PATCH",
       //müsste eventuell geändert werden
       body: JSON.stringify({
-        activities: [addActivity],
+        amount,
+        description,
+        sendTo,
+        receivedFrom,
+        date: dayjs(),
       }),
       headers: {
         "Content-Type": "application/json",
