@@ -70,6 +70,7 @@
     ]
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "cypress": "^13.6.2"
   }
 }
