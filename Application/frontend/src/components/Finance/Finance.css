@@ -253,17 +253,42 @@ h1 {
 
   background-color: #f1f1f1;
   border-radius: 5px;
+  margin: 10px;
 }
 .finance-lastActivities {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin: 10px;
+}
+.lastActivities-name {
+  margin: 10px;
+
+  font-size: calc(9px + 0.390625vw);
+  font-weight: bold;
+  color: #043c5f;
+  cursor: default;
+}
+.lastActivities-date {
+  color: #3f3f3f;
+  font-size: 80%;
 }
 .finance-activity-remark {
   background-color: lightgray;
   padding: 10px;
-  width: 30%;
+  width: 100%;
   border-radius: 5px;
-  align-content: center;
 }
 .finance-activity-amount {
+  text-align: right;
   font-weight: bold;
   color: #043c5f;
+}
+.amount-description {
+  color: #3f3f3f;
+  font-size: 80%;
+}
+.amount-description {
+  color: #3f3f3f;
+  font-size: 80%;
 }

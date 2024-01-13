@@ -51,7 +51,6 @@ export const FinanceProvider = ({ children }) => {
     }
   };
 
-  //addActivites funktion einbauen und ein PATCH_REQUEST an backend schicken
   const addActivities = async (
     userName,
     description,
@@ -61,7 +60,6 @@ export const FinanceProvider = ({ children }) => {
   ) => {
     const response = await fetch(`/api/finance/activities/${userName}`, {
       method: "PATCH",
-      //müsste eventuell geändert werden
       body: JSON.stringify({
         amount,
         description,
