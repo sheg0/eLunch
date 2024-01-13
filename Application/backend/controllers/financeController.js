@@ -45,10 +45,33 @@ const updateBalance = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    finance.userInfo.balance = newBalance;
+    finance.userInfo.balance = String(newBalance);
     await finance.save();
 
     res.status(200).json(finance);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ error: "Internal server error", details: error.message });
+  }
+};
+
+// neues objekt hinzufügen, nicht aktualiseiren wie in updateBalance
+const addActivities = async (req, res) => {
+  const userName = req.params.userName;
+  const addActivity = req.body.addActivity;
+
+  try {
+    const finance = await Finance.findOne({ "userInfo.userName": userName });
+
+    if (!finance) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    finance.userInfo.activities.push(addActivity);
+    await finance.save();
+
+    res.status(201).json({ success: true, activity: addActivity });
   } catch (error) {
     res
       .status(500)
@@ -61,6 +84,7 @@ module.exports = {
   deleteAllFinances,
   createFinance,
   updateBalance,
+  addActivities,
   //deleteMeal,
   //updateMeal,
   //UpdateBalance,

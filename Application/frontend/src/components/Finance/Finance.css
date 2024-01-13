@@ -1,0 +1,269 @@
+.finance-container {
+  height: 100%;
+  width: 100%;
+
+  display: flex;
+  background-color: rgba(128, 128, 128, 0.082);
+}
+
+.finance-content {
+  height: 90%;
+  width: 90%;
+
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  margin-right: auto;
+
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+
+  flex-shrink: 0;
+  flex-direction: column;
+  display: flex;
+}
+
+h1 {
+  font-size: 24px;
+  color: #043c5f;
+}
+
+.finance-box1 {
+  background-color: #f1f1f1;
+  height: 80%;
+  width: 80%;
+
+  border-radius: 5px;
+}
+
+.finance-row1 {
+  display: flex;
+  flex: 1;
+}
+.finance-employee {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finance-employee-dropdownMenu {
+  width: 70%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.employee-dropdown {
+  border-radius: 5px;
+  height: 50%;
+  width: 50%;
+}
+
+.finance-row2 {
+  display: flex;
+  flex: 1;
+}
+.finance-balance {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finance-balance-numberfield {
+  text-align: center;
+  margin: auto auto auto auto;
+  width: 70%;
+}
+.finance-numberfield {
+  display: flex;
+  flex: 1;
+}
+.balance-input {
+  height: 50%;
+  width: 50%;
+  border-radius: 5px;
+}
+.finance-balance.info {
+  display: flex;
+  text-align: right;
+  cursor: pointer;
+}
+.balance-popup {
+  cursor: pointer;
+}
+
+.finance-row3 {
+  display: flex;
+  flex: 1;
+}
+.finance-remark {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finance-remark-textfield {
+  text-align: center;
+  margin: auto auto auto auto;
+  width: 70%;
+}
+.remark-textfield {
+  height: 50%;
+  width: 50%;
+  border-radius: 5px;
+}
+
+.finance-row4 {
+  display: flex;
+  flex: 1;
+}
+.finance-confirm {
+  width: 30%;
+  margin: 20px;
+
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+
+  height: 3.5vh;
+  width: auto;
+
+  background-color: #043c5f;
+  color: white;
+  border-radius: 5px;
+
+  cursor: pointer;
+}
+.finance-confirm:hover {
+  background-color: #044770;
+}
+
+.finance-box2 {
+  background-color: #f1f1f1;
+  height: 80%;
+  width: 80%;
+
+  border-radius: 5px;
+}
+
+.finance-row1 {
+  display: flex;
+  flex: 1;
+}
+.finance-employee {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finance-employee-dropdownMenu {
+  width: 70%;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+}
+.employee-dropdown {
+  border-radius: 5px;
+  height: 50%;
+  width: 50%;
+}
+
+.finance-row2 {
+  display: flex;
+  flex: 1;
+}
+.finance-balance {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finance-balance-numberfield {
+  text-align: center;
+  margin: auto auto auto auto;
+  width: 70%;
+}
+.finance-numberfield {
+  display: flex;
+  flex: 1;
+}
+.balance-input {
+  height: 50%;
+  width: 50%;
+  border-radius: 5px;
+}
+.finance-balance.info {
+  display: flex;
+  text-align: right;
+  cursor: pointer;
+}
+.balance-popup {
+  cursor: pointer;
+}
+
+.finance-row3 {
+  display: flex;
+  flex: 1;
+}
+.finance-remark {
+  width: 30%;
+  margin: 20px;
+  font-weight: bold;
+  color: #3f3f3f;
+  font-size: calc(10px + 0.390625vw);
+}
+.finance-remark-textfield {
+  text-align: center;
+  margin: auto auto auto auto;
+  width: 70%;
+}
+.remark-textfield {
+  height: 50%;
+  width: 50%;
+  border-radius: 5px;
+}
+
+.finance-row4 {
+  display: flex;
+  flex: 1;
+}
+.finance-confirm {
+  font-family: "Segoe UI";
+  font-size: 1.7vh;
+  font-weight: 400;
+  border-radius: 1vh;
+  border: none;
+  background-color: #043c5f;
+  color: white;
+  width: auto;
+  height: 3.5vh;
+  cursor: pointer;
+}
+.finance-confirm:hover {
+  background-color: #0f52ba;
+}
+
+.finance-box3 {
+  height: 80%;
+  width: 80%;
+
+  background-color: #f1f1f1;
+  border-radius: 5px;
+}
+.finance-lastActivities {
+}
+.finance-activity-remark {
+  background-color: lightgray;
+  padding: 10px;
+  width: 30%;
+  border-radius: 5px;
+  align-content: center;
+}
+.finance-activity-amount {
+  font-weight: bold;
+  color: #043c5f;
+}

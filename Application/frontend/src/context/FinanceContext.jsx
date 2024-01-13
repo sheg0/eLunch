@@ -16,7 +16,7 @@ export const FinanceProvider = ({ children }) => {
           userName: userName,
           firstName: first_name,
           lastName: last_name,
-          activities: ["dasdsad", "dasdasdsa"],
+          activities: ["name", "date", "remark", "amount"],
           balance: 100.5,
         },
       }),
@@ -37,7 +37,27 @@ export const FinanceProvider = ({ children }) => {
     const response = await fetch(`/api/finance/${userName}`, {
       method: "PATCH",
       body: JSON.stringify({
-        newBalance: newBalance,
+        newBalance,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+    if (response.ok) {
+      dispatch({ type: "UPDATE_FINANCE", payload: json });
+      console.log(json);
+    }
+  };
+
+  //addActivites funktion einbauen und ein PATCH_REQUEST an backend schicken
+  const addActivities = async (userName, addActivity) => {
+    const response = await fetch(`/api/finance/activities${userName}`, {
+      method: "PATCH",
+      //müsste eventuell geändert werden
+      body: JSON.stringify({
+        activities: [addActivity],
       }),
       headers: {
         "Content-Type": "application/json",
@@ -47,8 +67,11 @@ export const FinanceProvider = ({ children }) => {
     const json = await response.json();
 
     if (response.ok) {
-      dispatch({ type: "UPDATE_BALANCE", payload: json });
+      // Annahme: Redux wird verwendet, 'ADD_ACTIVITY' ist Ihre Aktion in Redux
+      dispatch({ type: "UPDATE_FINANCE", payload: json });
       console.log(json);
+    } else {
+      console.error("Fehler beim Hinzufügen der Aktivität:", json);
     }
   };
 
@@ -57,8 +80,10 @@ export const FinanceProvider = ({ children }) => {
     setBalance,
     updateBalance,
     addFinance,
+    addActivities,
     finance: finances,
   };
+
   //console.log(finances);
   return (
     <FinanceContext.Provider value={contextValue}>

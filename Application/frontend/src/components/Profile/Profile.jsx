@@ -10,6 +10,7 @@ import { useFinanceContext } from "../../hooks/useFinanceContext";
 const Profile = () => {
   const { keycloak, initialized } = useKeycloak();
   const { finance, balance, setBalance } = useFinanceContext();
+
   var username = "MM";
   var firstName = "Max";
   var lastName = "Mustermann";
@@ -73,7 +74,7 @@ const Profile = () => {
           <div className="name">
             {firstName} {lastName}
           </div>
-          <div className="balance">{balance || "1453"}</div>
+          <div className="balance">{balance || "1453"} €</div>
         </div>
         <div className="box3">
           <div className="statistic">Statistik:</div>

@@ -5,6 +5,7 @@ const {
   getAllFinance,
   deleteAllFinances,
   updateBalance,
+  addActivities,
 } = require("../controllers/financeController");
 
 const router = express.Router();
@@ -17,4 +18,6 @@ router.get("/", getAllFinance);
 router.delete("/", deleteAllFinances);
 
 router.patch("/:userName", updateBalance);
+
+router.patch("/activities/:userName", addActivities);
 module.exports = router;

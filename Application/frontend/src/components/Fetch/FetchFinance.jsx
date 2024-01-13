@@ -1,8 +1,6 @@
 import { useFinanceDispatchContext } from "../../hooks/useFinanceDispatchContext.js";
 import { useEffect } from "react";
-
 import { Routes, Route } from "react-router-dom";
-
 import Fin from "../../pages/Finance.jsx";
 
 function FetchFinance() {
@@ -27,9 +25,10 @@ function FetchFinance() {
     }
   }, [dispatch]);
   console.log("finance fetch Page: ", finances);
+
   return (
     <Routes>
-      <Route path="/Finance" element={<Fin finances={finances} />} />
+      <Route path="/Finance" element={<Fin />} />
     </Routes>
   );
 }

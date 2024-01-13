@@ -5,7 +5,9 @@ export const useFinanceContext = () => {
   const context = useContext(FinanceContext); //context has now dispatch and state properties
 
   if (!context) {
-    throw Error("useEventsContext must be used inside an EventContextProvider");
+    throw Error(
+      "useFinanceContext must be used inside an FinanceContextProvider"
+    );
   }
 
   return context;
