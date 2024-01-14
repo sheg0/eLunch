@@ -75,6 +75,7 @@ export const FinanceProvider = ({ children }) => {
     const json = await response.json();
 
     if (response.ok) {
+      console.log("aktivitäten", userName);
       // Annahme: Redux wird verwendet, 'ADD_ACTIVITY' ist Ihre Aktion in Redux
       dispatch({ type: "UPDATE_FINANCE", payload: json });
       console.log(json);

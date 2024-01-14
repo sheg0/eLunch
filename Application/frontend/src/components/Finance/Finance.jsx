@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./Finance.css";
+import { useContext } from "react";
 import { useFinanceContext } from "../../hooks/useFinanceContext";
 import { useKeycloak } from "@react-keycloak/web";
 
@@ -21,6 +22,7 @@ const Finance = ({ isAdmin, finances }) => {
   const [amount2, setAmount2] = useState("");
   const [remark, setRemark] = useState("");
   const [remark2, setRemark2] = useState("");
+  const [showDetails, setShowDetails] = useState(false);
 
   const handleAccountChange = (e) => {
     const selectedAccountIndex = e.target.value;
@@ -47,6 +49,7 @@ const Finance = ({ isAdmin, finances }) => {
         updateBalance(username, newBalance);
         addActivities(username, remark, amount, selectedAccount, "me");
       }
+
       if (fin.userInfo.userName === selectedAccount) {
         let newBalance =
           parseInt(fin.userInfo.balance.$numberDecimal) + parseInt(amount);
@@ -57,6 +60,7 @@ const Finance = ({ isAdmin, finances }) => {
 
     setAmount("");
     setRemark("");
+    setShowDetails(true);
   };
 
   // GUTHABEN AKTUALISIREN
@@ -66,26 +70,24 @@ const Finance = ({ isAdmin, finances }) => {
         let newBalance =
           parseInt(fin.userInfo.balance.$numberDecimal) + parseInt(amount2);
         updateBalance(selectedAccount2, newBalance);
-        addActivities("", remark2, amount2, selectedAccount2, "");
+        addActivities(username, remark2, amount2, selectedAccount2, "admin");
+        addActivities(
+          selectedAccount2,
+          remark2,
+          amount2,
+          "admin",
+          selectedAccount2
+        );
       }
     });
 
     setAmount2("");
     setRemark2("");
+    setShowDetails(true);
   };
-
   const formatDate = (dateString) => {
     const options = { day: "numeric", month: "long" };
     return new Date(dateString).toLocaleDateString("de-DE", options);
-  };
-
-  const bestätigt = true;
-  const handleConfirmation = (amount, remark, amount2, remark2) => {
-    if (bestätigt) {
-      handleTransfer(amount, remark);
-    } else {
-      handleSendMoney(amount2, remark2);
-    }
   };
 
   var firstName = "Max";
@@ -134,119 +136,11 @@ const Finance = ({ isAdmin, finances }) => {
                     <select
                       value={selectedAccount}
                       onChange={handleAccountChange}
-                    >
-                      <option value="">Mitarbeiter auswählen</option>
-                      {finance.map((fin, index) => (
-                        <option key={index + 1} value={index}>
-                          {fin.userInfo.firstName} {fin.userInfo.lastName}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="finance-row2">
-                  <div className="finance-balance">Betrag in €</div>
-                  <div className="finance-balance-numberfield">
-                    <input
-                      className="balance-input"
-                      type="text"
-                      id="amount"
-                      value={amount}
-                      onChange={handleAmountChange}
-                      placeholder="Betrag eingeben..."
-                    />
-                  </div>
-                </div>
-                <div className="finance-row3">
-                  <div className="finance-remark">Anmerkung</div>
-                  <div className="finance-remark-textfield">
-                    <input
-                      className="remark-textfield"
-                      type="text"
-                      value={remark}
-                      onChange={(e) => setRemark(e.target.value)}
-                      placeholder="Eintragen..."
-                    />
-                  </div>
-                </div>
-                <div className="finance-row4">
-                  <button
-                    className="finance-confirm"
-                    onClick={() => handleConfirmation(amount, remark)}
-                  >
-                    Bestätigen
-                  </button>
-                </div>
-              </div>
-              <h1>Guthaben aktualisieren</h1>
-              <div className="finance-box2">
-                <div className="finance-row1">
-                  <div className="finance-employee">An</div>
-                  <div className="finance-employee-dropdownMenu">
-                    <select
                       label="Mitarbeiter auswählen"
-                      value={selectedAccount2}
-                      onChange={handleAccountChange2}
                     >
-                      <option value="">Mitarbeiter auswählen</option>
                       {finance.map((fin, index) => (
-                        <option key={index + 1} value={index}>
-                          {fin.userInfo.firstName} {fin.userInfo.lastName}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="finance-row2">
-                  <div className="finance-balance">Betrag in €</div>
-                  <div className="finance-balance-numberfield">
-                    <input
-                      className="balance-input"
-                      type="text"
-                      id="amount"
-                      value={amount2}
-                      onChange={handleAmountChange2}
-                      placeholder="Betrag eingeben..."
-                    />
-                  </div>
-                </div>
-                <div className="finance-row3">
-                  <div className="finance-remark">Anmerkung</div>
-                  <div className="finance-remark-textfield">
-                    <input
-                      className="remark-textfield"
-                      type="text"
-                      value={remark2}
-                      onChange={(e) => setRemark2(e.target.value)}
-                      placeholder="Eintragen..."
-                    />
-                  </div>
-                </div>
-                <div className="finance-row4">
-                  <button
-                    className="finance-confirm"
-                    onClick={() => handleConfirmation(amount2, remark2)}
-                  >
-                    Bestätigen
-                  </button>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <h1>Neue Ausgabe</h1>
-              <div className="finance-box1">
-                <div className="finance-row1">
-                  <div className="finance-employee">An</div>
-                  <div className="finance-employee-dropdownMenu">
-                    <select
-                      value={selectedAccount}
-                      onChange={handleAccountChange}
-                    >
-                      <option value="">Mitarbeiter auswählen</option>
-                      {finance.map((fin, index) => (
-                        <option key={index + 1} value={index}>
-                          {fin.userInfo.firstName} {fin.userInfo.lastName}
+                        <option key={index} value={index}>
+                          {fin.userInfo.firstName}
                         </option>
                       ))}
                     </select>
@@ -280,7 +174,114 @@ const Finance = ({ isAdmin, finances }) => {
                 <div className="finance-row4">
                   <button
                     className="finance-confirm"
-                    onClick={() => handleConfirmation(amount, remark)}
+                    onClick={() => handleTransfer(amount)}
+                  >
+                    Bestätigen
+                  </button>
+                </div>
+              </div>
+              <h1>Guthaben aktualisieren</h1>
+              <div className="finance-box2">
+                <div className="finance-row1">
+                  <div className="finance-employee">An</div>
+                  <div className="finance-employee-dropdownMenu">
+                    <select
+                      value={selectedAccount2}
+                      onChange={handleAccountChange2}
+                      label="Mitarbeiter auswählen"
+                    >
+                      {finance.map((fin, index) => (
+                        <option key={index} value={index}>
+                          {fin.userInfo.firstName}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="finance-row2">
+                  <div className="finance-balance">Betrag in €</div>
+                  <div className="finance-balance-numberfield">
+                    <input
+                      className="balance-input"
+                      type="text"
+                      id="amount"
+                      value={amount2}
+                      onChange={handleAmountChange2}
+                      placeholder="Betrag eingeben..."
+                    />
+                  </div>
+                </div>
+                <div className="finance-row3">
+                  <div className="finance-remark">Anmerkung</div>
+                  <div className="finance-remark-textfield">
+                    <input
+                      className="remark-textfield"
+                      type="text"
+                      value={remark2}
+                      onChange={(e) => setRemark2(e.target.value)}
+                      placeholder="Eintragen..."
+                    ></input>
+                  </div>
+                </div>
+                <div className="finance-row4">
+                  <button
+                    className="finance-confirm"
+                    onClick={() => handleSendMoney(amount2)}
+                  >
+                    Bestätigen
+                  </button>
+                </div>
+              </div>
+            </>
+          ) : (
+            <>
+              <h1>Neue Ausgabe</h1>
+              <div className="finance-box1">
+                <div className="finance-row1">
+                  <div className="finance-employee">An</div>
+                  <div className="finance-employee-dropdownMenu">
+                    <select
+                      value={selectedAccount}
+                      onChange={handleAccountChange}
+                      label="Mitarbeiter auswählen"
+                    >
+                      {finance.map((fin, index) => (
+                        <option key={index + 1} value={index}>
+                          {fin.userInfo.firstName}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                </div>
+                <div className="finance-row2">
+                  <div className="finance-balance">Betrag in €</div>
+                  <div className="finance-balance-numberfield">
+                    <input
+                      className="balance-input"
+                      type="text"
+                      id="amount"
+                      value={amount}
+                      onChange={handleAmountChange}
+                      placeholder="Betrag eingeben..."
+                    />
+                  </div>
+                </div>
+                <div className="finance-row3">
+                  <div className="finance-remark">Anmerkung</div>
+                  <div className="finance-remark-textfield">
+                    <input
+                      className="remark-textfield"
+                      type="text"
+                      value={remark}
+                      onChange={(e) => setRemark(e.target.value)}
+                      placeholder="Eintragen..."
+                    ></input>
+                  </div>
+                </div>
+                <div className="finance-row4">
+                  <button
+                    className="finance-confirm"
+                    onClick={() => handleTransfer(amount)}
                   >
                     Bestätigen
                   </button>
@@ -309,21 +310,7 @@ const Finance = ({ isAdmin, finances }) => {
                           {act.description}
                         </div>
                         <div className="finance-activity-amount">
-                          {bestätigt ? (
-                            <>
-                              {act.amount} €
-                              <div className="amount-description">
-                                Geld gesendet
-                              </div>
-                            </>
-                          ) : (
-                            <>
-                              {act.amount2} €
-                              <div className="amount-description">
-                                Geld erhalten
-                              </div>
-                            </>
-                          )}
+                          {act.amount} €
                         </div>
                       </div>
                     ));

@@ -259,7 +259,7 @@ h1 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  margin: 10px;
+  margin: 5px;
 }
 .lastActivities-name {
   margin: 10px;
@@ -283,12 +283,4 @@ h1 {
   text-align: right;
   font-weight: bold;
   color: #043c5f;
-}
-.amount-description {
-  color: #3f3f3f;
-  font-size: 80%;
-}
-.amount-description {
-  color: #3f3f3f;
-  font-size: 80%;
 }
