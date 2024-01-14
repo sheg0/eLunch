@@ -6,6 +6,13 @@ import { RxCross1 } from "react-icons/rx";
 import { FaInfoCircle } from "react-icons/fa";
 import Box from "@mui/material/Box";
 import { Backdrop } from "@mui/material";
+import Alcohol from "../../images/Alcohol.png";
+import Dairyfree from "../../images/Dairyfree.png";
+import Glutenfree from "../../images/Glutenfree.png";
+import Meat from "../../images/Meat.png";
+import Vegan from "../../images/Vegan.png";
+import Veggie from "../../images/Veggie.png";
+import Tooltip from "@mui/material/Tooltip";
 
 const style = {
   position: "absolute",

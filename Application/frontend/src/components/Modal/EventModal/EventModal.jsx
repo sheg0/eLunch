@@ -10,6 +10,15 @@ import StyledTimeField from "../../Styled_MUI_Components/StyledTimeField";
 import StyledDateField from "../../Styled_MUI_Components/StyledDateField";
 import "../ModalStyle.css";
 import { Switch, FormControlLabel, TextField, Button } from "@mui/material";
+import Alcohol from "../../../images/Alcohol.png";
+import Dairyfree from "../../../images/Dairyfree.png";
+import Glutenfree from "../../../images/Glutenfree.png";
+import Meat from "../../../images/Meat.png";
+import Vegan from "../../../images/Vegan.png";
+import Veggie from "../../../images/Veggie.png";
+import Tooltip from "@mui/material/Tooltip";
+import { IconButton } from "@mui/material";
+import Checkbox from "@mui/material/Checkbox";
 
 export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
   const [mealId, setMealId] = useState("");
@@ -141,25 +150,27 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
           ></TextField>
         </div>
 
-        <div>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={mealInfo.isVegetarian}
-                onChange={() =>
-                  setMealInfo((prevInfo) => ({
-                    ...prevInfo,
-                    isVegetarian: !prevInfo.isVegetarian,
-                  }))
-                }
-              />
-            }
-            label="Vegetarisch"
-          />
+        <div className="EventModal-TAGS">
+          <Tooltip title="Vegetarisch" arrow>
+            <FormControlLabel
+              control={
+                <Checkbox
+                  checked={mealInfo.isVegetarian}
+                  onChange={() =>
+                    setMealInfo((prevInfo) => ({
+                      ...prevInfo,
+                      isVegetarian: !prevInfo.isVegetarian,
+                    }))
+                  }
+                  icon={<img src={Veggie} alt="Veggie" />}
+                />
+              }
+            />
+          </Tooltip>
 
           <FormControlLabel
             control={
-              <Switch
+              <Checkbox
                 checked={mealInfo.isVegan}
                 onChange={() =>
                   setMealInfo((prevInfo) => ({
@@ -167,13 +178,14 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isVegan: !prevInfo.isVegan,
                   }))
                 }
+                icon={<img src={Vegan} alt="Vegan" />}
+                style={{ filter: "grayscale(100%)" }}
               />
             }
-            label="Vegan"
           />
           <FormControlLabel
             control={
-              <Switch
+              <Checkbox
                 checked={mealInfo.isWithMeat}
                 onChange={() =>
                   setMealInfo((prevInfo) => ({
@@ -181,13 +193,13 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isWithMeat: !prevInfo.isWithMeat,
                   }))
                 }
+                icon={<img src={Meat} alt="MitFleisch" />}
               />
             }
-            label="isWithMeat"
           />
           <FormControlLabel
             control={
-              <Switch
+              <Checkbox
                 checked={mealInfo.isWithAlcohol}
                 onChange={() =>
                   setMealInfo((prevInfo) => ({
@@ -195,13 +207,13 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isWithAlcohol: !prevInfo.isWithAlcohol,
                   }))
                 }
+                icon={<img src={Alcohol} alt="MitAlkohol" />}
               />
             }
-            label="isWithAlcohol"
           />
           <FormControlLabel
             control={
-              <Switch
+              <Checkbox
                 checked={mealInfo.isGlutenFree}
                 onChange={() =>
                   setMealInfo((prevInfo) => ({
@@ -209,13 +221,13 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isGlutenFree: !prevInfo.isGlutenFree,
                   }))
                 }
+                icon={<img src={Glutenfree} alt="Glutenfrei" />}
               />
             }
-            label="isGlutenFree"
           />
           <FormControlLabel
             control={
-              <Switch
+              <Checkbox
                 checked={mealInfo.isLactoseFree}
                 onChange={() =>
                   setMealInfo((prevInfo) => ({
@@ -223,9 +235,9 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isLactoseFree: !prevInfo.isLactoseFree,
                   }))
                 }
+                icon={<img src={Dairyfree} alt="Laktosefrei" />}
               />
             }
-            label="isLactoseFree"
           />
         </div>
 

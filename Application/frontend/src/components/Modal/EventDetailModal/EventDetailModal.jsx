@@ -22,6 +22,7 @@ import Glutenfree from "../../../images/Glutenfree.png";
 import Meat from "../../../images/Meat.png";
 import Vegan from "../../../images/Vegan.png";
 import Veggie from "../../../images/Veggie.png";
+import { RxCross1 } from "react-icons/rx";
 
 const StyledIconButton = styled(Button)({
   backgroundColor: "#a3a3a3",
@@ -64,6 +65,7 @@ export const EventDetailModal = ({
   console.log("Event:", event);
   const { keycloak } = useKeycloak();
   const { updateEvent, deleteEvent } = useCalendarContext();
+  const [selectedEvent, setSelectedEvent] = useState(null);
   let participants = [];
   const [isInfoModalOpen, setInfoModalOpen] = useState(false);
 
@@ -74,6 +76,13 @@ export const EventDetailModal = ({
   };
   const closeInfoModal = () => {
     setInfoModalOpen(false);
+  };
+
+  const openDeleteEvent = (event) => {
+    setSelectedEvent(event);
+  };
+  const closeDeleteModal = () => {
+    setSelectedEvent(null);
   };
 
   const mealName = event?.meal?.name || "default";
@@ -144,11 +153,33 @@ export const EventDetailModal = ({
         </button>
         <button
           className="DetailModal-Button"
-          onClick={handleDeleteClick(event._id)}
+          onClick={() => openDeleteEvent(event)}
         >
           <FiTrash2 />
         </button>
       </div>
+      {selectedEvent && selectedEvent.id === event.id && (
+        <div className="MealList-Delete-Modal">
+          <div className="mealDelete-content">
+            <button className="mealDelete-close" onClick={closeDeleteModal}>
+              <RxCross1 />
+            </button>
+            <p>
+              Möchten Sie wirklich <strong>{selectedEvent.name}</strong>{" "}
+              löschen?
+            </p>
+            <button
+              className="MealDelete-Button"
+              onClick={() => {
+                deleteEvent(selectedEvent);
+                closeDeleteModal();
+              }}
+            >
+              Löschen
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="EventModal-Container">
         <p className="Modal-Time">{formattedTime}</p>
@@ -170,7 +201,7 @@ export const EventDetailModal = ({
           />
         </Modal>
       </div>
-      <div className="DetailModal-Header">
+      <div className="DetailModal-Tags">
         {event && event.mealInfo && event.mealInfo.isVegan && (
           <img
             className="EventDetail-Tags"
