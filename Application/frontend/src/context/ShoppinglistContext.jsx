@@ -19,16 +19,24 @@ export const shoppinglistReducer = (state, action) => {
           (shoppinglist) => shoppinglist._id !== action.payload._id
         ),
       };
+
+    case "UPDATE_SHOPPINGLIST":
+      return {
+        shoppinglists: state.shoppinglists.map((shoppinglist) =>
+          shoppinglist._id === action.payload._id
+            ? action.payload
+            : shoppinglist
+        ),
+      };
     default:
       return state;
   }
 };
 
-
 export const ShoppinglistContextProvider = ({ children }) => {
   //the children property represents the app property that we wrapped in index js
   const [state, dispatch] = useReducer(shoppinglistReducer, {
-    shoppinglists: null,
+    shoppinglists: [],
   });
 
   return (

@@ -6,7 +6,7 @@ const TodayButton = () => {
   return (
     <div className="Calendar-Button-Container">
       <button className="Calendar-Today-Button" onClick={goToCurrentDate}>
-        today
+        zurück zu Heute
       </button>
     </div>
   );
