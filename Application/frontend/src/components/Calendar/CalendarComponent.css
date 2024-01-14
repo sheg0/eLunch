@@ -1,9 +1,10 @@
 .calendar-app-container {
   flex-grow: 1;
-  padding-left: 15vh;
-  padding-top: 2vh;
+  padding-left: 10vh;
+  padding-top: 3vh;
 }
 
+/* Header (month) */
 .Calendar-Header {
   font-family: "Segoe UI";
   color: #043c5f;
@@ -14,6 +15,46 @@
   justify-content: space-between;
 }
 
+.Calendar-Button {
+  color: #043c5f;
+  font-size: 2.5vh;
+  border-radius: 18px;
+  width: 5vh;
+  height: 5vh;
+  border: none;
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+.Calendar-Button:hover {
+  background-color: #dfdfdf;
+}
+
+/* Button-Container ("Back to current week/month") */
+.Calendar-Button-Container {
+  margin-top: 2vh;
+  margin-right: 10vh;
+  width: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Calendar-Today-Button {
+  color: #043c5f;
+  font-size: 2.5vh;
+  border-radius: 2vh;
+  width: 40vh;
+  height: 5vh;
+  border: none;
+  margin-bottom: 2vh;
+  background-color: transparent;
+  transition: background-color 0.5s;
+}
+.Calendar-Today-Button:hover {
+  background-color: #c5e7fc;
+}
+
+/* Days (weekdays) */
 .calendar-days {
   width: 100vh;
   display: grid;
@@ -29,19 +70,28 @@
   font-weight: 500;
 }
 
-.Calendar-Button {
-  color: #043c5f;
-  font-size: 2.5vh;
-  border-radius: 18px;
-  width: 5vh;
-  height: 5vh;
-  border: none;
-  background-color: transparent;
-  transition: background-color 0.5s;
+/* Content from "Week" */
+.calendar-week {
+  width: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vh;
 }
 
-.Calendar-Button:hover {
-  background-color: #dfdfdf;
+.calendar-weekDay {
+  text-align: right;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  padding-top: 0.5vh;
+  padding-bottom: 1vh;
+  border-radius: 2vh;
+  font-size: 2.5vh;
+  font-family: "Segoe UI";
+  color: #043c5f;
+  background-color: #e4e4e4;
+}
+
+.weekDay-date {
 }
 
 .Calendar-NewMeal-Button {
@@ -53,124 +103,77 @@
   background-color: #043c5f;
   color: white;
   width: auto;
-  width: 16vh;
-  margin-bottom: 1vh;
+  width: 17vh;
+  margin-top: 1.5vh;
+  margin-bottom: 2vh;
   height: 3.5vh;
   cursor: pointer;
 }
-
 .Calendar-NewMeal-Button:hover {
   background-color: #0f52ba;
 }
 
-.calendar-btn:hover {
-  background-color: #043c5f27;
-}
-
-.calendar-dates {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1vh;
-}
-
-.calendar-field {
-  width: 10vh;
-  display: flex;
-}
-
-.calendar-date {
-  text-align: right;
-  padding: 1vh;
-  border-radius: 2vh;
-  width: 17vh;
-  height: 12vh;
-  font-size: 2.5vh;
-  font-family: "Segoe UI";
-  color: #043c5f;
-  background-color: #dfdfdf;
-  overflow: auto;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-}
-
-.calendar-date::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-}
-
-.previous-month {
-  color: #a3a3a3;
-}
-
-.next-month {
-  color: #a3a3a3;
-}
-
-.calendar-dateWeek {
-  text-align: right;
-  padding: 1vh;
-  border-radius: 2vh;
-  width: 17vh;
-  height: 22vh;
-  font-size: 2.5vh;
-  font-family: "Segoe UI";
-  color: #043c5f;
-  background-color: #e4e4e4;
-}
-
-.calendar-weeks {
-  width: 100vh;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 1vh;
-}
-
-.Calendar-Button-Container {
-  margin-top: 2vh;
-  margin-right: 10vh;
-  width: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.Calendar-Today-Button {
-  color: #043c5f;
-  font-size: 2.5vh;
-  border-radius: 2vh;
-  width: 10vh;
-  height: 5vh;
-  border: none;
-  margin-bottom: 2vh;
-  background-color: transparent;
-  transition: background-color 0.5s;
-}
-
-.Calendar-Today-Button:hover {
-  background-color: #c5e7fc;
-}
-
-.Calendar-Button.week {
-  transition: transform 0.3s ease;
-}
-
-.Calendar-Button.week.rotate {
-  transform: rotate(180deg);
-}
-
-.Calendar-EventsContainer {
+.Calendar-EventsContainer-Week {
   height: 14vh;
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
   border-radius: 1vh;
 }
-
-.Calendar-EventsContainer::-webkit-scrollbar {
+.Calendar-EventsContainer-Week::-webkit-scrollbar {
   width: 0;
   height: 0;
 }
 
+/* Field (Content from "Month") */
+.calendar-field {
+  width: 100vh;
+  display: flex;
+}
+
+.calendar-month {
+  width: 100vh;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1vh;
+}
+
+.calendar-monthDay {
+  text-align: right;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  padding-top: 0.5vh;
+  padding-bottom: 1vh;
+  border-radius: 2vh;
+  font-size: 2.5vh;
+  font-family: "Segoe UI";
+  color: #043c5f;
+  background-color: #dfdfdf;
+}
+.previous-month {
+  color: #a3a3a3;
+}
+.next-month {
+  color: #a3a3a3;
+}
+
+.monthDay-date {
+}
+
+.Calendar-EventsContainer-Month {
+  height: 8vh;
+  margin-top: 1vh;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  border-radius: 1vh;
+}
+.Calendar-EventsContainer-Month::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+.Calendar-EventsContainer {
+}
 .Calendar-MoreEvents {
   font-family: "Segoe UI";
   color: #043c5f;
@@ -179,4 +182,16 @@
   margin-bottom: 1vh;
   margin-right: 1vh;
   font-weight: 450;
+}
+
+/* Calender-Button-Container (switch to week/month) */
+.Calendar-Button.week {
+  transition: transform 0.3s ease;
+}
+.Calendar-Button.week.rotate {
+  transform: rotate(180deg);
+}
+
+.calendar-btn:hover {
+  background-color: #043c5f27;
 }

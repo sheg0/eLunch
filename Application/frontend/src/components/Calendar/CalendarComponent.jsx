@@ -78,50 +78,54 @@ const Calendar = () => {
               onClickArrowRight={goToNextMonth}
             />
             <div className="calendar-field">
-              <div className="calendar-dates">
+              <div className="calendar-month">
                 {previousMonthDays.map((day) => (
-                  <div className="calendar-date previous-month">{day}</div>
+                  <div className="calendar-monthDay previous-month">{day}</div>
                 ))}
 
                 {calendarDays.map((day, index) => {
                   const dayEvents = getEvents(day, month, year, events);
 
                   return (
-                    <div key={index} className="calendar-date">
-                      <div key={day}>{day}</div>
-                      {dayEvents.length > 1 ? (
-                        <div>
-                          <EventElement
-                            key={0}
-                            event={dayEvents[0]}
-                            handleEventClick={handleEventClick}
-                            handleSubscribeClick={subscribeEvent}
-                            handleUnsubscribeClick={unsubscribeEvent}
-                          />
-                          <div
-                            onClick={handleButtonClick}
-                            className="Calendar-MoreEvents"
-                          >
-                            +{dayEvents.length - 1} weitere Events
+                    <div key={index} className="calendar-monthDay">
+                      <div className="monthDay-date" key={day}>
+                        {day}
+                      </div>
+                      <div className="Calendar-EventsContainer-Month">
+                        {dayEvents.length > 1 ? (
+                          <div className="Calendar-EventsContainer">
+                            <EventElement
+                              key={0}
+                              event={dayEvents[0]}
+                              handleEventClick={handleEventClick}
+                              handleSubscribeClick={subscribeEvent}
+                              handleUnsubscribeClick={unsubscribeEvent}
+                            />
+                            <div
+                              onClick={handleButtonClick}
+                              className="Calendar-MoreEvents"
+                            >
+                              +{dayEvents.length - 1} weitere Events
+                            </div>
                           </div>
-                        </div>
-                      ) : (
-                        dayEvents.map((event, index) => (
-                          <EventElement
-                            key={index}
-                            event={event}
-                            handleEventClick={handleEventClick}
-                            handleSubscribeClick={subscribeEvent}
-                            handleUnsubscribeClick={unsubscribeEvent}
-                          />
-                        ))
-                      )}
+                        ) : (
+                          dayEvents.map((event, index) => (
+                            <EventElement
+                              key={index}
+                              event={event}
+                              handleEventClick={handleEventClick}
+                              handleSubscribeClick={subscribeEvent}
+                              handleUnsubscribeClick={unsubscribeEvent}
+                            />
+                          ))
+                        )}
+                      </div>
                     </div>
                   );
                 })}
 
                 {nextMonthDays.map((day) => (
-                  <div className="calendar-date next-month">{day}</div>
+                  <div className="calendar-monthDay next-month">{day}</div>
                 ))}
               </div>
             </div>
@@ -133,18 +137,18 @@ const Calendar = () => {
               onClickArrowRight={goToNextWeek}
             />
             <div>
-              <div className="calendar-weeks">
+              <div className="calendar-week">
                 {getWeekDays().map((day) => (
                   <div key={day.toISOString()}>
-                    <div className="calendar-dateWeek">
-                      {day.getDate()}
+                    <div className="calendar-weekDay">
+                      <div className="weekDay-date">{day.getDate()}</div>
                       <button
                         className="Calendar-NewMeal-Button"
                         onClick={() => handleEventButtonClick(day)}
                       >
                         + Gericht
                       </button>
-                      <div className="Calendar-EventsContainer">
+                      <div className="Calendar-EventsContainer-Week">
                         {getEvents(day.getDate(), month, year, events).map(
                           (event, index) => (
                             <EventElement
@@ -175,7 +179,6 @@ const Calendar = () => {
             <SlArrowDown />
           </button>
         </div>
-
       </div>
       <EventModal
         dates={selectedDate}

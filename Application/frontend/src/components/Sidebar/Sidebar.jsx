@@ -28,7 +28,7 @@ function Sidebar({ children }) {
         return navigate("/List");
       case "Einkaufszettel":
         return navigate("/Shoppinglist");
-      case "Finance":
+      case "Finanzen":
         return navigate("/Finance");
       case "Mitarbeiter":
         return navigate("/");
@@ -45,7 +45,7 @@ function Sidebar({ children }) {
     "Speiseplan",
     "Gerichte",
     "Einkaufszettel",
-    "Finance",
+    "Finanzen",
     "Mitarbeiter",
     "Statistik",
     "Infos",
@@ -55,7 +55,7 @@ function Sidebar({ children }) {
     Speiseplan: <VscBook className="sidebar-icon" />,
     Gerichte: <MdRestaurantMenu className="sidebar-icon" />,
     Einkaufszettel: <SlBasket className="sidebar-icon" />,
-    Finance: <MdEuroSymbol className="sidebar-icon" />,
+    Finanzen: <MdEuroSymbol className="sidebar-icon" />,
     Mitarbeiter: <VscOrganization className="sidebar-icon" />,
     Statistik: <TfiBarChart className="sidebar-icon" />,
     Infos: <TfiInfoAlt className="sidebar-icon" />,
@@ -88,7 +88,13 @@ function Sidebar({ children }) {
             })}
           </div>
 
-          <img src={SteinbeisLogo} alt="Steinbeis" className="sidebar-logo" />
+          <div className="sidebar-logo">
+            <img
+              className="sidebar-logo-white"
+              src={SteinbeisLogo}
+              alt="Steinbeis"
+            />
+          </div>
 
           <div className="sidebar-footer">
             <a className="sidebar-impressum" href={"./Info"}>
@@ -97,10 +103,6 @@ function Sidebar({ children }) {
           </div>
         </div>
       </div>
-
-      <button className="sidebar-hamburger-icon" onClick={toggleSidebar}>
-        <RxHamburgerMenu />
-      </button>
 
       <div className="page-container">
         <Container>

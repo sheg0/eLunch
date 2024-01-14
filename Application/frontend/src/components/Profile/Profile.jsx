@@ -70,12 +70,14 @@ const Profile = () => {
             <IoIosLogOut></IoIosLogOut>
           </div>
         </div>
+
         <div className="box2">
           <div className="name">
             {firstName} {lastName}
           </div>
           <div className="balance">{balance || "1453"} €</div>
         </div>
+
         <div className="box3">
           <div className="statistic">Statistik:</div>
           <PiCookingPotBold className="icon-gekocht"></PiCookingPotBold>
