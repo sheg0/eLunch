@@ -178,3 +178,11 @@
 .MealList-AddMeal-Button:hover {
   background-color: #0f52ba;
 }
+
+.DetailModal-Tags {
+  margin-top: 3%;
+}
+
+.EventDetail-Tags {
+  margin-right: 0.5%;
+}

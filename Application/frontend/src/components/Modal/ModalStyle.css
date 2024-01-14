@@ -4,6 +4,7 @@
   font-weight: 700;
   font-size: 2.5vh;
   margin-bottom: 1vh;
+  text-align: center;
 }
 
 .Modal-Header.Meal {
@@ -51,18 +52,15 @@
   font-family: "Segoe UI";
   font-size: 1.7vh;
   font-weight: 600;
-  margin-right: 2vh;
+  margin-right: auto;
+  line-height: 5;
 }
 
 .MealInput-TextField {
-  text-align: right;
+  display: flex;
 }
 
 /***************/
-
-.MealModal-Container {
-  display: block;
-}
 
 .Modal-Time {
   font-family: "Segoe UI";
@@ -91,6 +89,8 @@
   font-family: "Segoe UI";
   font-size: 2vh;
   font-weight: 400;
+  margin-right: 1vh;
+  display: inline-block;
 }
 
 .DetailModal-Header {
@@ -190,6 +190,37 @@
   margin-top: 2vh;
   margin-bottom: 2vh;
 }
+
+.mealDelete-content {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.MealInputElement-Text {
+  display: flex;
+}
+
+.MealInput-Name {
+  font-weight: 500;
+  font-size: 1.7vh;
+}
+
+.MealInput-Container {
+  display: flex;
+  flex-direction: column;
+}
+
+.MealInput-Content {
+  margin-top: 1vh;
+  margin-right: auto;
+}
+
+.MealForm-Container {
+  overflow-y: auto;
+  max-height: 55vh;
+}
+
+/* ______________________________ */
+/*  glaube ab hier unnötiger code  */
 
 .btn-newMeal {
   font-family: "Segoe UI";

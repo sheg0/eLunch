@@ -121,10 +121,9 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
       <h1 className="Modal-Header">Neues Gericht - {formattedDate}</h1>
 
-      <div className="EventModal-Content">
-        <div className="EventModal-Container">
-          <h1 className="EventModal-Headlines">Uhrzeit</h1>
-
+      <div className="MealInput-Container">
+        <div className="MealInput-Name">
+          <p>Uhrzeit</p>
           <StyledTimeField
             value={date}
             onChange={(newTime) => {
@@ -132,17 +131,20 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
             }}
           ></StyledTimeField>
         </div>
-        <div className="EventModal-Container">
-          <h1 className="EventModal-Headlines">Gericht</h1>
+        <div className="MealInput-Name">
+          <p>Gericht</p>
           <MealDropdown
             setMealBack={setMealBack}
             setMealId={setMealId}
           ></MealDropdown>
         </div>
 
-        <div className="EventModal-Container">
-          <h1 className="EventModal-Headlines">Anmerkung</h1>
+        <div className="MealInput-Name">
+          <p>Anmerkung</p>
           <TextField
+            multiline
+            rows={1}
+            sx={{ minWidth: "45vh" }}
             value={note}
             onChange={(e) => {
               setNote(e.target.value);

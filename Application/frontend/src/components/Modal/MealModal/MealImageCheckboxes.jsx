@@ -10,41 +10,43 @@ import Tooltip from "@mui/material/Tooltip";
 
 const MealImageCheckboxes = () => {
   return (
-    <div className="EventModal-Container">
-      <p className="MealInput-Text">Tags</p>
-      <ButtonGroup>
-        <MealImageCheckbox
-          src={Alcohol}
-          alt="Alcohol icon"
-          mealPropertyName={"isWithAlcohol"}
-        />
+    <div className="MealInput-Name">
+      <p>Tags</p>
+      <div className="MealInput-Content">
+        <ButtonGroup>
+          <MealImageCheckbox
+            src={Alcohol}
+            alt="Alcohol icon"
+            mealPropertyName={"isWithAlcohol"}
+          />
 
-        <MealImageCheckbox
-          src={Dairyfree}
-          alt="Dairyfree icon"
-          mealPropertyName={"isLactoseFree"}
-        />
-        <MealImageCheckbox
-          src={Glutenfree}
-          alt="Glutenfree icon"
-          mealPropertyName={"isGlutenFree"}
-        />
-        <MealImageCheckbox
-          src={Meat}
-          alt="Meat icon"
-          mealPropertyName={"isWithMeat"}
-        />
-        <MealImageCheckbox
-          src={Vegan}
-          alt="Vegan icon"
-          mealPropertyName={"isVegan"}
-        />
-        <MealImageCheckbox
-          src={Veggie}
-          alt="Vegetarian icon"
-          mealPropertyName={"isVegetarian"}
-        />
-      </ButtonGroup>
+          <MealImageCheckbox
+            src={Dairyfree}
+            alt="Dairyfree icon"
+            mealPropertyName={"isLactoseFree"}
+          />
+          <MealImageCheckbox
+            src={Glutenfree}
+            alt="Glutenfree icon"
+            mealPropertyName={"isGlutenFree"}
+          />
+          <MealImageCheckbox
+            src={Meat}
+            alt="Meat icon"
+            mealPropertyName={"isWithMeat"}
+          />
+          <MealImageCheckbox
+            src={Vegan}
+            alt="Vegan icon"
+            mealPropertyName={"isVegan"}
+          />
+          <MealImageCheckbox
+            src={Veggie}
+            alt="Vegetarian icon"
+            mealPropertyName={"isVegetarian"}
+          />
+        </ButtonGroup>
+      </div>
     </div>
   );
 };

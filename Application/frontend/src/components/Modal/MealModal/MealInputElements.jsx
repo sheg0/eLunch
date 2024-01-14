@@ -5,10 +5,9 @@ import "../ModalStyle.css";
 const MealInputElements = () => {
   const { meal } = useMealListContext();
   return (
-    <div className="MealInput-TextField">
-      <div className="EventModal-Container">
-        <b className="MealInput-Text">Gerichtname</b>
-
+    <>
+      <div className="MealInput-Name">
+        <p>Gerichtname</p>
         <MealInputElement
           type={"text"}
           placeholderText={"Gerichtenamen eintragen..."}
@@ -17,9 +16,8 @@ const MealInputElements = () => {
           rows={1}
         />
       </div>
-      <div className="EventModal-Container">
-        <b className="MealInput-Text">Zutaten</b>
-
+      <div className="MealInput-Name">
+        <p>Zutaten</p>
         <MealInputElement
           type={"text"}
           placeholderText={"Zutaten eintragen..."}
@@ -28,8 +26,8 @@ const MealInputElements = () => {
           rows={3.5}
         />
       </div>
-      <div className="EventModal-Container">
-        <b className="MealInput-Text">Beschreibung</b>
+      <div className="MealInput-Name">
+        <p>Beschreibung</p>
 
         <MealInputElement
           type={"text"}
@@ -39,8 +37,9 @@ const MealInputElements = () => {
           rows={3.5}
         />
       </div>
-      <div className="EventModal-Container">
-        <b className="MealInput-Text">Zeitaufwand</b>
+
+      <div className="MealInput-Name">
+        <p>Zeitaufwand</p>
 
         <MealInputElement
           type={"number"}
@@ -50,9 +49,8 @@ const MealInputElements = () => {
           rows={1}
         />
       </div>
-      <div className="EventModal-Container">
-        <b className="MealInput-Text">Kosten</b>
-
+      <div className="MealInput-Name">
+        <p>Kosten</p>
         <MealInputElement
           type={"number"}
           placeholderText={"Kosten eintragen..."}
@@ -61,7 +59,7 @@ const MealInputElements = () => {
           rows={1}
         />
       </div>
-    </div>
+    </>
   );
 };
 

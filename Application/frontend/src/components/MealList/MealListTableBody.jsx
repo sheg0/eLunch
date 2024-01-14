@@ -163,7 +163,56 @@ const MealListTableBody = ({ meals, handleClickDelete }) => {
                       </div>
                       <div className="MealList-Info-TextBox">
                         <b>Tags</b>
-                        <p>Hier kommen noch die Tags hin</p>
+                        <div className="DetailModal-Tags">
+                          {selectedInfo.isVegan && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Vegan}
+                              alt="Vegan"
+                              title="Vegan"
+                            />
+                          )}
+                          {selectedInfo.isVegetarian && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Veggie}
+                              alt="Veggie"
+                              title="Vegetarisch"
+                            />
+                          )}
+                          {selectedInfo.isWithMeat && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Meat}
+                              alt="Meat"
+                              title="Mit Fleisch"
+                            />
+                          )}
+                          {selectedInfo.isWithAlcohol && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Alcohol}
+                              alt="Alcohol"
+                              title="Mit Alkohol"
+                            />
+                          )}
+                          {selectedInfo.isGlutenFree && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Glutenfree}
+                              alt="Glutenfree"
+                              title="Glutenfrei"
+                            />
+                          )}
+                          {selectedInfo.isLactoseFree && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Dairyfree}
+                              alt="Dairyfree"
+                              title="Laktosefrei"
+                            />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </Box>

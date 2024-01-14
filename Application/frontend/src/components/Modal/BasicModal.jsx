@@ -1,6 +1,7 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { RxCross1 } from "react-icons/rx";
+import { Button } from "@mui/material";
 
 const style = {
   position: "absolute",
@@ -30,7 +31,6 @@ export const BasicModal = ({ isOpen, setIsOpen, children }) => {
           <button className="CloseModalButton" onClick={toggleModal}>
             <RxCross1 />
           </button>
-
           {children}
         </Box>
       </Modal>
