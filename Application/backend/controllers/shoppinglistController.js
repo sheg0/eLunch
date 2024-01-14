@@ -51,19 +51,17 @@ const updateArticle = async (req, res) => {
     return res.status(404).json({ error: "No Such Article" });
   }
 
-  const list = await List.findOneAndUpdate(
-    { _id: id },
-    {
-      ...req.body,
-    },
-    { new: true }
-  );
+  const list = await List.findById(id);
 
   if (!list) {
     return res.status(404).json({ error: "No Such List" });
   }
 
-  res.status(200).json(list);
+  list.status = !list.status;
+
+  const updatedList = await list.save();
+
+  res.status(200).json(updatedList);
 };
 
 module.exports = {

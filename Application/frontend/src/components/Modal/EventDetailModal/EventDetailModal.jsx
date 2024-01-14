@@ -296,6 +296,16 @@ export const EventDetailModal = ({
           </div>
         ))}
 
+      {participants
+        .filter((participant) => participant.isOrganisator)
+        .map((participant, i) => (
+          <div key={i} className="DetailModal-Header">
+            {i == 0 && <div className="EventDetail-Text">Organisator</div>}
+            <div className="EventDetail-Fields">
+              {participant.firstName[0] + participant.lastName[0] || "default"}
+            </div>
+          </div>
+        ))}
       {event.note && (
         <div className="DetailModal-Header">
           <div className="EventDetail-Text">

@@ -55,6 +55,7 @@ export const FinanceProvider = ({ children }) => {
     userName,
     description,
     amount,
+    sign,
     sendTo,
     receivedFrom
   ) => {
@@ -62,6 +63,7 @@ export const FinanceProvider = ({ children }) => {
       method: "PATCH",
       body: JSON.stringify({
         amount,
+        sign,
         description,
         sendTo,
         receivedFrom,

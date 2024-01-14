@@ -35,7 +35,7 @@ router.delete("/", deleteAllEvents);
 router.post("/", createEvent);
 
 // UPDATE an Event
-router.patch("/:id", keycloak.protect("realm:user"), validateId, updateEvent);
+router.patch("/:id", validateId, updateEvent);
 router.patch(
   "/subscribe/:id",
   /*keycloak.protect("realm:user"),*/

@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import { useEventsContext } from "../hooks/useEventsContext";
-
+import { useEffect } from "react";
 export const CalendarContext = createContext();
 
 export const CalendarProvider = ({ children }) => {
@@ -24,6 +24,7 @@ export const CalendarProvider = ({ children }) => {
 
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMonthVisible, setMonthVisible] = useState(false);
+
   const { keycloak } = useKeycloak();
   const { dispatch } = useEventsContext();
   const [event, setEvent] = useState(emptyEvent);

@@ -60,7 +60,7 @@ const updateBalance = async (req, res) => {
 const addActivities = async (req, res) => {
   try {
     const userName = req.params.userName;
-    const { amount, description, sendTo, receivedFrom, date } = req.body;
+    const { amount, sign, description, sendTo, receivedFrom, date } = req.body;
 
     // Find the finance document by userName
     const finance = await Finance.findOne({ "userInfo.userName": userName });
@@ -72,6 +72,7 @@ const addActivities = async (req, res) => {
     // Add a new activity to the activities array
     finance.userInfo.activities.push({
       amount: amount,
+      sign: sign,
       description: description,
       sendTo: sendTo,
       receivedFrom: receivedFrom,
