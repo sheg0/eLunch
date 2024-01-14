@@ -16,8 +16,12 @@ const shoppinglistSchema = new Schema(
       type: String,
       required: false,
     },
+    status: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
-
 
   {
     timestamps: true,
