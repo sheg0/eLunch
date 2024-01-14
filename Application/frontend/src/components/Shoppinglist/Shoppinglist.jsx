@@ -88,7 +88,7 @@ function Shoppinglist({ shoppinglists }) {
       item._id === movedArticle._id ? { ...item, status: true } : item
     );
     setList(updatedLists);
-    await updateStatusOnServer(movedArticle._id, true);
+    await updateStatusOnServer(movedArticle._id);
   };
 
   const handleDelete = async (index, list) => {
@@ -105,12 +105,10 @@ function Shoppinglist({ shoppinglists }) {
     }
   };
 
-  const updateStatusOnServer = async (id, newStatus) => {
+  const updateStatusOnServer = async (id) => {
     const response = await fetch(`/api/shoppinglist/${id}`, {
       method: "PATCH",
-      body: JSON.stringify({
-        status: newStatus,
-      }),
+
       headers: {
         "Content-Type": "application/json",
       },
@@ -237,7 +235,7 @@ function Shoppinglist({ shoppinglists }) {
                     />
                     <div
                       className="input-buttons"
-                      onClick={() => handleDelete(index, "historylist")}
+                      onClick={() => handleDelete(index, "shoppinglist")}
                     >
                       <FaRegTrashAlt size={17} />
                     </div>

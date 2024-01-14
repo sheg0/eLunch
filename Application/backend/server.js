@@ -32,7 +32,7 @@ app.use((req, res, next) => {
 app.use("/api/finance", financeRoutes);
 app.use("/api/events", eventRoutes);
 app.use("/api/shoppinglist", shoppinglistRoutes);
-app.use(keycloak.middleware());
+//app.use(keycloak.middleware());
 app.use("/api/meals", mealRoutes);
 
 // Error handling middleware
