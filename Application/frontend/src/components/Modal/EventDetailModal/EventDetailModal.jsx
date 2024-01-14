@@ -6,7 +6,7 @@ import { MdDone, MdClear } from "react-icons/md";
 import { LuShoppingBasket } from "react-icons/lu";
 import { PiCookingPot } from "react-icons/pi";
 import { IoPersonOutline } from "react-icons/io5";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IconButton, Modal } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import { useKeycloak } from "@react-keycloak/web";
@@ -68,7 +68,9 @@ export const EventDetailModal = ({
   const [selectedEvent, setSelectedEvent] = useState(null);
   let participants = [];
   const [isInfoModalOpen, setInfoModalOpen] = useState(false);
-
+  useEffect(() => {
+    console.log("participants", participants);
+  }, [event]);
   console.log("mealinfoo: ", event.mealInfo);
 
   const openInfoModal = () => {
@@ -92,7 +94,6 @@ export const EventDetailModal = ({
       Object.keys(event?.participants).forEach(function (key, index) {
         participants.push(event.participants[key]);
       });
-      console.log(participants);
     }
   };
 
@@ -265,8 +266,8 @@ export const EventDetailModal = ({
           </div>
         ))}
 
-      {participants.map((participant, i) => (
-        <div key={participant.id} className="DetailModal-Header">
+      {event.participants.map((participant, i) => (
+        <div key={i} className="DetailModal-Header">
           {i == 0 && <div className="EventDetail-Text">Zugesagt</div>}
           <div className="EventDetail-Fields">
             {participant.firstName[0] + participant.lastName[0] || "default"}
@@ -296,6 +297,16 @@ export const EventDetailModal = ({
           </div>
         ))}
 
+      {participants
+        .filter((participant) => participant.isOrganisator)
+        .map((participant, i) => (
+          <div key={i} className="DetailModal-Header">
+            {i == 0 && <div className="EventDetail-Text">Organisator</div>}
+            <div className="EventDetail-Fields">
+              {participant.firstName[0] + participant.lastName[0] || "default"}
+            </div>
+          </div>
+        ))}
       {event.note && (
         <div className="DetailModal-Header">
           <div className="EventDetail-Text">
