@@ -21,7 +21,30 @@ const financeSchema = new Schema(
         type: String,
         required: true,
       },
-      activities: [],
+      activities: [
+        {
+          amount: {
+            type: Number,
+            required: false,
+          },
+          description: {
+            type: String,
+            required: false,
+          },
+          sendTo: {
+            type: String,
+            required: false,
+          },
+          receivedFrom: {
+            type: String,
+            required: false,
+          },
+          date: {
+            type: Date,
+            required: false,
+          },
+        },
+      ],
       balance: {
         type: mongoose.Types.Decimal128,
         required: true,

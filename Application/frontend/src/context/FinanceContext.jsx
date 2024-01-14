@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import { useFinanceDispatchContext } from "../hooks/useFinanceDispatchContext";
-
+import dayjs from "dayjs";
 export const FinanceContext = createContext();
 
 export const FinanceProvider = ({ children }) => {
@@ -16,7 +16,7 @@ export const FinanceProvider = ({ children }) => {
           userName: userName,
           firstName: first_name,
           lastName: last_name,
-          activities: ["dasdsad", "dasdasdsa"],
+          activities: ["name", "date", "remark", "amount"],
           balance: 100.5,
         },
       }),
@@ -37,7 +37,35 @@ export const FinanceProvider = ({ children }) => {
     const response = await fetch(`/api/finance/${userName}`, {
       method: "PATCH",
       body: JSON.stringify({
-        newBalance: newBalance,
+        newBalance,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await response.json();
+    if (response.ok) {
+      dispatch({ type: "UPDATE_FINANCE", payload: json });
+      console.log(json);
+    }
+  };
+
+  const addActivities = async (
+    userName,
+    description,
+    amount,
+    sendTo,
+    receivedFrom
+  ) => {
+    const response = await fetch(`/api/finance/activities/${userName}`, {
+      method: "PATCH",
+      body: JSON.stringify({
+        amount,
+        description,
+        sendTo,
+        receivedFrom,
+        date: dayjs(),
       }),
       headers: {
         "Content-Type": "application/json",
@@ -47,8 +75,12 @@ export const FinanceProvider = ({ children }) => {
     const json = await response.json();
 
     if (response.ok) {
-      dispatch({ type: "UPDATE_BALANCE", payload: json });
+      console.log("aktivitäten", userName);
+      // Annahme: Redux wird verwendet, 'ADD_ACTIVITY' ist Ihre Aktion in Redux
+      dispatch({ type: "UPDATE_FINANCE", payload: json });
       console.log(json);
+    } else {
+      console.error("Fehler beim Hinzufügen der Aktivität:", json);
     }
   };
 
@@ -57,8 +89,10 @@ export const FinanceProvider = ({ children }) => {
     setBalance,
     updateBalance,
     addFinance,
+    addActivities,
     finance: finances,
   };
+
   //console.log(finances);
   return (
     <FinanceContext.Provider value={contextValue}>

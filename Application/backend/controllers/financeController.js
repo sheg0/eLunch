@@ -45,7 +45,7 @@ const updateBalance = async (req, res) => {
       return res.status(404).json({ error: "User not found" });
     }
 
-    finance.userInfo.balance = newBalance;
+    finance.userInfo.balance = String(newBalance);
     await finance.save();
 
     res.status(200).json(finance);
@@ -56,11 +56,70 @@ const updateBalance = async (req, res) => {
   }
 };
 
+// neues objekt hinzufügen, nicht aktualiseiren wie in updateBalance
+const addActivities = async (req, res) => {
+  try {
+    const userName = req.params.userName;
+    const { amount, description, sendTo, receivedFrom, date } = req.body;
+
+    // Find the finance document by userName
+    const finance = await Finance.findOne({ "userInfo.userName": userName });
+
+    if (!finance) {
+      return res.status(404).json({ error: "Finance record not found" });
+    }
+
+    // Add a new activity to the activities array
+    finance.userInfo.activities.push({
+      amount: amount,
+      description: description,
+      sendTo: sendTo,
+      receivedFrom: receivedFrom,
+      date: date,
+    });
+
+    // Save the updated finance document
+    const updatedFinance = await finance.save();
+
+    // Respond with the updated finance document
+    res.json(updatedFinance);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+const deleteActivities = async (req, res) => {
+  try {
+    const userName = req.params.userName;
+
+    // Find the finance document by userName
+    const finance = await Finance.findOne({ "userInfo.userName": userName });
+
+    if (!finance) {
+      return res.status(404).json({ error: "Finance record not found" });
+    }
+
+    // Set the activities array to an empty array
+    finance.userInfo.activities = [];
+
+    // Save the updated finance document
+    const updatedFinance = await finance.save();
+
+    // Respond with the updated finance document
+    res.json(updatedFinance);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
 module.exports = {
   getAllFinance,
   deleteAllFinances,
   createFinance,
   updateBalance,
+  addActivities,
+  deleteActivities,
   //deleteMeal,
   //updateMeal,
   //UpdateBalance,
