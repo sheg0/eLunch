@@ -116,7 +116,7 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
     );
   };
 
-  console.log("mealback ", event.mealInfo);
+  //console.log("mealback ", event.mealInfo);
   return (
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
       <h1 className="Modal-Header">Neues Gericht - {formattedDate}</h1>

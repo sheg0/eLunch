@@ -12,7 +12,9 @@ import { EventDetailModal } from "../Modal/EventDetailModal/EventDetailModal";
 import styled from "@emotion/styled";
 import dayjs from "dayjs";
 import ErrorHandler from "../ErrorHandler";
-
+import { useKeycloak } from "@react-keycloak/web";
+import { useFinanceContext } from "../../hooks/useFinanceContext";
+import { useEffect } from "react";
 const StyledEventButton = styled(Button)({
   fontFamily: "Segoe UI",
   fontWeight: 400,
@@ -53,8 +55,43 @@ const Calendar = () => {
     event,
     setEvent,
   } = useCalendarContext();
-
+  const { keycloak, initialized } = useKeycloak();
   const { events } = useEventsContext();
+  const { updateBalance, finance } = useFinanceContext();
+
+  const handleSubscribe = (event) => {
+    let keyUser = "";
+    if (initialized && keycloak.authenticated) {
+      keyUser = keycloak.tokenParsed.preferred_username;
+    }
+    subscribeEvent(event);
+
+    finance.map((fin) => {
+      if (fin.userInfo.userName === keyUser) {
+        let newBalance = fin.userInfo.balance.$numberDecimal - event.meal.cost;
+
+        updateBalance(keyUser, newBalance);
+      }
+    });
+  };
+
+  const handleUnSubscribe = (event) => {
+    let keyUser = "";
+    if (initialized && keycloak.authenticated) {
+      keyUser = keycloak.tokenParsed.preferred_username;
+    }
+    unsubscribeEvent(event);
+
+    finance.map((fin) => {
+      if (fin.userInfo.userName === keyUser) {
+        let newBalance =
+          parseInt(fin.userInfo.balance.$numberDecimal) +
+          parseInt(event.meal.cost);
+
+        updateBalance(keyUser, newBalance);
+      }
+    });
+  };
 
   const handleEventClick = (event) => {
     setEvent(event);
@@ -190,8 +227,8 @@ const Calendar = () => {
         isOpen={isDetailModalOpen}
         setIsOpen={setIsDetailModalOpen}
         event={event}
-        handleSubscribeClick={subscribeEvent}
-        handleUnsubscribeClick={unsubscribeEvent}
+        handleSubscribeClick={handleSubscribe}
+        handleUnsubscribeClick={handleUnSubscribe}
         setEvent={setEvent}
       ></EventDetailModal>
     </div>
