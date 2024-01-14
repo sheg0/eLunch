@@ -27,6 +27,10 @@ const financeSchema = new Schema(
             type: Number,
             required: false,
           },
+          sign: {
+            type: String,
+            required: false,
+          },
           description: {
             type: String,
             required: false,
