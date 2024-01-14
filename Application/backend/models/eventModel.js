@@ -1,5 +1,6 @@
 // database
 const mongoose = require("mongoose");
+const mealModel = require("./mealModel");
 
 // create schema
 const Schema = mongoose.Schema;
@@ -17,11 +18,54 @@ const eventSchema = new Schema(
       ref: "Meal",
       required: true,
     },
+    note: {
+      type: String,
+      required: false,
+      default: "",
+    },
+    mealInfo: {
+      type: mongoose.Schema.Types.Mixed,
+    },
+    /*
+    mealInfo: {
+      isVegetarian: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isVegan: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isWithMeat: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isWithAlcohol: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isGlutenFree: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+      isLactoseFree: {
+        type: Boolean,
+        default: false,
+        required: false,
+      },
+    },
+    */
     shoppinglist: {
       type: String,
       required: false,
       default: "Smooth like butter",
     },
+
     participants: [
       {
         userName: {

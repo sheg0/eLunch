@@ -16,6 +16,13 @@ import InfoDetailModal from "../InfoDetailModal/InfoDetailModal";
 import MealImageCheckbox from "../MealModal/MealImageCheckbox";
 import styled from "@emotion/styled";
 import { Button } from "@mui/material";
+import Alcohol from "../../../images/Alcohol.png";
+import Dairyfree from "../../../images/Dairyfree.png";
+import Glutenfree from "../../../images/Glutenfree.png";
+import Meat from "../../../images/Meat.png";
+import Vegan from "../../../images/Vegan.png";
+import Veggie from "../../../images/Veggie.png";
+import { RxCross1 } from "react-icons/rx";
 
 const StyledIconButton = styled(Button)({
   backgroundColor: "#a3a3a3",
@@ -57,15 +64,25 @@ export const EventDetailModal = ({
 }) => {
   console.log("Event:", event);
   const { keycloak } = useKeycloak();
-  const { updateEvent } = useCalendarContext();
+  const { updateEvent, deleteEvent } = useCalendarContext();
+  const [selectedEvent, setSelectedEvent] = useState(null);
   let participants = [];
   const [isInfoModalOpen, setInfoModalOpen] = useState(false);
+
+  console.log("mealinfoo: ", event.mealInfo);
 
   const openInfoModal = () => {
     setInfoModalOpen(true);
   };
   const closeInfoModal = () => {
     setInfoModalOpen(false);
+  };
+
+  const openDeleteEvent = (event) => {
+    setSelectedEvent(event);
+  };
+  const closeDeleteModal = () => {
+    setSelectedEvent(null);
   };
 
   const mealName = event?.meal?.name || "default";
@@ -93,6 +110,14 @@ export const EventDetailModal = ({
 
     setEvent(updatedEvent);
     updateEvent(updatedEvent);
+  };
+
+  const handleDeleteClick = (eventID) => {
+    if (event && eventID) {
+      deleteEvent(eventID);
+    } else {
+      console.log("Event ID not available");
+    }
   };
 
   const dateOptions = {
@@ -126,10 +151,35 @@ export const EventDetailModal = ({
         <button className="DetailModal-Button">
           <FiEdit2 />
         </button>
-        <button className="DetailModal-Button">
+        <button
+          className="DetailModal-Button"
+          onClick={() => openDeleteEvent(event)}
+        >
           <FiTrash2 />
         </button>
       </div>
+      {selectedEvent && selectedEvent.id === event.id && (
+        <div className="MealList-Delete-Modal">
+          <div className="mealDelete-content">
+            <button className="mealDelete-close" onClick={closeDeleteModal}>
+              <RxCross1 />
+            </button>
+            <p>
+              Möchten Sie wirklich <strong>{selectedEvent.name}</strong>{" "}
+              löschen?
+            </p>
+            <button
+              className="MealDelete-Button"
+              onClick={() => {
+                deleteEvent(selectedEvent);
+                closeDeleteModal();
+              }}
+            >
+              Löschen
+            </button>
+          </div>
+        </div>
+      )}
 
       <div className="EventModal-Container">
         <p className="Modal-Time">{formattedTime}</p>
@@ -151,7 +201,57 @@ export const EventDetailModal = ({
           />
         </Modal>
       </div>
-      <p>Hier kommen noch die Tags hin</p>
+      <div className="DetailModal-Tags">
+        {event && event.mealInfo && event.mealInfo.isVegan && (
+          <img
+            className="EventDetail-Tags"
+            src={Vegan}
+            alt="Vegan"
+            title="Vegan"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isVegetarian && (
+          <img
+            className="EventDetail-Tags"
+            src={Veggie}
+            alt="Veggie"
+            title="Vegetarisch"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isWithMeat && (
+          <img
+            className="EventDetail-Tags"
+            src={Meat}
+            alt="Meat"
+            title="Mit Fleisch"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isWithAlcohol && (
+          <img
+            className="EventDetail-Tags"
+            src={Alcohol}
+            alt="Alcohol"
+            title="Mit Alkohol"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isGlutenFree && (
+          <img
+            className="EventDetail-Tags"
+            src={Glutenfree}
+            alt="Glutenfree"
+            title="Glutenfrei"
+          />
+        )}
+        {event && event.mealInfo && event.mealInfo.isLactoseFree && (
+          <img
+            className="EventDetail-Tags"
+            src={Dairyfree}
+            alt="Dairyfree"
+            title="Laktosefrei"
+          />
+        )}
+      </div>
+
       {toArray()}
 
       {participants
@@ -195,6 +295,15 @@ export const EventDetailModal = ({
             </div>
           </div>
         ))}
+
+      {event.note && (
+        <div className="DetailModal-Header">
+          <div className="EventDetail-Text">
+            Anmerkung:
+            <div className="EventDetail-Fields">{event.note}</div>
+          </div>
+        </div>
+      )}
 
       <hr />
       <Tooltip title="Mitessen" arrow>

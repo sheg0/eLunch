@@ -177,6 +177,20 @@
   font-size: 1.5vh;
 }
 
+.EventDetail-Tags {
+  margin-left: 1vh;
+}
+
+.DetailModal-Tags {
+  margin-bottom: 1vh;
+}
+
+.EventModal-TAGS {
+  margin-left: 1vh;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
 .btn-newMeal {
   font-family: "Segoe UI";
   font-size: 16px;

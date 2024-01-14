@@ -62,12 +62,14 @@ const createEvent = (req, res) => {
         });
       }
 
-      const { date, mealId, ...participantInfo } = req.body;
+      const { date, mealId, note, mealInfo, ...participantInfo } = req.body;
 
       const event = new Event({
         _id: new mongoose.Types.ObjectId(),
         date: new Date(date),
         meal: mealId,
+        note: note,
+        mealInfo: mealInfo,
         participants: [
           {
             ...participantInfo,

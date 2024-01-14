@@ -124,6 +124,11 @@
   min-width: 20vh;
 }
 
+.MealList-Tags {
+  display: flex;
+  margin-top: 2vh;
+}
+
 .MealList-Table-Container {
   font-family: "Segoe UI";
   width: 102vh;
