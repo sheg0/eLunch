@@ -23,7 +23,6 @@ const eventSchema = new Schema(
       required: false,
       default: "",
     },
-
     mealInfo: {
       type: mongoose.Schema.Types.Mixed,
     },
