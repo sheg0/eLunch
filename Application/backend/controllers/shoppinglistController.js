@@ -10,11 +10,8 @@ const getAllArticles = async (req, res) => {
 // delete a article
 const deleteArticle = async (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No Such Article" });
-  }
 
-  const list = await List.findOneAndDelete({ _id: id }); // the id proptery in mongo is _id
+  const list = await List.findOneAndDelete({ id }); // the id proptery in mongo is _id
   if (!list) {
     return res.status(404).json({ error: "No Such Article" });
   }
@@ -24,7 +21,7 @@ const deleteArticle = async (req, res) => {
 
 // create new article
 const createArticle = async (req, res) => {
-  const { article, quantity, status } = req.body;
+  const { id, article, quantity, status } = req.body;
 
   if (!article || !quantity || !status) {
     return res.status(400).json({
@@ -35,6 +32,7 @@ const createArticle = async (req, res) => {
   try {
     const list = await List.create({
       _id: new mongoose.Types.ObjectId(),
+      id,
       article,
       quantity,
       status,
@@ -47,21 +45,25 @@ const createArticle = async (req, res) => {
 };
 const updateArticle = async (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "No Such Article" });
+  const { status } = req.body; // Get the status from the request body
+
+  try {
+    const list = await List.findOne({ id });
+
+    if (!list) {
+      return res.status(404).json({ error: "No Such List" });
+    }
+
+    // Update the status directly
+    list.status = status;
+
+    const updatedList = await list.save();
+
+    res.status(200).json(updatedList);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
-
-  const list = await List.findById(id);
-
-  if (!list) {
-    return res.status(404).json({ error: "No Such List" });
-  }
-
-  list.status = !list.status;
-
-  const updatedList = await list.save();
-
-  res.status(200).json(updatedList);
 };
 
 module.exports = {
