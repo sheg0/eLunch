@@ -33,7 +33,7 @@ function Sidebar({ children }) {
       case "Mitarbeiter":
         return navigate("/");
       case "Statistik":
-        return navigate("/");
+        return navigate("/Statistik");
       case "Infos":
         return navigate("/Info");
       default:
