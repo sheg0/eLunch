@@ -7,6 +7,7 @@ export const FinanceContext = createContext();
 export const FinanceProvider = ({ children }) => {
   const [balance, setBalance] = useState(0);
   const { finances, dispatch } = useFinanceDispatchContext();
+  console.log("finances", finances);
 
   const addFinance = async (userName, first_name, last_name) => {
     const response = await fetch("/api/finance/", {

@@ -1,0 +1,46 @@
+.EL-Content {
+  font-family: "Segoe UI";
+  width: 102vh;
+  height: 75vh;
+  overflow-y: auto;
+  border-radius: 2vh;
+  margin-bottom: 2vh;
+  margin-top: 2vh;
+  font-size: 2vh;
+  max-height: 60vh;
+  overflow: auto;
+}
+
+.EL-Container {
+  flex-grow: 1;
+  padding-left: auto;
+  padding-top: 2vh;
+}
+
+.EL-Header {
+  font-family: "Segoe UI";
+  color: #043c5f;
+  font-weight: 700;
+  font-size: 3.5vh;
+  margin-bottom: 1vh;
+}
+
+.EL-Table {
+  width: 100vh;
+  table-layout: fixed;
+  background-color: #eeeeee;
+}
+
+.EL-Table th {
+  top: 0;
+  line-height: 2;
+  background-color: #e4e4e4;
+  font-weight: bold;
+  color: #043c5f;
+}
+
+.EL-TabelBody td {
+  margin: 2vh;
+  height: 10vh;
+  background-color: green;
+}

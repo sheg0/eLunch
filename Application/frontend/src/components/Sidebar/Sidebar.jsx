@@ -31,7 +31,7 @@ function Sidebar({ children }) {
       case "Finanzen":
         return navigate("/Finance");
       case "Mitarbeiter":
-        return navigate("/");
+        return navigate("/Employee");
       case "Statistik":
         return navigate("/Statistik");
       case "Infos":
