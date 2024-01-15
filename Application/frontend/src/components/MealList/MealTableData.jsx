@@ -7,7 +7,7 @@ const MealTableData = ({ meal }) => {
       <td>{meal?.category}</td>
       <td>{meal?.difficulty}</td>
       <td>{meal?.timeNeeded}</td>
-      <td>{meal?.cost}</td>
+      <td>{meal?.cost.toFixed(2)}</td>
     </>
   );
 };
