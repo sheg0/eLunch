@@ -12,7 +12,7 @@ import SteinbeisLogo from "../../images/Logo_Steinbeis_EST_white.png";
 
 function Sidebar({ children }) {
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState("Speiseplan");
+  const [selectedTab, setSelectedTab] = useState();
   const [sidebarVisible, setSidebarVisible] = useState(false);
 
   const toggleSidebar = () => {
