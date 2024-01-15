@@ -2,6 +2,7 @@
   flex-grow: 1;
   padding-left: auto;
   padding-top: 3vh;
+  cursor: default;
 }
 
 /* Header (month) */
@@ -24,6 +25,7 @@
   border: none;
   background-color: transparent;
   transition: background-color 0.5s;
+  cursor: pointer;
 }
 .Calendar-Button:hover {
   background-color: #dfdfdf;
@@ -43,12 +45,13 @@
   color: #043c5f;
   font-size: 2.5vh;
   border-radius: 2vh;
-  width: 40vh;
+  width: 22vh;
   height: 5vh;
   border: none;
   margin-bottom: 2vh;
   background-color: transparent;
   transition: background-color 0.5s;
+  cursor: pointer;
 }
 .Calendar-Today-Button:hover {
   background-color: #c5e7fc;
