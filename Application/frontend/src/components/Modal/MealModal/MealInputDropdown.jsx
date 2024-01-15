@@ -3,9 +3,7 @@ import { Box } from "@mui/system";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 const style = {
-  marginLeft: "5vh",
-  marginBottom: "1vh",
-  minWidth: "60vh",
+  minWidth: "50vh",
 };
 
 const MealInputDropdown = ({ stateOptions, value, mealPropertyName }) => {
@@ -17,7 +15,6 @@ const MealInputDropdown = ({ stateOptions, value, mealPropertyName }) => {
           style={style}
           labelId="options-select"
           id="options-select"
-          label="Options"
           value={value}
           onChange={(e) =>
             setMeal({ ...meal, [mealPropertyName]: e.target.value })

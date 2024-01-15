@@ -2,8 +2,6 @@ import { useEventsContext } from "../../hooks/useEventsContext.js";
 import { useEffect } from "react";
 import { useKeycloak } from "@react-keycloak/web";
 import { Routes, Route } from "react-router-dom";
-import Events from "../../pages/Events.jsx";
-
 
 function FetchEvent() {
   const { events, dispatch } = useEventsContext();
@@ -34,11 +32,7 @@ function FetchEvent() {
     }
   }, [dispatch]);
 
-  return (
-    <Routes>
-      <Route path="/Events" element={<Events events={events} />} />
-    </Routes>
-  );
+  return <Routes></Routes>;
 }
 
 export default FetchEvent;

@@ -1,6 +1,6 @@
 .calendar-app-container {
   flex-grow: 1;
-  padding-left: 10vh;
+  padding-left: auto;
   padding-top: 3vh;
 }
 

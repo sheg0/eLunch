@@ -6,8 +6,9 @@ const MealInputDropdowns = () => {
   const { meal } = useMealListContext();
   return (
     <>
-      <div className="EventModal-Container">
-        <p className="MealInput-Text">Kategorie</p>
+      <div className="MealInput-Name">
+        <p>Kategorie</p>
+
         <MealInputDropdown
           stateOptions={[
             "Unbestimmt",
@@ -25,21 +26,22 @@ const MealInputDropdowns = () => {
           mealPropertyName={"category"}
         />
       </div>
-
-      <div className="EventModal-Container">
-        <p className="MealInput-Text">Schwierigkeit</p>
-        <MealInputDropdown
-          stateOptions={[
-            "Unbestimmt",
-            "Sehr Einfach",
-            "Einfach",
-            "Mittel",
-            "Schwierig",
-            "Chefkoch",
-          ]}
-          value={meal.difficulty}
-          mealPropertyName={"difficulty"}
-        />
+      <div className="MealInput-Name">
+        <p>Schwierigkeit</p>
+        <div className="MealInput-Content">
+          <MealInputDropdown
+            stateOptions={[
+              "Unbestimmt",
+              "Sehr Einfach",
+              "Einfach",
+              "Mittel",
+              "Schwierig",
+              "Chefkoch",
+            ]}
+            value={meal.difficulty}
+            mealPropertyName={"difficulty"}
+          />
+        </div>
       </div>
     </>
   );

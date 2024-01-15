@@ -1,6 +1,8 @@
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { RxCross1 } from "react-icons/rx";
+import { Button, IconButton } from "@mui/material";
+import styled from "@emotion/styled";
 
 const style = {
   position: "absolute",
@@ -13,6 +15,15 @@ const style = {
   borderRadius: "2vh",
   p: "2vh",
 };
+
+const StyledButton = styled(IconButton)({
+  backgroundColor: "transparent",
+  marginLeft: "auto",
+  color: "black",
+  "&:hover": {
+    backgroundColor: "transparent",
+  },
+});
 
 export const BasicModal = ({ isOpen, setIsOpen, children }) => {
   const toggleModal = () => {
@@ -27,9 +38,9 @@ export const BasicModal = ({ isOpen, setIsOpen, children }) => {
         aria-describedby="modal-modal-description"
       >
         <Box sx={style}>
-          <button className="CloseModalButton" onClick={toggleModal}>
-            <RxCross1 />
-          </button>
+          <StyledButton onClick={toggleModal}>
+            <RxCross1 style={{ fontSize: "1.5vh" }} />
+          </StyledButton>
 
           {children}
         </Box>

@@ -1,46 +1,40 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import "./EmployeeList.css";
+import { FinanceContext } from "../../context/FinanceContext";
 
-const EmployeeList = () => {
-  const [employees, setEmployees] = useState([]);
+const EmployeeList = ({ finances }) => {
+  const { finance } = useContext(FinanceContext);
 
-  useEffect(() => {
-    // Lade Daten von der Datenbank beim Mounten der Komponente
-    const fetchEmployees = async () => {
-      try {
-        const response = await fetch("/api/employees"); // Passe die API-Route an
-        const data = await response.json();
-        setEmployees(data);
-      } catch (error) {
-        console.error("Fehler beim Laden der Mitarbeiterdaten:", error.message);
-      }
-    };
-
-    fetchEmployees();
-  }, []);
+  if (!finances || Object.keys(finances).length === 0) {
+    console.log("leeeer");
+    return null;
+  }
 
   return (
-    <div>
-      <h2>Mitarbeiterliste</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Benutzername</th>
-            <th>Vorname</th>
-            <th>Nachname</th>
-            <th>Balance</th>
-          </tr>
-        </thead>
-        <tbody>
-          {employees.map((employee) => (
-            <tr key={employee._id}>
-              <td>{employee.userInfo.userName}</td>
-              <td>{employee.userInfo.firstName}</td>
-              <td>{employee.userInfo.lastName}</td>
-              <td>{employee.userInfo.balance}</td>
+    <div className="EL-Container">
+      <h2 className="EL-Header">Mitarbeiterliste</h2>
+      <div className="EL-Content">
+        <table className="EL-Table">
+          <thead>
+            <tr>
+              <th>Vorname</th>
+              <th>Nachname</th>
+              <th>Benutzername</th>
+              <th>Kontostand in €</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {Object.keys(finances).map((keyName, i) => (
+              <tr key={i}>
+                <td>{finances[keyName].userInfo.firstName}</td>
+                <td>{finances[keyName].userInfo.lastName}</td>
+                <td>{finances[keyName].userInfo.userName}</td>
+                <td>{finances[keyName]?.userInfo?.balance?.$numberDecimal}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };

@@ -5,7 +5,7 @@ import React, { useState } from "react";
 import { RxCross1 } from "react-icons/rx";
 import { FaInfoCircle } from "react-icons/fa";
 import Box from "@mui/material/Box";
-import { Backdrop } from "@mui/material";
+import { Backdrop, Modal } from "@mui/material";
 import Alcohol from "../../images/Alcohol.png";
 import Dairyfree from "../../images/Dairyfree.png";
 import Glutenfree from "../../images/Glutenfree.png";
@@ -33,7 +33,7 @@ const backdropStyle = {
   left: 0,
   right: 0,
   bottom: 0,
-  backgroundColor: "rgba(0, 0, 0, 0.05)",
+  backgroundColor: "rgba(0, 0, 0, 0.03)",
   zIndex: 1,
 };
 
@@ -163,7 +163,56 @@ const MealListTableBody = ({ meals, handleClickDelete }) => {
                       </div>
                       <div className="MealList-Info-TextBox">
                         <b>Tags</b>
-                        <p>Hier kommen noch die Tags hin</p>
+                        <div className="DetailModal-Tags">
+                          {selectedInfo.isVegan && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Vegan}
+                              alt="Vegan"
+                              title="Vegan"
+                            />
+                          )}
+                          {selectedInfo.isVegetarian && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Veggie}
+                              alt="Veggie"
+                              title="Vegetarisch"
+                            />
+                          )}
+                          {selectedInfo.isWithMeat && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Meat}
+                              alt="Meat"
+                              title="Mit Fleisch"
+                            />
+                          )}
+                          {selectedInfo.isWithAlcohol && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Alcohol}
+                              alt="Alcohol"
+                              title="Mit Alkohol"
+                            />
+                          )}
+                          {selectedInfo.isGlutenFree && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Glutenfree}
+                              alt="Glutenfree"
+                              title="Glutenfrei"
+                            />
+                          )}
+                          {selectedInfo.isLactoseFree && (
+                            <img
+                              className="EventDetail-Tags"
+                              src={Dairyfree}
+                              alt="Dairyfree"
+                              title="Laktosefrei"
+                            />
+                          )}
+                        </div>
                       </div>
                     </div>
                   </Box>

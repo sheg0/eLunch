@@ -4,9 +4,7 @@ import { TextField } from "@mui/material";
 import "../ModalStyle.css";
 
 const style = {
-  marginLeft: "5vh",
-  marginBottom: "1vh",
-  minWidth: "60vh",
+  minWidth: "50vh",
 };
 
 const MealInputElement = ({

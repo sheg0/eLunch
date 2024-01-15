@@ -21,8 +21,8 @@ export default function MealDropdown({ setMealId, setMealBack }) {
   }, [meal]);
 
   return (
-    <Box sx={{ minWidth: 120 }}>
-      <FormControl sx={"margin: 2vh"} fullWidth>
+    <Box sx={{ maxWidth: "45vh" }}>
+      <FormControl fullWidth>
         <InputLabel id="meal-select-label"></InputLabel>
         <Select
           labelId="meal-select-label"

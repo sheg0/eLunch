@@ -7,7 +7,7 @@ import { LuShoppingBasket } from "react-icons/lu";
 import { PiCookingPot } from "react-icons/pi";
 import { IoPersonOutline } from "react-icons/io5";
 import { useState } from "react";
-import { IconButton, Modal } from "@mui/material";
+import { IconButton, Modal, Button } from "@mui/material";
 import Tooltip from "@mui/material/Tooltip";
 import { useKeycloak } from "@react-keycloak/web";
 import { useCalendarContext } from "../../../hooks/useCalendarContext";
@@ -15,7 +15,6 @@ import { FaInfoCircle } from "react-icons/fa";
 import InfoDetailModal from "../InfoDetailModal/InfoDetailModal";
 import MealImageCheckbox from "../MealModal/MealImageCheckbox";
 import styled from "@emotion/styled";
-import { Button } from "@mui/material";
 import Alcohol from "../../../images/Alcohol.png";
 import Dairyfree from "../../../images/Dairyfree.png";
 import Glutenfree from "../../../images/Glutenfree.png";
@@ -148,9 +147,7 @@ export const EventDetailModal = ({
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
       <div className="DetailModal-Header">
         <h1 className="Modal-Header Meal">{formattedDate}</h1>
-        <button className="DetailModal-Button">
-          <FiEdit2 />
-        </button>
+
         <button
           className="DetailModal-Button"
           onClick={() => openDeleteEvent(event)}
@@ -253,67 +250,89 @@ export const EventDetailModal = ({
       </div>
 
       {toArray()}
+      <div className="EventDetail-Text">
+        {participants
+          .filter((participant) => participant.isCreator)
+          .map((participant, i) => (
+            <>
+              <div key={i} className="DetailModal-Header">
+                {i == 0 && <div className="EventDetail-Text">Ersteller</div>}
+              </div>
+              <div className="EventDetail-Fields">
+                {participant.firstName[0] + participant.lastName[0] ||
+                  "default"}
+              </div>
+            </>
+          ))}
+      </div>
 
-      {participants
-        .filter((participant) => participant.isCreator)
-        .map((participant, i) => (
-          <div key={i} className="DetailModal-Header">
-            {i == 0 && <div className="EventDetail-Text">Ersteller</div>}
+      <div className="EventDetail-Text">
+        {participants.map((participant, i) => (
+          <>
+            <div key={participant.id} className="EventDetail-FieldsContainer">
+              {i == 0 && <div>Zugesagt</div>}
+            </div>
             <div className="EventDetail-Fields">
               {participant.firstName[0] + participant.lastName[0] || "default"}
             </div>
-          </div>
+          </>
         ))}
+      </div>
 
-      {participants.map((participant, i) => (
-        <div key={participant.id} className="DetailModal-Header">
-          {i == 0 && <div className="EventDetail-Text">Zugesagt</div>}
-          <div className="EventDetail-Fields">
-            {participant.firstName[0] + participant.lastName[0] || "default"}
-          </div>
-        </div>
-      ))}
+      <div className="EventDetail-Text">
+        {participants
+          .filter((participant) => participant.isCook)
+          .map((participant, i) => (
+            <>
+              <div key={i} className="EventDetail-FieldsContainer">
+                {i == 0 && <div>Kochen</div>}
+              </div>
+              <div className="EventDetail-Fields">
+                {participant.firstName[0] + participant.lastName[0] ||
+                  "default"}
+              </div>
+            </>
+          ))}
+      </div>
 
-      {participants
-        .filter((participant) => participant.isCook)
-        .map((participant, i) => (
-          <div key={i} className="DetailModal-Header">
-            {i == 0 && <div className="EventDetail-Text">Kochen</div>}
-            <div className="EventDetail-Fields">
-              {participant.firstName[0] + participant.lastName[0] || "default"}
+      <div className="EventDetail-Text">
+        {participants
+          .filter((participant) => participant.isBuyer)
+          .map((participant, i) => (
+            <>
+              <div key={i} className="EventDetail-FieldsContainer">
+                {i == 0 && <div>Einkaufer</div>}
+              </div>{" "}
+              <div className="EventDetail-Fields">
+                {participant.firstName[0] + participant.lastName[0] ||
+                  "default"}
+              </div>
+            </>
+          ))}
+      </div>
+      <div className="EventDetail-Text">
+        {participants
+          .filter((participant) => participant.isOrganisator)
+          .map((participant, i) => (
+            <div key={i} className="DetailModal-Header">
+              {i == 0 && <div className="EventDetail-Text">Organisator</div>}
+              <div className="EventDetail-Fields">
+                {participant.firstName[0] + participant.lastName[0] ||
+                  "default"}
+              </div>
+            </div>
+          ))}
+      </div>
+      <div className="EventDetail-Text">
+        {event.note && (
+          <div className="DetailModal-Header">
+            <div>
+              Anmerkung:
+              <div className="EventDetail-Fields">{event.note}</div>
             </div>
           </div>
-        ))}
-
-      {participants
-        .filter((participant) => participant.isBuyer)
-        .map((participant, i) => (
-          <div key={i} className="DetailModal-Header">
-            {i == 0 && <div className="EventDetail-Text">Einkaufer</div>}
-            <div className="EventDetail-Fields">
-              {participant.firstName[0] + participant.lastName[0] || "default"}
-            </div>
-          </div>
-        ))}
-
-      {participants
-        .filter((participant) => participant.isOrganisator)
-        .map((participant, i) => (
-          <div key={i} className="DetailModal-Header">
-            {i == 0 && <div className="EventDetail-Text">Organisator</div>}
-            <div className="EventDetail-Fields">
-              {participant.firstName[0] + participant.lastName[0] || "default"}
-            </div>
-          </div>
-        ))}
-      {event.note && (
-        <div className="DetailModal-Header">
-          <div className="EventDetail-Text">
-            Anmerkung:
-            <div className="EventDetail-Fields">{event.note}</div>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
 
       <hr />
       <Tooltip title="Mitessen" arrow>
@@ -366,9 +385,3 @@ export const EventDetailModal = ({
     </BasicModal>
   );
 };
-
-/*  
-{element.participants.userName.map((participant) => (
-        <div>{participant}</div>
-      ))} 
-*/

@@ -28,27 +28,7 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
   const [note, setNote] = useState("");
   const [meal, setMealBack] = useState();
   const [editedMealInfo, setEditedMealInfo] = useState({});
-
-  const handleMealSelect = async (selectedMealId) => {
-    const response = await fetch(`/api/meals/${selectedMealId}`);
-    const mealData = await response.json();
-
-    setMealInfo({
-      isVegetarian: mealData.isVegetarian,
-      isVegan: mealData.isVegan,
-      isWithMeat: mealData.isWithMeat,
-      isWithAlcohol: mealData.isWithAlcohol,
-      isGlutenFree: mealData.isGlutenFree,
-      isLactoseFree: mealData.isLactoseFree,
-    });
-  };
-
-  const updateEditedMealInfo = (key, value) => {
-    setEditedMealInfo((prevInfo) => ({
-      ...prevInfo,
-      [key]: value,
-    }));
-  };
+  const [checked, setChecked] = useState(false);
 
   const [mealInfo, setMealInfo] = useState({
     isVegetarian: false,
@@ -121,10 +101,9 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
     <BasicModal isOpen={isOpen} setIsOpen={setIsOpen}>
       <h1 className="Modal-Header">Neues Gericht - {formattedDate}</h1>
 
-      <div className="EventModal-Content">
-        <div className="EventModal-Container">
-          <h1 className="EventModal-Headlines">Uhrzeit</h1>
-
+      <div className="MealInput-Container">
+        <div className="MealInput-Name">
+          <p>Uhrzeit</p>
           <StyledTimeField
             value={date}
             onChange={(newTime) => {
@@ -132,17 +111,20 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
             }}
           ></StyledTimeField>
         </div>
-        <div className="EventModal-Container">
-          <h1 className="EventModal-Headlines">Gericht</h1>
+        <div className="MealInput-Name">
+          <p>Gericht</p>
           <MealDropdown
             setMealBack={setMealBack}
             setMealId={setMealId}
           ></MealDropdown>
         </div>
 
-        <div className="EventModal-Container">
-          <h1 className="EventModal-Headlines">Anmerkung</h1>
+        <div className="MealInput-Name">
+          <p>Anmerkung</p>
           <TextField
+            multiline
+            rows={1}
+            sx={{ minWidth: "45vh" }}
             value={note}
             onChange={(e) => {
               setNote(e.target.value);
@@ -156,14 +138,23 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
               control={
                 <Checkbox
                   checked={mealInfo.isVegetarian}
-                  onChange={() =>
+                  onChange={() => {
                     setMealInfo((prevInfo) => ({
                       ...prevInfo,
                       isVegetarian: !prevInfo.isVegetarian,
-                    }))
+                    }));
+                  }}
+                  icon={
+                    <img
+                      src={Veggie}
+                      alt="Veggie"
+                      style={{ filter: "grayscale(100%)" }}
+                    />
                   }
-                  icon={<img src={Veggie} alt="Veggie" />}
-                />
+                  checkedIcon={
+                    <img src={Veggie} alt="Veggie" style={{ filter: "none" }} />
+                  }
+                ></Checkbox>
               }
             />
           </Tooltip>
@@ -178,8 +169,16 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isVegan: !prevInfo.isVegan,
                   }))
                 }
-                icon={<img src={Vegan} alt="Vegan" />}
-                style={{ filter: "grayscale(100%)" }}
+                icon={
+                  <img
+                    src={Vegan}
+                    alt="Vegan"
+                    style={{ filter: "grayscale(100%)" }}
+                  />
+                }
+                checkedIcon={
+                  <img src={Vegan} alt="Vegan" style={{ filter: "none" }} />
+                }
               />
             }
           />
@@ -193,7 +192,16 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isWithMeat: !prevInfo.isWithMeat,
                   }))
                 }
-                icon={<img src={Meat} alt="MitFleisch" />}
+                icon={
+                  <img
+                    src={Meat}
+                    alt="Meat"
+                    style={{ filter: "grayscale(100%)" }}
+                  />
+                }
+                checkedIcon={
+                  <img src={Meat} alt="Meat" style={{ filter: "none" }} />
+                }
               />
             }
           />
@@ -207,7 +215,16 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isWithAlcohol: !prevInfo.isWithAlcohol,
                   }))
                 }
-                icon={<img src={Alcohol} alt="MitAlkohol" />}
+                icon={
+                  <img
+                    src={Alcohol}
+                    alt="Alcohol"
+                    style={{ filter: "grayscale(100%)" }}
+                  />
+                }
+                checkedIcon={
+                  <img src={Alcohol} alt="Alcohol" style={{ filter: "none" }} />
+                }
               />
             }
           />
@@ -221,7 +238,20 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isGlutenFree: !prevInfo.isGlutenFree,
                   }))
                 }
-                icon={<img src={Glutenfree} alt="Glutenfrei" />}
+                icon={
+                  <img
+                    src={Glutenfree}
+                    alt="Glutenfree"
+                    style={{ filter: "grayscale(100%)" }}
+                  />
+                }
+                checkedIcon={
+                  <img
+                    src={Glutenfree}
+                    alt="Glutenfree"
+                    style={{ filter: "none" }}
+                  />
+                }
               />
             }
           />
@@ -235,7 +265,20 @@ export const EventModal = ({ isOpen, setIsOpen, event, dates }) => {
                     isLactoseFree: !prevInfo.isLactoseFree,
                   }))
                 }
-                icon={<img src={Dairyfree} alt="Laktosefrei" />}
+                icon={
+                  <img
+                    src={Dairyfree}
+                    alt="Dairyfree"
+                    style={{ filter: "grayscale(100%)" }}
+                  />
+                }
+                checkedIcon={
+                  <img
+                    src={Dairyfree}
+                    alt="Dairyfree"
+                    style={{ filter: "none" }}
+                  />
+                }
               />
             }
           />
