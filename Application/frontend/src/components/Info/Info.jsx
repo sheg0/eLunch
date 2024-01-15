@@ -14,31 +14,37 @@ function Info() {
         <div className="Info-Content">
           <div className="Info-Row">
             <ul className="Info-Liste">
-              <li>
-                Täglich Wasserspender desinfizieren und Auffangschale leeren
+              <li className="liste-style">
+                - Täglich Wasserspender desinfizieren und Auffangschale leeren
               </li>
-              <li>
-                Bei Bedarf Kaffeeautomat reinigen und Auffangschale leeren
+              <li className="liste-style">
+                - Bei Bedarf Kaffeeautomat reinigen und Auffangschale leeren
               </li>
-              <li>
-                Spülmaschine in der Regel nach dem Mittagessen laufen lassen
+              <li className="liste-style">
+                - Spülmaschine in der Regel nach dem Mittagessen laufen lassen
               </li>
-              <li>
-                14-tägig schauen was nachbestellt werden muss (Grundzutaten)
+              <li className="liste-style">
+                - 14-tägig schauen was nachbestellt werden muss (Grundzutaten)
               </li>
-              <li>
-                Wenn ein Bedarf festgestellt wird, diesen im digitalen
+              <li className="liste-style">
+                - Wenn ein Bedarf festgestellt wird, diesen im digitalen
                 Einkaufszettel notieren
               </li>
-              <li> Monatlich Altglas entsorgen</li>
-              <li> Monatlich Oberflächen in der Küche gründlich renigen</li>
-              <li>
-                Monatlich Inhalte der Kühlschränke prüfen und alte Sachen
+              <li className="liste-style"> - Monatlich Altglas entsorgen</li>
+              <li className="liste-style">
+                {" "}
+                - Monatlich Oberflächen in der Küche gründlich renigen
+              </li>
+              <li className="liste-style">
+                - Monatlich Inhalte der Kühlschränke prüfen und alte Sachen
                 entsorgen
               </li>
-              <li>Quartalsweise Vorratsschrank putzen und neu einräumen</li>
-              <li>
-                2x im Jahr die Küche gründlich reinigen, auch auf den Schränken
+              <li className="liste-style">
+                - Quartalsweise Vorratsschrank putzen und neu einräumen
+              </li>
+              <li className="liste-style">
+                - 2x im Jahr die Küche gründlich reinigen, auch auf den
+                Schränken
               </li>
             </ul>
             <div className="Info-Legend">
