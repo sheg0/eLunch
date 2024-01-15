@@ -25,33 +25,21 @@ import Veggie from "../../../images/Veggie.png";
 import { RxCross1 } from "react-icons/rx";
 
 const StyledIconButton = styled(Button)({
-  backgroundColor: "#a3a3a3",
   height: "3vh",
   width: "8vh",
   fontSize: "2.5vh",
   borderRadius: "1vh",
   marginRight: "1vh",
   color: "black",
-  transition: "background-color 0.3s ease",
-  "&:hover": {
-    backgroundColor: "#2e933c",
-    color: "white",
-  },
 });
 
 const StyledIconButton2 = styled(Button)({
-  backgroundColor: "#a3a3a3",
   height: "3vh",
   width: "8vh",
   fontSize: "2.5vh",
   borderRadius: "1vh",
   marginRight: "6vh",
   color: "black",
-  transition: "background-color 0.3s ease",
-  "&:hover": {
-    backgroundColor: "#f94144",
-    color: "white",
-  },
 });
 
 export const EventDetailModal = ({
@@ -68,6 +56,15 @@ export const EventDetailModal = ({
   const [selectedEvent, setSelectedEvent] = useState(null);
   let participants = [];
   const [isInfoModalOpen, setInfoModalOpen] = useState(false);
+  const [subscribeButtonColor, setSubscribeButtonColor] = useState({
+    backgroundColor: "#a3a3a3",
+    color: "black",
+  });
+  const [unsubscribeButtonColor, setUnsubscribeButtonColor] =
+    useState("#a3a3a3");
+  const [cookButtonColor, setCookButtonColor] = useState("#a3a3a3");
+  const [buyerButtonColor, setBuyerButtonColor] = useState("#a3a3a3");
+  const [organizeButtonColor, setOrganizeButtonColor] = useState("#a3a3a3");
 
   console.log("mealinfoo: ", event.mealInfo);
 
@@ -83,6 +80,10 @@ export const EventDetailModal = ({
   };
   const closeDeleteModal = () => {
     setSelectedEvent(null);
+  };
+
+  const toggleColor = (currentColor, defaultColor) => {
+    return currentColor === defaultColor ? "#043c5f" : defaultColor;
   };
 
   const mealName = event?.meal?.name || "default";
@@ -320,6 +321,17 @@ export const EventDetailModal = ({
         <StyledIconButton
           onClick={() => {
             handleSubscribeClick(event);
+            setSubscribeButtonColor((currentColors) => ({
+              backgroundColor: toggleColor(
+                currentColors.backgroundColor,
+                "#a3a3a3"
+              ),
+              color: toggleColor(currentColors.color, "white"),
+            }));
+          }}
+          style={{
+            backgroundColor: subscribeButtonColor.backgroundColor,
+            color: subscribeButtonColor.color,
           }}
         >
           <MdDone />
@@ -329,6 +341,12 @@ export const EventDetailModal = ({
         <StyledIconButton2
           onClick={() => {
             handleUnsubscribeClick(event);
+            setUnsubscribeButtonColor((currentColor) =>
+              toggleColor(currentColor, "#a3a3a3")
+            );
+          }}
+          style={{
+            backgroundColor: unsubscribeButtonColor,
           }}
         >
           <MdClear />
@@ -338,6 +356,12 @@ export const EventDetailModal = ({
         <StyledIconButton
           onClick={() => {
             setEventProperty("isCook");
+            setCookButtonColor((currentColor) =>
+              toggleColor(currentColor, "#a3a3a3")
+            );
+          }}
+          style={{
+            backgroundColor: cookButtonColor,
           }}
         >
           <PiCookingPot />
@@ -348,6 +372,12 @@ export const EventDetailModal = ({
         <StyledIconButton
           onClick={() => {
             setEventProperty("isBuyer");
+            setBuyerButtonColor((currentColor) =>
+              toggleColor(currentColor, "#a3a3a3")
+            );
+          }}
+          style={{
+            backgroundColor: buyerButtonColor,
           }}
         >
           <LuShoppingBasket />
@@ -358,6 +388,12 @@ export const EventDetailModal = ({
         <StyledIconButton
           onClick={() => {
             setEventProperty("isOrganisator");
+            setOrganizeButtonColor((currentColor) =>
+              toggleColor(currentColor, "#a3a3a3")
+            );
+          }}
+          style={{
+            backgroundColor: organizeButtonColor,
           }}
         >
           <IoPersonOutline />
