@@ -5,43 +5,41 @@
   border-radius: 2vh;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   flex-shrink: 0;
-  box-sizing: border-box;
+  cursor: default;
 }
 .profile-content {
   padding: 5%;
 }
 
 .box1 {
-  height: 40%;
   width: 100%;
   flex-direction: row;
   display: flex;
+  justify-content: space-between;
 }
 .profile-circle {
   width: 7vh;
   height: 7vh;
   border-radius: 50%;
   float: left;
-
   background-color: #043c5ffd;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
 }
 .circle-name {
-  padding: 0.5vh;
-  font-size: 3vh;
-
+  font-size: 2.8vh;
+  line-height: 7vh;
   text-align: center;
   font-weight: bold;
   color: white;
+  white-space: nowrap;
 }
 .profile-logout {
-  height: 10%;
-  margin: 5px;
-  padding: 5px;
-  top: 0;
+  height: 100%;
   float: right;
+  margin-top: auto;
+  margin-bottom: auto;
   color: black;
-  font-size: calc(15px + 0.390625vw);
+  font-size: 3vh;
 }
 .profile-logout:hover {
   color: red;
@@ -49,52 +47,66 @@
 }
 
 .box2 {
-  height: 40%;
   width: 100%;
   flex-direction: row;
   display: flex;
+  justify-content: space-between;
 }
 .name {
-  margin: 10px;
-
-  font-size: calc(9px + 0.390625vw);
+  height: 100%;
+  font-size: 2.2vh;
+  line-height: 8vh;
   font-weight: bold;
   color: #043c5f;
-  cursor: default;
+  white-space: nowrap;
 }
 .balance {
-  width: 30%;
-  margin: 10px;
-
-  font-size: calc(9px + 0.390625vw);
+  height: 100%;
+  font-size: 2.2vh;
+  line-height: 8vh;
   font-weight: bold;
   color: #333333;
-  cursor: default;
+  white-space: nowrap;
 }
 
 .box3 {
-  height: 10%;
   width: 100%;
   flex-direction: row;
   display: flex;
+  justify-content: space-between;
 }
 .statistic {
-  margin: 10px;
-
+  line-height: 4vh;
   font-weight: bold;
-  font-size: calc(7px + 0.390625vw);
+  font-size: 2vh;
   color: #333333;
-  cursor: default;
+  white-space: nowrap;
+}
+.gekocht {
+  line-height: 2vh;
+  font-size: 2vh;
+  color: #333333;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-direction: row;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  gap: 0.9vh;
 }
 .icon-gekocht {
-  margin: 10px;
-
-  font-size: calc(10px + 0.390625vw);
+}
+.gegessen {
+  line-height: 2vh;
+  font-size: 2vh;
   color: #333333;
+  font-weight: bold;
+  white-space: nowrap;
+  flex-direction: row;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  gap: 0.9vh;
 }
 .icon-gegessen {
-  margin: 10px;
-
-  font-size: calc(10px + 0.390625vw);
-  color: #333333;
 }

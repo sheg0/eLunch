@@ -1,7 +1,8 @@
 .MealList-App-Container {
   flex-grow: 1;
-  padding-left: auto;
-  padding-top: 2vh;
+  padding-left: 10vh;
+  padding-top: 3vh;
+  cursor: default;
 }
 
 .MeaList-icon-container {

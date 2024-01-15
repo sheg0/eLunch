@@ -2,6 +2,7 @@
   flex-grow: 1;
   padding-left: auto;
   padding-top: 3vh;
+  cursor: default;
 }
 h1 {
   font-family: "Segoe UI";
@@ -14,9 +15,9 @@ h1 {
 
 /*  Einkaufszettel-Liste,  Verlauf-Liste  */
 .lists {
-  flex-shrink: 0;
+  flex-shrink: 1;
   display: flex;
-  gap: 8vh;
+  gap: 6vh;
   top: 0;
 }
 .list-1 {
@@ -40,6 +41,7 @@ h1 {
   border-radius: 25px;
   padding-left: 2.5vh;
   padding-top: 2vh;
+  padding-right: 2vh;
 }
 .list-2 ul {
   height: 60vh;
@@ -52,6 +54,7 @@ h1 {
   border-radius: 25px;
   padding-left: 2.5vh;
   padding-top: 2vh;
+  padding-right: 2vh;
 }
 .list-headline {
   padding-bottom: 3vh;
@@ -62,7 +65,6 @@ h1 {
   overflow: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  border-radius: 1vh;
 }
 .list-content::-webkit-scrollbar {
   width: 0;
@@ -71,37 +73,62 @@ h1 {
 .list-row {
   flex-direction: row;
   display: flex;
-  gap: 1vh;
-  align-items: center;
+  gap: 0.6vh;
   height: 4.5vh;
-  width: 49vh;
 }
 .input-article {
-  background-color: rgb(231, 249, 253);
+  background-color: rgb(236, 244, 245);
+  color: #043c5f;
   border-radius: 1.2vh;
+  border-color: rgb(172, 184, 187);
   width: 35vh;
-  height: 3vh;
-  font-size: 1.8vh;
+  height: auto;
+  padding-top: 0.8vh;
+  padding-bottom: 0.8vh;
+  font-size: 1.6vh;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .input-quantity {
-  background-color: rgb(231, 249, 253);
+  background-color: rgb(236, 244, 245);
+  color: #043c5f;
   border-radius: 1.2vh;
+  border-color: rgb(172, 184, 187);
   width: 9vh;
-  height: 3vh;
-  font-size: 1.8vh;
+  height: auto;
+  padding-top: 0.8vh;
+  padding-bottom: 0.8vh;
+  font-size: 1.6vh;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .input-buttons {
   color: #043c5f;
-  margin-bottom: 1vh;
-  top: 0;
+  font-size: 2.4vh;
   cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .input-buttons:hover {
   background-color: #043c5f;
   color: white;
-  top: 0;
-  border-radius: 0.5vh;
+  border-radius: 0.3vh;
   display: flex;
+}
+.input-buttons-trash {
+  color: #043c5f;
+  font-size: 2vh;
+  cursor: pointer;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.input-buttons-trash:hover {
+  background-color: #043c5f;
+  color: white;
+  border-radius: 0.3vh;
+  display: flex;
+  height: 2.6vh;
+  padding-top: 0.3vh;
 }
 
 /*  Neuen Artikel hinzufügen  */
@@ -118,19 +145,23 @@ h1 {
 }
 .new-input-article {
   background-color: rgb(229, 229, 229);
-  border: gray solid 2px;
+  border: #8a9196 solid 0.3vh;
   border-radius: 1.2vh;
+  color: #878e92;
   width: 35vh;
   height: 4vh;
-  font-size: 1.8vh;
+  font-size: 1.6vh;
+  cursor: text;
 }
 .new-input-quantity {
   background-color: rgb(229, 229, 229);
-  border: gray solid 2px;
+  border: #8a9196 solid 0.3vh;
   border-radius: 1.2vh;
+  color: #878e92;
   width: 10vh;
   height: 4vh;
-  font-size: 1.8vh;
+  font-size: 1.6vh;
+  cursor: text;
 }
 .new-button {
   background-color: #043c5f;
@@ -138,8 +169,11 @@ h1 {
   border-radius: 1.2vh;
   font-size: 1.8vh;
   margin-left: 2vh;
-  padding: 1vh;
-  height: 4vh;
+  padding-top: 0.8vh;
+  padding-bottom: 0.8vh;
+  padding-left: 1.4vh;
+  padding-right: 1.4vh;
+  height: auto;
   width: auto;
   cursor: pointer;
 }

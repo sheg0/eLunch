@@ -80,8 +80,18 @@ const Profile = () => {
 
         <div className="box3">
           <div className="statistic">Statistik:</div>
-          <PiCookingPotBold className="icon-gekocht"></PiCookingPotBold>
-          <PiForkKnifeDuotone className="icon-gegessen"></PiForkKnifeDuotone>
+          <div className="gekocht">
+            3
+            <div className="icon-gekocht">
+              <PiCookingPotBold></PiCookingPotBold>
+            </div>
+          </div>
+          <div className="gegessen">
+            9
+            <div className="icon-gegessen">
+              <PiForkKnifeDuotone></PiForkKnifeDuotone>
+            </div>
+          </div>
         </div>
       </div>
     </div>

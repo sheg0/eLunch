@@ -175,7 +175,7 @@ function Shoppinglist({ shoppinglists }) {
                       className="input-buttons"
                       onClick={() => handleCheckbox(index)}
                     >
-                      <TbCheckbox size={22} />
+                      <TbCheckbox />
                     </div>
                     <input
                       disabled
@@ -192,10 +192,10 @@ function Shoppinglist({ shoppinglists }) {
                       onChange={(e) => handleQuantityChange(e, index)}
                     />
                     <div
-                      className="input-buttons"
+                      className="input-buttons-trash"
                       onClick={() => handleDelete(index, "shoppinglist")}
                     >
-                      <FaRegTrashAlt size={17} />
+                      <FaRegTrashAlt />
                     </div>
                   </li>
                 ))}
@@ -217,7 +217,7 @@ function Shoppinglist({ shoppinglists }) {
                       className="input-buttons"
                       onClick={() => handleMoveBack(index)}
                     >
-                      <LuArrowLeftSquare size={20} />
+                      <LuArrowLeftSquare />
                     </div>
                     <input
                       disabled
@@ -234,10 +234,10 @@ function Shoppinglist({ shoppinglists }) {
                       onChange={(e) => handleQuantityChange(e, index)}
                     />
                     <div
-                      className="input-buttons"
-                      onClick={() => handleDelete(index, "shoppinglist")}
+                      className="input-buttons-trash"
+                      onClick={() => handleDelete(index, "historylist")}
                     >
-                      <FaRegTrashAlt size={17} />
+                      <FaRegTrashAlt />
                     </div>
                   </li>
                 ))}
