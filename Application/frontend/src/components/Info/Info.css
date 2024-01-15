@@ -1,6 +1,6 @@
 .Info-Page-Container {
   flex-grow: 1;
-  padding-left: 15vh;
+  padding-left: auto;
   padding-top: 2vh;
   width: 100vh;
 }

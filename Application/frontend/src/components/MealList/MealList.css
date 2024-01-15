@@ -1,6 +1,6 @@
 .MealList-App-Container {
   flex-grow: 1;
-  padding-left: 15vh;
+  padding-left: auto;
   padding-top: 2vh;
 }
 
