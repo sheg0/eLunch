@@ -7,6 +7,7 @@ import { PiCookingPotBold } from "react-icons/pi";
 import { PiForkKnifeDuotone } from "react-icons/pi";
 import { useContext } from "react";
 import { useFinanceContext } from "../../hooks/useFinanceContext";
+
 const Profile = () => {
   const { keycloak, initialized } = useKeycloak();
   const { finance, balance, setBalance } = useFinanceContext();
@@ -19,17 +20,16 @@ const Profile = () => {
     username = keycloak.tokenParsed.preferred_username;
     firstName = keycloak.tokenParsed.given_name;
     lastName = keycloak.tokenParsed.family_name;
+
     if (finance) {
       const userExists = finance.some(
         (fin) => fin.userInfo.userName === username
       );
       if (userExists) {
-        //balance = finance.map((fin) => fin.userInfo.userName === username)
         const targetUserName = username;
         const targetUser = finance.find(
           (user) => user.userInfo.userName === targetUserName
         );
-        console.log(targetUser.userInfo.balance.$numberDecimal);
         setBalance(targetUser.userInfo.balance.$numberDecimal);
       }
     }
@@ -40,6 +40,7 @@ const Profile = () => {
       username = keycloak.tokenParsed.preferred_username;
       firstName = keycloak.tokenParsed.given_name;
       lastName = keycloak.tokenParsed.family_name;
+
       const targetUser = finance.find(
         (user) => user.userInfo.userName === username
       );
@@ -48,7 +49,11 @@ const Profile = () => {
         const balanceValue = parseFloat(
           targetUser.userInfo.balance.$numberDecimal
         );
-        setBalance(balanceValue);
+
+        const roundedBalance = balanceValue.toFixed(2);
+        const formattedBalance = parseFloat(roundedBalance).toString();
+
+        setBalance(formattedBalance);
       }
     }
   }, [initialized, keycloak.authenticated, finance]);
@@ -75,7 +80,7 @@ const Profile = () => {
           <div className="name">
             {firstName} {lastName}
           </div>
-          <div className="balance">{balance || "1453"} €</div>
+          <div className="balance">{balance} €</div>
         </div>
 
         <div className="box3">
