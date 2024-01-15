@@ -33,7 +33,6 @@ const Finance = ({ isAdmin, finances }) => {
     console.log(selectedAccount);
   }, []);
 
-  // NEUE AUSGABE
   const handleTransfer = (amount) => {
     console.log("Selected index", selectedAccount);
     if (finance) {
@@ -75,7 +74,6 @@ const Finance = ({ isAdmin, finances }) => {
     }
   };
 
-  // GUTHABEN AKTUALISIREN
   const handleSendMoney = (amount2) => {
     if (finance) {
       let localSelectedUser = finance[selectedAccount2].userInfo.userName;
@@ -140,8 +138,6 @@ const Finance = ({ isAdmin, finances }) => {
     }
   }, [initialized, keycloak.authenticated, finances, addFinance]);
 
-  // noch hinzuzufügen ist das error handling!!!!!
-
   return (
     <>
       <div className="finance-container">
@@ -152,18 +148,18 @@ const Finance = ({ isAdmin, finances }) => {
               <div className="finance-box1">
                 <div className="finance-row1">
                   <div className="finance-employee">An</div>
-                  <div className="finance-employee-dropdownMenu">
+                  <div className="finance-employee-dropdown">
                     <select
+                      className="employee-dropdown"
                       value={selectedAccount}
                       onChange={(e) => setSelectedAccount(e.target.value)}
-                      label="Mitarbeiter auswählen"
                     >
                       {finance?.map((fin, index) => (
                         <option
                           key={fin.userInfo.userName}
                           value={fin.userInfo.userName}
                         >
-                          {fin.userInfo.firstName}
+                          {fin.userInfo.firstName} {fin.userInfo.lastName}
                         </option>
                       ))}
                     </select>
@@ -195,27 +191,29 @@ const Finance = ({ isAdmin, finances }) => {
                   </div>
                 </div>
                 <div className="finance-row4">
-                  <button
-                    className="finance-confirm"
-                    onClick={() => handleTransfer(amount)}
-                  >
-                    Bestätigen
-                  </button>
+                  <div className="finance-confirm-button">
+                    <button
+                      className="finance-confirm"
+                      onClick={() => handleTransfer(amount)}
+                    >
+                      Bestätigen
+                    </button>
+                  </div>
                 </div>
               </div>
               <h1>Guthaben aktualisieren</h1>
               <div className="finance-box2">
                 <div className="finance-row1">
                   <div className="finance-employee">An</div>
-                  <div className="finance-employee-dropdownMenu">
+                  <div className="finance-employee-dropdown">
                     <select
+                      className="employee-dropdown"
                       value={selectedAccount2}
                       onChange={(e) => setSelectedAccount2(e.target.value)}
-                      label="Mitarbeiter auswählen"
                     >
                       {finance?.map((fin, index) => (
                         <option key={index} value={index}>
-                          {fin.userInfo.firstName}
+                          {fin.userInfo.firstName} {fin.userInfo.lastName}
                         </option>
                       ))}
                     </select>
@@ -247,12 +245,14 @@ const Finance = ({ isAdmin, finances }) => {
                   </div>
                 </div>
                 <div className="finance-row4">
-                  <button
-                    className="finance-confirm"
-                    onClick={() => handleSendMoney(amount2)}
-                  >
-                    Bestätigen
-                  </button>
+                  <div className="finance-confirm-button">
+                    <button
+                      className="finance-confirm"
+                      onClick={() => handleSendMoney(amount2)}
+                    >
+                      Bestätigen
+                    </button>
+                  </div>
                 </div>
               </div>
             </>
@@ -332,11 +332,14 @@ const Finance = ({ isAdmin, finances }) => {
                           {act.description}
                         </div>
                         <div className="finance-activity-amount">
-                          {act.sign !== "+" && act.sign !== "-"
-                            ? "aaktualisiert"
-                            : act.sign}{" "}
-                          {act.amount} € {act.sign === "+" && Erhalten}
-                          {act.sign === "-" && Gesendet}
+                          <div className="activity-amount">{act.amount} €</div>
+                          <div className="activity-amount-description">
+                            {act.sign !== "+" && act.sign !== "-"
+                              ? "Guthaben aktualisiert"
+                              : act.sign}
+                            {act.sign === "+" && Erhalten}
+                            {act.sign === "-" && Gesendet}
+                          </div>
                         </div>
                       </div>
                     ));

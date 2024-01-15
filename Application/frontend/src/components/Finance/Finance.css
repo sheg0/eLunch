@@ -3,17 +3,13 @@
   width: 100%;
 
   display: flex;
-  background-color: rgba(128, 128, 128, 0.082);
 }
 
 .finance-content {
   height: 90%;
   width: 90%;
 
-  margin-top: auto;
-  margin-bottom: auto;
-  margin-left: auto;
-  margin-right: auto;
+  margin: auto auto auto auto;
 
   align-content: center;
   justify-content: center;
@@ -25,262 +21,147 @@
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 3vh;
   color: #043c5f;
+
+  cursor: default;
 }
 
-.finance-box1 {
-  background-color: #f1f1f1;
+.finance-box1,
+.finance-box2,
+.finance-box3 {
   height: 80%;
   width: 80%;
 
-  border-radius: 5px;
+  margin-top: 1.5vh;
+  margin-bottom: 3vh;
+
+  background-color: rgb(229, 229, 229);
+  border-radius: 2vh;
 }
 
-.finance-row1 {
-  display: flex;
-  flex: 1;
-}
-.finance-employee {
-  width: 30%;
-  margin: 20px;
-  font-weight: bold;
-  color: #3f3f3f;
-  font-size: calc(10px + 0.390625vw);
-}
-.finance-employee-dropdownMenu {
-  width: 70%;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
-.employee-dropdown {
-  border-radius: 5px;
-  height: 50%;
-  width: 50%;
-}
-
-.finance-row2 {
-  display: flex;
-  flex: 1;
-}
-.finance-balance {
-  width: 30%;
-  margin: 20px;
-  font-weight: bold;
-  color: #3f3f3f;
-  font-size: calc(10px + 0.390625vw);
-}
-.finance-balance-numberfield {
-  text-align: center;
-  margin: auto auto auto auto;
-  width: 70%;
-}
-.finance-numberfield {
-  display: flex;
-  flex: 1;
-}
-.balance-input {
-  height: 50%;
-  width: 50%;
-  border-radius: 5px;
-}
-.finance-balance.info {
-  display: flex;
-  text-align: right;
-  cursor: pointer;
-}
-.balance-popup {
-  cursor: pointer;
-}
-
-.finance-row3 {
-  display: flex;
-  flex: 1;
-}
-.finance-remark {
-  width: 30%;
-  margin: 20px;
-  font-weight: bold;
-  color: #3f3f3f;
-  font-size: calc(10px + 0.390625vw);
-}
-.finance-remark-textfield {
-  text-align: center;
-  margin: auto auto auto auto;
-  width: 70%;
-}
-.remark-textfield {
-  height: 50%;
-  width: 50%;
-  border-radius: 5px;
-}
-
+.finance-row1,
+.finance-row2,
+.finance-row3,
 .finance-row4 {
   display: flex;
   flex: 1;
 }
-.finance-confirm {
+
+.finance-employee,
+.finance-balance,
+.finance-remark {
   width: 30%;
-  margin: 20px;
 
-  color: #3f3f3f;
+  margin: 2.2vh;
+  padding-left: 5vh;
+
+  font-weight: bold;
   font-size: calc(10px + 0.390625vw);
+  color: #3f3f3f;
 
+  cursor: default;
+}
+.finance-employee-dropdown,
+.finance-balance-numberfield,
+.finance-remark-textfield {
+  width: 80%;
+  padding-left: 10vh;
+}
+.employee-dropdown,
+.balance-input,
+.remark-textfield {
+  height: 60%;
+  width: 70%;
+
+  margin-top: 2vh;
+  border-radius: 2vh;
+
+  border: gray solid 2px;
+}
+
+.finance-confirm-button {
+  width: 80%;
+
+  padding-left: 5vh;
+}
+.finance-confirm {
   height: 3.5vh;
   width: auto;
 
-  background-color: #043c5f;
-  color: white;
-  border-radius: 5px;
+  margin: 2vh;
 
-  cursor: pointer;
-}
-.finance-confirm:hover {
-  background-color: #044770;
-}
-
-.finance-box2 {
-  background-color: #f1f1f1;
-  height: 80%;
-  width: 80%;
-
-  border-radius: 5px;
-}
-
-.finance-row1 {
-  display: flex;
-  flex: 1;
-}
-.finance-employee {
-  width: 30%;
-  margin: 20px;
-  font-weight: bold;
-  color: #3f3f3f;
-  font-size: calc(10px + 0.390625vw);
-}
-.finance-employee-dropdownMenu {
-  width: 70%;
-  justify-content: center;
-  display: flex;
-  flex-direction: column;
-}
-.employee-dropdown {
-  border-radius: 5px;
-  height: 50%;
-  width: 50%;
-}
-
-.finance-row2 {
-  display: flex;
-  flex: 1;
-}
-.finance-balance {
-  width: 30%;
-  margin: 20px;
-  font-weight: bold;
-  color: #3f3f3f;
-  font-size: calc(10px + 0.390625vw);
-}
-.finance-balance-numberfield {
-  text-align: center;
-  margin: auto auto auto auto;
-  width: 70%;
-}
-.finance-numberfield {
-  display: flex;
-  flex: 1;
-}
-.balance-input {
-  height: 50%;
-  width: 50%;
-  border-radius: 5px;
-}
-.finance-balance.info {
-  display: flex;
-  text-align: right;
-  cursor: pointer;
-}
-.balance-popup {
-  cursor: pointer;
-}
-
-.finance-row3 {
-  display: flex;
-  flex: 1;
-}
-.finance-remark {
-  width: 30%;
-  margin: 20px;
-  font-weight: bold;
-  color: #3f3f3f;
-  font-size: calc(10px + 0.390625vw);
-}
-.finance-remark-textfield {
-  text-align: center;
-  margin: auto auto auto auto;
-  width: 70%;
-}
-.remark-textfield {
-  height: 50%;
-  width: 50%;
-  border-radius: 5px;
-}
-
-.finance-row4 {
-  display: flex;
-  flex: 1;
-}
-.finance-confirm {
   font-family: "Segoe UI";
   font-size: 1.7vh;
   font-weight: 400;
-  border-radius: 1vh;
-  border: none;
   background-color: #043c5f;
   color: white;
-  width: auto;
-  height: 3.5vh;
+
+  border-radius: 1vh;
+  border: none;
+
   cursor: pointer;
 }
 .finance-confirm:hover {
   background-color: #0f52ba;
 }
 
-.finance-box3 {
-  height: 80%;
-  width: 80%;
-
-  background-color: #f1f1f1;
-  border-radius: 5px;
-  margin: 10px;
-}
 .finance-lastActivities {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin: 5px;
+  gap: 0.5vh;
+  margin: 1vh;
 }
 .lastActivities-name {
-  margin: 10px;
+  padding-top: 1vh;
+  margin-top: 1vh;
+  margin-left: 3vh;
+  margin-bottom: 1vh;
 
-  font-size: calc(9px + 0.390625vw);
+  font-size: calc(10px + 0.390625vw);
   font-weight: bold;
-  color: #043c5f;
+  color: #043c5ffd;
+
   cursor: default;
 }
 .lastActivities-date {
   color: #3f3f3f;
-  font-size: 80%;
+  font-size: calc(5px + 0.390625vw);
 }
 .finance-activity-remark {
-  background-color: lightgray;
-  padding: 10px;
   width: 100%;
-  border-radius: 5px;
+  height: 80%;
+
+  padding-top: 1vh;
+  padding: 1vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
+
+  background-color: white;
+  border-radius: 2vh;
+  border: gray solid 2px;
+
+  cursor: default;
 }
 .finance-activity-amount {
-  text-align: right;
+  padding-top: 1vh;
+  margin-top: 1vh;
+  margin-right: 1vh;
+  margin-bottom: 1vh;
+}
+.activity-amount {
+  font-size: calc(10px + 0.390625vw);
   font-weight: bold;
-  color: #043c5f;
+  text-align: right;
+  color: #043c5ffd;
+
+  cursor: default;
+}
+.activity-amount-description {
+  font-size: calc(5px + 0.390625vw);
+  font-weight: bold;
+  text-align: right;
+  color: #3f3f3f;
+
+  cursor: default;
 }

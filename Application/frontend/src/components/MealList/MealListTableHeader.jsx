@@ -7,8 +7,8 @@ const MealListTableHeader = () => {
         "Gericht",
         "Kategorie",
         "Schwierigkeit",
-        "Zeitaufwand",
-        "Kosten pro Person",
+        "Zeitaufwand (in min)",
+        "Kosten pro Person (in €)",
         "",
       ]}
     />
