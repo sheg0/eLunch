@@ -200,8 +200,8 @@ export const CalendarProvider = ({ children }) => {
   };
 
   const deleteEvent = async (eventItem) => {
-    console.log("event id", eventItem);
-    const response = await fetch("/api/events/" + eventItem, {
+    console.log("event id", eventItem._id);
+    const response = await fetch("/api/events/" + eventItem._id, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${keycloak.token}` },
     });

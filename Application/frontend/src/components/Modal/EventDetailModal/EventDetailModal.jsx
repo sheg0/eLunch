@@ -60,10 +60,11 @@ export const EventDetailModal = ({
   handleSubscribeClick,
   handleUnsubscribeClick,
   setEvent,
+  deleteEvent,
 }) => {
   console.log("Event:", event);
   const { keycloak } = useKeycloak();
-  const { updateEvent, deleteEvent } = useCalendarContext();
+  const { updateEvent } = useCalendarContext();
   const [selectedEvent, setSelectedEvent] = useState(null);
   let participants = [];
   const [isInfoModalOpen, setInfoModalOpen] = useState(false);
@@ -111,12 +112,8 @@ export const EventDetailModal = ({
     updateEvent(updatedEvent);
   };
 
-  const handleDeleteClick = (eventID) => {
-    if (event && eventID) {
-      deleteEvent(eventID);
-    } else {
-      console.log("Event ID not available");
-    }
+  const closeFirstModal = () => {
+    setIsOpen(false);
   };
 
   const dateOptions = {
@@ -170,6 +167,7 @@ export const EventDetailModal = ({
               onClick={() => {
                 deleteEvent(selectedEvent);
                 closeDeleteModal();
+                closeFirstModal();
               }}
             >
               Löschen
@@ -314,13 +312,15 @@ export const EventDetailModal = ({
         {participants
           .filter((participant) => participant.isOrganisator)
           .map((participant, i) => (
-            <div key={i} className="DetailModal-Header">
-              {i == 0 && <div className="EventDetail-Text">Organisator</div>}
+            <>
+              <div key={i} className="EventDetail-FieldsContainer">
+                {i == 0 && <div>Organisator</div>}
+              </div>
               <div className="EventDetail-Fields">
                 {participant.firstName[0] + participant.lastName[0] ||
                   "default"}
               </div>
-            </div>
+            </>
           ))}
       </div>
       <div className="EventDetail-Text">
