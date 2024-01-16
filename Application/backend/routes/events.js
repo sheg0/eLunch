@@ -26,7 +26,7 @@ router.get("/", getAllEvents);
 router.get("/:id", keycloak.protect("realm:user"), getEvent);
 
 // DELETE an event
-router.delete("/:id", keycloak.protect("realm:admin"), deleteEvent);
+router.delete("/:id", deleteEvent);
 
 // DELETE all event
 router.delete("/", deleteAllEvents);
