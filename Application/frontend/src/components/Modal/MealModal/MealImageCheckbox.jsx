@@ -1,7 +1,7 @@
 import { useMealListContext } from "../../../hooks/useMealListContext";
 import StyledIconButton from "../../Styled_MUI_Components/StyledIconButton";
 
-const MealImageCheckbox = ({ mealPropertyName, src, alt }) => {
+const MealImageCheckbox = ({ mealPropertyName, src, alt, title }) => {
   const { meal, setMeal } = useMealListContext();
   const handleKeyDown = (e) => {
     // Older browsers may return "Spacebar"
@@ -22,6 +22,7 @@ const MealImageCheckbox = ({ mealPropertyName, src, alt }) => {
         src={src}
         alt={alt}
         style={meal[mealPropertyName] ? {} : { filter: "grayscale(100%)" }}
+        title={title}
       />
     </StyledIconButton>
   );

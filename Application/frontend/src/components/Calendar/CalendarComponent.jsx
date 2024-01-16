@@ -54,6 +54,7 @@ const Calendar = () => {
     unsubscribeEvent,
     event,
     setEvent,
+    deleteEvent,
   } = useCalendarContext();
   const { keycloak, initialized } = useKeycloak();
   const { events } = useEventsContext();
@@ -230,6 +231,7 @@ const Calendar = () => {
         handleSubscribeClick={handleSubscribe}
         handleUnsubscribeClick={handleUnSubscribe}
         setEvent={setEvent}
+        deleteEvent={deleteEvent}
       ></EventDetailModal>
     </div>
   );

@@ -145,180 +145,162 @@ const Finance = ({ isAdmin, finances }) => {
   }, [initialized, keycloak.authenticated, finances, addFinance]);
 
   return (
-    <>
-      <div className="finance-container">
-        <div className="finance-content">
-          {isAdmin ? (
-            <>
-              <h1>Neue Ausgabe</h1>
-              <div className="finance-box1">
-                <div className="finance-row1">
-                  <div className="finance-employee">An</div>
-                  <div className="finance-employee-dropdown">
-                    <select
-                      className="employee-dropdown"
-                      value={selectedAccount}
-                      onChange={(e) => setSelectedAccount(e.target.value)}
-                    >
-                      {finance?.map((fin, index) => (
-                        <option
-                        key={index + 1} value={index}
-                        >
-                          {fin.userInfo.firstName} {fin.userInfo.lastName}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="finance-row2">
-                  <div className="finance-balance">Betrag in €</div>
-                  <div className="finance-balance-numberfield">
-                    <input
-                      className="balance-input"
-                      type="text"
-                      id="amount"
-                      value={amount}
-                      onChange={handleAmountChange}
-                      placeholder="Betrag eingeben..."
-                    />
-                  </div>
-                </div>
-                <div className="finance-row3">
-                  <div className="finance-remark">Anmerkung</div>
-                  <div className="finance-remark-textfield">
-                    <input
-                      className="remark-textfield"
-                      type="text"
-                      value={remark}
-                      onChange={(e) => setRemark(e.target.value)}
-                      placeholder="Eintragen..."
-                    ></input>
-                  </div>
-                </div>
-                <div className="finance-row4">
-                  <div className="finance-confirm-button">
-                    <button
-                      className="finance-confirm"
-                      onClick={() => handleTransfer(amount)}
-                    >
-                      Bestätigen
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <h1>Guthaben aktualisieren</h1>
-              <div className="finance-box2">
-                <div className="finance-row1">
-                  <div className="finance-employee">An</div>
-                  <div className="finance-employee-dropdown">
-                    <select
-                      className="employee-dropdown"
-                      value={selectedAccount2}
-                      onChange={(e) => setSelectedAccount2(e.target.value)}
-                    >
-                      {finance?.map((fin, index) => (
-                        <option key={index} value={index}>
-                          {fin.userInfo.firstName} {fin.userInfo.lastName}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="finance-row2">
-                  <div className="finance-balance">Betrag in €</div>
-                  <div className="finance-balance-numberfield">
-                    <input
-                      className="balance-input"
-                      type="text"
-                      id="amount"
-                      value={amount2}
-                      onChange={handleAmountChange2}
-                      placeholder="Betrag eingeben..."
-                    />
-                  </div>
-                </div>
-                <div className="finance-row3">
-                  <div className="finance-remark">Anmerkung</div>
-                  <div className="finance-remark-textfield">
-                    <input
-                      className="remark-textfield"
-                      type="text"
-                      value={remark2}
-                      onChange={(e) => setRemark2(e.target.value)}
-                      placeholder="Eintragen..."
-                    ></input>
-                  </div>
-                </div>
-                <div className="finance-row4">
-                  <div className="finance-confirm-button">
-                    <button
-                      className="finance-confirm"
-                      onClick={() => handleSendMoney(amount2)}
-                    >
-                      Bestätigen
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <h1>Neue Ausgabe</h1>
-              <div className="finance-box1">
-                <div className="finance-row1">
-                  <div className="finance-employee">An</div>
-                  <div className="finance-employee-dropdownMenu">
-                    <select
-                      value={selectedAccount}
-                      onChange={(e) => setSelectedAccount(e.target.value)}
-                      label="Mitarbeiter auswählen"
-                    >
-                      {finance?.map((fin, index) => (
-                        <option key={index + 1} value={index}>
-                          {fin.userInfo.firstName}
-                        </option>
-                      ))}
-                    </select>
-                  </div>
-                </div>
-                <div className="finance-row2">
-                  <div className="finance-balance">Betrag in €</div>
-                  <div className="finance-balance-numberfield">
-                    <input
-                      className="balance-input"
-                      type="text"
-                      id="amount"
-                      value={amount}
-                      onChange={handleAmountChange}
-                      placeholder="Betrag eingeben..."
-                    />
-                  </div>
-                </div>
-                <div className="finance-row3">
-                  <div className="finance-remark">Anmerkung</div>
-                  <div className="finance-remark-textfield">
-                    <input
-                      className="remark-textfield"
-                      type="text"
-                      value={remark}
-                      onChange={(e) => setRemark(e.target.value)}
-                      placeholder="Eintragen..."
-                    ></input>
-                  </div>
-                </div>
-                <div className="finance-row4">
-                  <button
-                    className="finance-confirm"
-                    onClick={() => handleTransfer(amount)}
+    <div className="finance-container">
+      <div className="finance-content">
+        {isAdmin ? (
+          <>
+            <div className="finance-outlay">
+              <h1 className="finance-font">Neue Ausgabe</h1>
+              <div className="outlay-content">
+                <div className="finance-employee">
+                  <div className="employee-text">An</div>
+
+                  <select
+                    className="employee-dropdown"
+                    value={selectedAccount}
+                    onChange={(e) => setSelectedAccount(e.target.value)}
                   >
-                    Bestätigen
-                  </button>
+                    {finance?.map((fin, index) => (
+                      <option key={index + 1} value={index}>
+                        {fin.userInfo.firstName} {fin.userInfo.lastName}
+                      </option>
+                    ))}
+                  </select>
                 </div>
+                <div className="finance-credit">
+                  <div className="credit-text">Betrag in €</div>
+                  <input
+                    className="credit-input"
+                    type="text"
+                    id="amount"
+                    value={amount}
+                    onChange={handleAmountChange}
+                    placeholder="Betrag eingeben..."
+                  />
+                </div>
+                <div className="finance-note">
+                  <div className="note-text">Anmerkung</div>
+                  <input
+                    className="note-input"
+                    type="text"
+                    value={remark}
+                    onChange={(e) => setRemark(e.target.value)}
+                    placeholder="Eintragen..."
+                  ></input>
+                </div>
+                <button
+                  className="finance-button"
+                  onClick={() => handleTransfer(amount)}
+                >
+                  Bestätigen
+                </button>
               </div>
-            </>
-          )}
-          <h1>Letzte Aktivitäten</h1>
-          <div className="finance-box3">
+            </div>
+
+            <div className="finance-balance">
+              <h1 className="finance-font">Guthaben aktualisieren</h1>
+              <div className="balance-content">
+                <div className="finance-employee">
+                  <div className="employee-text">An</div>
+                  <select
+                    className="employee-dropdown"
+                    value={selectedAccount2}
+                    onChange={(e) => setSelectedAccount2(e.target.value)}
+                  >
+                    {finance?.map((fin, index) => (
+                      <option key={index} value={index}>
+                        {fin.userInfo.firstName} {fin.userInfo.lastName}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="finance-credit">
+                  <div className="credit-text">Betrag in €</div>
+                  <input
+                    className="credit-input"
+                    type="text"
+                    id="amount"
+                    value={amount2}
+                    onChange={handleAmountChange2}
+                    placeholder="Betrag eingeben..."
+                  />
+                </div>
+                <div className="finance-note">
+                  <div className="note-text">Anmerkung</div>
+
+                  <input
+                    className="note-input"
+                    type="text"
+                    value={remark2}
+                    onChange={(e) => setRemark2(e.target.value)}
+                    placeholder="Eintragen..."
+                  ></input>
+                </div>
+
+                <button
+                  className="finance-button"
+                  onClick={() => handleSendMoney(amount2)}
+                >
+                  Bestätigen
+                </button>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div className="finance-outlay">
+            <h1 className="finance-font">Neue Ausgabe</h1>
+            <div className="balance-content">
+              <div className="finance-employee">
+                <div className="employee-text">An</div>
+                <select
+                  value={selectedAccount}
+                  onChange={(e) => setSelectedAccount(e.target.value)}
+                  label="Mitarbeiter auswählen"
+                >
+                  {finance?.map((fin, index) => (
+                    <option key={index + 1} value={index}>
+                      {fin.userInfo.firstName} {fin.userInfo.lastName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="finance-credit">
+                <div className="credit-text">Betrag in €</div>
+
+                <input
+                  className="credit-input"
+                  type="text"
+                  id="amount"
+                  value={amount}
+                  onChange={handleAmountChange}
+                  placeholder="Betrag eingeben..."
+                />
+              </div>
+              <div className="finance-note">
+                <div className="note-text">Anmerkung</div>
+
+                <input
+                  className="note-input"
+                  type="text"
+                  value={remark}
+                  onChange={(e) => setRemark(e.target.value)}
+                  placeholder="Eintragen..."
+                ></input>
+              </div>
+
+              <button
+                className="finance-button"
+                onClick={() => handleTransfer(amount)}
+              >
+                Bestätigen
+              </button>
+            </div>
+          </div>
+        )}
+
+        <div className="finance-activities">
+          <h1 className="finance-font">Letzte Aktivitäten</h1>
+          <div className="activities-content">
             {finance &&
               finance.map((fin) => {
                 if (fin.userInfo.userName === username) {
@@ -326,33 +308,33 @@ const Finance = ({ isAdmin, finances }) => {
                     .slice(-5)
                     .reverse()
                     .map((act, index) => (
-                      <div className="finance-lastActivities" key={index}>
-                        <div className="lastActivities-name">
+                      <div className="finance-activity" key={index}>
+                        <div className="activity-name">
                           {act.sendTo}
-                          <div className="lastActivities-date">
+                          <div className="activity-date">
                             {formatDate(act.date)}
                           </div>
                         </div>
-                        <div className="finance-activity-remark">
-                          {act.description}
+                        <div className="activity-note">
+                          <div className="activity-note-input">
+                            {act.description}
+                          </div>
+                        </div>
+                        <div className="activity-amount">
+                          {act.amount.toFixed(2)} €
+                          <div className="activity-description">
+                            {act.sign !== "+" && act.sign !== "-"
+                              ? "Guthaben aktualisiert"
+                              : act.sign}
+                            {act.sign === "+" && Erhalten}
+                            {act.sign === "-" && Gesendet}
+                          </div>
                         </div>
                       </div>
-                      <div className="activity-amount">
-                        
-                            {act.amount.toFixed(2)} €
-                          
-                        <div className="activity-description">
-                          {act.sign !== "+" && act.sign !== "-"
-                            ? "Guthaben aktualisiert"
-                            : act.sign}
-                          {act.sign === "+" && Erhalten}
-                          {act.sign === "-" && Gesendet}
-                        </div>
-                      </div>
-                    </div>
-                  ));
-              }
-            })}
+                    ));
+                }
+              })}
+          </div>
         </div>
       </div>
     </div>

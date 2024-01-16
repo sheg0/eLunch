@@ -18,32 +18,38 @@ const MealImageCheckboxes = () => {
             src={Alcohol}
             alt="Alcohol icon"
             mealPropertyName={"isWithAlcohol"}
+            title="Mit Alkohol"
           />
 
           <MealImageCheckbox
             src={Dairyfree}
             alt="Dairyfree icon"
             mealPropertyName={"isLactoseFree"}
+            title="Laktosefrei"
           />
           <MealImageCheckbox
             src={Glutenfree}
             alt="Glutenfree icon"
             mealPropertyName={"isGlutenFree"}
+            title="Glutenfrei"
           />
           <MealImageCheckbox
             src={Meat}
             alt="Meat icon"
             mealPropertyName={"isWithMeat"}
+            title="Mit Fleisch"
           />
           <MealImageCheckbox
             src={Vegan}
             alt="Vegan icon"
             mealPropertyName={"isVegan"}
+            title="Vegan"
           />
           <MealImageCheckbox
             src={Veggie}
             alt="Vegetarian icon"
             mealPropertyName={"isVegetarian"}
+            title="Vegetarisch"
           />
         </ButtonGroup>
       </div>
