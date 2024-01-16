@@ -1,46 +1,64 @@
-.EL-Content {
-  font-family: "Segoe UI";
-  width: 102vh;
-  height: 75vh;
-  overflow-y: auto;
-  border-radius: 2vh;
-  margin-bottom: 2vh;
-  margin-top: 2vh;
-  font-size: 2vh;
-  max-height: 60vh;
-  overflow: auto;
-}
-
 .EL-Container {
   flex-grow: 1;
-  padding-left: auto;
-  padding-top: 2vh;
+  padding-left: 10vh;
+  padding-top: 3vh;
+  cursor: default;
+  font-family: "Segoe UI";
 }
 
 .EL-Header {
   font-family: "Segoe UI";
+  text-align: left;
   color: #043c5f;
-  font-weight: 700;
-  font-size: 3.5vh;
-  margin-bottom: 1vh;
+  font-size: 3vh;
+  padding-left: 2.5vh;
+}
+
+.EL-Content {
+  width: 100vh;
+  height: 60vh;
+  overflow-y: scroll;
+  border-radius: 2vh;
+
+  box-shadow: 5px 9px 22px -1px #899399;
+  background-color: #e1e1e1;
+  border: #c6c6c6 solid 1px;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.EL-Content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .EL-Table {
   width: 100vh;
   table-layout: fixed;
-  background-color: #eeeeee;
 }
 
-.EL-Table th {
+.EL-Table-Header th {
+  position: sticky;
   top: 0;
-  line-height: 2;
-  background-color: #e4e4e4;
-  font-weight: bold;
-  color: #043c5f;
+  background-color: #043c5f;
+  font-size: 2.1vh;
+  font-weight: 400;
+  color: white;
 }
 
-.EL-TabelBody td {
-  margin: 2vh;
-  height: 10vh;
-  background-color: green;
+.EL-Table-Body td {
+  color: #3f3f3f;
+  font-size: 1.7vh;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.EL-Table-Body td,
+.EL-Table-Header th {
+  padding-left: 1vh;
+  padding-left: 1vh;
+  padding-top: 1.7vh;
+  padding-bottom: 1.7vh;
+  text-align: left;
+  border-bottom: thin solid #c6c6c6;
 }

@@ -1,167 +1,202 @@
 .finance-container {
-  height: 100%;
-  width: 100%;
-
-  display: flex;
-}
-
-.finance-content {
-  height: 90%;
-  width: 90%;
-
-  margin: auto auto auto auto;
-
-  align-content: center;
-  justify-content: center;
-  align-items: center;
-
-  flex-shrink: 0;
-  flex-direction: column;
-  display: flex;
-}
-
-h1 {
-  font-size: 3vh;
-  color: #043c5f;
-
+  flex-grow: 1;
+  padding-left: 10vh;
+  padding-top: 3vh;
   cursor: default;
+  font-family: "Segoe UI";
+}
+.finance-font {
+  font-family: "Segoe UI";
+  text-align: left;
+  color: #043c5f;
+  font-size: 3vh;
+  padding-left: 2.5vh;
 }
 
-.finance-box1,
-.finance-box2,
-.finance-box3 {
-  height: 80%;
-  width: 80%;
-
-  margin-top: 1.5vh;
-  margin-bottom: 3vh;
-
-  background-color: rgb(229, 229, 229);
-  border-radius: 2vh;
-}
-
-.finance-row1,
-.finance-row2,
-.finance-row3,
-.finance-row4 {
+/*  Outlay + Balance  */
+.finance-outlay,
+.finance-balance {
   display: flex;
-  flex: 1;
+  flex-direction: column;
+  left: 0;
+  padding-bottom: 6vh;
 }
+.outlay-content,
+.balance-content {
+  background-color: #e1e1e1;
+  box-shadow: 5px 9px 22px -1px #899399;
+  border: #c6c6c6 solid 1px;
+  border-radius: 2vh;
+  height: auto;
+  width: 90vh;
 
-.finance-employee,
-.finance-balance,
-.finance-remark {
-  width: 30%;
+  padding-left: 3vh;
+  padding-right: 3vh;
+  padding-top: 1vh;
+  padding-bottom: 2.5vh;
+}
+.finance-employee {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 
-  margin: 2.2vh;
-  padding-left: 5vh;
+  justify-content: space-between;
+  height: 7vh;
+}
+.finance-credit,
+.finance-note {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+
+  justify-content: space-between;
+  height: 9vh;
+}
+.employee-text,
+.credit-text,
+.note-text {
+  text-wrap: nowrap;
+  margin-top: auto;
+  margin-bottom: auto;
 
   font-weight: bold;
-  font-size: calc(10px + 0.390625vw);
+  font-size: 2.1vh;
   color: #3f3f3f;
-
-  cursor: default;
 }
-.finance-employee-dropdown,
-.finance-balance-numberfield,
-.finance-remark-textfield {
-  width: 80%;
-  padding-left: 10vh;
-}
-.employee-dropdown,
-.balance-input,
-.remark-textfield {
-  height: 60%;
-  width: 70%;
+.employee-dropdown {
+  width: 60vh;
+  margin-top: auto;
+  margin-bottom: auto;
 
-  margin-top: 2vh;
-  border-radius: 2vh;
+  padding-top: 0.8vh;
+  padding-bottom: 0.8vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
 
-  border: gray solid 2px;
-}
-
-.finance-confirm-button {
-  width: 80%;
-
-  padding-left: 5vh;
-}
-.finance-confirm {
-  height: 3.5vh;
-  width: auto;
-
-  margin: 2vh;
-
-  font-family: "Segoe UI";
+  border-radius: 1.4vh;
+  border: rgb(159, 159, 159) solid 2px;
+  color: #3f3f3f;
   font-size: 1.7vh;
-  font-weight: 400;
+  font-weight: 600;
+}
+.credit-input,
+.note-input {
+  width: 60vh;
+  height: 6vh;
+  margin-top: auto;
+  margin-bottom: auto;
+
+  padding-top: 1.4vh;
+  padding-bottom: 1.4vh;
+  padding-left: 1.5vh;
+  padding-right: 2vh;
+
+  border-radius: 1.5vh;
+  border: rgb(159, 159, 159) solid 2px;
+  color: #3f3f3f;
+  font-size: 1.7vh;
+  font-weight: 600;
+}
+.finance-button {
   background-color: #043c5f;
   color: white;
-
-  border-radius: 1vh;
-  border: none;
-
+  border-radius: 1.3vh;
+  font-size: 1.8vh;
+  font-weight: 500;
+  padding-top: 0.8vh;
+  padding-bottom: 0.8vh;
+  padding-left: 1.4vh;
+  padding-right: 1.4vh;
+  margin-top: 2.5vh;
+  height: auto;
+  width: auto;
   cursor: pointer;
 }
-.finance-confirm:hover {
+.finance-button:hover {
   background-color: #0f52ba;
 }
 
-.finance-lastActivities {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5vh;
-  margin: 1vh;
+/*  Activities  */
+.finance-activities {
+  display: flex;
+  flex-direction: column;
+  left: 0;
 }
-.lastActivities-name {
-  padding-top: 1vh;
-  margin-top: 1vh;
-  margin-left: 3vh;
-  margin-bottom: 1vh;
+.activities-content {
+  background-color: #e1e1e1;
+  box-shadow: 5px 9px 22px -1px #899399;
+  border: #c6c6c6 solid 1px;
+  border-radius: 2vh;
+  height: 47.5vh;
+  width: 90vh;
 
-  font-size: calc(10px + 0.390625vw);
+  padding-left: 3vh;
+  padding-right: 3vh;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+}
+.finance-activity {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+
+  justify-content: space-between;
+  height: 9vh;
+}
+.activity-name {
   font-weight: bold;
+  font-size: 2.1vh;
+  text-align: left;
   color: #043c5ffd;
-
-  cursor: default;
+  text-wrap: nowrap;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-.lastActivities-date {
+.activity-date {
   color: #3f3f3f;
-  font-size: calc(5px + 0.390625vw);
+  font-size: 1.8vh;
+  font-weight: 600;
 }
-.finance-activity-remark {
-  width: 100%;
-  height: 80%;
+.activity-note {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.activity-note-input {
+  width: 50vh;
+  height: 6vh;
 
-  padding-top: 1vh;
-  padding: 1vh;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  padding-top: 0.5vh;
   margin-top: 1vh;
   margin-bottom: 1vh;
 
   background-color: white;
-  border-radius: 2vh;
-  border: gray solid 2px;
-
-  cursor: default;
+  border-radius: 1.5vh;
+  border: rgb(159, 159, 159) solid 2px;
+  color: #3f3f3f;
+  font-size: 1.7vh;
+  font-weight: 600;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
-.finance-activity-amount {
-  padding-top: 1vh;
-  margin-top: 1vh;
-  margin-right: 1vh;
-  margin-bottom: 1vh;
+.activity-note-input::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 .activity-amount {
-  font-size: calc(10px + 0.390625vw);
   font-weight: bold;
+  font-size: 1.8vh;
   text-align: right;
   color: #043c5ffd;
-
-  cursor: default;
+  text-wrap: nowrap;
+  margin-top: auto;
+  margin-bottom: auto;
 }
-.activity-amount-description {
-  font-size: calc(5px + 0.390625vw);
-  font-weight: bold;
+.activity-description {
+  font-weight: 600;
+  font-size: 1.7vh;
   text-align: right;
   color: #3f3f3f;
-
-  cursor: default;
 }

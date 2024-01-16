@@ -161,7 +161,9 @@ const Finance = ({ isAdmin, finances }) => {
                       onChange={(e) => setSelectedAccount(e.target.value)}
                     >
                       {finance?.map((fin, index) => (
-                        <option key={index + 1} value={index}>
+                        <option
+                        key={index + 1} value={index}
+                        >
                           {fin.userInfo.firstName} {fin.userInfo.lastName}
                         </option>
                       ))}
@@ -334,26 +336,26 @@ const Finance = ({ isAdmin, finances }) => {
                         <div className="finance-activity-remark">
                           {act.description}
                         </div>
-                        <div className="finance-activity-amount">
-                          <div className="activity-amount">
+                      </div>
+                      <div className="activity-amount">
+                        
                             {act.amount.toFixed(2)} €
-                          </div>
-                          <div className="activity-amount-description">
-                            {act.sign !== "+" && act.sign !== "-"
-                              ? "Guthaben aktualisiert"
-                              : act.sign}
-                            {act.sign === "+" && Erhalten}
-                            {act.sign === "-" && Gesendet}
-                          </div>
+                          
+                        <div className="activity-description">
+                          {act.sign !== "+" && act.sign !== "-"
+                            ? "Guthaben aktualisiert"
+                            : act.sign}
+                          {act.sign === "+" && Erhalten}
+                          {act.sign === "-" && Gesendet}
                         </div>
                       </div>
-                    ));
-                }
-              })}
-          </div>
+                    </div>
+                  ));
+              }
+            })}
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
