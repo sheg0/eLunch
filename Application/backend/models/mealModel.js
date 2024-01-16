@@ -27,7 +27,7 @@ const mealSchema = new Schema(
       required: true,
     },
     cost: {
-      type: mongoose.Types.Decimal128,
+      type: Number,
       min: 0.0,
       max: 50.0,
       required: true,

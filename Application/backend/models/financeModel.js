@@ -52,8 +52,6 @@ const financeSchema = new Schema(
       balance: {
         type: mongoose.Types.Decimal128,
         required: true,
-        get: (v) => parseFloat(v),
-        set: (v) => parseFloat(v).toFixed(2).toString(),
       },
     },
   },
