@@ -1,84 +1,67 @@
 .Info-Container {
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  flex-grow: 1;
+  padding-left: 10vh;
+  padding-top: 3vh;
+  cursor: default;
+  font-family: "Segoe UI";
 }
 
 .Info-Headline {
-  top: 0;
-  margin: 0;
-  margin-bottom: 3vh;
-
-  font-family: "Segoe UI";
-  font-size: 3vh;
-  color: #043c5f;
   text-align: left;
+  color: #043c5f;
+  font-size: 3vh;
+  padding-left: 2.5vh;
 }
 
 .Info-Content {
-  height: auto;
-  width: 100%;
-
-  display: flex;
-
-  flex-direction: column;
-  flex: 1;
-
-  padding-bottom: 1vh;
-  padding-left: 1vh;
-
-  justify-content: space-between;
-
-  background-color: #e4e4e4;
+  width: 100vh;
+  height: 60vh;
+  overflow-y: scroll;
   border-radius: 2vh;
+
+  box-shadow: 5px 9px 22px -1px #899399;
+  background-color: #e1e1e1;
+  border: #c6c6c6 solid 1px;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.Info-Content::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .Info-Row {
   display: flex;
   justify-content: space-between;
+
+  padding-left: 1vh;
+  padding-right: 3vh;
+  padding-top: 2vh;
+  padding-bottom: 2vh;
 }
 
 .Info-Liste {
-  width: 70%;
-
-  padding: 1vh;
-  padding-left: 3vh;
-
-  font-family: "Segoe UI";
-  font-size: 2vh;
-
-  line-height: 3.5vh;
+  width: 70vh;
+  font-size: 1.8vh;
+  font-weight: 600;
+  color: #3f3f3f;
+  word-wrap: break-word;
 }
 
-.liste-sytle {
-  margin-bottom: 1vh;
-  border: none;
+.liste-style {
+  margin-bottom: 2vh;
 }
 
 .Info-Legend {
-  padding-left: 1vh;
-  padding-top: 1vh;
-
-  border-radius: 2vh;
-  padding-bottom: 1vh;
-
-  order: 2;
-
-  background-color: #e4e4e4;
+  flex-direction: column;
+  display: flex;
 }
 
 .Info-Image {
-  max-height: 70%;
-  max-width: 70%;
-
-  display: block;
-
-  margin: 4vh 4vh 4vh 4vh;
-
-  text-align: right;
+  width: 6.5vh;
+  height: 6.5vh;
+  padding: 1vh;
 }
 
 .Info-Image:hover::after {
@@ -98,45 +81,53 @@
 }
 
 .Info-Footer {
-  display: flex;
+  width: 90vh;
+  height: 20vh;
 
-  font-size: 2vh;
-  color: white;
   background-color: #043c5f;
+  box-shadow: 5px 9px 22px -1px #758995;
+  border: #c6c6c6 solid 1px;
 
-  border-radius: 2vh;
-  gap: 20vh;
-  margin-top: 2vh;
+  border-radius: 2.5vh;
+  margin-top: 3vh;
+  margin-left: 5vh;
   justify-content: center;
+  display: flex;
+  justify-content: space-around;
 }
 
 .Info-Column {
-  margin: 0 2vh;
 }
 
 .Info-Footer-Headline {
-  font-family: "Segoe UI";
-  font-weight: 630;
-  font-size: 3vh;
-  color: #759acb;
+  font-size: 2.5vh;
+  font-weight: 600;
+  color: white;
+  padding-bottom: 1.6vh;
+  padding-top: 0.2vh;
 }
 
 .Info-Footer-Text {
-  font-family: "Segoe UI";
-  text-align: center;
+  color: white;
+  font-size: 1.8vh;
+  font-weight: 400;
+  text-align: left;
 }
 
 .Verewigung {
-  height: 50%;
-  width: 70%;
+  width: 86vh;
+  height: auto;
 
-  margin-top: 2vh;
-  margin-left: 18vh;
-  border-radius: 3vh;
+  margin-top: 0.3vh;
+  margin-left: 7vh;
+  padding: 0.5vh;
+  padding-bottom: 0.7vh;
+  border-radius: 1.3vh;
 
-  font-family: "Segoe UI";
-  color: lightgray;
-  background: linear-gradient(to right, #043c5f, #4010c3);
-  box-shadow: 4px 4px 8px #10c388;
+  font-size: 1.6vh;
+  font-weight: 400;
+  color: white;
   text-align: center;
+  background-color: rgb(102, 102, 102);
+  box-shadow: 4px 4px 8px #3f3f3f;
 }

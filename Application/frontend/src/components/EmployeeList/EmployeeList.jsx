@@ -16,7 +16,7 @@ const EmployeeList = ({ finances }) => {
       <div className="EL-Content">
         <table className="EL-Table">
           <thead>
-            <tr>
+            <tr className="EL-Table-Header">
               <th>Vorname</th>
               <th>Nachname</th>
               <th>Benutzername</th>
@@ -25,7 +25,7 @@ const EmployeeList = ({ finances }) => {
           </thead>
           <tbody>
             {Object.keys(finances).map((keyName, i) => (
-              <tr key={i}>
+              <tr className="EL-Table-Body" key={i}>
                 <td>{finances[keyName].userInfo.firstName}</td>
                 <td>{finances[keyName].userInfo.lastName}</td>
                 <td>{finances[keyName].userInfo.userName}</td>

@@ -1,36 +1,39 @@
-import React, { useState } from "react";
-import "./Shoppinglist.css";
-import { TbCheckbox } from "react-icons/tb";
-import { LuArrowLeftSquare } from "react-icons/lu";
-import { FaRegTrashAlt } from "react-icons/fa";
+import React, { useState, useEffect } from "react";
 import { useShoppinglistContext } from "../../hooks/useShoppinglistContext";
-import { useEffect } from "react";
+import "./Shoppinglist.css"; // Import the CSS file
+import { TbCheckbox } from "react-icons/tb";
+import { FaRegTrashAlt } from "react-icons/fa";
+import { LuArrowLeftSquare } from "react-icons/lu";
 
-function Shoppinglist({ shoppinglists }) {
-  const [article, setArticle] = useState("");
-  const [quantity, setQuantity] = useState("");
-  const [lists, setList] = useState([]);
-  const [historylist, setHistorylist] = useState([]);
+const ShoppingList = ({ ListBackend }) => {
+  const [items, setItems] = useState(ListBackend || []);
+  const [newItem, setNewItem] = useState({ article: "", quantity: "" });
   const { dispatch } = useShoppinglistContext();
 
   useEffect(() => {
-    toArray();
-  }, [shoppinglists]);
+    setItems(ListBackend || []);
+  }, [ListBackend]);
 
-  const toArray = () => {
-    if (shoppinglists != null) {
-      const newLists = Object.values(shoppinglists);
-      setList(newLists);
-    }
+  function getRandomNumber(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setNewItem({
+      ...newItem,
+      [name]: value,
+    });
   };
-  const addShoppinglist = async () => {
-    console.log(article);
+
+  const addBackendShoppinglist = async ({ id, article, quantity, status }) => {
     const response = await fetch("/api/shoppinglist/", {
       method: "POST",
       body: JSON.stringify({
+        id: id,
         article: article,
         quantity: quantity,
-        status: true,
+        status: status,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -44,71 +47,25 @@ function Shoppinglist({ shoppinglists }) {
     }
   };
 
-  const handleArticleChange = (event, index) => {
-    const updatedLists = [...lists];
-    updatedLists[index].article = event.target.value;
-    setList(updatedLists);
-  };
-
-  const handleQuantityChange = (event, index) => {
-    const updatedLists = [...lists];
-    updatedLists[index].quantity = event.target.value;
-    setList(updatedLists);
-  };
-
-  const handleNewArticle = () => {
-    if (article !== "" && quantity !== "") {
-      const newArticle = {
-        article: article,
-        quantity: quantity,
-        status: true, // Assuming a new article is always active
+  const handleAddItem = async () => {
+    if (newItem.article && newItem.quantity) {
+      const newItemWithIdAndStatus = {
+        ...newItem,
+        id: getRandomNumber(1, 1000),
+        status: true,
       };
-
-      setList((prevLists) => [...prevLists, newArticle]);
-      addShoppinglist();
-      setArticle("");
-      setQuantity("");
+      addBackendShoppinglist(newItemWithIdAndStatus);
+      setItems([...items, newItemWithIdAndStatus]);
+      setNewItem({ article: "", quantity: "" });
     }
   };
 
-  const handleCheckbox = async (index) => {
-    const activeItems = lists.filter((item) => item.status === true);
-    const checkedArticle = activeItems[index];
-    const updatedLists = lists.map((item) =>
-      item._id === checkedArticle._id ? { ...item, status: false } : item
-    );
-    setList(updatedLists);
-    await updateStatusOnServer(checkedArticle._id, false);
-  };
-
-  const handleMoveBack = async (index) => {
-    const inactiveItems = lists.filter((item) => item.status === false);
-    const movedArticle = inactiveItems[index];
-    const updatedLists = lists.map((item) =>
-      item._id === movedArticle._id ? { ...item, status: true } : item
-    );
-    setList(updatedLists);
-    await updateStatusOnServer(movedArticle._id);
-  };
-
-  const handleDelete = async (index, list) => {
-    if (list === "shoppinglist") {
-      const deletedArticle = lists[index];
-      const updatedLists = lists.filter((_, i) => i !== index);
-      setList(updatedLists);
-      await deleteArticleOnServer(deletedArticle._id);
-    } else if (list === "historylist") {
-      const deletedArticle = historylist[index];
-      const updatedHistoryList = historylist.filter((_, i) => i !== index);
-      setHistorylist(updatedHistoryList);
-      await deleteArticleOnServer(deletedArticle._id);
-    }
-  };
-
-  const updateStatusOnServer = async (id) => {
+  const toggleBackendShoppinglistStatus = async (id, currentStatus) => {
     const response = await fetch(`/api/shoppinglist/${id}`, {
       method: "PATCH",
-
+      body: JSON.stringify({
+        status: !currentStatus,
+      }),
       headers: {
         "Content-Type": "application/json",
       },
@@ -118,10 +75,20 @@ function Shoppinglist({ shoppinglists }) {
 
     if (response.ok) {
       dispatch({ type: "UPDATE_SHOPPINGLIST", payload: json });
-    } else {
     }
   };
-  const deleteArticleOnServer = async (id) => {
+
+  const toggleStatus = (id, currentStatus) => {
+    // Update the status in the backend
+    toggleBackendShoppinglistStatus(id, currentStatus);
+
+    // Update the status in the local state
+    const updatedItems = items.map((item) =>
+      item.id === id ? { ...item, status: !item.status } : item
+    );
+    setItems(updatedItems);
+  };
+  const deleteBackendShoppinglist = async (id) => {
     const response = await fetch(`/api/shoppinglist/${id}`, {
       method: "DELETE",
       headers: {
@@ -129,11 +96,24 @@ function Shoppinglist({ shoppinglists }) {
       },
     });
 
+    const json = await response.json();
+
     if (response.ok) {
-      dispatch({ type: "DELETE_SHOPPINGLIST", payload: id });
-    } else {
+      dispatch({ type: "DELETE_SHOPPINGLIST", payload: json });
     }
   };
+
+  const deleteItem = (id) => {
+    // Delete the item in the backend
+    deleteBackendShoppinglist(id);
+
+    // Delete the item in the local state
+    const updatedItems = items.filter((item) => item.id !== id);
+    setItems(updatedItems);
+  };
+
+  const activeItems = items.filter((item) => item.status);
+  const inactiveItems = items.filter((item) => !item.status);
 
   return (
     <div className="shoppinglist-content">
@@ -143,18 +123,20 @@ function Shoppinglist({ shoppinglists }) {
           <input
             className="new-input-article"
             type="text"
-            value={article}
-            onChange={(e) => setArticle(e.target.value)}
             placeholder="Artikel"
+            name="article"
+            value={newItem.article}
+            onChange={handleInputChange}
           />
           <input
             className="new-input-quantity"
             type="text"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
             placeholder="Menge"
+            name="quantity"
+            value={newItem.quantity}
+            onChange={handleInputChange}
           />
-          <button className="new-button" onClick={handleNewArticle}>
+          <button className="new-button" onClick={handleAddItem}>
             + Hinzufügen
           </button>
         </div>
@@ -167,38 +149,24 @@ function Shoppinglist({ shoppinglists }) {
               <h1 className="list-font">Einkaufszettel</h1>
             </div>
             <div className="list-content">
-              {lists
-                .filter((item) => item.status === true)
-                .map((item, index) => (
-                  <li className="list-row" key={index}>
-                    <div
-                      className="input-buttons"
-                      onClick={() => handleCheckbox(index)}
-                    >
-                      <TbCheckbox />
-                    </div>
-                    <input
-                      disabled
-                      className="input-article"
-                      type="text"
-                      value={item.article}
-                      onChange={(e) => handleArticleChange(e, index)}
-                    />
-                    <input
-                      disabled
-                      className="input-quantity"
-                      type="text"
-                      value={item.quantity}
-                      onChange={(e) => handleQuantityChange(e, index)}
-                    />
-                    <div
-                      className="input-buttons-trash"
-                      onClick={() => handleDelete(index, "shoppinglist")}
-                    >
-                      <FaRegTrashAlt />
-                    </div>
-                  </li>
-                ))}
+              {activeItems.map((item) => (
+                <li className="list-row" key={item.id}>
+                  <div
+                    className="input-buttons"
+                    onClick={() => toggleStatus(item.id, item.status)}
+                  >
+                    <TbCheckbox />
+                  </div>
+                  <div className="input-article">{item.article}</div>
+                  <div className="input-quantity">{item.quantity}</div>
+                  <div
+                    className="input-buttons-trash"
+                    onClick={() => deleteItem(item.id)}
+                  >
+                    <FaRegTrashAlt />
+                  </div>
+                </li>
+              ))}
             </div>
           </ul>
         </div>
@@ -209,44 +177,30 @@ function Shoppinglist({ shoppinglists }) {
               <h1 className="list-font">Zuletzt abgehakt</h1>
             </div>
             <div className="list-content">
-              {lists
-                .filter((item) => item.status === false)
-                .map((item, index) => (
-                  <li className="list-row" key={index}>
-                    <div
-                      className="input-buttons"
-                      onClick={() => handleMoveBack(index)}
-                    >
-                      <LuArrowLeftSquare />
-                    </div>
-                    <input
-                      disabled
-                      className="input-article"
-                      type="text"
-                      value={item.article}
-                      onChange={(e) => handleArticleChange(e, index)}
-                    />
-                    <input
-                      disabled
-                      className="input-quantity"
-                      type="text"
-                      value={item.quantity}
-                      onChange={(e) => handleQuantityChange(e, index)}
-                    />
-                    <div
-                      className="input-buttons-trash"
-                      onClick={() => handleDelete(index, "historylist")}
-                    >
-                      <FaRegTrashAlt />
-                    </div>
-                  </li>
-                ))}
+              {inactiveItems.map((item) => (
+                <li className="list-row" key={item.id}>
+                  <div
+                    className="input-buttons"
+                    onClick={() => toggleStatus(item.id, item.status)}
+                  >
+                    <LuArrowLeftSquare />
+                  </div>
+                  <div className="input-article">{item.article}</div>
+                  <div className="input-quantity">{item.quantity}</div>
+                  <div
+                    className="input-buttons-trash"
+                    onClick={() => deleteItem(item.id)}
+                  >
+                    <FaRegTrashAlt />
+                  </div>
+                </li>
+              ))}
             </div>
           </ul>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default Shoppinglist;
+export default ShoppingList;

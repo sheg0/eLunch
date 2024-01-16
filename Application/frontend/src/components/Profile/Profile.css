@@ -6,6 +6,7 @@
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   flex-shrink: 0;
   cursor: default;
+  font-family: "Segoe UI";
 }
 .profile-content {
   padding: 5%;
@@ -13,6 +14,7 @@
 
 .box1 {
   width: 100%;
+  height: auto;
   flex-direction: row;
   display: flex;
   justify-content: space-between;
@@ -48,6 +50,8 @@
 
 .box2 {
   width: 100%;
+  height: auto;
+  padding-top: 2.5vh;
   flex-direction: row;
   display: flex;
   justify-content: space-between;
@@ -55,58 +59,55 @@
 .name {
   height: 100%;
   font-size: 2.2vh;
-  line-height: 8vh;
   font-weight: bold;
   color: #043c5f;
-  white-space: nowrap;
+  word-wrap: break-word;
+  text-align: left;
 }
 .balance {
   height: 100%;
-  font-size: 2.2vh;
-  line-height: 8vh;
+  font-size: 2vh;
   font-weight: bold;
   color: #333333;
   white-space: nowrap;
+  text-align: right;
 }
 
 .box3 {
   width: 100%;
+  height: auto;
+  padding-top: 2vh;
   flex-direction: row;
   display: flex;
   justify-content: space-between;
 }
 .statistic {
-  line-height: 4vh;
   font-weight: bold;
   font-size: 2vh;
   color: #333333;
   white-space: nowrap;
 }
 .gekocht {
-  line-height: 2vh;
   font-size: 2vh;
   color: #333333;
   font-weight: bold;
-  white-space: nowrap;
   flex-direction: row;
   display: flex;
-  margin-top: auto;
-  margin-bottom: auto;
+  bottom: 0;
   gap: 0.9vh;
 }
 .icon-gekocht {
+  margin-top: 0.4vh;
 }
 .gegessen {
-  line-height: 2vh;
   font-size: 2vh;
   color: #333333;
   font-weight: bold;
-  white-space: nowrap;
   flex-direction: row;
   display: flex;
-  margin-top: auto;
-  margin-bottom: auto;
+  bottom: 0;
   gap: 0.9vh;
 }
 .icon-gegessen {
+  margin-top: 0.3vh;
 }

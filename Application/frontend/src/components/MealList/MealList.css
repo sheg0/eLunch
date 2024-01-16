@@ -3,6 +3,7 @@
   padding-left: 10vh;
   padding-top: 3vh;
   cursor: default;
+  font-family: "Segoe UI";
 }
 
 .MeaList-icon-container {
@@ -12,6 +13,8 @@
 .MealList-icon-button {
   border: none;
   border-radius: 1.5vh;
+  color: #043c5f;
+  background-color: #e1e1e1;
   width: 8vh;
   height: 4vh;
   cursor: pointer;
@@ -130,49 +133,73 @@
   margin-top: 2vh;
 }
 
-.MealList-Table-Container {
+.MealList-Table-Font {
   font-family: "Segoe UI";
-  width: 102vh;
-  height: 75vh;
+  text-align: left;
+  color: #043c5f;
+  font-size: 3vh;
+  padding-left: 2.5vh;
+}
+
+.MealList-Table-Container {
+  width: 100vh;
+  height: 60vh;
   overflow-y: scroll;
   border-radius: 2vh;
-  margin-bottom: 2vh;
-  margin-top: 2vh;
-  font-size: 2vh;
+
+  box-shadow: 5px 9px 22px -1px #899399;
+  background-color: #e1e1e1;
+  border: #c6c6c6 solid 1px;
+  overflow: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.MealList-Table-Container::-webkit-scrollbar {
+  width: 0;
+  height: 0;
 }
 
 .MealList-Table {
   width: 100vh;
   table-layout: fixed;
-  background-color: #eeeeee;
 }
 
 .MealList-Table th {
   position: sticky;
   top: 0;
-  line-height: 2;
-  background-color: #e4e4e4;
-  font-weight: bold;
-  color: #043c5f;
+  background-color: #043c5f;
+  font-size: 2.1vh;
+  font-weight: 400;
+  color: white;
+}
+
+.MealList-Table td {
+  color: #3f3f3f;
+  font-size: 1.7vh;
+  font-weight: 600;
+  word-wrap: break-word;
 }
 
 .MealList-Table td,
 .MealList-Table th {
   padding: 1vh;
   text-align: left;
-  border-bottom: thin solid #ddd;
+  border-bottom: thin solid #c6c6c6;
 }
 
 .MealList-AddMeal-Button {
-  font-family: "Segoe UI";
-  font-size: 1.7vh;
-  font-weight: 400;
-  border-radius: 1vh;
-  border: none;
   background-color: #043c5f;
   color: white;
+  border-radius: 1.2vh;
+  font-size: 1.8vh;
+  font-weight: 500;
+  margin-top: 4vh;
+  padding-top: 0.8vh;
+  padding-bottom: 0.8vh;
+  padding-left: 1.4vh;
+  padding-right: 1.4vh;
+  height: auto;
   width: auto;
-  height: 3.5vh;
   cursor: pointer;
 }
 

@@ -1,16 +1,17 @@
 .shoppinglist-content {
   flex-grow: 1;
-  padding-left: auto;
+  padding-left: 10vh;
   padding-top: 3vh;
   cursor: default;
-}
-h1 {
   font-family: "Segoe UI";
+}
+.list-font {
   text-align: left;
   color: #043c5f;
   font-size: 3vh;
   margin: 0;
   top: 0;
+  padding-left: 1vh;
 }
 
 /*  Einkaufszettel-Liste,  Verlauf-Liste  */
@@ -36,7 +37,7 @@ h1 {
   flex-direction: column;
   display: flex;
   background-color: rgb(181, 222, 236);
-  box-shadow: 5px 9px 18px -1px #758995;
+  box-shadow: 5px 9px 22px -1px #7f94a1;
   border: #77a5c2 solid 1px;
   border-radius: 25px;
   padding-left: 2.5vh;
@@ -49,7 +50,7 @@ h1 {
   flex-direction: column;
   display: flex;
   background-color: rgb(186, 186, 186);
-  box-shadow: 5px 9px 18px -1px #758995;
+  box-shadow: 5px 9px 22px -1px #899399;
   border: #919191 solid 1px;
   border-radius: 25px;
   padding-left: 2.5vh;
@@ -80,12 +81,15 @@ h1 {
   background-color: rgb(236, 244, 245);
   color: #043c5f;
   border-radius: 1.2vh;
-  border-color: rgb(172, 184, 187);
+  border: rgb(183, 194, 197) solid 0.1vh;
   width: 35vh;
   height: auto;
-  padding-top: 0.8vh;
+  padding-top: 0.7vh;
   padding-bottom: 0.8vh;
-  font-size: 1.6vh;
+  padding-left: 1.2vh;
+  padding-right: 1.2vh;
+  font-size: 1.7vh;
+  font-weight: 600;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -93,12 +97,15 @@ h1 {
   background-color: rgb(236, 244, 245);
   color: #043c5f;
   border-radius: 1.2vh;
-  border-color: rgb(172, 184, 187);
+  border: rgb(183, 194, 197) solid 0.1vh;
   width: 9vh;
   height: auto;
-  padding-top: 0.8vh;
+  padding-top: 0.7vh;
   padding-bottom: 0.8vh;
-  font-size: 1.6vh;
+  padding-left: 1.2vh;
+  padding-right: 1.2vh;
+  font-size: 1.7vh;
+  font-weight: 600;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -145,12 +152,13 @@ h1 {
 }
 .new-input-article {
   background-color: rgb(229, 229, 229);
-  border: #8a9196 solid 0.3vh;
+  border: #8c9498 solid 0.3vh;
   border-radius: 1.2vh;
   color: #878e92;
   width: 35vh;
   height: 4vh;
-  font-size: 1.6vh;
+  font-size: 1.7vh;
+  font-weight: 600;
   cursor: text;
 }
 .new-input-quantity {
@@ -160,7 +168,8 @@ h1 {
   color: #878e92;
   width: 10vh;
   height: 4vh;
-  font-size: 1.6vh;
+  font-size: 1.7vh;
+  font-weight: 600;
   cursor: text;
 }
 .new-button {
@@ -168,6 +177,7 @@ h1 {
   color: white;
   border-radius: 1.2vh;
   font-size: 1.8vh;
+  font-weight: 500;
   margin-left: 2vh;
   padding-top: 0.8vh;
   padding-bottom: 0.8vh;
