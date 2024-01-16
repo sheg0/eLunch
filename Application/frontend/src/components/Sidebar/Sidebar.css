@@ -20,6 +20,7 @@
       --Primary-Gradient,
       linear-gradient(180deg, #043c5f 50%, #10c388 125%)
     );
+    font-family: "Segoe UI";
   }
 
   .sidebar-content {
