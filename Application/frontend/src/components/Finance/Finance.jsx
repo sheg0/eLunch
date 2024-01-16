@@ -7,6 +7,7 @@ import { useKeycloak } from "@react-keycloak/web";
 const Finance = ({ isAdmin, finances }) => {
   const Gesendet = "Geld Gesendet";
   const Erhalten = "Geld Erhalten";
+
   const { keycloak, initialized } = useKeycloak();
   const { finance, addFinance, updateBalance, addActivities } =
     useFinanceContext();
@@ -34,14 +35,15 @@ const Finance = ({ isAdmin, finances }) => {
   }, []);
 
   const handleTransfer = (amount) => {
-    console.log("Selected index", selectedAccount);
     if (finance) {
       let localSelectedUser = finance[selectedAccount].userInfo.userName;
-      console.log("Selected User", localSelectedUser);
+
       finance.map((fin) => {
         if (fin.userInfo.userName === username) {
           let newBalance =
-            parseInt(fin.userInfo.balance.$numberDecimal) - parseInt(amount);
+            parseFloat(fin.userInfo.balance.$numberDecimal) -
+            parseFloat(amount);
+
           updateBalance(username, newBalance);
           addActivities(
             username,
@@ -55,7 +57,9 @@ const Finance = ({ isAdmin, finances }) => {
 
         if (fin.userInfo.userName === localSelectedUser) {
           let newBalance =
-            parseInt(fin.userInfo.balance.$numberDecimal) + parseInt(amount);
+            parseFloat(fin.userInfo.balance.$numberDecimal) +
+            parseFloat(amount);
+
           updateBalance(localSelectedUser, newBalance);
           addActivities(
             localSelectedUser,
@@ -77,10 +81,12 @@ const Finance = ({ isAdmin, finances }) => {
   const handleSendMoney = (amount2) => {
     if (finance) {
       let localSelectedUser = finance[selectedAccount2].userInfo.userName;
+
       finance.map((fin) => {
         if (fin.userInfo.userName === localSelectedUser) {
           let newBalance =
-            parseInt(fin.userInfo.balance.$numberDecimal) + parseInt(amount2);
+            parseFloat(fin.userInfo.balance.$numberDecimal) +
+            parseFloat(amount2);
           updateBalance(localSelectedUser, newBalance);
           addActivities(
             username,
@@ -155,10 +161,7 @@ const Finance = ({ isAdmin, finances }) => {
                       onChange={(e) => setSelectedAccount(e.target.value)}
                     >
                       {finance?.map((fin, index) => (
-                        <option
-                          key={fin.userInfo.userName}
-                          value={fin.userInfo.userName}
-                        >
+                        <option key={index + 1} value={index}>
                           {fin.userInfo.firstName} {fin.userInfo.lastName}
                         </option>
                       ))}
@@ -332,7 +335,9 @@ const Finance = ({ isAdmin, finances }) => {
                           {act.description}
                         </div>
                         <div className="finance-activity-amount">
-                          <div className="activity-amount">{act.amount} €</div>
+                          <div className="activity-amount">
+                            {act.amount.toFixed(2)} €
+                          </div>
                           <div className="activity-amount-description">
                             {act.sign !== "+" && act.sign !== "-"
                               ? "Guthaben aktualisiert"
