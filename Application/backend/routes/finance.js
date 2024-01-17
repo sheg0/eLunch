@@ -23,3 +23,5 @@ router.patch("/:userName", updateBalance);
 router.patch("/activities/:userName", addActivities);
 router.delete("/activities/:userName", deleteActivities);
 module.exports = router;
+
+

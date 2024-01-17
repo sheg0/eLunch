@@ -1,8 +1,9 @@
-version: "3"
+version: "4"
 services:
   backend:
     build:
       context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "4000:4000"
     depends_on:
@@ -11,12 +12,16 @@ services:
   frontend:
     build:
       context: ./frontend
+      dockerfile: Dockerfile
     ports:
       - "3000:3000"
     depends_on:
       - backend
 
   keycloak:
-    image: alterwalter/keycloak:v1.0
+    image: mlepnos/elunch_keycloak:v1
+    environment:
+      - KEYCLOAK_USER=admin
+      - KEYCLOAK_PASSWORD=admin
     ports:
-      - "8080:8080"
+      - "3001:8080"
