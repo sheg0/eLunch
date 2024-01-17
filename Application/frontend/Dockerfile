@@ -1,17 +1,21 @@
 # Use an official Node runtime as a parent image
 FROM node:20
 
-# Set the working directory to /app
+# Set working directory
 WORKDIR /app
 
-# Copy package.json and package-lock.json to the working directory
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install app dependencies
+# Install dependencies
 RUN npm install
 
-# Bundle app source
+# Copy the rest of the application code
 COPY . .
+
+# Build the app
+RUN npm run build
+
 
 # Expose the port the app runs on
 EXPOSE 3000
@@ -19,5 +23,5 @@ EXPOSE 3000
 # Define environment variable
 ENV NODE_ENV production
 
-# Run the application
+# Start Nginx
 CMD ["npm", "start"]
